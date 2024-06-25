@@ -28,7 +28,8 @@
       "padding-top": ["rem"],
       "padding-bottom": ["rem"],
       "letter-spacing": ["em"],
-      "word-spacing": ["em"]
+      "word-spacing": ["em"],
+      "/^border/": ["px"]
     },
 
     "order/order": ["custom-properties", "declarations"],
