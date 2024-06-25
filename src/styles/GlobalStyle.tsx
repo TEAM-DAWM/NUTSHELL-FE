@@ -137,6 +137,10 @@ const style = css`
     border-collapse: collapse;
     border-spacing: 0;
   }
+
+  html {
+    font-size: 62.5%;
+  }
 `;
 
 const GlobalStyle = () => {

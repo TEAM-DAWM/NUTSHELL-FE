@@ -37,7 +37,7 @@ const TestStyled = styled.div`
   display: flex;
   margin: 10rem;
 
-  color: #000;
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 export default App;
