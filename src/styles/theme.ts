@@ -23,14 +23,14 @@ declare module "@emotion/react" {
 
 const theme: Theme = {
   fontSizes: {
-    xs: "12px",
-    sm: "16px",
-    base: "24px",
-    md: "36px",
-    lg: "48px",
-    xl: "64px",
-    xxl: "96px",
-    xxxl: "128px",
+    xs: "12rem",
+    sm: "16rem",
+    base: "24rem",
+    md: "36rem",
+    lg: "48rem",
+    xl: "64rem",
+    xxl: "96rem",
+    xxxl: "128rem",
   },
   colors: {
     black: "#12101D",
