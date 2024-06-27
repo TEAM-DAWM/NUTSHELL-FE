@@ -1,11 +1,9 @@
-import { useState } from "react";
-import styled from "@emotion/styled";
-import { IcCircleArrowRightSolid } from "./assets/svg";
+import ArrowRight from "../public/svg/ic_circle-arrow-right-solid.svg?react";
 
 function App() {
   return (
     <>
-      <IcCircleArrowRightSolid />
+      <ArrowRight />
     </>
   );
 }
