@@ -39,14 +39,6 @@ module.exports = {
 			plugins: ['@typescript-eslint'],
 			extends: ['plugin:@typescript-eslint/recommended'],
 		},
-		{
-			files: ['**/__tests__/**/*', '**/*.{spec,test}.*'],
-			env: {
-				'jest/globals': true,
-			},
-			plugins: ['jest', 'jest-dom', 'testing-library'],
-			extends: ['plugin:jest/recommended', 'plugin:jest-dom/recommended', 'plugin:testing-library/react'],
-		},
 	],
 	settings: {
 		'import/resolver': {
