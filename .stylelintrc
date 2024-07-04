@@ -15,8 +15,8 @@
     ],
     "color-named": "never",
     "declaration-property-unit-allowed-list": {
-      "width": ["%", "vw"],
-      "height": ["%", "vh"],
+      "width": ["%", "vw", "rem"],
+      "height": ["%", "vh", "rem"],
       "font-size": ["rem", "%"],
       "margin": ["rem"],
       "margin-left": ["rem"],
@@ -27,8 +27,8 @@
       "padding-right": ["rem"],
       "padding-top": ["rem"],
       "padding-bottom": ["rem"],
-      "letter-spacing": ["em"],
-      "word-spacing": ["em"],
+      "letter-spacing": ["em", "rem"],
+      "word-spacing": ["em", "rem"],
       "/^border/": ["px"]
     },
 
