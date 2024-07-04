@@ -8,6 +8,7 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended',
 		'plugin:react-hooks/recommended',
 		'airbnb',
+		'airbnb-typescript',
 		'prettier',
 	],
 	ignorePatterns: ['dist', '.eslintrc.cjs'],
