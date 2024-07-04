@@ -15,8 +15,8 @@
     ],
     "color-named": "never",
     "declaration-property-unit-allowed-list": {
-      "width": ["%", "vw"],
-      "height": ["%", "vh"],
+      "width": ["%", "vw", "rem"],
+      "height": ["%", "vh", "rem"],
       "font-size": ["rem", "%"],
       "margin": ["rem"],
       "margin-left": ["rem"],
