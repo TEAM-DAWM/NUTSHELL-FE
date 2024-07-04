@@ -1,5 +1,9 @@
 import { Global, css } from '@emotion/react';
 
+const fonts = {
+	Pretendard: 'Pretendard-Medium',
+};
+
 const style = css`
 	/* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -112,6 +116,7 @@ const style = css`
 	}
 
 	body {
+		font-family: ${fonts.Pretendard};
 		line-height: 1;
 	}
 
