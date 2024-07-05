@@ -29,19 +29,19 @@
     </tr>
     <tr align="center">
       <td style="min-width: 150px;">
-            <a href="https://github.com/pepperdad">
+            <a href="https://github.com/wrryu09">
               <img src="https://avatars.githubusercontent.com/u/98469609?v=4" width="200" alt="깃허브계정-프로필사진">
               <br />
             </a>
         </td>
       <td style="min-width: 150px;">
-            <a href="https://github.com/Kjiw0n">
+            <a href="https://github.com/seong-hui">
               <img src="https://avatars.githubusercontent.com/u/52481403?v=4" width="200" alt="깃허브계정-프로필사진">
               <br />
             </a>
         </td>
       <td style="min-width: 150px;">
-            <a href="https://github.com/cindy-chaewon">
+            <a href="https://github.com/Kjiw0n">
               <img src="https://avatars.githubusercontent.com/u/128016888?v=4" width="200" alt="깃허브계정-프로필사진">
               <br />
             </a>
@@ -55,16 +55,16 @@
     </tr>
     <tr align="center">
        <td>
-            뷰를 어떻게 <br/>
+            FE Developer <br/>
       </td>
        <td>
-            나눠야 <br/>
+            FE Developer <br/>
       </td>
        <td>
-            잘 나눴다고 <br/>
+            FE Developer <br/>
       </td>
       <td>
-            소문이 날까 <br/>
+            FE Developer <br/>
       </td>
     </tr>
 </table>
@@ -94,7 +94,7 @@
       </td>
     </tr>
         <tr align="center">
-       <td>Buid<br/>
+       <td>Build<br/>
       </td>
        <td>
          <img src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white"><br/>
@@ -112,6 +112,14 @@
       </td>
        <td>
          <img src="https://img.shields.io/badge/emotion-3776AB?style=for-the-badge&logo=emotion&logoColor=white"><br/>
+      </td>
+    </tr>
+              <tr align="center">
+       <td>Data Fetching<br/>
+      </td>
+       <td>
+         <img src="https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white">
+         <img src="https://img.shields.io/badge/axios-3776AB?style=for-the-badge&logo=axios&logoColor=white">
       </td>
     </tr>
               <tr align="center">
