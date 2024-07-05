@@ -3,9 +3,7 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-type Props = {};
-
-const RefreshBtn = (props: Props) => {
+const RefreshBtn = () => {
 	return (
 		<RefreshBtnLayout>
 			<Icons.Refresh />
