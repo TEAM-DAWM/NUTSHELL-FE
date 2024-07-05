@@ -4,6 +4,7 @@ import Icn_nav_calendar from '@/assets/svg/icn_nav_calendar.svg?react';
 import Icn_nav_dashboard from '@/assets/svg/icn_nav_dashboard.svg?react';
 import Icn_nav_setting from '@/assets/svg/icn_nav_setting.svg?react';
 import Icn_nav_today from '@/assets/svg/icn_nav_today.svg?react';
+import Arrow_up from '@/assets/svg/arrow-up.svg?react';
 
 const Icons = {
 	Icn_clock,
@@ -14,6 +15,7 @@ const Icons = {
 		Icn_nav_setting,
 		Icn_nav_today,
 	},
+	Arrow_up,
 };
 
 export default Icons;
