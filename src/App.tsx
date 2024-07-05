@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 function App() {
-	return <BoxStyled>세상에 이런 폰트가 나오다니</BoxStyled>;
+	return <BoxStyled>디스플레이 Display</BoxStyled>;
 }
 
 const BoxStyled = styled.div`
