@@ -39,99 +39,99 @@ const fonts = {
 
 const fontTheme = {
 	DISPLAY_01: css`
-		font-size: '64rem';
+		font-size: 6.4rem;
 		font-family: ${fonts.PretendardBold};
-		line-height: '76rem';
-		letter-spacing: '-2.5%';
+		line-height: 7.6rem;
+		letter-spacing: -2.5%;
 	`,
 
 	TITLE_01: css`
-		font-size: '44rem';
+		font-size: 4.4rem;
 		font-family: ${fonts.PretendardSemiBold};
-		line-height: '45rem';
-		letter-spacing: '-1%';
+		line-height: 4.5rem;
+		letter-spacing: -1%;
 	`,
 	TITLE_02: css`
-		font-size: '32rem';
+		font-size: 3.2rem;
 		font-family: ${fonts.PretendardSemiBold};
-		line-height: '40rem';
-		letter-spacing: '0%';
+		line-height: 4rem;
+		letter-spacing: 0%;
 	`,
 	TITLE_03: css`
-		font-size: '24rem';
+		font-size: 2.4rem;
 		font-family: ${fonts.PretendardSemiBold};
-		line-height: '32rem';
-		letter-spacing: '0%';
+		line-height: 3.2rem;
+		letter-spacing: 0%;
 	`,
 
 	HEADLINE_01: css`
-		font-size: '22rem';
+		font-size: 2.2rem;
 		font-family: ${fonts.PretendardSemiBold};
-		line-height: '30rem';
-		letter-spacing: '0%';
+		line-height: 3rem;
+		letter-spacing: 0%;
 	`,
 	HEADLINE_02: css`
-		font-size: '20rem';
+		font-size: 2rem;
 		font-family: ${fonts.PretendardSemiBold};
-		line-height: '28rem';
-		letter-spacing: '0%';
+		line-height: 2.8rem;
+		letter-spacing: 0%;
 	`,
 	HEADLINE_03: css`
-		font-size: '18rem';
+		font-size: 1.8rem;
 		font-family: ${fonts.PretendardSemiBold};
-		line-height: '24rem';
-		letter-spacing: '0%';
+		line-height: 2.4rem;
+		letter-spacing: 0%;
 	`,
 
 	BODY_01: css`
-		font-size: '16rem';
+		font-size: 1.6rem;
 		font-family: ${fonts.PretendardMedium};
-		line-height: '20rem';
-		letter-spacing: '-2%';
+		line-height: 2rem;
+		letter-spacing: -2%;
 	`,
 	BODY_02: css`
-		font-size: '16rem';
+		font-size: 1.6rem;
 		font-family: ${fonts.PretendardMedium};
-		line-height: '24rem';
-		letter-spacing: '-2%';
+		line-height: 2.4rem;
+		letter-spacing: -2%;
 	`,
 	BODY_03: css`
-		font-size: '15rem';
+		font-size: 1.5rem;
 		font-family: ${fonts.PretendardMedium};
-		line-height: '20rem';
-		letter-spacing: '-2%';
+		line-height: 2rem;
+		letter-spacing: -2%;
 	`,
 	BODY_04: css`
-		font-size: '15rem';
+		font-size: 1.5rem;
 		font-family: ${fonts.PretendardMedium};
-		line-height: '24rem';
-		letter-spacing: '-2%';
+		line-height: 2.4rem;
+		letter-spacing: -2%;
 	`,
 
 	LABEL_01: css`
-		font-size: '14rem';
+		font-size: 1.4rem;
 		font-family: ${fonts.PretendardSemiBold};
-		line-height: '20rem';
-		letter-spacing: '-1%';
+		line-height: 2rem;
+		letter-spacing: -1%;
 	`,
 	LABEL_02: css`
-		font-size: '14rem';
+		font-size: 1.4rem;
 		font-family: ${fonts.PretendardSemiBold};
-		line-height: '24rem';
-		letter-spacing: '-1%';
+		line-height: 2.4rem;
+		letter-spacing: -1%;
 	`,
 	LABEL_03: css`
-		font-size: '14rem';
+		font-size: 1.4rem;
 		font-family: ${fonts.PretendardMedium};
-		line-height: '20rem';
-		letter-spacing: '-1%';
+		line-height: 2rem;
+		letter-spacing: -1%;
 	`,
 
 	CAPTION_01: css`
-		font-size: '12rem';
+		font-size: 1.2rem;
 		font-family: ${fonts.PretendardMedium};
-		line-height: '24rem';
-		letter-spacing: '-1%';
+		line-height: 2.4rem;
+		letter-spacing: -1%;
 	`,
 };
 

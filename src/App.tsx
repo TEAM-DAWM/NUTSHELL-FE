@@ -8,8 +8,7 @@ const BoxStyled = styled.div`
 	width: 100vw;
 	height: 100vh;
 
-	font-size: 20rem;
-
+	${({ theme }) => theme.fontTheme.DISPLAY_01};
 	background-color: ${(props) => props.theme.palette.BLUE_DEFAULT};
 `;
 
