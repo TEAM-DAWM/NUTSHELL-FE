@@ -33,6 +33,6 @@ const BigButton = styled.button`
 	height: 3.2rem;
 	padding: 0.7rem 1.6rem;
 
-	box-shadow: 0 0 24px 0;
+	box-shadow: 0 0 24px 0 rgb(0 0 0 / 12%);
 	${textButtonCss}
 `;
