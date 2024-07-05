@@ -1,5 +1,6 @@
 import TextInputDesc from '@/components/common/textbox/TextInputDesc';
 import TextInputTitle from '@/components/common/textbox/TextInputTitle';
+import TextboxDailydate from '@/components/common/textbox/TextboxDailydate';
 import TextboxInput from '@/components/common/textbox/TextboxInput';
 
 type Props = {};
@@ -14,6 +15,8 @@ const Today = (props: Props) => {
 			<TextInputTitle type="short" />
 			<TextInputDesc type="long" />
 			<TextInputDesc type="short" />
+			<TextboxDailydate type="long" day="weekday" />
+			<TextboxDailydate type="short" day="weekday" />
 		</div>
 	);
 };
