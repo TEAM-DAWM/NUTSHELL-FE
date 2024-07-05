@@ -3,12 +3,14 @@ name: Front Deployment
 on:
   push:
     branches:
-      - develop
       - main
+  pull_request:
+    branches:
+      - develop
 
 jobs:
   ci:
-    if: github.ref == 'refs/heads/develop'
+    if: github.event_name == 'pull_request' && github.ref == 'refs/heads/develop'
     name: Build and Test for Develop
     runs-on: ubuntu-latest
     steps:
