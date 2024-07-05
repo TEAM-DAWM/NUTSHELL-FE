@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Calender from './pages/Calender';
+import Calendar from './pages/Calendar';
 import DashBoard from './pages/DashBoard';
 import Login from './pages/Login';
 import Setting from './pages/Setting';
@@ -13,7 +13,7 @@ const Router = () => {
 				<Route path="/" element={<Login />} />
 				<Route path="/today" element={<Today />} />
 				<Route path="/dashboard" element={<DashBoard />} />
-				<Route path="/calender" element={<Calender />} />
+				<Route path="/calendar" element={<Calendar />} />
 				<Route path="/setting" element={<Setting />} />
 			</Routes>
 		</BrowserRouter>
