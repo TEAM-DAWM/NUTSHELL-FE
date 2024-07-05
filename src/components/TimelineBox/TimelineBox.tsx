@@ -15,7 +15,18 @@ const TimelineBox = () => {
 					center: 'today,prev,next timeGridDay,timeGridWeek,dayGridMonth',
 					right: 'dayGridMonth',
 				}}
-				titleFormat={{ year: 'numeric', month: 'short' }}
+				views={{
+					timeGridDay: {
+						titleFormat: { year: 'numeric', month: 'short' },
+					},
+					timeGridWeek: {
+						titleFormat: { year: 'numeric', month: 'short' },
+					},
+					dayGridMonth: {
+						titleFormat: { year: 'numeric', month: 'short' },
+					},
+				}}
+				// titleFormat={{ year: 'numeric', month: 'short' }}
 				// locale="ko"
 				slotDuration="00:30:00"
 				editable={true}
@@ -30,6 +41,23 @@ const TimelineBox = () => {
 					month: '월간',
 					week: '주간',
 					day: '일간',
+				}}
+				allDayText="종일"
+				titleFormat={{ year: 'numeric', month: 'long' }}
+				locale="ko"
+				slotLabelFormat={{
+					hour: 'numeric',
+					minute: '2-digit',
+					meridiem: 'short',
+					hour12: true,
+				}}
+				slotLabelContent={(arg) => {
+					const formattedTime = new Intl.DateTimeFormat('en-US', {
+						hour: 'numeric',
+						// minute: '2-digit',
+						hour12: true,
+					}).format(arg.date);
+					return <span>{formattedTime}</span>;
 				}}
 			/>
 		</FullCalendarLayout>
@@ -52,6 +80,7 @@ const FullCalendarLayout = styled.div`
 
 	/* 타임 그리드 30분당 일정 */
 	.fc .fc-timegrid-slot-label {
+		width: 5.7rem;
 		height: 2.4rem;
 	}
 
@@ -94,7 +123,7 @@ const FullCalendarLayout = styled.div`
 	}
 
 	.fc-direction-ltr .fc-timegrid-slot-label-frame {
-		text-align: center;
+		text-align: left;
 	}
 
 	.fc .fc-timegrid-axis-frame {
@@ -108,7 +137,6 @@ const FullCalendarLayout = styled.div`
 
 		border-right: none;
 		border-left: none;
-		border-radius: 8px 8px 0 0;
 	}
 
 	.fc-theme-standard .fc-scrollgrid {
