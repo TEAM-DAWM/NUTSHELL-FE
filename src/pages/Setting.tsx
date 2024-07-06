@@ -6,6 +6,10 @@ import EnterBtn from '@/components/common/button/EnterBtn';
 import ProgressBtn from '@/components/common/button/ProgressBtn';
 import RefreshBtn from '@/components/common/button/RefreshBtn';
 import SettingDeleteBtn from '@/components/common/button/SettingDeleteBtn';
+import StatusDoneBtn from '@/components/common/button/StatusDoneBtn';
+import StatusInProgressBtn from '@/components/common/button/StatusInProgressBtn';
+import StatusStagingBtn from '@/components/common/button/StatusStagingBtn';
+import StatusTodoBtn from '@/components/common/button/StatusTodoBtn';
 import TextBtn from '@/components/common/button/TextBtn';
 import TimelineDeleteBtn from '@/components/common/button/TimelineDeleteBtn';
 import TodayPlusBtn from '@/components/common/button/TodayPlusBtn';
@@ -24,6 +28,10 @@ function Setting() {
 			<Check1Btn type="done" />
 			<ProgressBtn type="defaultProgress" />
 			<TimelineDeleteBtn />
+			<StatusStagingBtn />
+			<StatusInProgressBtn />
+			<StatusTodoBtn />
+			<StatusDoneBtn />
 		</div>
 	);
 }

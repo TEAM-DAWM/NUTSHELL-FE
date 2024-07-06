@@ -2,8 +2,6 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-import { theme } from '@/styles/theme';
-
 const TimelineDeleteBtn = () => {
 	return (
 		<TimelineDeleteBtnLayout>
