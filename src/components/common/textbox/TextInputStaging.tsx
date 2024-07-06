@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 
-type Props = {};
-
-const TextInputStaging = (props: Props) => {
+const TextInputStaging = () => {
 	return (
 		<StagingLayout>
 			<TextArea placeholder="해야하는 일들을 쏟아내보세요." />
