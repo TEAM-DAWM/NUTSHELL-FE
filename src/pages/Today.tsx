@@ -1,4 +1,5 @@
 import TextInputDesc from '@/components/common/textbox/TextInputDesc';
+import TextInputStaging from '@/components/common/textbox/TextInputStaging';
 import TextInputTime from '@/components/common/textbox/TextInputTime';
 import TextInputTitle from '@/components/common/textbox/TextInputTitle';
 import TextboxDailydate from '@/components/common/textbox/TextboxDailydate';
@@ -22,6 +23,7 @@ const Today = (props: Props) => {
 			<TextInputTime time="start" />
 			<TextInputTime time="end" />
 			<TextInputTime time="total" />
+			<TextInputStaging />
 		</div>
 	);
 };
