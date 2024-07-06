@@ -4,7 +4,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 
-const TimelineBox = () => {
+function TimelineBox() {
 	const today = new Date().toDateString();
 
 	return (
@@ -30,12 +30,14 @@ const TimelineBox = () => {
 				customButtons={{
 					custom: {
 						text: '동기화',
-						click: () => alert('오늘 버튼 클릭됨'),
+						click: () => {},
 					},
 				}}
 				slotDuration="00:30:00"
-				editable={true}
-				selectable={true}
+				editable
+				selectable
+				nowIndicator
+				dayMaxEvents
 				events={[
 					{ title: 'Meeting', start: '2024-07-06T10:00:00', end: '2024-07-06T12:00:00' },
 					{ title: 'Lunch', start: '2024-07-07T12:00:00' },
@@ -78,7 +80,7 @@ const TimelineBox = () => {
 			/>
 		</FullCalendarLayout>
 	);
-};
+}
 
 const FullCalendarLayout = styled.div`
 	width: 89.7rem;
@@ -88,15 +90,34 @@ const FullCalendarLayout = styled.div`
 	.fc-event-main {
 		width: 100%;
 		height: 100%;
-		padding: 0;
+		padding: 0.4rem 0.6rem;
 
 		color: ${(color) => color.theme.palette.GREY_04};
 
 		box-shadow: 2px 0 0 0 #3876f6 inset;
+		border: none;
 		border-radius: 4px;
+		${({ theme }) => theme.fontTheme.CAPTION_03};
+	}
+
+	.fc-timegrid-event-harness-inset .fc-timegrid-event {
+		box-shadow: none;
+		border: none;
+	}
+
+	.fc-h-event {
+		border: none;
 	}
 
 	.fc-direction-ltr .fc-daygrid-event {
+		margin: 0;
+	}
+
+	.fc-timegrid-event-harness > .fc-timegrid-event {
+		inset: 0.1rem;
+	}
+
+	.fc-direction-ltr .fc-timegrid-col-events {
 		margin: 0;
 	}
 
@@ -125,9 +146,7 @@ const FullCalendarLayout = styled.div`
 
 	/* 타임 그리드 종일 일정 */
 	.fc-scrollgrid-shrink {
-		height: 2.4rem;
-
-		border-bottom: 1px solid #000;
+		max-height: 2.4rem;
 	}
 
 	/* 타임 그리드 종일 마진 없애기 */
@@ -182,12 +201,14 @@ const FullCalendarLayout = styled.div`
 		background: none;
 	}
 
-	.fc .fc-day-sun {
+	.fc .fc-day-sun,
+	.fc .fc-day-sat {
 		background: #fafcff;
 	}
 
-	.fc .fc-day-sat {
-		background: #fafcff;
+	.fc-timeGridDay-view .fc-day-sun,
+	.fc-timeGridDay-view .fc-day-sat {
+		background: none;
 	}
 
 	.fc .fc-daygrid-day-frame {
@@ -203,6 +224,14 @@ const FullCalendarLayout = styled.div`
 		background-color: #b9d0ff;
 		border: none;
 		border-radius: 8px;
+	}
+
+	.fc-toolbar-chunk .fc-button:hover {
+		background-color: ${({ theme }) => theme.palette.BLUE_HOVER};
+	}
+
+	.fc-toolbar-chunk .fc-button:active {
+		background-color: ${({ theme }) => theme.palette.BLUE_PASSED};
 	}
 
 	.fc-direction-ltr .fc-toolbar > * > :not(:first-of-type) {
@@ -224,22 +253,13 @@ const FullCalendarLayout = styled.div`
 		height: 2.6rem;
 		padding: 0;
 
-		background-color: #121212;
+		background-color: ${({ theme }) => theme.palette.BLACK_DEFAULT};
 	}
 
-	/* 
-	.fc-toolbar-chunk .fc-button:hover {
-		background-color: #357ab8;
+	.fc-toolbar-chunk .fc-prev-button:hover,
+	.fc-toolbar-chunk .fc-next-button:hover {
+		background-color: ${({ theme }) => theme.palette.BLACK_HOVER};
 	}
-
-	.fc-toolbar-chunk .fc-button:focus {
-		outline: none;
-		box-shadow: 0 0 0 2px #357ab8;
-	}
-
-	.fc-toolbar-chunk .fc-button-active {
-		background-color: #357ab8;
-	} */
 
 	.fc .fc-toolbar-title {
 		margin-right: 2.6rem;
@@ -247,7 +267,17 @@ const FullCalendarLayout = styled.div`
 	}
 
 	.fc-toolbar-chunk .fc-today-button {
-		background-color: #121212;
+		background-color: ${({ theme }) => theme.palette.BLACK_DEFAULT};
+		opacity: 1;
+	}
+
+	.fc-toolbar-chunk .fc-today-button:hover {
+		background-color: ${({ theme }) => theme.palette.BLACK_HOVER};
+		opacity: 1;
+	}
+
+	.fc-toolbar-chunk .fc-today-button:active {
+		background-color: ${({ theme }) => theme.palette.BLACK_PASSED};
 		opacity: 1;
 	}
 
@@ -261,6 +291,30 @@ const FullCalendarLayout = styled.div`
 
 	.fc .fc-button-group {
 		margin-left: 5.4rem;
+	}
+
+	.fc .fc-custom-button {
+		background-color: ${({ theme }) => theme.palette.BLACK_DEFAULT};
+	}
+
+	.fc .fc-custom-button:hover {
+		background-color: ${({ theme }) => theme.palette.BLACK_HOVER};
+	}
+
+	/* 스타일링 현재 시간 표시 */
+	.fc .fc-timegrid-now-indicator-line {
+		height: 0.2rem;
+
+		background-color: ${({ theme }) => theme.palette.PRIMARY};
+		border: none;
+	}
+
+	.fc .fc-timegrid-now-indicator-arrow {
+		display: none;
+	}
+
+	.fc-v-event .fc-event-main-frame {
+		padding: 1px;
 	}
 `;
 
