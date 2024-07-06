@@ -147,6 +147,11 @@ const style = css`
 	html {
 		font-size: 62.5%;
 	}
+
+	:root {
+		--fc-button-active-bg-color: #3876f6;
+		--fc-button-active-border-color: #3876f6;
+	}
 `;
 
 function GlobalStyle() {

@@ -11,8 +11,8 @@ const TimelineBox = () => {
 				initialView="timeGridWeek"
 				plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin]}
 				headerToolbar={{
-					left: 'title',
-					center: 'today,prev,next timeGridDay,timeGridWeek,dayGridMonth',
+					left: 'title today prev next',
+					center: 'timeGridDay timeGridWeek dayGridMonth',
 					right: 'dayGridMonth',
 				}}
 				views={{
@@ -26,14 +26,13 @@ const TimelineBox = () => {
 						titleFormat: { year: 'numeric', month: 'short' },
 					},
 				}}
-				// titleFormat={{ year: 'numeric', month: 'short' }}
-				// locale="ko"
 				slotDuration="00:30:00"
 				editable={true}
 				selectable={true}
 				events={[
 					{ title: 'Meeting', start: '2024-07-06T10:00:00', end: '2024-07-06T12:00:00' },
 					{ title: 'Lunch', start: '2024-07-07T12:00:00' },
+					{ title: 'All Day Event', start: '2024-07-06T10:00:00', end: '2024-07-06T12:00:00', allDay: true },
 				]}
 				eventColor="#DFE9FF"
 				buttonText={{
@@ -59,6 +58,17 @@ const TimelineBox = () => {
 					}).format(arg.date);
 					return <span>{formattedTime}</span>;
 				}}
+				dayHeaderContent={(arg) => {
+					const day = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(arg.date);
+					const date = arg.date.getDate();
+					return (
+						<span>
+							{day}
+							<br />
+							{date}
+						</span>
+					);
+				}}
 			/>
 		</FullCalendarLayout>
 	);
@@ -67,6 +77,10 @@ const TimelineBox = () => {
 const FullCalendarLayout = styled.div`
 	width: 89.7rem;
 	height: 93rem;
+
+	:root {
+		--fc-button-active-bg-color: #3876f6;
+	}
 
 	.fc-event-main {
 		color: ${(color) => color.theme.palette.BLACK};
@@ -158,6 +172,62 @@ const FullCalendarLayout = styled.div`
 
 	.fc .fc-daygrid-day-frame {
 		border-bottom: 1px solid #e0e0e0;
+	}
+
+	/* Custom button styles */
+	.fc-toolbar-chunk .fc-button {
+		width: 4.5rem;
+		height: 2.6rem;
+		padding: 0;
+
+		background-color: #b9d0ff;
+		border: none;
+		border-radius: 8px;
+	}
+
+	.fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
+		margin-left: 0.4rem;
+	}
+
+	.fc-button-active:focus {
+		box-shadow: none;
+	}
+
+	.fc-toolbar-chunk {
+		display: flex;
+		align-items: center;
+	}
+
+	.fc-toolbar-chunk .fc-prev-button,
+	.fc-toolbar-chunk .fc-next-button {
+		width: 2.6rem;
+		height: 2.6rem;
+		padding: 0;
+
+		background-color: #121212;
+	}
+
+	/* 
+	.fc-toolbar-chunk .fc-button:hover {
+		background-color: #357ab8;
+	}
+
+	.fc-toolbar-chunk .fc-button:focus {
+		outline: none;
+		box-shadow: 0 0 0 2px #357ab8;
+	}
+
+	.fc-toolbar-chunk .fc-button-active {
+		background-color: #357ab8;
+	} */
+
+	.fc .fc-toolbar-title {
+		margin-right: 2.6rem;
+	}
+
+	.fc-toolbar-chunk .fc-today-button {
+		background-color: #121212;
+		opacity: 1;
 	}
 `;
 
