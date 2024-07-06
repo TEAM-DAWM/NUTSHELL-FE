@@ -1,10 +1,8 @@
 import styled from '@emotion/styled';
 
-type Props = {
-	type: 'long' | 'short';
-};
+import { SizeType } from '@/types/textInputType';
 
-const TextInputTitle = ({ type }: Props) => {
+const TextInputTitle = ({ type }: SizeType) => {
 	return <TextInputTitleLayout placeholder="제목 추가" type={type} />;
 };
 const TextInputTitleLayout = styled.input<{ type: string }>`

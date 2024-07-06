@@ -1,10 +1,8 @@
 import styled from '@emotion/styled';
 
-type Props = {
-	type: 'long' | 'short';
-};
+import { SizeType } from '@/types/textInputType';
 
-const TextInputDesc = ({ type }: Props) => {
+const TextInputDesc = ({ type }: SizeType) => {
 	return <TextInputDescLayout placeholder="설명 추가" type={type} />;
 };
 

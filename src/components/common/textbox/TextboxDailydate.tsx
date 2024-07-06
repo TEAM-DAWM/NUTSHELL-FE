@@ -1,13 +1,10 @@
 import styled from '@emotion/styled';
 
+import { SizeType } from '@/types/textInputType';
+
 import getNameOfDay from '@/utils/getNameOfDay';
 
-type Props = {
-	day: 'weekday' | 'weekend';
-	type: 'long' | 'short';
-};
-
-const TextboxDailydate = ({ day, type }: Props) => {
+const TextboxDailydate = ({ type }: SizeType) => {
 	const today = new Date();
 	const date = today.getDate();
 	const dayOfTheWeek = today.getDay();
