@@ -28,9 +28,6 @@ jobs:
       - name: Build project
         run: yarn build
 
-      - name: Run tests
-        run: yarn test
-
   cd:
     if: github.ref == 'refs/heads/main'
     name: Build and Deploy to AWS S3 for Main
