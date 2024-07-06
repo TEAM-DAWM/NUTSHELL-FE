@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
-type Props = {
+interface ArrangeBtnProps {
 	text: string;
-};
+}
 
-const ArrangeBtn = ({ text }: Props) => {
+const ArrangeBtn = ({ text }: ArrangeBtnProps) => {
 	return <ArrangeBtnLayout>{text}</ArrangeBtnLayout>;
 };
 

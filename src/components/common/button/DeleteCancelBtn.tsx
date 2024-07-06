@@ -1,11 +1,11 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-type Props = {
+interface DeleteCancelBtnProps {
 	status: 'delete' | 'cancel';
-};
+}
 
-const DeleteCancelBtn = ({ status }: Props) => {
+const DeleteCancelBtn = ({ status }: DeleteCancelBtnProps) => {
 	return <>{status === 'delete' ? <DeleteBtn>삭제</DeleteBtn> : <CancelBtn>취소</CancelBtn>}</>;
 };
 

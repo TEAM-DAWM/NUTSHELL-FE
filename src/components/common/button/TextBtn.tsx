@@ -1,16 +1,16 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-type Props = {
+interface TextBtnProps {
 	text: string;
 	size: 'small' | 'medium';
-};
+}
 
-const TextButton = ({ size, text }: Props) => {
+const TextBtn = ({ size, text }: TextBtnProps) => {
 	return <>{size === 'small' ? <SmallButton>{text}</SmallButton> : <BigButton>{text}</BigButton>}</>;
 };
 
-export default TextButton;
+export default TextBtn;
 
 const textButtonCss = css`
 	display: flex;
