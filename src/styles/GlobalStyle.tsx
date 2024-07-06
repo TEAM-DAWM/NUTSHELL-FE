@@ -150,6 +150,8 @@ const style = css`
 
 	:root {
 		--fc-button-active-bg-color: #3876f6;
+		--fc-border-color: #e0e0e0;
+		--fc-highlight-color: #dfe9ff;
 	}
 `;
 

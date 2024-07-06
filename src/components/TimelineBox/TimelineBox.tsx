@@ -5,15 +5,16 @@ import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 
 const TimelineBox = () => {
+	const today = new Date().toDateString();
+
 	return (
 		<FullCalendarLayout>
 			<FullCalendar
 				initialView="timeGridWeek"
 				plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin]}
 				headerToolbar={{
-					left: 'title today prev next',
-					center: 'timeGridDay timeGridWeek dayGridMonth',
-					right: 'dayGridMonth',
+					left: 'title today prev next timeGridDay,timeGridWeek,dayGridMonth',
+					right: 'custom',
 				}}
 				views={{
 					timeGridDay: {
@@ -24,6 +25,12 @@ const TimelineBox = () => {
 					},
 					dayGridMonth: {
 						titleFormat: { year: 'numeric', month: 'short' },
+					},
+				}}
+				customButtons={{
+					custom: {
+						text: '동기화',
+						click: () => alert('오늘 버튼 클릭됨'),
 					},
 				}}
 				slotDuration="00:30:00"
@@ -53,7 +60,6 @@ const TimelineBox = () => {
 				slotLabelContent={(arg) => {
 					const formattedTime = new Intl.DateTimeFormat('en-US', {
 						hour: 'numeric',
-						// minute: '2-digit',
 						hour12: true,
 					}).format(arg.date);
 					return <span>{formattedTime}</span>;
@@ -61,12 +67,12 @@ const TimelineBox = () => {
 				dayHeaderContent={(arg) => {
 					const day = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(arg.date);
 					const date = arg.date.getDate();
+					const isToday = arg.date.toDateString() === today;
 					return (
-						<span>
-							{day}
-							<br />
-							{date}
-						</span>
+						<>
+							<WeekyDay isToday={isToday}>{day}</WeekyDay>
+							<WeekyDate isToday={isToday}>{date}</WeekyDate>
+						</>
 					);
 				}}
 			/>
@@ -78,8 +84,20 @@ const FullCalendarLayout = styled.div`
 	width: 89.7rem;
 	height: 93rem;
 
+	/* 이벤트 박스 */
 	.fc-event-main {
-		color: ${(color) => color.theme.palette.BLACK};
+		width: 100%;
+		height: 100%;
+		padding: 0;
+
+		color: ${(color) => color.theme.palette.GREY_04};
+
+		box-shadow: 2px 0 0 0 #3876f6 inset;
+		border-radius: 4px;
+	}
+
+	.fc-direction-ltr .fc-daygrid-event {
+		margin: 0;
 	}
 
 	/* 요일 행 TEXT 중간 정렬 */
@@ -93,6 +111,10 @@ const FullCalendarLayout = styled.div`
 	.fc .fc-timegrid-slot-label {
 		width: 5.7rem;
 		height: 2.4rem;
+
+		color: ${(color) => color.theme.palette.GREY_04};
+
+		border-bottom: none;
 	}
 
 	/* 요일 행 첫번째 border 없애기 */
@@ -148,6 +170,7 @@ const FullCalendarLayout = styled.div`
 
 		border-right: none;
 		border-left: none;
+		border-radius: 8px 8px 0 0;
 	}
 
 	.fc-theme-standard .fc-scrollgrid {
@@ -220,12 +243,36 @@ const FullCalendarLayout = styled.div`
 
 	.fc .fc-toolbar-title {
 		margin-right: 2.6rem;
+		${({ theme }) => theme.fontTheme.HEADLINE_02};
 	}
 
 	.fc-toolbar-chunk .fc-today-button {
 		background-color: #121212;
 		opacity: 1;
 	}
+
+	/* Override the button group border-radius styles */
+	.fc-direction-ltr .fc-button-group > .fc-button {
+		margin-right: 0.4rem;
+		margin-left: 0;
+
+		border-radius: 8px;
+	}
+
+	.fc .fc-button-group {
+		margin-left: 5.4rem;
+	}
+`;
+
+const WeekyDay = styled.div<{ isToday: boolean }>`
+	${({ theme }) => theme.fontTheme.CAPTION_01};
+	color: ${(props) => (props.isToday ? props.theme.palette.BLUE_DISABLED : props.theme.palette.GREY_04)};
+	text-transform: uppercase;
+`;
+
+const WeekyDate = styled.div<{ isToday: boolean }>`
+	${({ theme }) => theme.fontTheme.HEADLINE_01};
+	color: ${(props) => (props.isToday ? props.theme.palette.PRIMARY : props.theme.palette.BLACK)};
 `;
 
 export default TimelineBox;
