@@ -8,7 +8,7 @@ function TextInputDesc({ type }: SizeType) {
 
 const TextInputDescLayout = styled.textarea<{ type: string }>`
 	width: ${({ type }) => (type === 'long' ? '34.8rem' : '30.4rem')};
-	height: ${({ type }) => (type === 'long' ? '14.5rem' : '18rem')};
+	height: ${({ type }) => (type === 'long' ? '12.1rem' : '15.6rem')};
 	padding: 1.2rem;
 
 	${({ theme }) => theme.fontTheme.BODY_02};

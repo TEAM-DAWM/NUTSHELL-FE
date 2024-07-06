@@ -25,16 +25,21 @@ function Modal({ isOpen, onClose, modalSize }: ModalProps) {
 					<TextInputTitle type={modalSize} />
 					<TextInputDesc type={modalSize} />
 				</TextInputBox>
-				<ModalTextInputTime>
-					<TextInputTimeBox>
-						<Icons.Icn_clock width={24} height={24} />
-						<TextInputTime time="start" />
-						<TextInputTime time="end" />
-					</TextInputTimeBox>
-					<TextInputTime time="total" />
-				</ModalTextInputTime>
+				{modalSize === 'long' && (
+					<ModalTextInputTime>
+						<TextInputTimeBox>
+							<Icons.Icn_clock width={24} height={24} />
+							<TextInputTime time="start" />
+							<TextInputTime time="end" />
+						</TextInputTimeBox>
+						<TextInputTime time="total" />
+					</ModalTextInputTime>
+				)}
 			</ModalBody>
-			<ModalFooter></ModalFooter>
+			<ModalFooter>
+				<TextInputTime time="start" />
+				<TextInputTime time="start" />
+			</ModalFooter>
 		</ModalLayout>
 	);
 }
@@ -42,7 +47,7 @@ function Modal({ isOpen, onClose, modalSize }: ModalProps) {
 const ModalLayout = styled.div<{ type: string }>`
 	display: flex;
 	flex-direction: column;
-	gap: 1.8rem;
+	gap: 1.6rem;
 	width: ${({ type }) => (type === 'long' ? '37.2rem' : '32.8rem')};
 	padding: 1rem 1.2rem;
 
@@ -53,6 +58,7 @@ const ModalLayout = styled.div<{ type: string }>`
 
 const ModalHeader = styled.div`
 	display: flex;
+	justify-content: space-between;
 `;
 
 const ModalBody = styled.div`
@@ -82,6 +88,8 @@ const TextInputTimeBox = styled.div`
 
 const ModalFooter = styled.div`
 	display: flex;
+	gap: 0.4rem;
+	justify-content: flex-end;
 `;
 
 export default Modal;
