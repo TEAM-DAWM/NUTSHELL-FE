@@ -1,7 +1,11 @@
-type Props = {};
+import NavBar from '@/components/common/NavBar';
 
-const Calendar = (props: Props) => {
-	return <div>Calender</div>;
+const Calendar = () => {
+	return (
+		<div>
+			<NavBar />
+		</div>
+	);
 };
 
 export default Calendar;

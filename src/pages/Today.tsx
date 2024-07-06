@@ -1,3 +1,4 @@
+import NavBar from '@/components/common/NavBar';
 import TextInputDesc from '@/components/common/textbox/TextInputDesc';
 import TextInputStaging from '@/components/common/textbox/TextInputStaging';
 import TextInputTime from '@/components/common/textbox/TextInputTime';
@@ -5,12 +6,10 @@ import TextInputTitle from '@/components/common/textbox/TextInputTitle';
 import TextboxDailydate from '@/components/common/textbox/TextboxDailydate';
 import TextboxInput from '@/components/common/textbox/TextboxInput';
 
-type Props = {};
-
-const Today = (props: Props) => {
+const Today = () => {
 	return (
 		<div>
-			Today
+			<NavBar />
 			<TextboxInput variant="date" />
 			<TextboxInput variant="time" />
 			<TextboxInput variant="smallDate" />
@@ -18,8 +17,8 @@ const Today = (props: Props) => {
 			<TextInputTitle type="short" />
 			<TextInputDesc type="long" />
 			<TextInputDesc type="short" />
-			<TextboxDailydate type="long" day="weekday" />
-			<TextboxDailydate type="short" day="weekday" />
+			<TextboxDailydate type="long" />
+			<TextboxDailydate type="short" />
 			<TextInputTime time="start" />
 			<TextInputTime time="end" />
 			<TextInputTime time="total" />

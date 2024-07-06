@@ -1,7 +1,11 @@
-type Props = {};
+import NavBar from '@/components/common/NavBar';
 
-const Setting = (props: Props) => {
-	return <div>Setting</div>;
+const Setting = () => {
+	return (
+		<div>
+			<NavBar />
+		</div>
+	);
 };
 
 export default Setting;
