@@ -3,6 +3,7 @@ import Check1Btn from '@/components/common/button/Check1Btn';
 import DeleteBtn from '@/components/common/button/DeleteBtn';
 import DeleteCancelBtn from '@/components/common/button/DeleteCancelBtn';
 import EnterBtn from '@/components/common/button/EnterBtn';
+import ProgressBtn from '@/components/common/button/ProgressBtn';
 import RefreshBtn from '@/components/common/button/RefreshBtn';
 import SettingDeleteBtn from '@/components/common/button/SettingDeleteBtn';
 import TextBtn from '@/components/common/button/TextBtn';
@@ -20,6 +21,7 @@ function Setting() {
 			<DeleteBtn />
 			<SettingDeleteBtn />
 			<Check1Btn type="done" />
+			<ProgressBtn type="defaultProgress" />
 		</div>
 	);
 }
