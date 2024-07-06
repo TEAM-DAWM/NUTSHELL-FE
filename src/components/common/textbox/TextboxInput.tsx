@@ -1,27 +1,40 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
+import { theme } from '@/styles/theme';
+
 interface TextboxInputType {
-	type: 'date' | 'time';
+	variant: 'date' | 'time' | 'smallDate';
 }
-const TextboxInput = ({ type }: TextboxInputType) => {
+const TextboxInput = ({ variant }: TextboxInputType) => {
 	return (
-		<>
-			{type === 'date' ? (
-				<TextboxInputStyle>
-					<BoxTextInput type="text" placeholder="2024.07.11" maxLength={10} />
-				</TextboxInputStyle>
-			) : (
-				<TextboxInputStyle>
-					<TextboxInputClock />
-					<BoxTextInput type="text" placeholder="시간 없음" maxLength={10} />
-				</TextboxInputStyle>
-			)}
-		</>
+		<InputContainer variant={variant}>
+			{variant === 'time' && <ClockIcon />}
+			<StyledInput
+				type="text"
+				placeholder={variant === 'time' ? '시간 없음' : '2024.07.11'}
+				maxLength={10}
+				variant={variant}
+			/>
+		</InputContainer>
 	);
 };
-const TextboxInputStyle = styled.div`
+const smallDateStyle = css`
+	width: 7.5rem;
+	padding: 0;
+`;
+const smallDateInputStyle = css`
+	padding: 0;
+
+	text-align: center;
+
+	&:focus {
+		outline: solid 1px ${theme.palette.BLUE_DEFAULT};
+	}
+`;
+const InputContainer = styled.div<{ variant: 'date' | 'time' | 'smallDate' }>`
 	display: flex;
 	gap: 0.5rem;
 	align-items: center;
@@ -35,15 +48,14 @@ const TextboxInputStyle = styled.div`
 	&:focus-within {
 		background-color: ${({ theme }) => theme.palette.BLUE_DISABLED};
 	}
+
+	${({ variant }) => variant === 'smallDate' && smallDateStyle}
 `;
-const TextboxInputClock = styled(Icons.Icn_clock)`
-	width: 1.4rem;
-	height: 1.4rem;
-`;
-const BoxTextInput = styled.input`
+const StyledInput = styled.input<{ variant: 'date' | 'time' | 'smallDate' }>`
 	width: 100%;
 	height: 100%;
 
+	${({ theme }) => theme.fontTheme.CAPTION_01};
 	background-color: transparent;
 	border: none;
 	border-radius: 8px;
@@ -51,5 +63,13 @@ const BoxTextInput = styled.input`
 	&:focus {
 		outline: none;
 	}
+
+	${({ variant }) => variant === 'smallDate' && smallDateInputStyle}
 `;
+
+const ClockIcon = styled(Icons.Icn_clock)`
+	width: 1.4rem;
+	height: 1.4rem;
+`;
+
 export default TextboxInput;

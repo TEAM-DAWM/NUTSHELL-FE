@@ -10,8 +10,9 @@ const Today = (props: Props) => {
 	return (
 		<div>
 			Today
-			<TextboxInput type="date" />
-			<TextboxInput type="time" />
+			<TextboxInput variant="date" />
+			<TextboxInput variant="time" />
+			<TextboxInput variant="smallDate" />
 			<TextInputTitle type="long" />
 			<TextInputTitle type="short" />
 			<TextInputDesc type="long" />
