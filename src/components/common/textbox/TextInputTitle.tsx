@@ -9,7 +9,7 @@ const TextInputTitleLayout = styled.input<{ type: string }>`
 	${({ theme }) => theme.fontTheme.BODY_02};
 	display: flex;
 	width: ${({ type }) => (type === 'long' ? '34.8rem' : '30.4rem')};
-	height: 4.8rem;
+	height: 2.4rem;
 	padding: 1.2rem;
 
 	border: 1px solid ${({ theme }) => theme.palette.GREY_01};

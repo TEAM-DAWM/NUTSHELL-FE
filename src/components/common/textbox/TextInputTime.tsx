@@ -19,8 +19,8 @@ function TextInputTime({ time }: TextInputTimeProps) {
 const InputTimeLayout = styled.div<{ time: string }>`
 	display: flex;
 	align-items: center;
-	width: ${({ time }) => (time === 'total' ? '3.6rem' : '11.5rem')};
-	height: 3.2rem;
+	width: ${({ time }) => (time === 'total' ? '2rem' : '9.5rem')};
+	height: 2.4rem;
 	padding: 0.4rem 1rem;
 
 	${({ theme }) => theme.fontTheme.BODY_02};
@@ -36,8 +36,10 @@ const MinuteTxt = styled.p`
 	padding-left: 0.4rem;
 `;
 const InputTimeStyle = styled.input<{ time: string }>`
-	width: ${({ time }) => (time === 'total' ? '3.6rem' : '100%')};
+	${({ theme }) => theme.fontTheme.BODY_02};
+	width: ${({ time }) => (time === 'total' ? '2rem' : '100%')};
 	height: 100%;
+	padding: 0.4rem 0.8rem;
 
 	background-color: ${({ theme, time }) => (time === 'total' ? theme.palette.GRAY_DISABLED : 'transparent')};
 	border: none;
