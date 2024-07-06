@@ -21,7 +21,7 @@ function NavBar() {
 					<NavBarIcon
 						key={path as PageRouteValues}
 						type={path as PageRouteValues}
-						isCurrent={current.pathname === `/${type}`}
+						iscurrent={current.pathname === `/${type}`}
 						onClick={() => moveToPage(type)}
 					/>
 				))}
