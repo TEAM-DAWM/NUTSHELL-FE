@@ -78,10 +78,6 @@ const FullCalendarLayout = styled.div`
 	width: 89.7rem;
 	height: 93rem;
 
-	:root {
-		--fc-button-active-bg-color: #3876f6;
-	}
-
 	.fc-event-main {
 		color: ${(color) => color.theme.palette.BLACK};
 	}
@@ -90,6 +86,7 @@ const FullCalendarLayout = styled.div`
 	.fc td,
 	.fc th {
 		vertical-align: middle;
+		${({ theme }) => theme.fontTheme.CAPTION_01};
 	}
 
 	/* 타임 그리드 30분당 일정 */
@@ -185,7 +182,7 @@ const FullCalendarLayout = styled.div`
 		border-radius: 8px;
 	}
 
-	.fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
+	.fc-direction-ltr .fc-toolbar > * > :not(:first-of-type) {
 		margin-left: 0.4rem;
 	}
 

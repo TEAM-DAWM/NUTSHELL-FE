@@ -150,7 +150,6 @@ const style = css`
 
 	:root {
 		--fc-button-active-bg-color: #3876f6;
-		--fc-button-active-border-color: #3876f6;
 	}
 `;
 
