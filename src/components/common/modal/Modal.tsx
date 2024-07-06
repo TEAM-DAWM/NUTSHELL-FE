@@ -19,6 +19,7 @@ function Modal({ isOpen, onClose, modalSize }: ModalProps) {
 		<ModalLayout type={modalSize}>
 			<ModalHeader>
 				<TextboxInput variant="date" />
+				<TextInputTime time="start" />
 			</ModalHeader>
 			<ModalBody>
 				<TextInputBox>
@@ -48,7 +49,7 @@ const ModalLayout = styled.div<{ type: string }>`
 	display: flex;
 	flex-direction: column;
 	gap: 1.6rem;
-	width: ${({ type }) => (type === 'long' ? '37.2rem' : '32.8rem')};
+	width: ${({ type }) => (type === 'long' ? '34.8rem' : '30.4rem')};
 	padding: 1rem 1.2rem;
 
 	background-color: ${({ theme }) => theme.palette.WITHE};

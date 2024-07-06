@@ -19,7 +19,7 @@ function TextInputTime({ time }: TextInputTimeProps) {
 const InputTimeLayout = styled.div<{ time: string }>`
 	display: flex;
 	align-items: center;
-	width: ${({ time }) => (time === 'total' ? '2rem' : '9.5rem')};
+	width: ${({ time }) => (time === 'total' ? '6rem' : '9.5rem')};
 	height: 2.4rem;
 	padding: 0.4rem 1rem;
 
