@@ -2,11 +2,11 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-type Props = {
+interface TextInputTimeProps {
 	time: 'start' | 'end' | 'total';
-};
+}
 
-const TextInputTime = ({ time }: Props) => {
+const TextInputTime = ({ time }: TextInputTimeProps) => {
 	const isTotalTime = time === 'total';
 	return (
 		<InputTimeLayout time={time}>

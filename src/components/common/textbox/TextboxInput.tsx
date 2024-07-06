@@ -5,10 +5,10 @@ import Icons from '@/assets/svg/index';
 
 import { theme } from '@/styles/theme';
 
-interface TextboxInputType {
+interface TextboxInputProps {
 	variant: 'date' | 'time' | 'smallDate';
 }
-const TextboxInput = ({ variant }: TextboxInputType) => {
+const TextboxInput = ({ variant }: TextboxInputProps) => {
 	return (
 		<InputContainer variant={variant}>
 			{variant === 'time' && <ClockIcon />}
