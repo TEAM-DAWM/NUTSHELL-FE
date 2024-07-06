@@ -16,6 +16,7 @@ import SettingCheck3 from '@/assets/svg/SettingCheck3Icon.svg?react';
 import SettingProgress from '@/assets/svg/SettingProgressIcon.svg?react';
 import SettingX from '@/assets/svg/SettingXIcon.svg?react';
 import Arrow_up from '@/assets/svg/arrow-up.svg?react';
+import TimelineDelete from '@/assets/svg/ic_delete.svg?react';
 import Refresh from '@/assets/svg/refresh.svg?react';
 
 const Icons = {
@@ -40,6 +41,7 @@ const Icons = {
 	SettingProgress,
 	DoneIcon,
 	ProgressIcon,
+	TimelineDelete,
 };
 
 export default Icons;

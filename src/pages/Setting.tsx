@@ -7,6 +7,7 @@ import ProgressBtn from '@/components/common/button/ProgressBtn';
 import RefreshBtn from '@/components/common/button/RefreshBtn';
 import SettingDeleteBtn from '@/components/common/button/SettingDeleteBtn';
 import TextBtn from '@/components/common/button/TextBtn';
+import TimelineDeleteBtn from '@/components/common/button/TimelineDeleteBtn';
 import TodayPlusBtn from '@/components/common/button/TodayPlusBtn';
 
 function Setting() {
@@ -22,6 +23,7 @@ function Setting() {
 			<SettingDeleteBtn />
 			<Check1Btn type="done" />
 			<ProgressBtn type="defaultProgress" />
+			<TimelineDeleteBtn />
 		</div>
 	);
 }
