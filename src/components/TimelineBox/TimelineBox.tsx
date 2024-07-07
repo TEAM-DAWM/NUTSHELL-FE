@@ -3,9 +3,15 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { useState } from 'react';
 
 function TimelineBox() {
 	const today = new Date().toDateString();
+	const [currentView, setCurrentView] = useState('timeGridWeek');
+
+	const handleViewChange = (view: any) => {
+		setCurrentView(view.type);
+	};
 
 	return (
 		<FullCalendarLayout>
@@ -73,10 +79,12 @@ function TimelineBox() {
 					return (
 						<>
 							<WeekyDay isToday={isToday}>{day}</WeekyDay>
-							<WeekyDate isToday={isToday}>{date}</WeekyDate>
+							{currentView !== 'dayGridMonth' && <WeekyDate isToday={isToday}>{date}</WeekyDate>}
 						</>
 					);
 				}}
+				viewDidMount={handleViewChange}
+				datesSet={(dateInfo) => handleViewChange(dateInfo.view)}
 			/>
 		</FullCalendarLayout>
 	);
