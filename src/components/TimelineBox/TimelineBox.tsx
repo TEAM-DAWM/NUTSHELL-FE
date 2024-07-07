@@ -1,16 +1,24 @@
 import styled from '@emotion/styled';
+import { ViewMountArg, DatesSetArg } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { useState } from 'react';
 
+import DayHeaderContent from '@/components/TimelineBox/DayHeaderContent';
+import SlotLabelContent from '@/components/TimelineBox/SlotLabelContent';
+
 function TimelineBox() {
 	const today = new Date().toDateString();
 	const [currentView, setCurrentView] = useState('timeGridWeek');
 
-	const handleViewChange = (view: any) => {
-		setCurrentView(view.type);
+	const handleViewChange = (view: ViewMountArg) => {
+		setCurrentView(view.view.type);
+	};
+
+	const handleDatesSet = (dateInfo: DatesSetArg) => {
+		setCurrentView(dateInfo.view.type);
 	};
 
 	return (
@@ -65,35 +73,10 @@ function TimelineBox() {
 					meridiem: 'short',
 					hour12: true,
 				}}
-				slotLabelContent={(arg) => {
-					const formattedTime = new Intl.DateTimeFormat('en-US', {
-						hour: 'numeric',
-						hour12: true,
-					}).format(arg.date);
-					return <span>{formattedTime}</span>;
-				}}
-				dayHeaderContent={(arg) => {
-					const isTimeGridDay = currentView === 'timeGridDay';
-					const day = new Intl.DateTimeFormat('en-US', { weekday: isTimeGridDay ? 'long' : 'short' }).format(arg.date);
-					const date = arg.date.getDate();
-					const isToday = arg.date.toDateString() === today;
-					return (
-						<>
-							{!isTimeGridDay ? (
-								<>
-									<WeekDay isToday={isToday}>{day}</WeekDay>
-									{currentView !== 'dayGridMonth' && <WeekDate isToday={isToday}>{date}</WeekDate>}
-								</>
-							) : (
-								<DayLayout>
-									<WeekDate isToday={false}>{date}일</WeekDate> <WeekDay isToday={false}>{day}</WeekDay>
-								</DayLayout>
-							)}
-						</>
-					);
-				}}
+				slotLabelContent={(arg) => <SlotLabelContent arg={arg} />}
+				dayHeaderContent={(arg) => <DayHeaderContent arg={arg} currentView={currentView} today={today} />}
 				viewDidMount={handleViewChange}
-				datesSet={(dateInfo) => handleViewChange(dateInfo.view)}
+				datesSet={handleDatesSet}
 			/>
 		</FullCalendarLayout>
 	);
@@ -152,6 +135,8 @@ const FullCalendarLayout = styled.div`
 	/* 타임 그리드 종일 마진 없애기 */
 	.fc .fc-daygrid-body-natural .fc-daygrid-day-events {
 		margin: 0;
+
+		border-bottom: 1px solid ${({ theme }) => theme.palette.GREY};
 	}
 
 	/* 30분 줄선 지우기 */
@@ -170,17 +155,13 @@ const FullCalendarLayout = styled.div`
 		border-radius: 8px 8px 0 0;
 	}
 
-	/* 일간에는 주말표시 안하기 */
-	.fc .fc-timeGridDay-view .fc-day-sun,
-	.fc .fc-timeGridDay-view .fc-day-sat {
-		background: none;
+	/* 주말 색 다르게 */
+	.fc .fc-day-sun,
+	.fc .fc-day-sat {
+		background: #fafcff;
 	}
 
 	.fc .fc-button-primary:focus {
-		box-shadow: none;
-	}
-
-	.fc .fc-button-active:focus {
 		box-shadow: none;
 	}
 
@@ -209,12 +190,6 @@ const FullCalendarLayout = styled.div`
 
 		background-color: ${({ theme }) => theme.palette.PRIMARY};
 		border: none;
-	}
-
-	/* 주말 색 다르게 */
-	.fc .fc-day-sun,
-	.fc .fc-day-sat {
-		background: #fafcff;
 	}
 
 	/* 시간 세로줄 테두리 없애기 */
@@ -328,28 +303,16 @@ const FullCalendarLayout = styled.div`
 		border: none;
 	}
 
-	.fc .fc-daygrid-day-frame .fc-daygrid-event-harness {
-		background-color: ${({ theme }) => theme.palette.WITHE};
-	}
-
 	.fc .fc-daygrid-event-harness {
 		margin: 0;
 	}
 
+	.fc .fc-daygrid-day-frame .fc-daygrid-event-harness {
+		background-color: ${({ theme }) => theme.palette.WITHE};
+	}
+
 	.fc .fc-daygrid-event {
 		margin: 0;
-	}
-
-	.fc-dayGridMonth-view .fc-day-sun .fc-daygrid-day-frame {
-		box-shadow: 0 1px 0 0 #e0e0e0 inset;
-	}
-
-	.fc .fc-daygrid-body-natural .fc-daygrid-day-events {
-		border-bottom: 1px solid ${({ theme }) => theme.palette.GREY};
-	}
-
-	.fc .fc-dayGridMonth-view .fc-scrollgrid-section-body table {
-		border: 1px solid ${({ theme }) => theme.palette.GREY};
 	}
 
 	.fc .fc-cell-shaded {
@@ -392,32 +355,38 @@ const FullCalendarLayout = styled.div`
 		text-align: left;
 	}
 
-	.fc .fc-timeGridDay-view .fc-col-header-cell-cushion {
-		float: left;
-	}
-
 	/* 이벤트 꽉차게 */
 	.fc-direction-ltr .fc-timegrid-col-events {
 		margin: 0;
 	}
-`;
 
-const DayLayout = styled.div`
-	display: flex;
-	gap: 1.2rem;
-	align-items: flex-end;
-	margin-left: 0.8rem;
-`;
+	/* 버튼 focus 그림자 없애기 */
+	.fc .fc-button-primary:not(:disabled).fc-button-active:focus,
+	.fc .fc-button-primary:not(:disabled):active:focus {
+		box-shadow: none;
+	}
 
-const WeekDay = styled.div<{ isToday: boolean }>`
-	${({ theme }) => theme.fontTheme.CAPTION_02};
-	color: ${(props) => (props.isToday ? props.theme.palette.BLUE_DISABLED : props.theme.palette.GREY_04)};
-	text-transform: uppercase;
-`;
+	/* stylelint-disable selector-class-pattern */
 
-const WeekDate = styled.div<{ isToday: boolean }>`
-	${({ theme }) => theme.fontTheme.HEADLINE_01};
-	color: ${(props) => (props.isToday ? props.theme.palette.PRIMARY : props.theme.palette.BLACK)};
+	/* 일간에는 주말표시 안하기 */
+	.fc .fc-timeGridDay-view .fc-day-sun,
+	.fc .fc-timeGridDay-view .fc-day-sat {
+		background: none;
+	}
+
+	.fc-dayGridMonth-view .fc-day-sun .fc-daygrid-day-frame {
+		box-shadow: 0 1px 0 0 #e0e0e0 inset;
+	}
+
+	.fc .fc-dayGridMonth-view .fc-scrollgrid-section-body table {
+		border: 1px solid ${({ theme }) => theme.palette.GREY};
+	}
+
+	.fc .fc-timeGridDay-view .fc-col-header-cell-cushion {
+		float: left;
+	}
+
+	/* stylelint-enable selector-class-pattern */
 `;
 
 export default TimelineBox;
