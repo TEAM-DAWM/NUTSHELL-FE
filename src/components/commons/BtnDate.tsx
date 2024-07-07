@@ -69,7 +69,7 @@ const CalanderIcon = styled(Icons.Icn_calander, { target: 'CalanderIcon' })`
 	display: flex;
 	width: 1.4rem;
 	height: 1.4rem;
-	justify-content: center;s
+	justify-content: center;
 	align-items: center;
 `;
 
@@ -113,7 +113,8 @@ const BtnDateLayout = styled('div', { target: 'BtnDateLayout' })<{
 }>`
 	display: flex;
 	width: fit-content;
-	padding: ${({ size }) => (size === 'big' ? '0.5rem 1rem' : '0.5rem 1rem')};
+	min-width: 1.8rem;
+	padding: 0.5rem 1rem;
 	gap: 1rem;
 	align-items: center;
 	border-radius: 0.8rem;
@@ -132,7 +133,7 @@ const BtnDateLayout = styled('div', { target: 'BtnDateLayout' })<{
 		isClicked &&
 		`
 		padding-right: ${size === 'big' ? '0.6rem' : '0.2rem'};
-		border-width: 0.1rem;
+		border-width: 0.2rem;
 		border-color: ${theme.palette.primary};
 	`}
 
