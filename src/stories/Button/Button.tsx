@@ -1,5 +1,6 @@
-import { buttonStyles } from '@/stories/Button/buttonStyle';
 import styled from '@emotion/styled';
+
+import buttonStyles from './buttonStyle';
 
 export interface ButtonProps {
 	primary?: boolean;
@@ -13,13 +14,13 @@ const StyledButton = styled.button`
 	${buttonStyles}
 `;
 
-export const Button: React.FC<ButtonProps> = ({
+function Button({
 	primary = false,
 	backgroundColor,
 	size = 'medium',
 	label = 'button',
 	onClick = () => {},
-}) => {
+}: ButtonProps) {
 	const mode = primary ? 'storybook-button-primary' : 'storybook-button-secondary';
 	const sizeClass = `storybook-button-${size}`;
 	return (
@@ -27,4 +28,6 @@ export const Button: React.FC<ButtonProps> = ({
 			{label}
 		</StyledButton>
 	);
-};
+}
+
+export default Button;

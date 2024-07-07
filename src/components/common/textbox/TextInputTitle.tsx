@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 
 import { SizeType } from '@/types/textInputType';
 
-const TextInputTitle = ({ type }: SizeType) => {
+function TextInputTitle({ type }: SizeType) {
 	return <TextInputTitleLayout placeholder="제목 추가" type={type} />;
-};
+}
 const TextInputTitleLayout = styled.input<{ type: string }>`
 	${({ theme }) => theme.fontTheme.BODY_02};
 	display: flex;

@@ -6,7 +6,7 @@ interface TextInputTimeProps {
 	time: 'start' | 'end' | 'total';
 }
 
-const TextInputTime = ({ time }: TextInputTimeProps) => {
+function TextInputTime({ time }: TextInputTimeProps) {
 	const isTotalTime = time === 'total';
 	return (
 		<InputTimeLayout time={time}>
@@ -15,7 +15,7 @@ const TextInputTime = ({ time }: TextInputTimeProps) => {
 			{isTotalTime && <MinuteTxt>분</MinuteTxt>}
 		</InputTimeLayout>
 	);
-};
+}
 const InputTimeLayout = styled.div<{ time: string }>`
 	display: flex;
 	align-items: center;

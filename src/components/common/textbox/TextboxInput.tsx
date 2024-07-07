@@ -2,13 +2,12 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
-
 import { theme } from '@/styles/theme';
 
 interface TextboxInputProps {
 	variant: 'date' | 'time' | 'smallDate';
 }
-const TextboxInput = ({ variant }: TextboxInputProps) => {
+function TextboxInput({ variant }: TextboxInputProps) {
 	return (
 		<InputContainer variant={variant}>
 			{variant === 'time' && <ClockIcon />}
@@ -20,7 +19,7 @@ const TextboxInput = ({ variant }: TextboxInputProps) => {
 			/>
 		</InputContainer>
 	);
-};
+}
 const smallDateStyle = css`
 	width: 7.5rem;
 	padding: 0;

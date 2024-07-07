@@ -8,7 +8,7 @@ import NotFound from './pages/NotFound';
 import Setting from './pages/Setting';
 import Today from './pages/Today';
 
-const Router = () => {
+function Router() {
 	return (
 		<BrowserRouter>
 			<Routes>
@@ -23,6 +23,6 @@ const Router = () => {
 			</Routes>
 		</BrowserRouter>
 	);
-};
+}
 
 export default Router;
