@@ -6,7 +6,7 @@ import Icons from '@/assets/svg/index';
 const SettingXBtn = () => {
 	return (
 		<SettingXBtnLayout>
-			<Icons.SettingX /> {/*아이콘 크기 조정 필요*/}
+			<StyledSettingX />
 		</SettingXBtnLayout>
 	);
 };
@@ -34,4 +34,9 @@ const SettingXBtnLayout = styled.button`
 	&:active {
 		background-color: ${({ theme }) => theme.palette.PRIMARY}; /* svg 색 수정 필요 */
 	}
+`;
+
+const StyledSettingX = styled(Icons.SettingX)`
+	width: 1.391rem;
+	height: 1.391rem;
 `;

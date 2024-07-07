@@ -6,7 +6,7 @@ import Icons from '@/assets/svg/index';
 const RefreshBtn = () => {
 	return (
 		<RefreshBtnLayout>
-			<Icons.Refresh /> {/*아이콘 사이즈 이상함 확인 필요*/}
+			<StyledRefreshIcon />
 			<Text>동기화</Text>
 		</RefreshBtnLayout>
 	);
@@ -36,6 +36,11 @@ const RefreshBtnLayout = styled.button`
 	&:active {
 		background-color: ${({ theme }) => theme.palette.GREY_05}; /* 수정 필요 */
 	}
+`;
+
+const StyledRefreshIcon = styled(Icons.Refresh)`
+	width: 1.2rem;
+	height: 1.2rem;
 `;
 
 const Text = styled.p`

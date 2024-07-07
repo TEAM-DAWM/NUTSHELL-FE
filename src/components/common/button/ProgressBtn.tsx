@@ -11,11 +11,11 @@ const ProgressBtn = ({ type }: Progress) => {
 		<>
 			{type === 'setting' ? (
 				<SettingProgressLayout>
-					<Icons.SettingProgress />
+					<StyledSettingProgress />
 				</SettingProgressLayout>
 			) : (
 				<DefaultProgressLayout>
-					<Icons.ProgressIcon width="20" height="4" />
+					<StyledProgressIcon />
 				</DefaultProgressLayout>
 			)}
 		</>
@@ -43,6 +43,10 @@ const SettingProgressLayout = styled.button`
 	}
 `;
 
+const StyledSettingProgress = styled(Icons.SettingProgress)`
+	width: 1.4rem;
+`;
+
 const DefaultProgressLayout = styled.button`
 	display: flex;
 	align-items: center;
@@ -52,4 +56,8 @@ const DefaultProgressLayout = styled.button`
 
 	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED};
 	border-radius: 10px;
+`;
+
+const StyledProgressIcon = styled(Icons.ProgressIcon)`
+	width: 1.8667rem;
 `;

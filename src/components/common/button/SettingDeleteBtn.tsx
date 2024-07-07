@@ -6,7 +6,7 @@ import Icons from '@/assets/svg/index';
 const SettingDeleteBtn = () => {
 	return (
 		<SettingDeleteBtnLayout>
-			<Icons.DeleteIcon /> {/*아이콘 크기 조정 필요*/}
+			<StyledDeleteIcon />
 		</SettingDeleteBtnLayout>
 	);
 };
@@ -34,4 +34,9 @@ const SettingDeleteBtnLayout = styled.button`
 	&:active {
 		background-color: ${({ theme }) => theme.palette.PRIMARY}; /* 수정 필요 */
 	}
+`;
+
+const StyledDeleteIcon = styled(Icons.DeleteIcon)`
+	width: 1.35rem;
+	height: 1.35rem;
 `;

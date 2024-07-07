@@ -27,7 +27,7 @@ function Setting() {
 			<DeleteCancelBtn status="delete" />
 			<EnterBtn />
 			<OkayCancelBtn type="okay" />
-			<ProgressBtn type="setting" />
+			<ProgressBtn type="defaultProgress" />
 			<RefreshBtn />
 			<SettingCheck2 />
 			<SettingCheck3 />

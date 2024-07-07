@@ -6,7 +6,7 @@ import Icons from '@/assets/svg/index';
 const SettingCheck3 = () => {
 	return (
 		<SettingCheck3Layout>
-			<Icons.SettingCheck3 /> {/*아이콘 크기 조정 필요*/}
+			<StyledSettingCheck3Icon /> {/*아이콘 크기 조정 필요*/}
 		</SettingCheck3Layout>
 	);
 };
@@ -34,4 +34,9 @@ const SettingCheck3Layout = styled.button`
 	&:active {
 		background-color: ${({ theme }) => theme.palette.PRIMARY}; /* svg 색 수정 필요 */
 	}
+`;
+
+const StyledSettingCheck3Icon = styled(Icons.SettingCheck3)`
+	width: 1.391rem;
+	height: 1.391rem;
 `;

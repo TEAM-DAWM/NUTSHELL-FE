@@ -11,11 +11,11 @@ const Check1Btn = ({ type }: Check1) => {
 		<>
 			{type === 'setting' ? (
 				<SettingCheck1Layout>
-					<Icons.SettingCheck1 width="17" height="16" />
+					<StlyedSettingCheck1Ic />
 				</SettingCheck1Layout>
 			) : (
 				<DoneLayout>
-					<Icons.DoneIcon width="22" height="22" />
+					<StlyedDoneIc />
 				</DoneLayout>
 			)}
 		</>
@@ -43,6 +43,11 @@ const SettingCheck1Layout = styled.button`
 	}
 `;
 
+const StlyedSettingCheck1Ic = styled(Icons.SettingCheck1)`
+	width: 1.3911rem;
+	height: 1.3911rem;
+`;
+
 const DoneLayout = styled.button`
 	display: flex;
 	align-items: center;
@@ -52,4 +57,9 @@ const DoneLayout = styled.button`
 
 	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* 수정 필요 */
 	border-radius: 10px;
+`;
+
+const StlyedDoneIc = styled(Icons.DoneIcon)`
+	width: 1.8548rem;
+	height: 1.8548rem;
 `;

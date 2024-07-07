@@ -6,7 +6,7 @@ import Icons from '@/assets/svg/index';
 const TodayPlusBtn = () => {
 	return (
 		<TodayPlusBtnLayout>
-			<Icons.PlusArrow />
+			<StyledPlusArrow />
 			<Text>오늘로 추가</Text>
 		</TodayPlusBtnLayout>
 	);
@@ -47,4 +47,9 @@ const Text = styled.p`
 	&:active {
 		color: ${({ theme }) => theme.palette.WITHE}; /* svg 색 수정 필요 */
 	}
+`;
+
+const StyledPlusArrow = styled(Icons.PlusArrow)`
+	width: 1rem;
+	height: 1rem;
 `;
