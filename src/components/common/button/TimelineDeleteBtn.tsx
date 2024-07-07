@@ -21,9 +21,7 @@ const TimelineDeleteBtnLayout = styled.button`
 	height: 1.6rem;
 
 	background: ${({ theme }) => theme.palette.SECONDARY};
-
-	/* stylelint-disable-next-line custom-property-pattern */
-	border-radius: var(--Corner-Extra-large, 28px);
+	border-radius: 50%;
 `;
 
 const StyledTimelineDelete = styled(Icons.TimelineDelete)`

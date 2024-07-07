@@ -16,13 +16,13 @@ export default StatusInProgressBtn;
 
 const StatusInProgressBtnLayout = styled.div`
 	display: flex;
-	gap: 4px;
+	gap: 0.4rem;
 	align-items: center;
 	justify-content: center;
 	width: 7.3rem;
 	height: 2.4rem;
 	padding: 0.4rem;
 
-	border: 1px solid var(--white, #fff);
+	border: 1px solid var(${({ theme }) => theme.palette.WITHE});
 	border-radius: 10px;
 `;

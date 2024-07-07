@@ -16,7 +16,7 @@ export default TodayPlusBtn;
 
 const TodayPlusBtnCss = css`
 	display: flex;
-	gap: 6px;
+	gap: 0.6rem;
 	align-items: center;
 	justify-content: center;
 	width: 8.9rem;

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 import Icons from '@/assets/svg/index';
 
@@ -24,10 +25,13 @@ const Check1Btn = ({ type }: Check1) => {
 
 export default Check1Btn;
 
-const SettingCheck1Layout = styled.button`
+const alignCenterStyle = css`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+`;
+const SettingCheck1Layout = styled.button`
+	${alignCenterStyle}
 	width: 2.4rem;
 	height: 2.4rem;
 
@@ -53,9 +57,7 @@ const StlyedSettingCheck1Ic = styled(Icons.SettingCheck1)`
 `;
 
 const DoneLayout = styled.button`
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	${alignCenterStyle}
 	width: 3.2rem;
 	height: 3.2rem;
 

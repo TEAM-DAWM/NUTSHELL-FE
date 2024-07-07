@@ -1,4 +1,3 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
@@ -13,19 +12,15 @@ const DeleteBtn = () => {
 
 export default DeleteBtn;
 
-const DeleteBtnCss = css`
+const DeleteBtnLayout = styled.button`
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: 3.2rem;
 	height: 3.2rem;
 
-	border-radius: 10px;
-`;
-
-const DeleteBtnLayout = styled.button`
-	${DeleteBtnCss}
 	background-color: ${({ theme }) => theme.palette.GREY_01};
+	border-radius: 10px;
 
 	&:active {
 		background-color: ${({ theme }) => theme.palette.GREY_03};
