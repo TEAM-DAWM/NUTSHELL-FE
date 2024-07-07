@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { useLocation } from 'react-router-dom';
 
 import Icons from '@/assets/svg/index';
 
@@ -8,21 +9,23 @@ import { PAGE_ROUTE } from '@/constants/pages';
 import { theme } from '@/styles/theme';
 
 type NavBarIconProps = {
+	name: string;
 	type: '할 일' | '대시보드' | '캘린더' | '설정';
 	onClick: () => void;
-	iscurrent: boolean;
 };
 
-function NavBarIcon({ type, onClick, iscurrent }: NavBarIconProps) {
+function NavBarIcon({ name, type, onClick }: NavBarIconProps) {
+	const current = useLocation();
+	const iscurrent = current.pathname === `/${type}`;
 	return (
 		<IconLayout onClick={onClick}>
 			<IconContainer $iscurrent={iscurrent}>
-				{type === PAGE_ROUTE.today && <TodayIcon $iscurrent={iscurrent} />}
-				{type === PAGE_ROUTE.dashboard && <DashboardIcon $iscurrent={iscurrent} />}
-				{type === PAGE_ROUTE.calendar && <CalendarIcon $iscurrent={iscurrent} />}
-				{type === PAGE_ROUTE.setting && <SettingIcon $iscurrent={iscurrent} />}
+				{name === PAGE_ROUTE.today && <TodayIcon $iscurrent={iscurrent} />}
+				{name === PAGE_ROUTE.dashboard && <DashboardIcon $iscurrent={iscurrent} />}
+				{name === PAGE_ROUTE.calendar && <CalendarIcon $iscurrent={iscurrent} />}
+				{name === PAGE_ROUTE.setting && <SettingIcon $iscurrent={iscurrent} />}
 			</IconContainer>
-			<Caption $iscurrent={iscurrent}>{type}</Caption>
+			<Caption $iscurrent={iscurrent}>{name}</Caption>
 		</IconLayout>
 	);
 }

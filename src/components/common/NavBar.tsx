@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import sampleImg from '@/assets/images/sample.png';
 
@@ -9,7 +9,6 @@ import NavBarIcon from './NavBarIcon';
 
 function NavBar() {
 	const navigate = useNavigate();
-	const current = useLocation();
 	const moveToPage = (type: string) => {
 		navigate(`/${type}`);
 	};
@@ -20,8 +19,8 @@ function NavBar() {
 				{Object.entries(PAGE_ROUTE).map(([type, path]) => (
 					<NavBarIcon
 						key={path as PageRouteValues}
-						type={path as PageRouteValues}
-						iscurrent={current.pathname === `/${type}`}
+						name={path as PageRouteValues}
+						type={type as PageRouteValues}
 						onClick={() => moveToPage(type)}
 					/>
 				))}
