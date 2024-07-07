@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
 
+import Icons from '@/assets/svg/index';
 import TextInputTime from '@/components/common/textbox/TextInputTime';
 
-import Icons from '@/assets/svg/index';
-
-const ModalTextInputTime = () => {
+function ModalTextInputTime() {
 	return (
 		<ModalTextInputTimeLayout>
 			<TextInputTimeBox>
@@ -15,7 +14,7 @@ const ModalTextInputTime = () => {
 			<TextInputTime time="total" />
 		</ModalTextInputTimeLayout>
 	);
-};
+}
 
 const ModalTextInputTimeLayout = styled.div`
 	display: flex;

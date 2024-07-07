@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
-
 import { SizeType } from '@/types/textInputType';
 
-const ModalHeaderBtn = ({ type }: SizeType) => {
+function ModalHeaderBtn({ type }: SizeType) {
 	return (
 		<ModalHeaderBtnLayout>
 			<TmpIcon />
@@ -12,7 +11,7 @@ const ModalHeaderBtn = ({ type }: SizeType) => {
 			<TmpIcon />
 		</ModalHeaderBtnLayout>
 	);
-};
+}
 
 const ModalHeaderBtnLayout = styled.div`
 	display: flex;

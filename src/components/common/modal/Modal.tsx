@@ -4,7 +4,6 @@ import ModalHeaderBtn from '@/components/common/modal/ModalHeaderBtn';
 import ModalTextInputTime from '@/components/common/modal/ModalTextInputTime';
 import TextInputBox from '@/components/common/modal/TextInputBox';
 import TextboxInput from '@/components/common/textbox/TextboxInput';
-
 import { SizeType } from '@/types/textInputType';
 
 interface ModalProps {
@@ -13,22 +12,23 @@ interface ModalProps {
 }
 
 function Modal({ isOpen, sizeType }: ModalProps) {
-	if (!isOpen) return;
 	return (
-		<ModalLayout type={sizeType.type}>
-			<ModalHeader>
-				<TextboxInput variant="date" />
-				<ModalHeaderBtn type={sizeType.type} />
-			</ModalHeader>
-			<ModalBody>
-				<TextInputBox type={sizeType.type} />
-				{sizeType.type === 'long' && <ModalTextInputTime />}
-			</ModalBody>
-			<ModalFooter>
-				<button>취소</button>
-				<button>확인</button>
-			</ModalFooter>
-		</ModalLayout>
+		isOpen && (
+			<ModalLayout type={sizeType.type}>
+				<ModalHeader>
+					<TextboxInput variant="date" />
+					<ModalHeaderBtn type={sizeType.type} />
+				</ModalHeader>
+				<ModalBody>
+					<TextInputBox type={sizeType.type} />
+					{sizeType.type === 'long' && <ModalTextInputTime />}
+				</ModalBody>
+				<ModalFooter>
+					<TmpBtn>취소</TmpBtn>
+					<TmpBtn>확인</TmpBtn>
+				</ModalFooter>
+			</ModalLayout>
+		)
 	);
 }
 
@@ -61,5 +61,7 @@ const ModalFooter = styled.div`
 	gap: 0.4rem;
 	justify-content: flex-end;
 `;
+
+const TmpBtn = styled.button``;
 
 export default Modal;
