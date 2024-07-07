@@ -8,7 +8,7 @@ import Icn_nav_today from '@/assets/svg/icn_nav_today.svg?react';
 import Icn_calander from '../../assets/svg/calendar-minus-01.svg?react';
 import Icn_date_clock from '../../assets/svg/clock.svg?react';
 import Icn_line from '../../assets/svg/line164.svg?react';
-import Icn_xCricle from '../../assets/svg/x-circle.svg?react';
+import IcnXCricle from '../../assets/svg/x-circle.svg?react';
 
 const Icons = {
 	Icn_clock,
@@ -16,7 +16,7 @@ const Icons = {
 	Icn_calander,
 	Icn_date_clock,
 	Icn_line,
-	Icn_xCricle,
+	IcnXCricle,
 	Navbar: {
 		Icn_nav_calendar,
 		Icn_nav_dashboard,

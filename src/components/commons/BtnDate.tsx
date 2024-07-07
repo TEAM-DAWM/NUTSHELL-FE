@@ -58,7 +58,7 @@ export default BtnDate;
 
 const XIcon = styled((props: React.SVGProps<SVGSVGElement> & { isClicked: boolean }) => {
 	const { isClicked, ...rest } = props;
-	return <Icons.Icn_xCricle {...rest} />;
+	return <Icons.IcnXCricle {...rest} />;
 })<{ isClicked: boolean }>`
 	width: 2rem;
 	height: 2rem;
@@ -104,7 +104,7 @@ const BtnDateContainer = styled.div`
 	gap: 0.4rem;
 `;
 
-const BtnDateLayout = styled('div', { target: 'BtnDateLayout' })<{
+const BtnDateLayout = styled.div<{
 	isPressed: boolean;
 	isClicked: boolean;
 	size: string;
