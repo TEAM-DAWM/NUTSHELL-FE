@@ -8,9 +8,10 @@ function TextInputTitle({ type }: SizeType) {
 const TextInputTitleLayout = styled.input<{ type: string }>`
 	${({ theme }) => theme.fontTheme.BODY_02};
 	display: flex;
-	width: ${({ type }) => (type === 'long' ? '32.4rem' : '28rem')};
-	height: 2.4rem;
+	width: ${({ type }) => (type === 'long' ? '34.8rem' : '30.4rem')};
+	height: 4.8rem;
 	padding: 1.2rem;
+	box-sizing: border-box;
 
 	border: 1px solid ${({ theme }) => theme.palette.GREY_01};
 	border-radius: 5px;

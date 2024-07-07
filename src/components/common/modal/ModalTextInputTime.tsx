@@ -20,8 +20,8 @@ const ModalTextInputTime = () => {
 const ModalTextInputTimeLayout = styled.div`
 	display: flex;
 	gap: 2rem;
-	justify-content: space-between;
-	width: 34.8rem;
+	/* justify-content: space-between; */
+	width: 100%;
 `;
 
 const TextInputTimeBox = styled.div`
