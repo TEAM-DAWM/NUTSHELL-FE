@@ -1,4 +1,5 @@
 import ArrangeBtn from '@/components/common/button/ArrangeBtn';
+import DeleteBtn from '@/components/common/button/DeleteBtn';
 import DeleteCancelBtn from '@/components/common/button/DeleteCancelBtn';
 import EnterBtn from '@/components/common/button/EnterBtn';
 import RefreshBtn from '@/components/common/button/RefreshBtn';
@@ -14,6 +15,7 @@ function Setting() {
 			<DeleteCancelBtn status="delete" />
 			<ArrangeBtn text="최신 등록순" />
 			<TodayPlusBtn />
+			<DeleteBtn />
 		</div>
 	);
 }
