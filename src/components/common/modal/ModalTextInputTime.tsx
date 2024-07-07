@@ -8,7 +8,7 @@ const ModalTextInputTime = () => {
 	return (
 		<ModalTextInputTimeLayout>
 			<TextInputTimeBox>
-				<Icons.Icn_clock width={24} height={24} />
+				<TmpIcon />
 				<TextInputTime time="start" />
 				<TextInputTime time="end" />
 			</TextInputTimeBox>
@@ -28,6 +28,11 @@ const TextInputTimeBox = styled.div`
 	display: flex;
 	gap: 0.4rem;
 	align-items: center;
+`;
+
+const TmpIcon = styled(Icons.Icn_clock)`
+	width: 2.4rem;
+	height: 2.4rem;
 `;
 
 export default ModalTextInputTime;

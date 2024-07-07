@@ -7,9 +7,9 @@ import { SizeType } from '@/types/textInputType';
 const ModalHeaderBtn = ({ type }: SizeType) => {
 	return (
 		<ModalHeaderBtnLayout>
-			<Icons.Icn_clock width={32} height={32} />
-			{type === 'long' && <Icons.Icn_clock width={32} height={32} />}
-			<Icons.Icn_clock width={32} height={32} />
+			<TmpIcon />
+			{type === 'long' && <TmpIcon />}
+			<TmpIcon />
 		</ModalHeaderBtnLayout>
 	);
 };
@@ -19,4 +19,8 @@ const ModalHeaderBtnLayout = styled.div`
 	gap: 0.6rem;
 `;
 
+const TmpIcon = styled(Icons.Icn_clock)`
+	width: 3.2rem;
+	height: 3.2rem;
+`;
 export default ModalHeaderBtn;
