@@ -49,7 +49,7 @@ function TimelineBox() {
 					{ title: 'Lunch', start: '2024-07-07T12:00:00', end: '2024-07-07T12:45:00' },
 					{ title: 'All Day Event', start: '2024-07-08T10:00:00', end: '2024-07-08T12:00:00', allDay: true },
 				]}
-				eventColor="#3876f6"
+				eventColor="#dfe9ff"
 				buttonText={{
 					today: '오늘',
 					month: '월간',
@@ -104,7 +104,10 @@ const FullCalendarLayout = styled.div`
 	height: 93rem;
 
 	/* 이벤트 박스 */
+
 	.fc-event-main {
+		display: flex;
+		align-items: center;
 		width: 100%;
 		height: 100%;
 		padding: 0.4rem 0.6rem;
@@ -314,6 +317,7 @@ const FullCalendarLayout = styled.div`
 	.fc .fc-daygrid-day-frame .fc-event-main {
 		display: flex;
 		align-items: center;
+		justify-content: center;
 		box-sizing: border-box;
 		height: 2.1rem;
 		padding: 0.3rem 1.2rem;
@@ -357,13 +361,18 @@ const FullCalendarLayout = styled.div`
 		display: none;
 	}
 
-	.fc-direction-ltr .fc-daygrid-event.fc-event-end {
+	.fc-direction-ltr .fc-daygrid-event {
 		display: flex;
-		align-items: center;
+		justify-content: center;
 		box-sizing: border-box;
 		height: 2.1rem;
-		margin: 0.2rem 0.1rem;
-		padding: 0.3rem 1.2rem;
+		margin: 0.1rem;
+
+		background-color: #3876f6;
+	}
+
+	.fc .fc-daygrid-dot-event {
+		padding: 0.4rem 0.6rem;
 
 		background-color: #dfe9ff;
 		border-left: 2px solid var(--primary, #3876f6);
