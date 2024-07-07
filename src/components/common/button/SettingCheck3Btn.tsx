@@ -3,12 +3,10 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-type Props = {};
-
-const SettingCheck3 = (props: Props) => {
+const SettingCheck3 = () => {
 	return (
 		<SettingCheck3Layout>
-			<Icons.SettingCheck3 />
+			<Icons.SettingCheck3 /> {/*아이콘 크기 조정 필요*/}
 		</SettingCheck3Layout>
 	);
 };
@@ -27,4 +25,13 @@ const SettingCheck3Css = css`
 
 const SettingCheck3Layout = styled.button`
 	${SettingCheck3Css}
+	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* 수정 필요 */
+
+	&:hover {
+		background-color: ${({ theme }) => theme.palette.BLUE_DISABLED};
+	}
+
+	&:active {
+		background-color: ${({ theme }) => theme.palette.PRIMARY}; /* svg 색 수정 필요 */
+	}
 `;

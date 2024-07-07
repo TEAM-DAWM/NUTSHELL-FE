@@ -11,7 +11,7 @@ const Check1Btn = ({ type }: Check1) => {
 		<>
 			{type === 'setting' ? (
 				<SettingCheck1Layout>
-					<Icons.SettingCheck1 />
+					<Icons.SettingCheck1 width="17" height="16" />
 				</SettingCheck1Layout>
 			) : (
 				<DoneLayout>
@@ -31,7 +31,16 @@ const SettingCheck1Layout = styled.button`
 	width: 2.4rem;
 	height: 2.4rem;
 
+	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* 수정 필요 */
 	border-radius: 8px;
+
+	&:hover {
+		background-color: ${({ theme }) => theme.palette.BLUE_DISABLED};
+	}
+
+	&:active {
+		background-color: ${({ theme }) => theme.palette.BLUE_PASSED};
+	}
 `;
 
 const DoneLayout = styled.button`
@@ -41,5 +50,6 @@ const DoneLayout = styled.button`
 	width: 3.2rem;
 	height: 3.2rem;
 
+	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* 수정 필요 */
 	border-radius: 10px;
 `;

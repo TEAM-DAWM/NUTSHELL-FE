@@ -3,9 +3,7 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-type Props = {};
-
-const DeleteBtn = (props: Props) => {
+const DeleteBtn = () => {
 	return (
 		<DeleteBtnLayout>
 			<StlyedDeleteIcon />
@@ -27,6 +25,11 @@ const DeleteBtnCss = css`
 
 const DeleteBtnLayout = styled.button`
 	${DeleteBtnCss}
+	background-color: ${({ theme }) => theme.palette.GREY_01};
+
+	&:active {
+		background-color: ${({ theme }) => theme.palette.GREY_03};
+	}
 `;
 
 const StlyedDeleteIcon = styled(Icons.DeleteIcon)`

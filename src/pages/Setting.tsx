@@ -6,7 +6,10 @@ import EnterBtn from '@/components/common/button/EnterBtn';
 import OkayCancelBtn from '@/components/common/button/OkayCancelBtn';
 import ProgressBtn from '@/components/common/button/ProgressBtn';
 import RefreshBtn from '@/components/common/button/RefreshBtn';
+import SettingCheck2 from '@/components/common/button/SettingCheck2Btn';
+import SettingCheck3 from '@/components/common/button/SettingCheck3Btn';
 import SettingDeleteBtn from '@/components/common/button/SettingDeleteBtn';
+import SettingXBtn from '@/components/common/button/SettingXBtn';
 import StatusDoneBtn from '@/components/common/button/StatusDoneBtn';
 import StatusInProgressBtn from '@/components/common/button/StatusInProgressBtn';
 import StatusStagingBtn from '@/components/common/button/StatusStagingBtn';
@@ -18,22 +21,25 @@ import TodayPlusBtn from '@/components/common/button/TodayPlusBtn';
 function Setting() {
 	return (
 		<div>
-			<TextBtn size="medium" text="전체" />
-			<EnterBtn />
-			<RefreshBtn />
-			<DeleteCancelBtn status="delete" />
 			<ArrangeBtn text="최신 등록순" />
-			<TodayPlusBtn />
-			<DeleteBtn />
-			<SettingDeleteBtn />
 			<Check1Btn type="done" />
-			<ProgressBtn type="defaultProgress" />
-			<TimelineDeleteBtn />
-			<StatusStagingBtn />
-			<StatusInProgressBtn />
-			<StatusTodoBtn />
-			<StatusDoneBtn />
+			<DeleteBtn />
+			<DeleteCancelBtn status="delete" />
+			<EnterBtn />
 			<OkayCancelBtn type="okay" />
+			<ProgressBtn type="setting" />
+			<RefreshBtn />
+			<SettingCheck2 />
+			<SettingCheck3 />
+			<SettingDeleteBtn />
+			<SettingXBtn />
+			<StatusDoneBtn />
+			<StatusInProgressBtn />
+			<StatusStagingBtn />
+			<StatusTodoBtn />
+			<TextBtn size="small" text="전체" />
+			<TimelineDeleteBtn />
+			<TodayPlusBtn />
 		</div>
 	);
 }

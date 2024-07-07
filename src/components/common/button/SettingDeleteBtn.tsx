@@ -3,12 +3,10 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-type Props = {};
-
-const SettingDeleteBtn = (props: Props) => {
+const SettingDeleteBtn = () => {
 	return (
 		<SettingDeleteBtnLayout>
-			<Icons.DeleteIcon />
+			<Icons.DeleteIcon /> {/*아이콘 크기 조정 필요*/}
 		</SettingDeleteBtnLayout>
 	);
 };
@@ -27,4 +25,13 @@ const SettingDeleteBtnCss = css`
 
 const SettingDeleteBtnLayout = styled.button`
 	${SettingDeleteBtnCss}
+	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* 수정 필요 */
+
+	&:hover {
+		background-color: ${({ theme }) => theme.palette.BLUE_DISABLED};
+	}
+
+	&:active {
+		background-color: ${({ theme }) => theme.palette.PRIMARY}; /* 수정 필요 */
+	}
 `;

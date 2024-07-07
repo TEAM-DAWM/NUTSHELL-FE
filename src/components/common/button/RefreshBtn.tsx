@@ -6,7 +6,7 @@ import Icons from '@/assets/svg/index';
 const RefreshBtn = () => {
 	return (
 		<RefreshBtnLayout>
-			<Icons.Refresh />
+			<Icons.Refresh /> {/*아이콘 사이즈 이상함 확인 필요*/}
 			<Text>동기화</Text>
 		</RefreshBtnLayout>
 	);
@@ -27,8 +27,20 @@ const RefreshBtnCss = css`
 
 const RefreshBtnLayout = styled.button`
 	${RefreshBtnCss}
+	background-color: ${({ theme }) => theme.palette.BLACK};
+
+	&:hover {
+		background-color: ${({ theme }) => theme.palette.GREY_06};
+	}
+
+	&:active {
+		background-color: ${({ theme }) => theme.palette.GREY_05}; /* 수정 필요 */
+	}
 `;
 
 const Text = styled.p`
+	color: ${({ theme }) => theme.palette.WITHE};
 	text-align: center;
+
+	${({ theme }) => theme.fontTheme.CAPTION_01}; /* 수정 필요 */
 `;

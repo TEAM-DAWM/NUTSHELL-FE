@@ -31,7 +31,16 @@ const SettingProgressLayout = styled.button`
 	width: 2.4rem;
 	height: 2.4rem;
 
+	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED};
 	border-radius: 8px;
+
+	&:hover {
+		background-color: ${({ theme }) => theme.palette.BLUE_DEFAULT}; /* 수정 필요 */
+	}
+
+	&:active {
+		background-color: ${({ theme }) => theme.palette.PRIMARY}; /* 수정 필요 */
+	}
 `;
 
 const DefaultProgressLayout = styled.button`
@@ -41,5 +50,6 @@ const DefaultProgressLayout = styled.button`
 	width: 3.2rem;
 	height: 3.2rem;
 
+	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED};
 	border-radius: 10px;
 `;

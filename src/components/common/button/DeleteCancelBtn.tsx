@@ -25,9 +25,26 @@ const DeleteCancelBtnCss = css`
 
 const DeleteBtn = styled.button`
 	${DeleteCancelBtnCss}
-	${({ theme }) => theme.palette.WITHE}
+	color: ${({ theme }) => theme.palette.WITHE};
+
+	background-color: ${({ theme }) => theme.palette.SECONDARY};
+	${({ theme }) => theme.fontTheme.BODY_02};
+
+	&:hover {
+		background-color: ${({ theme }) => theme.palette.BLACK}; /* 수정 필요 */
+	}
 `;
 
 const CancelBtn = styled.button`
 	${DeleteCancelBtnCss}
+	color: ${({ theme }) => theme.palette.GREY_05};
+
+	background-color: ${({ theme }) => theme.palette.WITHE};
+	${({ theme }) => theme.fontTheme.BODY_02};
+
+	&:hover {
+		color: ${({ theme }) => theme.palette.GREY_06};
+
+		background-color: ${({ theme }) => theme.palette.GREY_03};
+	}
 `;

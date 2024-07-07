@@ -3,9 +3,7 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-type Props = {};
-
-const TodayPlusBtn = (props: Props) => {
+const TodayPlusBtn = () => {
 	return (
 		<TodayPlusBtnLayout>
 			<Icons.PlusArrow />
@@ -29,8 +27,24 @@ const TodayPlusBtnCss = css`
 
 const TodayPlusBtnLayout = styled.button`
 	${TodayPlusBtnCss}
+	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* 색 수정 필요 */
+
+	&:hover {
+		background-color: ${({ theme }) => theme.palette.GREY_04};
+	}
+
+	&:active {
+		background-color: ${({ theme }) => theme.palette.GREY_05}; /* svg 색 수정 필요 */
+	}
 `;
 
 const Text = styled.p`
+	color: ${({ theme }) => theme.palette.PRIMARY}; /* 폰트 수정 필요 & 아이콘 색상 변경 필요 */
 	text-align: center;
+
+	${({ theme }) => theme.fontTheme.CAPTION_01}; /* 폰트 수정 필요 */
+
+	&:active {
+		color: ${({ theme }) => theme.palette.WITHE}; /* svg 색 수정 필요 */
+	}
 `;

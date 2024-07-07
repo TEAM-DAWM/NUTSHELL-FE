@@ -27,6 +27,7 @@ const OkayBtn = styled.button`
 
 	background-color: ${({ theme }) => theme.palette.BLACK};
 	${({ theme }) => theme.fontTheme.BODY_02};
+	box-shadow: 0 0 24px 0 rgb(0 0 0 / 12%);
 `;
 
 const CancelBtn = styled.button`

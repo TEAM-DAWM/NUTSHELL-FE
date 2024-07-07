@@ -25,6 +25,15 @@ const EnterBtnCss = css`
 
 const EnterBtnLayout = styled.button`
 	${EnterBtnCss}
+	background-color: ${({ theme }) => theme.palette.PRIMARY};
+
+	&:hover {
+		background-color: ${({ theme }) => theme.palette.BLUE_PASSED}; /* 수정 필요 */
+	}
+
+	&:active {
+		background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* svg 색 수정 필요 */
+	}
 `;
 
 const StyledIcon = styled(Icons.Arrow_up)`

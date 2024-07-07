@@ -26,6 +26,16 @@ const SmallButton = styled.button`
 	padding: 0.3rem 1.2rem;
 
 	${textButtonCss}
+	${({ theme }) => theme.fontTheme.CAPTION_01}; /* 폰트 수정 필요 */
+	background-color: ${({ theme }) => theme.palette.WITHE};
+
+	&:hover {
+		background-color: ${({ theme }) => theme.palette.GREY_04};
+	}
+
+	&:active {
+		background-color: ${({ theme }) => theme.palette.GREY_05}; /* svg 색 수정 필요 */
+	}
 `;
 
 const BigButton = styled.button`
@@ -34,5 +44,7 @@ const BigButton = styled.button`
 	padding: 0.7rem 1.6rem;
 
 	box-shadow: 0 0 24px 0 rgb(0 0 0 / 12%);
+
 	${textButtonCss}
+	${({ theme }) => theme.fontTheme.BODY_02};
 `;
