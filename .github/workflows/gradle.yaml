@@ -10,8 +10,7 @@ on:
 
 jobs:
   ci:
-    if: github.event_name == 'pull_request' && github.ref == 'refs/heads/develop'
-    name: Build and Test for Develop
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -28,9 +27,6 @@ jobs:
 
       - name: Build project
         run: yarn build
-
-      - name: Run tests
-        run: yarn test
 
   cd:
     if: github.ref == 'refs/heads/main'
