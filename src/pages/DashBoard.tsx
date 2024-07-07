@@ -1,11 +1,5 @@
-import NavBar from '@/components/common/NavBar';
-
 function DashBoard() {
-	return (
-		<div>
-			<NavBar />
-		</div>
-	);
+	return <div />;
 }
 
 export default DashBoard;

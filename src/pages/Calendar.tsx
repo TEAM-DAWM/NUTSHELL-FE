@@ -1,11 +1,5 @@
-import NavBar from '@/components/common/NavBar';
-
 function Calendar() {
-	return (
-		<div>
-			<NavBar />
-		</div>
-	);
+	return <div>calendar</div>;
 }
 
 export default Calendar;

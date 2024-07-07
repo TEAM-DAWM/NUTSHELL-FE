@@ -1,11 +1,5 @@
-import NavBar from '@/components/common/NavBar';
-
 function Setting() {
-	return (
-		<div>
-			<NavBar />
-		</div>
-	);
+	return <div />;
 }
 
 export default Setting;
