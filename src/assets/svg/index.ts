@@ -7,6 +7,12 @@ import Icn_nav_today from '@/assets/svg/icn_nav_today.svg?react';
 import PlusArrow from '@/assets/svg/PlusArrow.svg?react';
 import SelectedBox from '@/assets/svg/Selectbox_Selected.svg?react';
 import UnselectedBox from '@/assets/svg/Selectbox_Unselected.svg?react';
+import DeleteIcon from '@/assets/svg/Delete.svg?react';
+import SettingCheck1 from '@/assets/svg/SettingCheck1Icon.svg?react';
+import SettingCheck2 from '@/assets/svg/SettingCheck2Icon.svg?react';
+import SettingCheck3 from '@/assets/svg/SettingCheck3Icon.svg?react';
+import SettingProgress from '@/assets/svg/SettingProgressIcon.svg?react';
+import SettingX from '@/assets/svg/SettingXIcon.svg?react';
 import Arrow_up from '@/assets/svg/arrow-up.svg?react';
 import Refresh from '@/assets/svg/refresh.svg?react';
 
@@ -24,6 +30,12 @@ const Icons = {
 	SelectedBox,
 	UnselectedBox,
 	PlusArrow,
+	DeleteIcon,
+	SettingCheck1,
+	SettingCheck2,
+	SettingCheck3,
+	SettingX,
+	SettingProgress,
 };
 
 export default Icons;
