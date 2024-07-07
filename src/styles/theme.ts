@@ -1,76 +1,58 @@
 import { css } from '@emotion/react';
 
 const button = {
-	// LIGHT
-	LIGHT: {
-		ICON: {
-			GREY_04: '#C6C6D0',
-			GREY_05: '#9090A0',
-			GREY_06: '#626273',
-			WHITE: '#FFFFFF',
+	BLUE: {
+		DISABLED: {
+			ICON: '#FFFFFF',
+			BG: '#C2D5FF',
 		},
-		BG: {
-			BLUE_03: '#C2D5FF',
-			GREY_01: '#F4F6FA',
-			GREY_03: '#E9E9EE',
-			GREY_06: '#626273',
-			GREY_07: '#464656',
+		DEFAULT: {
+			ICON: '#FFFFFF',
+			BG: '#3876F6',
 		},
-	},
-	DEFAULT: {
-		ICON: {
-			BLACK: '#212121',
-			GREY_05: '#9090A0',
-			GREY_06: '#626273',
-			PRIMARY: '#3876F6',
-			SECONDARY: '#FF7950',
-			WHITE: '#FFFFFF',
+		HOVER: {
+			ICON: '#FFFFFF',
+			BG: '#245CCE',
 		},
-		BG: {
-			BLACK: '#212121',
-			BLUE_01: '#F0F5FF',
-			BLUE_02: '#DFE9FF',
-			GREY_01: '#F4F6FA',
-			PRIMARY: '#3876F6',
-			SECONDARY: '#FF7950',
-			WHITE: '#FFFFFF',
+		PRESSED: {
+			ICON: '#90B2FF',
+			BG: '#0D47A1',
 		},
 	},
-	HOVER: {
-		ICON: {
-			BLACK: '#212121',
-			BLUE_02: '#DFE9FF',
-			GREY_06: '#626273',
-			PRIMARY: '#3876F6',
-			SECONDARY: '#FF7950',
-			WHITE: '#FFFFFF',
+	WHITE: {
+		DISABLED: {
+			ICON: '#C6C6D0',
+			BG: '#F4F6FA',
 		},
-		BG: {
-			BLUE_02: '#DFE9FF',
-			BLUE_03: '#C2D5FF',
-			BLUE_08: '#245CCE',
-			GREY_01: '#F4F6FA',
-			GREY_04: '#C6C6D0',
-			GREY_06: '#626273',
-			GREY_07: '#464656',
-			PRIMARY: '#3876F6',
+		DEFAULT: {
+			ICON: '#212121',
+			BG: '#FFFFFF',
+		},
+		HOVER: {
+			ICON: '#212121',
+			BG: '#C6C6D0',
+		},
+		PRESSED: {
+			ICON: '#34343C',
+			BG: '#9090A0',
 		},
 	},
-	PRESSED: {
-		ICON: {
-			BLACK: '#212121',
-			BLUE_04: '#90B2FF',
-			GREY_07: '#464656',
-			GREY_08: '#34343C',
-			SECONDARY: '#FF7950',
-			WHITE: '#FFFFFF',
+	BLACK: {
+		DISABLED: {
+			ICON: '#9090A0',
+			BG: '#464656',
 		},
-		BG: {
-			BLUE_09: '#0D47A1',
-			GREY_03: '#E9E9EE',
-			GREY_05: '#9090A0',
-			GREY_08: '#34343C',
-			PRIMARY: '#3876F6',
+		DEFAULT: {
+			ICON: '#FFFFFF',
+			BG: '#212121',
+		},
+		HOVER: {
+			ICON: '#FFFFFF',
+			BG: '#626273',
+		},
+		PRESSED: {
+			ICON: '#FFFFFF',
+			BG: '#34343C',
 		},
 	},
 };
