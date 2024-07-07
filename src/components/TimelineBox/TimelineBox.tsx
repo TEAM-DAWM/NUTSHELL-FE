@@ -47,7 +47,7 @@ function TimelineBox() {
 				events={[
 					{ title: 'Meeting', start: '2024-07-06T10:00:00', end: '2024-07-06T12:00:00' },
 					{ title: 'Lunch', start: '2024-07-07T12:00:00', end: '2024-07-07T12:45:00' },
-					{ title: 'All Day Event', start: '2024-07-08T10:00:00', end: '2024-07-10T12:00:00', allDay: true },
+					{ title: 'All Day Event', start: '2024-07-08T10:00:00', end: '2024-07-08T12:00:00', allDay: true },
 				]}
 				eventColor="#DFE9FF"
 				buttonText={{
@@ -73,13 +73,22 @@ function TimelineBox() {
 					return <span>{formattedTime}</span>;
 				}}
 				dayHeaderContent={(arg) => {
-					const day = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(arg.date);
+					const isTimeGridDay = currentView === 'timeGridDay';
+					const day = new Intl.DateTimeFormat('en-US', { weekday: isTimeGridDay ? 'long' : 'short' }).format(arg.date);
 					const date = arg.date.getDate();
 					const isToday = arg.date.toDateString() === today;
 					return (
 						<>
-							<WeekyDay isToday={isToday}>{day}</WeekyDay>
-							{currentView !== 'dayGridMonth' && <WeekyDate isToday={isToday}>{date}</WeekyDate>}
+							{!isTimeGridDay ? (
+								<>
+									<WeekDay isToday={isToday}>{day}</WeekDay>
+									{currentView !== 'dayGridMonth' && <WeekDate isToday={isToday}>{date}</WeekDate>}
+								</>
+							) : (
+								<DayLayout>
+									<WeekDate isToday={false}>{date}일</WeekDate> <WeekDay isToday={false}>{day}</WeekDay>
+								</DayLayout>
+							)}
 						</>
 					);
 				}}
@@ -300,11 +309,30 @@ const FullCalendarLayout = styled.div`
 		${({ theme }) => theme.fontTheme.HEADLINE_02};
 	}
 
-	/* 종일 아래 테두리 */
-	.fc .fc-daygrid-day-frame {
-		/* border: 1px solid ${({ theme }) => theme.palette.GREY}; */
+	/* 종일 이벤트 테두리 */
+	.fc .fc-daygrid-day-frame .fc-event-main {
+		display: flex;
+		align-items: center;
+		box-sizing: border-box;
+		height: 2.1rem;
+		padding: 0.3rem 1.2rem;
 
-		/* box-shadow: 1px 0 0 0 #e0e0e0 inset; */
+		color: ${({ theme }) => theme.palette.WITHE};
+
+		background-color: ${({ theme }) => theme.palette.PRIMARY};
+		border: none;
+	}
+
+	.fc .fc-daygrid-day-frame .fc-daygrid-event-harness {
+		background-color: ${({ theme }) => theme.palette.WITHE};
+	}
+
+	.fc .fc-daygrid-event-harness {
+		margin: 0;
+	}
+
+	.fc .fc-daygrid-event {
+		margin: 0;
 	}
 
 	.fc-dayGridMonth-view .fc-day-sun .fc-daygrid-day-frame {
@@ -328,13 +356,13 @@ const FullCalendarLayout = styled.div`
 		display: none;
 	}
 
-	.fc-daygrid-event-harness {
+	/* .fc-daygrid-event-harness {
 		margin: 0.2rem 0.1rem;
 
-		/* background-color: #dfe9ff;
+		background-color: #dfe9ff;
 		border-left: 2px solid var(--primary, #3876f6);
-		border-radius: 4px; */
-	}
+		border-radius: 4px;
+	} */
 
 	.fc .fc-timegrid-axis-frame {
 		justify-content: flex-start;
@@ -343,6 +371,10 @@ const FullCalendarLayout = styled.div`
 	/* 시간 왼쪽에 붙이기 */
 	.fc-direction-ltr .fc-timegrid-slot-label-frame {
 		text-align: left;
+	}
+
+	.fc .fc-timeGridDay-view .fc-col-header-cell-cushion {
+		float: left;
 	}
 
 	/* .fc .fc-daygrid-day-frame {
@@ -389,13 +421,20 @@ const FullCalendarLayout = styled.div`
 	 */
 `;
 
-const WeekyDay = styled.div<{ isToday: boolean }>`
-	${({ theme }) => theme.fontTheme.CAPTION_01};
+const DayLayout = styled.div`
+	display: flex;
+	gap: 1.2rem;
+	align-items: flex-end;
+	margin-left: 0.8rem;
+`;
+
+const WeekDay = styled.div<{ isToday: boolean }>`
+	${({ theme }) => theme.fontTheme.CAPTION_02};
 	color: ${(props) => (props.isToday ? props.theme.palette.BLUE_DISABLED : props.theme.palette.GREY_04)};
 	text-transform: uppercase;
 `;
 
-const WeekyDate = styled.div<{ isToday: boolean }>`
+const WeekDate = styled.div<{ isToday: boolean }>`
 	${({ theme }) => theme.fontTheme.HEADLINE_01};
 	color: ${(props) => (props.isToday ? props.theme.palette.PRIMARY : props.theme.palette.BLACK)};
 `;
