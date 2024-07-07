@@ -19,6 +19,7 @@ module.exports = {
 	parser: '@typescript-eslint/parser',
 	plugins: ['react', 'react-hooks', 'react-refresh', '@typescript-eslint'],
 	rules: {
+		'react/jsx-props-no-spreading': 'off',
 		'no-use-before-define': 'off',
 		'@typescript-eslint/no-use-before-define': 'off',
 		'react/require-default-props': 'off',
@@ -32,6 +33,17 @@ module.exports = {
 		'@typescript-eslint/no-shadow': [
 			'error',
 			{ ignoreTypeValueShadow: true, ignoreFunctionTypeParameterNameValueShadow: true, allow: ['theme'] },
+		],
+		'import/order': [
+			'error',
+			{
+				groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+				'newlines-between': 'always',
+				alphabetize: {
+					order: 'asc',
+					caseInsensitive: true,
+				},
+			},
 		],
 	},
 
