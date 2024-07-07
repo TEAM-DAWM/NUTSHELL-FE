@@ -29,6 +29,15 @@ const palette = {
 	GREY_04: '#626273',
 	GREY_05: '#464656',
 	GREY_06: '#34343C',
+
+	// 지원 임시색상
+	grey3: '#E9E9EE',
+	grey4: '#C6C6D0',
+	grey5: '#9090A0',
+	grey6: '#626273',
+	black: '#212121',
+	primary: '#3876F6',
+	white: '#FFFFFF',
 };
 
 const fonts = {
