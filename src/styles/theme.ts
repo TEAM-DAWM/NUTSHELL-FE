@@ -1,5 +1,80 @@
 import { css } from '@emotion/react';
 
+const button = {
+	// LIGHT
+	LIGHT: {
+		ICON: {
+			GREY_04: '#C6C6D0',
+			GREY_05: '#9090A0',
+			GREY_06: '#626273',
+			WHITE: '#FFFFFF',
+		},
+		BG: {
+			BLUE_03: '#C2D5FF',
+			GREY_01: '#F4F6FA',
+			GREY_03: '#E9E9EE',
+			GREY_06: '#626273',
+			GREY_07: '#464656',
+		},
+	},
+	DEFAULT: {
+		ICON: {
+			BLACK: '#212121',
+			GREY_05: '#9090A0',
+			GREY_06: '#626273',
+			PRIMARY: '#3876F6',
+			SECONDARY: '#FF7950',
+			WHITE: '#FFFFFF',
+		},
+		BG: {
+			BLACK: '#212121',
+			BLUE_01: '#F0F5FF',
+			BLUE_02: '#DFE9FF',
+			GREY_01: '#F4F6FA',
+			PRIMARY: '#3876F6',
+			SECONDARY: '#FF7950',
+			WHITE: '#FFFFFF',
+		},
+	},
+	HOVER: {
+		ICON: {
+			BLACK: '#212121',
+			BLUE_02: '#DFE9FF',
+			GREY_06: '#626273',
+			PRIMARY: '#3876F6',
+			SECONDARY: '#FF7950',
+			WHITE: '#FFFFFF',
+		},
+		BG: {
+			BLUE_02: '#DFE9FF',
+			BLUE_03: '#C2D5FF',
+			BLUE_08: '#245CCE',
+			GREY_01: '#F4F6FA',
+			GREY_04: '#C6C6D0',
+			GREY_06: '#626273',
+			GREY_07: '#464656',
+			PRIMARY: '#3876F6',
+		},
+	},
+	PRESSED: {
+		ICON: {
+			BLACK: '#212121',
+			BLUE_04: '#90B2FF',
+			GREY_07: '#464656',
+			GREY_08: '#34343C',
+			SECONDARY: '#FF7950',
+			WHITE: '#FFFFFF',
+		},
+		BG: {
+			BLUE_09: '#0D47A1',
+			GREY_03: '#E9E9EE',
+			GREY_05: '#9090A0',
+			GREY_08: '#34343C',
+			PRIMARY: '#3876F6',
+		},
+	},
+};
+
 const palette = {
 	// BLUE
 	BLUE_DISABLED: '#B9D0FF',
@@ -142,6 +217,7 @@ const fontTheme = {
 };
 
 export const theme = {
+	button,
 	palette,
 	fontTheme,
 };
