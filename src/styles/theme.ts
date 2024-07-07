@@ -133,6 +133,12 @@ const fontTheme = {
 		line-height: 2.4rem;
 		letter-spacing: -0.01em;
 	`,
+	CAPTION_02: css`
+		font-size: 1.2rem;
+		font-family: ${fonts.PretendardMedium};
+		line-height: 2rem;
+		letter-spacing: -0.01em;
+	`,
 };
 
 export const theme = {

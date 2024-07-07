@@ -1,3 +1,4 @@
+import NavBar from '@/components/common/NavBar';
 import TextInputDesc from '@/components/common/textbox/TextInputDesc';
 import TextInputStaging from '@/components/common/textbox/TextInputStaging';
 import TextInputTime from '@/components/common/textbox/TextInputTime';
@@ -8,7 +9,7 @@ import TextboxInput from '@/components/common/textbox/TextboxInput';
 const Today = () => {
 	return (
 		<div>
-			Today
+			<NavBar />
 			<TextboxInput variant="date" />
 			<TextboxInput variant="time" />
 			<TextboxInput variant="smallDate" />
