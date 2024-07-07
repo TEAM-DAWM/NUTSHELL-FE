@@ -3,9 +3,13 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-const EnterBtn = () => {
+interface EnterBtnProps {
+	isDisabled: boolean;
+}
+
+const EnterBtn = ({ isDisabled }: EnterBtnProps) => {
 	return (
-		<EnterBtnLayout>
+		<EnterBtnLayout isDisabled={isDisabled} disabled={isDisabled}>
 			<StyledIcon />
 		</EnterBtnLayout>
 	);
@@ -23,23 +27,28 @@ const EnterBtnCss = css`
 	border-radius: 8px;
 `;
 
-const EnterBtnLayout = styled.button`
+const EnterBtnLayout = styled.button<{ isDisabled: boolean }>`
 	${EnterBtnCss}
-	background-color: ${({ theme }) => theme.palette.PRIMARY};
+	color: ${({ theme }) => theme.palette.WITHE};
 
-	&:hover {
-		background-color: ${({ theme }) => theme.palette.BLUE_PASSED}; /* 수정 필요 */
-		path {
-			stroke: ${({ theme }) => theme.palette.BLUE_DEFAULT}; /* 수정 필요 */
+	background-color: ${({ theme, isDisabled }) =>
+		isDisabled ? theme.palette.BLUE_DISABLED : theme.palette.PRIMARY}; /* 색 수정 필요 */
+	${({ theme, isDisabled }) =>
+		!isDisabled &&
+		`
+		&:hover {
+			background-color: ${theme.palette.BLUE_PASSED};  /* 수정 필요 */
+			path {
+			stroke: ${theme.palette.BLUE_DEFAULT}; /* 수정 필요 */
 		}
-	}
-
-	&:active {
-		background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* svg 색 수정 필요 */
-		path {
-			stroke: ${({ theme }) => theme.palette.BLACK}; /* 수정 필요 */
 		}
-	}
+		&:active {
+			background-color: ${theme.palette.BLUE_DISABLED};
+			path {
+			stroke: ${theme.palette.BLACK}; /* 수정 필요 */
+		}
+		}
+	`}
 `;
 
 const StyledIcon = styled(Icons.Arrow_up)`

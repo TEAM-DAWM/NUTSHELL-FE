@@ -25,10 +25,10 @@ function Setting() {
 			<Check1Btn type="setting" />
 			<DeleteBtn />
 			<DeleteCancelBtn status="delete" />
-			<EnterBtn />
+			<EnterBtn isDisabled={false} />
 			<OkayCancelBtn type="okay" />
 			<ProgressBtn type="defaultProgress" />
-			<RefreshBtn />
+			<RefreshBtn isDisabled={true} />
 			<SettingCheck2 />
 			<SettingCheck3 />
 			<SettingDeleteBtn />
