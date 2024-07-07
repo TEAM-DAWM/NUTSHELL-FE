@@ -37,7 +37,7 @@ function Setting() {
 			<StatusInProgressBtn />
 			<StatusStagingBtn />
 			<StatusTodoBtn />
-			<TextBtn size="small" text="전체" />
+			<TextBtn size="medium" text="전체" color="blue" isLight={false} />
 			<TimelineDeleteBtn />
 			<TodayPlusBtn />
 		</div>

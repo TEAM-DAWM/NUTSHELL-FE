@@ -6,7 +6,7 @@ import TextBtn from '@/components/common/button/TextBtn';
 const StatusDoneBtn = () => {
 	return (
 		<StatusDoneBtnLayout>
-			<TextBtn size="small" text="취소" />
+			<TextBtn size="small" text="취소" color="white" isLight={true} />
 			<ProgressBtn type="setting" />
 		</StatusDoneBtnLayout>
 	);
