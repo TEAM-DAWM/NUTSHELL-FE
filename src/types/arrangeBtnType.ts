@@ -1,4 +1,6 @@
 export interface ArrangeBtnType {
-    type: 'disabled' | 'default' | 'hover' | 'pressed';
-    color: 'blue' | 'white' | 'black';
+	type: 'right' | 'left' | 'set' | 'calendar';
+	mode: 'disabled' | 'default' | 'hover' | 'pressed';
+	color: 'blue' | 'white' | 'black';
+	size: 'big' | 'small';
 }
