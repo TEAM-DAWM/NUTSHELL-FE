@@ -49,7 +49,7 @@ function TimelineBox() {
 					{ title: 'Lunch', start: '2024-07-07T12:00:00', end: '2024-07-07T12:45:00' },
 					{ title: 'All Day Event', start: '2024-07-08T10:00:00', end: '2024-07-08T12:00:00', allDay: true },
 				]}
-				eventColor="#DFE9FF"
+				eventColor="#3876f6"
 				buttonText={{
 					today: '오늘',
 					month: '월간',
@@ -111,6 +111,7 @@ const FullCalendarLayout = styled.div`
 
 		color: ${(color) => color.theme.palette.GREY_04};
 
+		background-color: #dfe9ff;
 		box-shadow: 2px 0 0 0 #3876f6 inset;
 		border: none;
 		border-radius: 4px;
@@ -356,13 +357,22 @@ const FullCalendarLayout = styled.div`
 		display: none;
 	}
 
-	/* .fc-daygrid-event-harness {
+	.fc-direction-ltr .fc-daygrid-event.fc-event-end {
+		display: flex;
+		align-items: center;
+		box-sizing: border-box;
+		height: 2.1rem;
 		margin: 0.2rem 0.1rem;
+		padding: 0.3rem 1.2rem;
 
 		background-color: #dfe9ff;
 		border-left: 2px solid var(--primary, #3876f6);
 		border-radius: 4px;
-	} */
+	}
+
+	.fc-daygrid-event-dot {
+		display: none;
+	}
 
 	.fc .fc-timegrid-axis-frame {
 		justify-content: flex-start;
@@ -377,48 +387,10 @@ const FullCalendarLayout = styled.div`
 		float: left;
 	}
 
-	/* .fc .fc-daygrid-day-frame {
-	} */
-
-	/* 
-
-	.fc-h-event {
-		border: none;
-	}
-
-	.fc-direction-ltr .fc-daygrid-event {
-		margin: 0;
-	}
-
-
+	/* 이벤트 꽉차게 */
 	.fc-direction-ltr .fc-timegrid-col-events {
 		margin: 0;
 	}
-
-
-	.fc .fc-timegrid-axis-frame {
-		justify-content: center;
-	}
-
-	.fc-theme-standard .fc-scrollgrid {
-		border: none;
-		border-top: none;
-		border-left: none;
-	}
-
-	.fc .fc-timegrid-now-indicator-arrow {
-		display: none;
-	}
-
-	.fc-v-event .fc-event-main-frame {
-		padding: 1px;
-	}
-
-	.fc .fc-scrollgrid-section-body table {
-		border: 1px solid #e0e0e0;
-	}
-
-	 */
 `;
 
 const DayLayout = styled.div`
