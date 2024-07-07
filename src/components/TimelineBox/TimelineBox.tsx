@@ -6,6 +6,7 @@ import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { useState } from 'react';
 
+import RefreshBtn from '@/components/common/button/RefreshBtn';
 import DayHeaderContent from '@/components/TimelineBox/DayHeaderContent';
 import SlotLabelContent from '@/components/TimelineBox/SlotLabelContent';
 
@@ -23,12 +24,15 @@ function TimelineBox() {
 
 	return (
 		<FullCalendarLayout>
+			<CustomButtonContainer>
+				<RefreshBtn isDisabled={false} />
+			</CustomButtonContainer>
 			<FullCalendar
 				initialView="timeGridWeek"
 				plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin]}
 				headerToolbar={{
 					left: 'title today prev next timeGridDay,timeGridWeek,dayGridMonth',
-					right: 'custom',
+					right: '',
 				}}
 				views={{
 					timeGridDay: {
@@ -41,12 +45,12 @@ function TimelineBox() {
 						titleFormat: { year: 'numeric', month: 'short' },
 					},
 				}}
-				customButtons={{
-					custom: {
-						text: '동기화',
-						click: () => {},
-					},
-				}}
+				// customButtons={{
+				// 	custom: {
+				// 		text: '동기화',
+				// 		click: () => {},
+				// 	},
+				// }}
 				slotDuration="00:30:00"
 				editable
 				selectable
@@ -81,6 +85,14 @@ function TimelineBox() {
 		</FullCalendarLayout>
 	);
 }
+
+const CustomButtonContainer = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	width: 100%;
+	margin-bottom: -2.6rem;
+`;
 
 const FullCalendarLayout = styled.div`
 	width: 89.7rem;
