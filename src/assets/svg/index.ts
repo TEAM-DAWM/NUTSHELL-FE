@@ -10,6 +10,7 @@ import IcnArrangeLeft from '@/assets/svg/icn_arrange_left.svg?react';
 import IcnArrangeRight from '@/assets/svg/icn_arrange_right.svg?react';
 import IcnArrangeSet from '@/assets/svg/icn_arrange_set.svg?react';
 import Icn_clock from '@/assets/svg/icn_clock.svg?react';
+import Icn_hover_indicator from '@/assets/svg/icn_hover_indicator.svg?react';
 import Icn_nav_calendar from '@/assets/svg/icn_nav_calendar.svg?react';
 import Icn_nav_dashboard from '@/assets/svg/icn_nav_dashboard.svg?react';
 import Icn_nav_setting from '@/assets/svg/icn_nav_setting.svg?react';
@@ -35,6 +36,7 @@ const Icons = {
 	Icn_date_clock,
 	Icn_line,
 	IcnXCricle,
+	Icn_hover_indicator,
 	Navbar: {
 		Icn_nav_calendar,
 		Icn_nav_dashboard,
