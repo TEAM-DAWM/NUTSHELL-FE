@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { ViewMountArg, DatesSetArg } from '@fullcalendar/core';
+import { ViewMountArg, DatesSetArg, DayCellContentArg } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
@@ -20,6 +20,22 @@ function TimelineBox() {
 
 	const handleDatesSet = (dateInfo: DatesSetArg) => {
 		setCurrentView(dateInfo.view.type);
+	};
+
+	const customDayCellContent = (info: DayCellContentArg) => {
+		const number = document.createElement('a');
+		number.classList.add('fc-daygrid-day-number');
+		number.innerHTML = info.dayNumberText.replace('일', '');
+
+		if (info.view.type === 'dayGridMonth') {
+			return {
+				html: number.outerHTML,
+			};
+		}
+
+		return {
+			domNodes: [],
+		};
 	};
 
 	return (
@@ -45,12 +61,6 @@ function TimelineBox() {
 						titleFormat: { year: 'numeric', month: 'short' },
 					},
 				}}
-				// customButtons={{
-				// 	custom: {
-				// 		text: '동기화',
-				// 		click: () => {},
-				// 	},
-				// }}
 				slotDuration="00:30:00"
 				editable
 				selectable
@@ -81,6 +91,7 @@ function TimelineBox() {
 				dayHeaderContent={(arg) => <DayHeaderContent arg={arg} currentView={currentView} today={today} />}
 				viewDidMount={handleViewChange}
 				datesSet={handleDatesSet}
+				dayCellContent={customDayCellContent}
 			/>
 		</FullCalendarLayout>
 	);
@@ -99,7 +110,6 @@ const FullCalendarLayout = styled.div`
 	height: 93rem;
 
 	/* 이벤트 박스 */
-
 	.fc-event-main {
 		display: flex;
 		align-items: center;
