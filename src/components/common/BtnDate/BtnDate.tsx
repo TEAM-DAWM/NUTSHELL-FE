@@ -51,13 +51,13 @@ function BtnDate(props: BtnDateProps) {
 
 export default BtnDate;
 
-const XIcon = styled((props: React.SVGProps<SVGSVGElement> & { isClicked: boolean }) => {
+const XIcon = styled((props: React.SVGProps<SVGSVGElement> & { isClicked: boolean; size: string }) => {
 	const { isClicked, ...rest } = props;
 	return <Icons.IcnXCricle {...rest} />;
 })<{ isClicked: boolean }>`
 	display: ${({ isClicked }) => (isClicked ? 'flex' : 'none')};
-	width: 2rem;
-	height: 2rem;
+	width: ${({ size }) => (size === 'big' ? '2rem' : '1.6rem')};
+	height: ${({ size }) => (size === 'big' ? '2rem' : '1.6rem')};
 `;
 
 const CalanderIcon = styled(Icons.Icn_calander, { target: 'CalanderIcon' })<{ isDelayed: boolean }>`
@@ -109,7 +109,7 @@ const BtnDateLayout = styled.div<{
 	align-items: center;
 	width: fit-content;
 	min-width: 1.8rem;
-	padding: 0.5rem 1rem;
+	padding: ${({ size }) => (size === 'big' ? '0.5rem 1rem' : '0.5rem 1rem')};
 
 	cursor: pointer;
 	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
