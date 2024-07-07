@@ -5,6 +5,8 @@ import TextInputDesc from '@/components/common/textbox/TextInputDesc';
 import TextInputStaging from '@/components/common/textbox/TextInputStaging';
 import TextInputTime from '@/components/common/textbox/TextInputTime';
 import TextInputTitle from '@/components/common/textbox/TextInputTitle';
+import BtnDate from '@/components/commons/BtnDate';
+import BtnStagingDate from '@/components/commons/BtnStagingDate';
 
 function Today() {
 	return (
@@ -23,6 +25,8 @@ function Today() {
 			<TextInputTime time="end" />
 			<TextInputTime time="total" />
 			<TextInputStaging />
+			<BtnDate date="2024.07.11" size="big" />
+			<BtnStagingDate />
 		</div>
 	);
 }
