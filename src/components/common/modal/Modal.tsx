@@ -1,19 +1,17 @@
 import styled from '@emotion/styled';
 
+import ModalTextInputTime from '@/components/common/modal/ModalTextInputTime';
 import TextInputDesc from '@/components/common/textbox/TextInputDesc';
 import TextInputTime from '@/components/common/textbox/TextInputTime';
 import TextInputTitle from '@/components/common/textbox/TextInputTitle';
 import TextboxInput from '@/components/common/textbox/TextboxInput';
 
-import Icons from '@/assets/svg/index';
-
 interface ModalProps {
 	isOpen: boolean;
-	onClose: () => void;
 	modalSize: 'short' | 'long';
 }
 
-function Modal({ isOpen, onClose, modalSize }: ModalProps) {
+function Modal({ isOpen, modalSize }: ModalProps) {
 	if (!isOpen) return;
 	return (
 		<ModalLayout type={modalSize}>
@@ -26,16 +24,7 @@ function Modal({ isOpen, onClose, modalSize }: ModalProps) {
 					<TextInputTitle type={modalSize} />
 					<TextInputDesc type={modalSize} />
 				</TextInputBox>
-				{modalSize === 'long' && (
-					<ModalTextInputTime>
-						<TextInputTimeBox>
-							<Icons.Icn_clock width={24} height={24} />
-							<TextInputTime time="start" />
-							<TextInputTime time="end" />
-						</TextInputTimeBox>
-						<TextInputTime time="total" />
-					</ModalTextInputTime>
-				)}
+				{modalSize === 'long' && <ModalTextInputTime />}
 			</ModalBody>
 			<ModalFooter>
 				<TextInputTime time="start" />
@@ -72,19 +61,6 @@ const TextInputBox = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 0.6rem;
-`;
-
-const ModalTextInputTime = styled.div`
-	display: flex;
-	gap: 2rem;
-	justify-content: space-between;
-	width: 34.8rem;
-`;
-
-const TextInputTimeBox = styled.div`
-	display: flex;
-	gap: 0.4rem;
-	align-items: center;
 `;
 
 const ModalFooter = styled.div`
