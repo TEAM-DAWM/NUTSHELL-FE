@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { useLocation } from 'react-router-dom';
 
 import Icons from '@/assets/svg/index';
-
 import { PAGE_ROUTE } from '@/constants/pages';
 
 interface NavBarIconProps {
@@ -48,9 +47,7 @@ const IconContainer = styled.div<{ $iscurrent: boolean }>`
 `;
 
 const createStyledIcon = (IconComponent: React.FunctionComponent<React.SVGProps<SVGSVGElement>>) => styled(
-	({ $iscurrent, ...rest }: IconProps) => {
-		return <IconComponent {...rest} />;
-	}
+	({ $iscurrent, ...rest }: IconProps) => <IconComponent {...rest} />
 )<IconProps>`
 	width: 2.4rem;
 	height: 2.4rem;

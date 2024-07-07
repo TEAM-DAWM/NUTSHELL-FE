@@ -1,12 +1,12 @@
 import NavBar from '@/components/common/NavBar';
+import TextboxDailydate from '@/components/common/textbox/TextboxDailydate';
+import TextboxInput from '@/components/common/textbox/TextboxInput';
 import TextInputDesc from '@/components/common/textbox/TextInputDesc';
 import TextInputStaging from '@/components/common/textbox/TextInputStaging';
 import TextInputTime from '@/components/common/textbox/TextInputTime';
 import TextInputTitle from '@/components/common/textbox/TextInputTitle';
-import TextboxDailydate from '@/components/common/textbox/TextboxDailydate';
-import TextboxInput from '@/components/common/textbox/TextboxInput';
 
-const Today = () => {
+function Today() {
 	return (
 		<div>
 			<NavBar />
@@ -25,6 +25,6 @@ const Today = () => {
 			<TextInputStaging />
 		</div>
 	);
-};
+}
 
 export default Today;

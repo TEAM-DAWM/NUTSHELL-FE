@@ -1,11 +1,11 @@
 import NavBar from '@/components/common/NavBar';
 
-const DashBoard = () => {
+function DashBoard() {
 	return (
 		<div>
 			<NavBar />
 		</div>
 	);
-};
+}
 
 export default DashBoard;

@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export const buttonStyles = css`
+const buttonStyles = css`
 	display: inline-block;
 
 	font-weight: 700;
@@ -42,3 +42,5 @@ export const buttonStyles = css`
 		font-size: 1.6rem;
 	}
 `;
+
+export default buttonStyles;

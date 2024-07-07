@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 
-import { Button } from './Button';
+import Button from './Button';
 
 const meta = {
-	title: 'Example/Button', //스토리북에 올릴 component폴더 계층 구조,
+	title: 'Example/Button', // 스토리북에 올릴 component폴더 계층 구조,
 	component: Button, // 스토리를 만들 컴포넌트 이름
 	parameters: {
 		layout: 'centered',

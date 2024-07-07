@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const TextInputStaging = () => {
+function TextInputStaging() {
 	return (
 		<StagingLayout>
 			<TextArea placeholder="해야하는 일들을 쏟아내보세요." />
@@ -10,7 +10,7 @@ const TextInputStaging = () => {
 			</BtnWrapper>
 		</StagingLayout>
 	);
-};
+}
 const StagingLayout = styled.div`
 	display: flex;
 	flex-direction: column;

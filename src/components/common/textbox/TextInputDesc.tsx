@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 
 import { SizeType } from '@/types/textInputType';
 
-const TextInputDesc = ({ type }: SizeType) => {
+function TextInputDesc({ type }: SizeType) {
 	return <TextInputDescLayout placeholder="설명 추가" type={type} />;
-};
+}
 
 const TextInputDescLayout = styled.textarea<{ type: string }>`
 	width: ${({ type }) => (type === 'long' ? '34.8rem' : '30.4rem')};
