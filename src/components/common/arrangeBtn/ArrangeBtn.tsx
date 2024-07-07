@@ -23,6 +23,26 @@ function ArrangeBtn({ type, mode, color, size }: ArrangeBtnType) {
 		rect {
 			fill: ${({ theme }) => theme.button[color][mode].BG};
 		}
+
+		&:hover {
+			path {
+				stroke: ${({ theme }) => theme.button[color].HOVER.ICON};
+			}
+
+			rect {
+				fill: ${({ theme }) => theme.button[color].HOVER.BG};
+			}
+		}
+
+		&:active {
+			path {
+				stroke: ${({ theme }) => theme.button[color].PRESSED.ICON};
+			}
+
+			rect {
+				fill: ${({ theme }) => theme.button[color].PRESSED.BG};
+			}
+		}
 	`;
 
 	return <StyledIcon size={size} color={color} mode={mode} />;
