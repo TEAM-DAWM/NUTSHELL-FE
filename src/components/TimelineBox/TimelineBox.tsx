@@ -46,8 +46,8 @@ function TimelineBox() {
 				dayMaxEvents
 				events={[
 					{ title: 'Meeting', start: '2024-07-06T10:00:00', end: '2024-07-06T12:00:00' },
-					{ title: 'Lunch', start: '2024-07-07T12:00:00' },
-					{ title: 'All Day Event', start: '2024-07-06T10:00:00', end: '2024-07-06T12:00:00', allDay: true },
+					{ title: 'Lunch', start: '2024-07-07T12:00:00', end: '2024-07-07T12:45:00' },
+					{ title: 'All Day Event', start: '2024-07-08T10:00:00', end: '2024-07-10T12:00:00', allDay: true },
 				]}
 				eventColor="#DFE9FF"
 				buttonText={{
@@ -108,27 +108,6 @@ const FullCalendarLayout = styled.div`
 		${({ theme }) => theme.fontTheme.CAPTION_03};
 	}
 
-	.fc-timegrid-event-harness-inset .fc-timegrid-event {
-		box-shadow: none;
-		border: none;
-	}
-
-	.fc-h-event {
-		border: none;
-	}
-
-	.fc-direction-ltr .fc-daygrid-event {
-		margin: 0;
-	}
-
-	.fc-timegrid-event-harness > .fc-timegrid-event {
-		inset: 0.1rem;
-	}
-
-	.fc-direction-ltr .fc-timegrid-col-events {
-		margin: 0;
-	}
-
 	/* 요일 행 TEXT 중간 정렬 */
 	.fc td,
 	.fc th {
@@ -162,37 +141,15 @@ const FullCalendarLayout = styled.div`
 		margin: 0;
 	}
 
-	.fc .fc-timegrid-divider {
-		padding: 0;
-
-		border: none;
-	}
-
-	.fc .fc-cell-shaded {
-		background: none;
-	}
-
-	.fc .fc-timegrid-col,
-	.fc .fc-daygrid-day {
-		width: 12rem;
-	}
-
 	/* 30분 줄선 지우기 */
 	.fc .fc-timegrid-slot-minor {
 		border-top-style: none;
 	}
 
-	.fc-direction-ltr .fc-timegrid-slot-label-frame {
-		text-align: left;
-	}
-
-	.fc .fc-timegrid-axis-frame {
-		justify-content: center;
-	}
-
 	/* 요일 헤더 높이 조정 */
+
 	.fc .fc-col-header-cell {
-		width: 12rem;
+		/* width: 12rem; */
 		height: 5.5rem;
 
 		border-right: none;
@@ -200,27 +157,18 @@ const FullCalendarLayout = styled.div`
 		border-radius: 8px 8px 0 0;
 	}
 
-	.fc-theme-standard .fc-scrollgrid {
-		border-top: none;
-		border-left: none;
-	}
-
-	.fc .fc-day-today {
+	/* 일간에는 주말표시 안하기 */
+	.fc .fc-timeGridDay-view .fc-day-sun,
+	.fc .fc-timeGridDay-view .fc-day-sat {
 		background: none;
 	}
 
-	.fc .fc-day-sun,
-	.fc .fc-day-sat {
-		background: #fafcff;
+	.fc .fc-button-primary:focus {
+		box-shadow: none;
 	}
 
-	.fc-timeGridDay-view .fc-day-sun,
-	.fc-timeGridDay-view .fc-day-sat {
-		background: none;
-	}
-
-	.fc .fc-daygrid-day-frame {
-		border-bottom: 1px solid #e0e0e0;
+	.fc .fc-button-active:focus {
+		box-shadow: none;
 	}
 
 	/* Custom button styles */
@@ -234,12 +182,77 @@ const FullCalendarLayout = styled.div`
 		border-radius: 8px;
 	}
 
+	/* Override the button group border-radius styles */
+	.fc-direction-ltr .fc-button-group > .fc-button {
+		margin-right: 0.4rem;
+		margin-left: 0;
+
+		border-radius: 8px;
+	}
+
+	/* 스타일링 현재 시간 표시 */
+	.fc .fc-timegrid-now-indicator-line {
+		height: 0.2rem;
+
+		background-color: ${({ theme }) => theme.palette.PRIMARY};
+		border: none;
+	}
+
+	/* 주말 색 다르게 */
+	.fc .fc-day-sun,
+	.fc .fc-day-sat {
+		background: #fafcff;
+	}
+
+	/* 시간 세로줄 테두리 없애기 */
+	.fc-timegrid-axis {
+		color: ${({ theme }) => theme.palette.GREY_06};
+
+		border: none;
+	}
+
+	/* 오늘 배경색 없애기 */
+	.fc .fc-day-today {
+		background: none;
+	}
+
+	/* 바깥 테두리 없애기 */
+	.fc-scrollgrid-liquid {
+		border: none;
+	}
+
+	/* event에 있는 기본 스타일 지우기  */
+	.fc-timegrid-event-harness-inset .fc-timegrid-event {
+		box-shadow: none;
+		border: none;
+	}
+
+	/* event inset 적용 */
+	.fc-timegrid-event-harness > .fc-timegrid-event {
+		inset: 0.1rem;
+	}
+
+	/* 좌우 버튼 스타일 */
+	.fc-toolbar-chunk .fc-prev-button,
+	.fc-toolbar-chunk .fc-next-button {
+		width: 2.6rem;
+		height: 2.6rem;
+		padding: 0;
+
+		background-color: ${({ theme }) => theme.palette.BLACK_DEFAULT};
+	}
+
 	.fc-toolbar-chunk .fc-button:hover {
 		background-color: ${({ theme }) => theme.palette.BLUE_HOVER};
 	}
 
 	.fc-toolbar-chunk .fc-button:active {
 		background-color: ${({ theme }) => theme.palette.BLUE_PASSED};
+	}
+
+	.fc-toolbar-chunk .fc-prev-button:hover,
+	.fc-toolbar-chunk .fc-next-button:hover {
+		background-color: ${({ theme }) => theme.palette.BLACK_HOVER};
 	}
 
 	.fc-direction-ltr .fc-toolbar > * > :not(:first-of-type) {
@@ -255,25 +268,7 @@ const FullCalendarLayout = styled.div`
 		align-items: center;
 	}
 
-	.fc-toolbar-chunk .fc-prev-button,
-	.fc-toolbar-chunk .fc-next-button {
-		width: 2.6rem;
-		height: 2.6rem;
-		padding: 0;
-
-		background-color: ${({ theme }) => theme.palette.BLACK_DEFAULT};
-	}
-
-	.fc-toolbar-chunk .fc-prev-button:hover,
-	.fc-toolbar-chunk .fc-next-button:hover {
-		background-color: ${({ theme }) => theme.palette.BLACK_HOVER};
-	}
-
-	.fc .fc-toolbar-title {
-		margin-right: 2.6rem;
-		${({ theme }) => theme.fontTheme.HEADLINE_02};
-	}
-
+	/* 오늘 버튼 */
 	.fc-toolbar-chunk .fc-today-button {
 		background-color: ${({ theme }) => theme.palette.BLACK_DEFAULT};
 		opacity: 1;
@@ -281,20 +276,10 @@ const FullCalendarLayout = styled.div`
 
 	.fc-toolbar-chunk .fc-today-button:hover {
 		background-color: ${({ theme }) => theme.palette.BLACK_HOVER};
-		opacity: 1;
 	}
 
 	.fc-toolbar-chunk .fc-today-button:active {
 		background-color: ${({ theme }) => theme.palette.BLACK_PASSED};
-		opacity: 1;
-	}
-
-	/* Override the button group border-radius styles */
-	.fc-direction-ltr .fc-button-group > .fc-button {
-		margin-right: 0.4rem;
-		margin-left: 0;
-
-		border-radius: 8px;
 	}
 
 	.fc .fc-button-group {
@@ -309,12 +294,84 @@ const FullCalendarLayout = styled.div`
 		background-color: ${({ theme }) => theme.palette.BLACK_HOVER};
 	}
 
-	/* 스타일링 현재 시간 표시 */
-	.fc .fc-timegrid-now-indicator-line {
-		height: 0.2rem;
+	/* 오늘 버튼 마진 */
+	.fc .fc-toolbar-title {
+		margin-right: 2.6rem;
+		${({ theme }) => theme.fontTheme.HEADLINE_02};
+	}
 
-		background-color: ${({ theme }) => theme.palette.PRIMARY};
+	/* 종일 아래 테두리 */
+	.fc .fc-daygrid-day-frame {
+		/* border: 1px solid ${({ theme }) => theme.palette.GREY}; */
+
+		/* box-shadow: 1px 0 0 0 #e0e0e0 inset; */
+	}
+
+	.fc-dayGridMonth-view .fc-day-sun .fc-daygrid-day-frame {
+		box-shadow: 0 1px 0 0 #e0e0e0 inset;
+	}
+
+	.fc .fc-daygrid-body-natural .fc-daygrid-day-events {
+		border-bottom: 1px solid ${({ theme }) => theme.palette.GREY};
+	}
+
+	.fc .fc-dayGridMonth-view .fc-scrollgrid-section-body table {
+		border: 1px solid ${({ theme }) => theme.palette.GREY};
+	}
+
+	.fc .fc-cell-shaded {
+		display: none;
+	}
+
+	/* 현재시간 화살표 지우기 */
+	.fc-timegrid-now-indicator-arrow {
+		display: none;
+	}
+
+	.fc-daygrid-event-harness {
+		margin: 0.2rem 0.1rem;
+
+		/* background-color: #dfe9ff;
+		border-left: 2px solid var(--primary, #3876f6);
+		border-radius: 4px; */
+	}
+
+	.fc .fc-timegrid-axis-frame {
+		justify-content: flex-start;
+	}
+
+	/* 시간 왼쪽에 붙이기 */
+	.fc-direction-ltr .fc-timegrid-slot-label-frame {
+		text-align: left;
+	}
+
+	/* .fc .fc-daygrid-day-frame {
+	} */
+
+	/* 
+
+	.fc-h-event {
 		border: none;
+	}
+
+	.fc-direction-ltr .fc-daygrid-event {
+		margin: 0;
+	}
+
+
+	.fc-direction-ltr .fc-timegrid-col-events {
+		margin: 0;
+	}
+
+
+	.fc .fc-timegrid-axis-frame {
+		justify-content: center;
+	}
+
+	.fc-theme-standard .fc-scrollgrid {
+		border: none;
+		border-top: none;
+		border-left: none;
 	}
 
 	.fc .fc-timegrid-now-indicator-arrow {
@@ -324,6 +381,12 @@ const FullCalendarLayout = styled.div`
 	.fc-v-event .fc-event-main-frame {
 		padding: 1px;
 	}
+
+	.fc .fc-scrollgrid-section-body table {
+		border: 1px solid #e0e0e0;
+	}
+
+	 */
 `;
 
 const WeekyDay = styled.div<{ isToday: boolean }>`
