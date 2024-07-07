@@ -46,12 +46,6 @@ const IconContainer = styled.div<{ $iscurrent: boolean }>`
 	background-color: ${({ theme, $iscurrent }) => $iscurrent && theme.palette.BLUE_DISABLED};
 	border-radius: 8px;
 `;
-const iconStyle = ($iscurrent: boolean) => css`
-	width: 2.4rem;
-	height: 2.4rem;
-
-	color: ${$iscurrent ? theme.palette.BLUE_DEFAULT : theme.palette.GREY_05};
-`;
 
 const createStyledIcon = (IconComponent: React.FunctionComponent<React.SVGProps<SVGSVGElement>>) => styled(
 	(props: React.SVGProps<SVGSVGElement> & { $iscurrent: boolean }) => {
@@ -59,7 +53,10 @@ const createStyledIcon = (IconComponent: React.FunctionComponent<React.SVGProps<
 		return <IconComponent {...rest} />;
 	}
 )<{ $iscurrent: boolean }>`
-	${({ $iscurrent }) => iconStyle($iscurrent)}
+	width: 2.4rem;
+	height: 2.4rem;
+
+	color: ${({ theme, $iscurrent }) => ($iscurrent ? theme.palette.BLUE_DEFAULT : theme.palette.GREY_05)};
 `;
 
 const TodayIcon = createStyledIcon(Icons.Navbar.Icn_nav_today);
