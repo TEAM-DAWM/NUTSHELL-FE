@@ -40,6 +40,10 @@ const SettingCheck1Layout = styled.button`
 
 	&:active {
 		background-color: ${({ theme }) => theme.palette.BLUE_PASSED};
+
+		path {
+			stroke: ${({ theme }) => theme.palette.WITHE};
+		}
 	}
 `;
 

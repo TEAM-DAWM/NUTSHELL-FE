@@ -40,6 +40,9 @@ const SettingProgressLayout = styled.button`
 
 	&:active {
 		background-color: ${({ theme }) => theme.palette.PRIMARY}; /* 수정 필요 */
+		path {
+			stroke: ${({ theme }) => theme.palette.WITHE};
+		}
 	}
 `;
 

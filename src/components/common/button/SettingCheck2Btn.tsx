@@ -33,6 +33,9 @@ const SettingCheck2Layout = styled.button`
 
 	&:active {
 		background-color: ${({ theme }) => theme.palette.PRIMARY}; /* svg 색 수정 필요 */
+		path {
+			stroke: ${({ theme }) => theme.palette.WITHE};
+		}
 	}
 `;
 

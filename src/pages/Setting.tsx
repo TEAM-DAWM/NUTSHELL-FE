@@ -22,7 +22,7 @@ function Setting() {
 	return (
 		<div>
 			<ArrangeBtn text="최신 등록순" />
-			<Check1Btn type="done" />
+			<Check1Btn type="setting" />
 			<DeleteBtn />
 			<DeleteCancelBtn status="delete" />
 			<EnterBtn />

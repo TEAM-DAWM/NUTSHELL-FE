@@ -29,10 +29,16 @@ const EnterBtnLayout = styled.button`
 
 	&:hover {
 		background-color: ${({ theme }) => theme.palette.BLUE_PASSED}; /* 수정 필요 */
+		path {
+			stroke: ${({ theme }) => theme.palette.BLUE_DEFAULT}; /* 수정 필요 */
+		}
 	}
 
 	&:active {
 		background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* svg 색 수정 필요 */
+		path {
+			stroke: ${({ theme }) => theme.palette.BLACK}; /* 수정 필요 */
+		}
 	}
 `;
 

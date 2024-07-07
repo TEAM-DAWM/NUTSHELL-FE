@@ -28,6 +28,9 @@ const TodayPlusBtnCss = css`
 const TodayPlusBtnLayout = styled.button`
 	${TodayPlusBtnCss}
 	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* 색 수정 필요 */
+	path {
+		stroke: ${({ theme }) => theme.palette.PRIMARY};
+	}
 
 	&:hover {
 		background-color: ${({ theme }) => theme.palette.GREY_04};
@@ -35,6 +38,9 @@ const TodayPlusBtnLayout = styled.button`
 
 	&:active {
 		background-color: ${({ theme }) => theme.palette.GREY_05}; /* svg 색 수정 필요 */
+		path {
+			stroke: ${({ theme }) => theme.palette.WITHE};
+		}
 	}
 `;
 
