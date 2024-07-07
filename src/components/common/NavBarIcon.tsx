@@ -51,7 +51,10 @@ const iconStyle = ($iscurrent: boolean) => css`
 `;
 
 const createStyledIcon = (IconComponent: React.FunctionComponent<React.SVGProps<SVGSVGElement>>) => styled(
-	IconComponent
+	(props: React.SVGProps<SVGSVGElement> & { $iscurrent: boolean }) => {
+		const { $iscurrent, ...rest } = props;
+		return <IconComponent {...rest} />;
+	}
 )<{ $iscurrent: boolean }>`
 	${({ $iscurrent }) => iconStyle($iscurrent)}
 `;
