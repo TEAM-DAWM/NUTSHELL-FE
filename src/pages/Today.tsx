@@ -1,3 +1,5 @@
+import BtnDate from '@/components/common/BtnDate/BtnDate';
+import BtnStagingDate from '@/components/common/BtnDate/BtnStagingDate';
 import NavBar from '@/components/common/NavBar';
 import TextboxDailydate from '@/components/common/textbox/TextboxDailydate';
 import TextboxInput from '@/components/common/textbox/TextboxInput';
@@ -23,6 +25,8 @@ function Today() {
 			<TextInputTime time="end" />
 			<TextInputTime time="total" />
 			<TextInputStaging />
+			<BtnDate date="2024.07.11" size="big" />
+			<BtnStagingDate />
 		</div>
 	);
 }
