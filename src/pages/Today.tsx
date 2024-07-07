@@ -1,5 +1,7 @@
 import BtnDate from '@/components/common/BtnDate/BtnDate';
 import BtnStagingDate from '@/components/common/BtnDate/BtnStagingDate';
+import BtnTask from '@/components/common/BtnTask';
+import NavBar from '@/components/common/NavBar';
 import TextboxDailydate from '@/components/common/textbox/TextboxDailydate';
 import TextboxInput from '@/components/common/textbox/TextboxInput';
 import TextInputDesc from '@/components/common/textbox/TextInputDesc';
@@ -11,6 +13,8 @@ import TargetArea from '@/components/targetArea/TargetArea';
 function Today() {
 	return (
 		<>
+			<NavBar />
+			<BtnTask />
 			<TextboxInput variant="date" />
 			<TextboxInput variant="time" />
 			<TextboxInput variant="smallDate" />
