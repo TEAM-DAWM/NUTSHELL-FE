@@ -1,4 +1,5 @@
 import ArrangeBtn from '@/components/common/button/ArrangeBtn';
+import Check1Btn from '@/components/common/button/Check1Btn';
 import DeleteBtn from '@/components/common/button/DeleteBtn';
 import DeleteCancelBtn from '@/components/common/button/DeleteCancelBtn';
 import EnterBtn from '@/components/common/button/EnterBtn';
@@ -18,6 +19,7 @@ function Setting() {
 			<TodayPlusBtn />
 			<DeleteBtn />
 			<SettingDeleteBtn />
+			<Check1Btn type="done" />
 		</div>
 	);
 }
