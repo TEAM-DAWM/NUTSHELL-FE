@@ -111,7 +111,6 @@ const BtnDateLayout = styled.div<{
 	min-width: 1.8rem;
 	padding: 0.5rem 1rem;
 
-	background: ${({ theme }) => theme.palette.Grey.White};
 	cursor: pointer;
 	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-color: ${({ isClicked, theme }) => (isClicked ? theme.palette.Primary : theme.palette.Grey.Grey3)};
@@ -138,8 +137,6 @@ const BtnDateLayout = styled.div<{
 	${({ isPressed, theme }) =>
 		isPressed &&
 		css`
-			border-width: 0;
-
 			${TextWrapper} {
 				color: ${theme.palette.Grey.White};
 			}
@@ -148,8 +145,9 @@ const BtnDateLayout = styled.div<{
 	&:hover {
 		color: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey6)};
 
-		background: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey3)};
-		border-width: 0;
+		background: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey5 : theme.palette.Grey.Grey4)};
+		box-shadow: ${({ isPressed, theme }) =>
+			isPressed ? `1px 0 0 0 ${theme.palette.Grey.Grey5} inset` : `1px 0 0 0 ${theme.palette.Grey.Grey4} inset`};
 
 		${TextWrapper} {
 			color: ${({ isDefaultDate, isDefaultTime, theme }) =>
