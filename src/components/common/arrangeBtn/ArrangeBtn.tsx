@@ -14,9 +14,15 @@ const iconMap: Record<string, FunctionComponent<SVGProps<SVGSVGElement>>> = {
 };
 function ArrangeBtn({ type, mode, color, size }: ArrangeBtnType) {
 	const IconComponent = iconMap[type];
-
 	const StyledIcon = styled(IconComponent)<{ size: string; color: string; mode: string }>`
 		${({ size }) => (size === 'small' ? smallSize : bigSize)};
+		path {
+			stroke: ${({ theme }) => theme.button[color][mode].ICON};
+		}
+
+		rect {
+			fill: ${({ theme }) => theme.button[color][mode].BG};
+		}
 	`;
 
 	return <StyledIcon size={size} color={color} mode={mode} />;
