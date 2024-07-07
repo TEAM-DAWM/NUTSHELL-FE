@@ -5,11 +5,14 @@ import Icons from '@/assets/svg/index';
 
 import { PAGE_ROUTE } from '@/constants/pages';
 
-type NavBarIconProps = {
+interface NavBarIconProps {
 	name: string;
 	type: '할 일' | '대시보드' | '캘린더' | '설정';
 	onClick: () => void;
-};
+}
+interface IconProps extends React.SVGProps<SVGSVGElement> {
+	$iscurrent: boolean;
+}
 
 function NavBarIcon({ name, type, onClick }: NavBarIconProps) {
 	const current = useLocation();
@@ -45,11 +48,10 @@ const IconContainer = styled.div<{ $iscurrent: boolean }>`
 `;
 
 const createStyledIcon = (IconComponent: React.FunctionComponent<React.SVGProps<SVGSVGElement>>) => styled(
-	(props: React.SVGProps<SVGSVGElement> & { $iscurrent: boolean }) => {
-		const { $iscurrent, ...rest } = props;
+	({ $iscurrent, ...rest }: IconProps) => {
 		return <IconComponent {...rest} />;
 	}
-)<{ $iscurrent: boolean }>`
+)<IconProps>`
 	width: 2.4rem;
 	height: 2.4rem;
 
