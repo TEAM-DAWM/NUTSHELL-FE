@@ -69,6 +69,7 @@ function TimelineBox() {
 				events={[
 					{ title: 'Meeting', start: '2024-07-06T10:00:00', end: '2024-07-06T12:00:00' },
 					{ title: 'Lunch', start: '2024-07-07T12:00:00', end: '2024-07-07T12:45:00' },
+					{ title: 'Lunch', start: '2024-07-08T12:00:00', end: '2024-07-08T12:30:00' },
 					{ title: 'All Day Event', start: '2024-07-08T10:00:00', end: '2024-07-08T12:00:00', allDay: true },
 				]}
 				eventColor="#dfe9ff"
@@ -92,6 +93,11 @@ function TimelineBox() {
 				viewDidMount={handleViewChange}
 				datesSet={handleDatesSet}
 				dayCellContent={customDayCellContent}
+				eventTimeFormat={{
+					hour: 'numeric',
+					minute: '2-digit',
+					hour12: false,
+				}}
 			/>
 		</FullCalendarLayout>
 	);
@@ -124,6 +130,10 @@ const FullCalendarLayout = styled.div`
 		border: none;
 		border-radius: 4px;
 		${({ theme }) => theme.fontTheme.CAPTION_03};
+	}
+
+	.fc-v-event .fc-event-main-frame {
+		height: auto;
 	}
 
 	/* 요일 행 TEXT 중간 정렬 */
