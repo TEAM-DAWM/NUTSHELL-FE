@@ -14,5 +14,6 @@ function TargetAreaDate() {
 }
 const DateText = styled.h2`
 	${({ theme }) => theme.fontTheme.HEADLINE_02};
+	padding: 0.7rem 0.2rem 0.7rem 1rem;
 `;
 export default TargetAreaDate;
