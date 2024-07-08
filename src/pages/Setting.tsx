@@ -28,7 +28,7 @@ function Setting() {
 			<EnterBtn isDisabled={false} />
 			<OkayCancelBtn type="okay" />
 			<ProgressBtn type="defaultProgress" />
-			<RefreshBtn isDisabled={true} />
+			<RefreshBtn isDisabled />
 			<SettingCheck2 />
 			<SettingCheck3 />
 			<SettingDeleteBtn />
