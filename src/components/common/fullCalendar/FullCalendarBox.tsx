@@ -7,15 +7,15 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { useState } from 'react';
 
 import RefreshBtn from '@/components/common/button/RefreshBtn';
-import DayHeaderContent from '@/components/TimelineBox/DayHeaderContent';
-import FullCalendarLayout from '@/components/TimelineBox/FullCalendarStyle';
-import SlotLabelContent from '@/components/TimelineBox/SlotLabelContent';
+import DayHeaderContent from '@/components/common/fullCalendar/DayHeaderContent';
+import FullCalendarLayout from '@/components/common/fullCalendar/FullCalendarStyle';
+import SlotLabelContent from '@/components/common/fullCalendar/SlotLabelContent';
 
-interface TimelineBoxProps {
+interface FullCalendarBoxProps {
 	size: 'small' | 'big';
 }
 
-function TimelineBox({ size }: TimelineBoxProps) {
+function FullCalendarBox({ size }: FullCalendarBoxProps) {
 	const today = new Date().toDateString();
 	const [currentView, setCurrentView] = useState('timeGridWeek');
 
@@ -114,8 +114,10 @@ const CustomButtonContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+	box-sizing: border-box;
 	width: 100%;
 	margin-bottom: -2.6rem;
+	padding-right: 1rem;
 `;
 
-export default TimelineBox;
+export default FullCalendarBox;

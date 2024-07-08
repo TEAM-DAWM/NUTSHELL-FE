@@ -8,6 +8,10 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		margin-bottom: 1.8rem;
 	}
 
+	.fc .fc-timegrid-slot-label-cushion {
+		padding: 0 1.2rem 0 0;
+	}
+
 	/* 이벤트 박스 */
 	.fc-event-main {
 		display: flex;
