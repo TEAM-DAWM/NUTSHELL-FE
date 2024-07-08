@@ -32,7 +32,11 @@ module.exports = {
 		'no-shadow': 'off',
 		'@typescript-eslint/no-shadow': [
 			'error',
-			{ ignoreTypeValueShadow: true, ignoreFunctionTypeParameterNameValueShadow: true, allow: ['theme'] },
+			{
+				ignoreTypeValueShadow: true,
+				ignoreFunctionTypeParameterNameValueShadow: true,
+				allow: ['theme', 'size', 'color', 'mode'],
+			},
 		],
 		'import/order': [
 			'error',
