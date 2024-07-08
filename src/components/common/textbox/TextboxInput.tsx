@@ -30,7 +30,7 @@ const smallDateInputStyle = css`
 	text-align: center;
 
 	&:focus {
-		outline: solid 1px ${theme.palette.BLUE_DEFAULT};
+		outline: solid 1px ${theme.palette.Primary};
 	}
 `;
 const InputContainer = styled.div<{ variant: 'date' | 'time' | 'smallDate' }>`
@@ -41,11 +41,11 @@ const InputContainer = styled.div<{ variant: 'date' | 'time' | 'smallDate' }>`
 	height: 2.6rem;
 	padding: 0.3rem 1rem;
 
-	background-color: ${({ theme }) => theme.palette.GRAY_DISABLED};
+	background-color: ${({ theme }) => theme.palette.Grey.Grey1};
 	border-radius: 8px;
 
 	&:focus-within {
-		background-color: ${({ theme }) => theme.palette.BLUE_DISABLED};
+		background-color: ${({ theme }) => theme.palette.Blue.Blue2};
 	}
 
 	${({ variant }) => variant === 'smallDate' && smallDateStyle}

@@ -42,7 +42,7 @@ const IconContainer = styled.div<{ $iscurrent: boolean }>`
 	width: 3.2rem;
 	height: 3.2rem;
 
-	background-color: ${({ theme, $iscurrent }) => $iscurrent && theme.palette.BLUE_DISABLED};
+	background-color: ${({ theme, $iscurrent }) => $iscurrent && theme.palette.Grey.Grey1};
 	border-radius: 8px;
 `;
 
@@ -52,7 +52,7 @@ const createStyledIcon = (IconComponent: React.FunctionComponent<React.SVGProps<
 	width: 2.4rem;
 	height: 2.4rem;
 
-	color: ${({ theme, $iscurrent }) => ($iscurrent ? theme.palette.BLUE_DEFAULT : theme.palette.GREY_05)};
+	color: ${({ theme, $iscurrent }) => ($iscurrent ? theme.palette.Primary : theme.palette.Grey.Grey5)};
 `;
 
 const TodayIcon = createStyledIcon(Icons.Navbar.Icn_nav_today);
@@ -62,7 +62,7 @@ const SettingIcon = createStyledIcon(Icons.Navbar.Icn_nav_setting);
 
 const Caption = styled.p<{ $iscurrent: boolean }>`
 	${({ theme }) => theme.fontTheme.CAPTION_02};
-	color: ${({ theme, $iscurrent }) => ($iscurrent ? theme.palette.BLUE_DEFAULT : theme.palette.GREY_05)};
+	color: ${({ theme, $iscurrent }) => ($iscurrent ? theme.palette.Primary : theme.palette.Grey.Grey5)};
 	white-space: nowrap;
 `;
 export default NavBarIcon;

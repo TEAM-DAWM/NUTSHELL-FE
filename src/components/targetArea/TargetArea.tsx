@@ -29,7 +29,7 @@ const TargetAreaLayout = styled.section`
 	height: fit-content;
 	padding: 0 0.7rem;
 
-	border: 1px solid ${({ theme }) => theme.palette.grey3};
+	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 12px;
 `;
 

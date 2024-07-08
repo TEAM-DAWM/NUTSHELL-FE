@@ -13,7 +13,7 @@ const TextInputTitleLayout = styled.input<{ type: string }>`
 	height: 4.8rem;
 	padding: 1.2rem;
 
-	border: 1px solid ${({ theme }) => theme.palette.GREY_01};
+	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 5px;
 
 	&:focus {

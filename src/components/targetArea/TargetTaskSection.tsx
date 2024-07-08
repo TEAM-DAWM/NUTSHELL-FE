@@ -36,7 +36,7 @@ const TmpTask = styled.div`
 	width: 100%;
 	height: 6.2rem;
 
-	background-color: ${({ theme }) => theme.palette.GREY_02};
+	background-color: ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 8px;
 `;
 export default TargetTaskSection;

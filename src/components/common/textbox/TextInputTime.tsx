@@ -25,7 +25,7 @@ const InputTimeLayout = styled.div<{ time: string }>`
 	padding: 0.4rem 1rem;
 
 	${({ theme }) => theme.fontTheme.BODY_02};
-	background-color: ${({ theme, time }) => (time !== 'total' ? theme.palette.GRAY_DISABLED : theme.palette.WITHE)};
+	background-color: ${({ theme, time }) => (time !== 'total' ? theme.palette.Grey.Grey1 : theme.palette.Grey.White)};
 	border-radius: 8px;
 `;
 const ArrowIcon = styled(Icons.Icn_arrow_narrow_right)`
@@ -42,7 +42,7 @@ const InputTimeStyle = styled.input<{ time: string }>`
 	width: ${({ time }) => (time === 'total' ? '3.6rem' : '100%')};
 	padding: 0.4rem 0.8rem;
 
-	background-color: ${({ theme, time }) => (time === 'total' ? theme.palette.GRAY_DISABLED : 'transparent')};
+	background-color: ${({ theme, time }) => (time === 'total' ? theme.palette.Grey.Grey1 : 'transparent')};
 	border: none;
 	border-radius: 8px;
 

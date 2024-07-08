@@ -27,7 +27,7 @@ export const TextWrapper = styled('div', { target: 'TextWrapper' })<{ isDefault:
 	gap: 1rem;
 	align-items: flex-start;
 
-	color: ${({ isDefault, theme }) => (isDefault ? theme.palette.grey5 : theme.palette.black)};
+	color: ${({ isDefault, theme }) => (isDefault ? theme.palette.Grey.Grey5 : theme.palette.Grey.Black)};
 	font-size: ${({ size }) => (size === 'big' ? '1.4rem' : '1.2rem')};
 `;
 

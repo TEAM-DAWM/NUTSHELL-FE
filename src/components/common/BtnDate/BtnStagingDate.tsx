@@ -11,7 +11,7 @@ function BtnStagingDate() {
 export default BtnStagingDate;
 
 const BtnStagingDateText = styled('p', { target: 'BtnStagingDateText' })`
-	color: ${({ theme }) => theme.palette.grey5};
+	color: ${({ theme }) => theme.palette.Grey.Grey5};
 	font-size: 1.2rem;
 	text-align: center;
 `;
@@ -25,23 +25,23 @@ const BtnStagingDateLayout = styled('div', { target: 'BtnStagingDateLayout' })`
 	height: 2.2rem;
 	padding: 0.3rem 1.2rem;
 
-	background: ${({ theme }) => theme.palette.grey3};
+	background: ${({ theme }) => theme.palette.Grey.Grey3};
 	cursor: pointer;
 	border-radius: 8px;
 
 	&:hover {
-		background: ${({ theme }) => theme.palette.grey4};
+		background: ${({ theme }) => theme.palette.Grey.Grey4};
 
 		${BtnStagingDateText} {
-			color: ${({ theme }) => theme.palette.grey6};
+			color: ${({ theme }) => theme.palette.Grey.Grey6};
 		}
 	}
 
 	&:active {
-		background: ${({ theme }) => theme.palette.grey5};
+		background: ${({ theme }) => theme.palette.Grey.Grey5};
 
 		${BtnStagingDateText} {
-			color: ${({ theme }) => theme.palette.white};
+			color: ${({ theme }) => theme.palette.Grey.White};
 		}
 	}
 `;
