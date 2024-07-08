@@ -1,16 +1,16 @@
 import styled from '@emotion/styled';
 
 import ProgressBtn from '@/components/common/button/ProgressBtn';
-import TextBtn from '@/components/common/button/TextBtn';
+import TextBtn from '@/components/common/button/textBtn/TextBtn';
 
-const StatusDoneBtn = () => {
+function StatusDoneBtn() {
 	return (
 		<StatusDoneBtnLayout>
-			<TextBtn size="small" text="취소" color="white" isLight={true} />
+			<TextBtn size="small" text="취소" color="WHITE" mode="LIGHT" isAction />
 			<ProgressBtn type="setting" />
 		</StatusDoneBtnLayout>
 	);
-};
+}
 
 export default StatusDoneBtn;
 

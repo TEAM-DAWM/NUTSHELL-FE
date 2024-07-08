@@ -3,13 +3,13 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-const SettingCheck3 = () => {
+function SettingCheck3() {
 	return (
 		<SettingCheck3Layout>
-			<StyledSettingCheck3Icon /> {/*아이콘 크기 조정 필요*/}
+			<StyledSettingCheck3Icon /> {/* 아이콘 크기 조정 필요 */}
 		</SettingCheck3Layout>
 	);
-};
+}
 
 export default SettingCheck3;
 

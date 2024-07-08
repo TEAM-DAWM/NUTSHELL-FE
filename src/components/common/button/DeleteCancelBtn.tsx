@@ -5,9 +5,9 @@ interface DeleteCancelBtnProps {
 	status: 'delete' | 'cancel';
 }
 
-const DeleteCancelBtn = ({ status }: DeleteCancelBtnProps) => {
-	return <>{status === 'delete' ? <DeleteBtn>삭제</DeleteBtn> : <CancelBtn>취소</CancelBtn>}</>;
-};
+function DeleteCancelBtn({ status }: DeleteCancelBtnProps) {
+	return <div>{status === 'delete' ? <DeleteBtn>삭제</DeleteBtn> : <CancelBtn>취소</CancelBtn>}</div>;
+}
 
 export default DeleteCancelBtn;
 

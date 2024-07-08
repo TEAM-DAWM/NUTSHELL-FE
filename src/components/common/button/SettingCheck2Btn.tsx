@@ -3,13 +3,13 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-const SettingCheck2 = () => {
+function SettingCheck2() {
 	return (
 		<SettingCheck2Layout>
 			<StyledSettingCheck2Icon />
 		</SettingCheck2Layout>
 	);
-};
+}
 
 export default SettingCheck2;
 

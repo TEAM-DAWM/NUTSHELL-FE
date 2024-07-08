@@ -5,9 +5,9 @@ interface OkayCancelBtnProps {
 	type: 'okay' | 'cancel';
 }
 
-const OkayCancelBtn = ({ type }: OkayCancelBtnProps) => {
-	return <>{type === 'okay' ? <OkayBtn>확인</OkayBtn> : <CancelBtn>취소</CancelBtn>}</>;
-};
+function OkayCancelBtn({ type }: OkayCancelBtnProps) {
+	return <div>{type === 'okay' ? <OkayBtn>확인</OkayBtn> : <CancelBtn>취소</CancelBtn>}</div>;
+}
 
 export default OkayCancelBtn;
 

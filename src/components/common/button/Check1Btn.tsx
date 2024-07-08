@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
@@ -7,9 +7,9 @@ interface Check1 {
 	type: 'setting' | 'done';
 }
 
-const Check1Btn = ({ type }: Check1) => {
+function Check1Btn({ type }: Check1) {
 	return (
-		<>
+		<div>
 			{type === 'setting' ? (
 				<SettingCheck1Layout>
 					<StlyedSettingCheck1Ic />
@@ -19,9 +19,9 @@ const Check1Btn = ({ type }: Check1) => {
 					<StlyedDoneIc />
 				</DoneLayout>
 			)}
-		</>
+		</div>
 	);
-};
+}
 
 export default Check1Btn;
 

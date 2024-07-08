@@ -3,14 +3,14 @@ import styled from '@emotion/styled';
 import Check1Btn from '@/components/common/button/Check1Btn';
 import SettingDeleteBtn from '@/components/common/button/SettingDeleteBtn';
 
-const StatusStagingBtn = () => {
+function StatusStagingBtn() {
 	return (
 		<StatusStagingBtnLayout>
 			<SettingDeleteBtn />
 			<Check1Btn type="setting" />
 		</StatusStagingBtnLayout>
 	);
-};
+}
 
 export default StatusStagingBtn;
 

@@ -3,13 +3,13 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-const SettingDeleteBtn = () => {
+function SettingDeleteBtn() {
 	return (
 		<SettingDeleteBtnLayout>
 			<StyledDeleteIcon />
 		</SettingDeleteBtnLayout>
 	);
-};
+}
 
 export default SettingDeleteBtn;
 

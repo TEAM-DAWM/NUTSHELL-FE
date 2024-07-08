@@ -14,13 +14,17 @@ import StatusDoneBtn from '@/components/common/button/StatusDoneBtn';
 import StatusInProgressBtn from '@/components/common/button/StatusInProgressBtn';
 import StatusStagingBtn from '@/components/common/button/StatusStagingBtn';
 import StatusTodoBtn from '@/components/common/button/StatusTodoBtn';
-import TextBtn from '@/components/common/button/TextBtn';
+import TextBtn from '@/components/common/button/textBtn/TextBtn';
 import TimelineDeleteBtn from '@/components/common/button/TimelineDeleteBtn';
 import TodayPlusBtn from '@/components/common/button/TodayPlusBtn';
+import NavBar from '@/components/common/NavBar';
 
 function Setting() {
 	return (
 		<div>
+			<NavBar />
+			<TextBtn size="big" text="전체" color="BLUE" mode="LIGHT" isAction />
+			<TextBtn size="big" text="전체" color="BLUE" mode="DEFAULT" isAction={false} />
 			<SortBtn text="최신 등록순" />
 			<Check1Btn type="setting" />
 			<DeleteBtn />
@@ -37,7 +41,6 @@ function Setting() {
 			<StatusInProgressBtn />
 			<StatusStagingBtn />
 			<StatusTodoBtn />
-			<TextBtn size="medium" text="전체" color="blue" isLight={false} />
 			<TimelineDeleteBtn />
 			<TodayPlusBtn />
 		</div>

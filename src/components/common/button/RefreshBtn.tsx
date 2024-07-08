@@ -7,14 +7,14 @@ interface RefreshProps {
 	isDisabled: boolean;
 }
 
-const RefreshBtn = ({ isDisabled }: RefreshProps) => {
+function RefreshBtn({ isDisabled }: RefreshProps) {
 	return (
 		<RefreshBtnLayout isDisabled={isDisabled} disabled={isDisabled}>
 			<StyledRefreshIcon />
 			<Text>동기화</Text>
 		</RefreshBtnLayout>
 	);
-};
+}
 
 export default RefreshBtn;
 

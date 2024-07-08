@@ -3,14 +3,14 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-const TodayPlusBtn = () => {
+function TodayPlusBtn() {
 	return (
 		<TodayPlusBtnLayout>
 			<StyledPlusArrow />
 			<Text>오늘로 추가</Text>
 		</TodayPlusBtnLayout>
 	);
-};
+}
 
 export default TodayPlusBtn;
 

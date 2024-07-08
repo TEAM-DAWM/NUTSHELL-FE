@@ -3,13 +3,13 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-const SettingXBtn = () => {
+function SettingXBtn() {
 	return (
 		<SettingXBtnLayout>
 			<StyledSettingX />
 		</SettingXBtnLayout>
 	);
-};
+}
 
 export default SettingXBtn;
 

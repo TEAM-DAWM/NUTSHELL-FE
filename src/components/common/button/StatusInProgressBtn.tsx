@@ -1,16 +1,16 @@
 import styled from '@emotion/styled';
 
 import Check1Btn from '@/components/common/button/Check1Btn';
-import TextBtn from '@/components/common/button/TextBtn';
+import TextBtn from '@/components/common/button/textBtn/TextBtn';
 
-const StatusInProgressBtn = () => {
+function StatusInProgressBtn() {
 	return (
 		<StatusInProgressBtnLayout>
-			<TextBtn size="small" text="취소" color="white" isLight={true} />
+			<TextBtn size="small" text="취소" color="WHITE" mode="LIGHT" isAction={false} />
 			<Check1Btn type="setting" />
 		</StatusInProgressBtnLayout>
 	);
-};
+}
 
 export default StatusInProgressBtn;
 

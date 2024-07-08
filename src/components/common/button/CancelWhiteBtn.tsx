@@ -1,10 +1,9 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-type Props = {};
-
-function DeleteBtn(props: Props) {
+function DeleteBtn() {
 	return (
 		<DeleteBtnLayout>
 			<StlyedDeleteIcon />

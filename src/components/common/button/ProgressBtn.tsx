@@ -6,9 +6,9 @@ interface Progress {
 	type: 'setting' | 'defaultProgress';
 }
 
-const ProgressBtn = ({ type }: Progress) => {
+function ProgressBtn({ type }: Progress) {
 	return (
-		<>
+		<div>
 			{type === 'setting' ? (
 				<SettingProgressLayout>
 					<StyledSettingProgress />
@@ -18,9 +18,9 @@ const ProgressBtn = ({ type }: Progress) => {
 					<StyledProgressIcon />
 				</DefaultProgressLayout>
 			)}
-		</>
+		</div>
 	);
-};
+}
 
 export default ProgressBtn;
 

@@ -2,13 +2,13 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-const TimelineDeleteBtn = () => {
+function TimelineDeleteBtn() {
 	return (
 		<TimelineDeleteBtnLayout>
 			<StyledTimelineDelete />
 		</TimelineDeleteBtnLayout>
 	);
-};
+}
 
 export default TimelineDeleteBtn;
 

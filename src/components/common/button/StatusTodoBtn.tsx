@@ -3,14 +3,14 @@ import styled from '@emotion/styled';
 import Check1Btn from '@/components/common/button/Check1Btn';
 import ProgressBtn from '@/components/common/button/ProgressBtn';
 
-const StatusTodoBtn = () => {
+function StatusTodoBtn() {
 	return (
 		<StatusTodoBtnLayout>
 			<ProgressBtn type="setting" />
 			<Check1Btn type="setting" />
 		</StatusTodoBtnLayout>
 	);
-};
+}
 
 export default StatusTodoBtn;
 

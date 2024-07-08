@@ -7,13 +7,13 @@ interface EnterBtnProps {
 	isDisabled: boolean;
 }
 
-const EnterBtn = ({ isDisabled }: EnterBtnProps) => {
+function EnterBtn({ isDisabled }: EnterBtnProps) {
 	return (
 		<EnterBtnLayout isDisabled={isDisabled} disabled={isDisabled}>
 			<StyledIcon />
 		</EnterBtnLayout>
 	);
-};
+}
 
 export default EnterBtn;
 
