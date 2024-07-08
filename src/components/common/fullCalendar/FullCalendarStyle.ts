@@ -94,6 +94,10 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		background: ${({ theme }) => theme.palette.Blue1};
 	}
 
+	.fc .fc-button-primary:not(:disabled).fc-button-active {
+		background: ${({ theme }) => theme.palette.primary};
+	}
+
 	.fc .fc-button-primary:focus {
 		box-shadow: none;
 	}
@@ -107,6 +111,10 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		background-color: ${({ theme }) => theme.palette.Blue3};
 		border: none;
 		border-radius: 8px;
+	}
+
+	.fc-toolbar-chunk .fc-button:active {
+		background-color: ${({ theme }) => theme.palette.Blue3};
 	}
 
 	/* Override the button group border-radius styles */
@@ -160,10 +168,6 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 
 	.fc-toolbar-chunk .fc-button:hover {
 		background-color: ${({ theme }) => theme.palette.BLUE_HOVER};
-	}
-
-	.fc-toolbar-chunk .fc-button:active {
-		background-color: ${({ theme }) => theme.palette.BLUE_PASSED};
 	}
 
 	.fc-toolbar-chunk .fc-prev-button:hover,
