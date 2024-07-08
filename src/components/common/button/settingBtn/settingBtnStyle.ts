@@ -1,19 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import Icons from '@/assets/svg/index';
-
-function SettingCheck3() {
-	return (
-		<SettingCheck3Layout>
-			<StyledSettingCheck3Icon />
-		</SettingCheck3Layout>
-	);
-}
-
-export default SettingCheck3;
-
-const SettingCheck3Css = css`
+export const SettingCss = css`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -23,8 +11,8 @@ const SettingCheck3Css = css`
 	border-radius: 8px;
 `;
 
-const SettingCheck3Layout = styled.button`
-	${SettingCheck3Css}
+export const SettingLayout = styled.button`
+	${SettingCss}
 	background-color: ${({ theme }) => theme.palette.Blue.Blue1};
 
 	&:hover {
@@ -38,9 +26,4 @@ const SettingCheck3Layout = styled.button`
 			stroke: ${({ theme }) => theme.palette.Grey.White};
 		}
 	}
-`;
-
-const StyledSettingCheck3Icon = styled(Icons.SettingIcons.SettingCheck3)`
-	width: 1.6rem;
-	height: 1.6rem;
 `;

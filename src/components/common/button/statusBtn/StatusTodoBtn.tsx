@@ -1,20 +1,20 @@
 import styled from '@emotion/styled';
 
 import Check1Btn from '@/components/common/button/Check1Btn';
-import SettingDeleteBtn from '@/components/common/button/SettingDeleteBtn';
+import SettingCheck4 from '@/components/common/button/settingBtn/SettingCheck4Btn';
 
-function StatusStagingBtn() {
+function StatusTodoBtn() {
 	return (
-		<StatusStagingBtnLayout>
-			<SettingDeleteBtn isHover={false} isPressed />
+		<StatusTodoBtnLayout>
+			<SettingCheck4 isHover={false} isPressed />
 			<Check1Btn type="setting" isHover={false} isPressed />
-		</StatusStagingBtnLayout>
+		</StatusTodoBtnLayout>
 	);
 }
 
-export default StatusStagingBtn;
+export default StatusTodoBtn;
 
-const StatusStagingBtnLayout = styled.div`
+const StatusTodoBtnLayout = styled.div`
 	display: flex;
 	gap: 0.4rem;
 	align-items: center;

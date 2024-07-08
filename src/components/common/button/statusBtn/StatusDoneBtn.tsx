@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
-import SettingCheck4 from './SettingCheck4Btn';
-
+import SettingCheck4 from '@/components/common/button/settingBtn/SettingCheck4Btn';
 import TextBtn from '@/components/common/button/textBtn/TextBtn';
 
 function StatusDoneBtn() {
