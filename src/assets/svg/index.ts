@@ -15,6 +15,7 @@ import Icn_nav_dashboard from '@/assets/svg/icn_nav_dashboard.svg?react';
 import Icn_nav_setting from '@/assets/svg/icn_nav_setting.svg?react';
 import Icn_nav_today from '@/assets/svg/icn_nav_today.svg?react';
 import Icn_line from '@/assets/svg/line164.svg?react';
+import plus_circle from '@/assets/svg/plus-circle.svg?react';
 import PlusArrow from '@/assets/svg/PlusArrow.svg?react';
 import ProgressIcon from '@/assets/svg/ProgressIcon.svg?react';
 import Refresh from '@/assets/svg/refresh.svg?react';
@@ -64,6 +65,7 @@ const Icons = {
 	DoneIcon,
 	ProgressIcon,
 	TimelineDelete,
+	plus_circle,
 };
 
 export default Icons;
