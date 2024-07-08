@@ -12,6 +12,7 @@ const palette = {
 		Blue8: '#245CCE',
 		Blue9: '#0D47A1',
 		Blue10: '#173B86',
+		Blue11: '#B9D0FF',
 	},
 	Orange: {
 		Orange1: '#FFE7DF',
@@ -34,6 +35,7 @@ const palette = {
 		Grey6: '#626273',
 		Grey7: '#464656',
 		Grey8: '#34343C',
+		Grey9: '#E0E0E0',
 		Black: '#212121',
 	},
 };

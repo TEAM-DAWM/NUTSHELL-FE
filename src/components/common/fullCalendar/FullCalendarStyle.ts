@@ -20,10 +20,10 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		height: 100%;
 		padding: 0.4rem 0.6rem;
 
-		color: ${(color) => color.theme.palette.GREY_08};
+		color: ${(color) => color.theme.palette.Grey.Grey8};
 
-		background-color: ${({ theme }) => theme.palette.Blue2};
-		box-shadow: 2px 0 0 0 ${({ theme }) => theme.palette.primary} inset;
+		background-color: ${({ theme }) => theme.palette.Blue.Blue2};
+		box-shadow: 2px 0 0 0 ${({ theme }) => theme.palette.Primary} inset;
 		border: none;
 		border-radius: 4px;
 		${({ theme }) => theme.fontTheme.CAPTION_03};
@@ -49,7 +49,7 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		width: 5.7rem;
 		height: 2.4rem;
 
-		color: ${(color) => color.theme.palette.GREY_04};
+		color: ${(color) => color.theme.palette.Grey.Grey6};
 
 		border-bottom: none;
 	}
@@ -69,7 +69,7 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 	.fc .fc-daygrid-body-natural .fc-daygrid-day-events {
 		margin: 0;
 
-		border-bottom: 1px solid ${({ theme }) => theme.palette.GREY};
+		border-bottom: 1px solid ${({ theme }) => theme.palette.Grey.Grey9};
 	}
 
 	/* 30분 줄선 지우기 */
@@ -91,11 +91,11 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 	/* 주말 색 다르게 */
 	.fc .fc-day-sun,
 	.fc .fc-day-sat {
-		background: ${({ theme }) => theme.palette.Blue1};
+		background: ${({ theme }) => theme.palette.Blue.Blue1};
 	}
 
 	.fc .fc-button-primary:not(:disabled).fc-button-active {
-		background: ${({ theme }) => theme.palette.primary};
+		background: ${({ theme }) => theme.palette.Primary};
 	}
 
 	.fc .fc-button-primary:focus {
@@ -108,13 +108,13 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		height: 2.6rem;
 		padding: 0;
 
-		background-color: ${({ theme }) => theme.palette.Blue3};
+		background-color: ${({ theme }) => theme.palette.Blue.Blue3};
 		border: none;
 		border-radius: 8px;
 	}
 
 	.fc-toolbar-chunk .fc-button:active {
-		background-color: ${({ theme }) => theme.palette.Blue3};
+		background-color: ${({ theme }) => theme.palette.Blue.Blue3};
 	}
 
 	/* Override the button group border-radius styles */
@@ -129,13 +129,13 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 	.fc .fc-timegrid-now-indicator-line {
 		height: 0.2rem;
 
-		background-color: ${({ theme }) => theme.palette.PRIMARY};
+		background-color: ${({ theme }) => theme.palette.Primary};
 		border: none;
 	}
 
 	/* 시간 세로줄 테두리 없애기 */
 	.fc-timegrid-axis {
-		color: ${({ theme }) => theme.palette.GREY_06};
+		color: ${({ theme }) => theme.palette.Grey.Grey6};
 
 		border: none;
 	}
@@ -163,16 +163,16 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		height: 2.6rem;
 		padding: 0;
 
-		background-color: ${({ theme }) => theme.palette.BLACK_DEFAULT};
+		background-color: ${({ theme }) => theme.palette.Grey.Black};
 	}
 
 	.fc-toolbar-chunk .fc-button:hover {
-		background-color: ${({ theme }) => theme.palette.BLUE_HOVER};
+		background-color: ${({ theme }) => theme.palette.Blue.Blue8};
 	}
 
 	.fc-toolbar-chunk .fc-prev-button:hover,
 	.fc-toolbar-chunk .fc-next-button:hover {
-		background-color: ${({ theme }) => theme.palette.BLACK_HOVER};
+		background-color: ${({ theme }) => theme.palette.Grey.Grey7};
 	}
 
 	.fc-direction-ltr .fc-toolbar > * > :not(:first-of-type) {
@@ -190,16 +190,16 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 
 	/* 오늘 버튼 */
 	.fc-toolbar-chunk .fc-today-button {
-		background-color: ${({ theme }) => theme.palette.BLACK_DEFAULT};
+		background-color: ${({ theme }) => theme.palette.Grey.Black};
 		opacity: 1;
 	}
 
 	.fc-toolbar-chunk .fc-today-button:hover {
-		background-color: ${({ theme }) => theme.palette.BLACK_HOVER};
+		background-color: ${({ theme }) => theme.palette.Grey.Grey7};
 	}
 
 	.fc-toolbar-chunk .fc-today-button:active {
-		background-color: ${({ theme }) => theme.palette.BLACK_PASSED};
+		background-color: ${({ theme }) => theme.palette.Grey.Grey8};
 	}
 
 	.fc .fc-button-group {
@@ -207,11 +207,11 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 	}
 
 	.fc .fc-custom-button {
-		background-color: ${({ theme }) => theme.palette.BLACK_DEFAULT};
+		background-color: ${({ theme }) => theme.palette.Grey.Black};
 	}
 
 	.fc .fc-custom-button:hover {
-		background-color: ${({ theme }) => theme.palette.BLACK_HOVER};
+		background-color: ${({ theme }) => theme.palette.Grey.Grey7};
 	}
 
 	/* 오늘 버튼 마진 */
@@ -230,9 +230,9 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		height: 2.1rem;
 		padding: 0.3rem 1.2rem;
 
-		color: ${({ theme }) => theme.palette.WITHE};
+		color: ${({ theme }) => theme.palette.Grey.White};
 
-		background-color: ${({ theme }) => theme.palette.PRIMARY};
+		background-color: ${({ theme }) => theme.palette.Primary};
 		border: none;
 	}
 
@@ -241,7 +241,7 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 	}
 
 	.fc .fc-daygrid-day-frame .fc-daygrid-event-harness {
-		background-color: ${({ theme }) => theme.palette.WITHE};
+		background-color: ${({ theme }) => theme.palette.Grey.White};
 	}
 
 	.fc .fc-daygrid-event {
@@ -264,14 +264,14 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		height: 2.1rem;
 		margin: 0.1rem;
 
-		background-color: ${({ theme }) => theme.palette.primary};
+		background-color: ${({ theme }) => theme.palette.Primary};
 	}
 
 	.fc .fc-daygrid-dot-event {
 		padding: 0.4rem 0.6rem;
 
-		background-color: ${({ theme }) => theme.palette.Blue2};
-		border-left: 2px solid ${({ theme }) => theme.palette.primary};
+		background-color: ${({ theme }) => theme.palette.Blue.Blue2};
+		border-left: 2px solid ${({ theme }) => theme.palette.Primary};
 		border-radius: 4px;
 	}
 
@@ -311,7 +311,7 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		border: none;
 
 		scrollbar-width: thin;
-		scrollbar-color: ${({ theme }) => theme.palette.grey6} transparent;
+		scrollbar-color: ${({ theme }) => theme.palette.Grey.Grey6} transparent;
 	}
 
 	/* 스크롤 커스텀 */
@@ -322,7 +322,7 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 	.fc-scrollgrid-liquid::-webkit-scrollbar-thumb {
 		width: 0.6rem;
 
-		background-color: ${({ theme }) => theme.palette.grey6};
+		background-color: ${({ theme }) => theme.palette.Grey.Grey6};
 		border-radius: 3px;
 	}
 
@@ -335,11 +335,11 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 	}
 
 	.fc-dayGridMonth-view .fc-day-sun .fc-daygrid-day-frame {
-		box-shadow: 0 1px 0 0 #e0e0e0 inset;
+		box-shadow: 0 1px 0 0 ${({ theme }) => theme.palette.Grey.Grey9} inset;
 	}
 
 	.fc .fc-dayGridMonth-view .fc-scrollgrid-section-body table {
-		border: 1px solid ${({ theme }) => theme.palette.GREY};
+		border: 1px solid ${({ theme }) => theme.palette.Grey.Grey9};
 	}
 
 	.fc .fc-timeGridDay-view .fc-col-header-cell-cushion {
