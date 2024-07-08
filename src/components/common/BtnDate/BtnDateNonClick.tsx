@@ -64,12 +64,12 @@ const BtnDateLayout = styled.div<{
 	padding: ${({ size }) => (size === 'big' ? '0.5rem 1rem' : '0.5rem 1rem')};
 
 	cursor: pointer;
-	border: 1px solid ${({ theme }) => theme.palette.grey3};
-	border-color: ${({ theme }) => theme.palette.grey3};
+	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
+	border-color: ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 8px;
 
 	${TextWrapper} {
 		color: ${({ isDefaultDate, isDefaultTime, theme }) =>
-			isDefaultDate || isDefaultTime ? theme.palette.grey3 : theme.palette.black};
+			isDefaultDate || isDefaultTime ? theme.palette.Grey.Grey3 : theme.palette.Grey.Black};
 	}
 `;

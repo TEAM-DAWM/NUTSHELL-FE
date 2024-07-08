@@ -44,7 +44,7 @@ function BtnDate(props: BtnDateProps) {
 			<BtnDateText icon={<CalanderIcon isDelayed={isDelayed} />} text={date} isDefault={isDefaultDate} size={size} />
 			<LineIcon size={size} isDelayed={isDelayed} />
 			<BtnDateText icon={<ClockIcon isDelayed={isDelayed} />} text={time} isDefault={isDefaultTime} size={size} />
-			<XIcon isClicked={isClicked} />
+			<XIcon isClicked={isClicked} size={size} />
 		</BtnDateLayout>
 	);
 }
