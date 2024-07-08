@@ -13,6 +13,7 @@ import Icons from '@/assets/svg/index';
 interface BtnTaskProps {
 	btnType: number;
 	status?: string;
+	isDescription?: boolean;
 }
 
 interface BorderColorProps {
@@ -24,7 +25,7 @@ interface BorderColorProps {
 }
 
 function BtnTask(props: BtnTaskProps) {
-	const { btnType, status } = props;
+	const { btnType, status, isDescription = false } = props;
 	const [isClicked, setIsClicked] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
 	const [iconHovered, setIconHovered] = useState(false);
@@ -88,7 +89,10 @@ function BtnTask(props: BtnTaskProps) {
 			onClick={handleClick}
 		>
 			<BtnTaskContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-				<BtnTaskTextWrapper>넛쉘 UT 진행하기</BtnTaskTextWrapper>
+				<BtnTaskTextWrapper>
+					{isDescription && <IconFile />}
+					넛쉘 UT 진행하기
+				</BtnTaskTextWrapper>
 				{btnType === 3 ? (
 					<BtnDate date="2024.07.11" time="22:22" size="small" isDelayed />
 				) : (
@@ -153,8 +157,13 @@ const BtnTaskContainer = styled.div`
 	padding: 0.8rem 0 0.8rem 1.2rem;
 `;
 
-const BtnTaskTextWrapper = styled.div`
-	padding-left: 0.4rem;
+const BtnTaskTextWrapper = styled.div<{ isDescription: boolean }>`
+	display: flex;
+	gap: 4px;
+	align-items: center;
+	align-self: stretch;
+	padding-left: ${({ isDescription }) => (isDescription ? '0rem' : '0.4rem')};
+
 	${({ theme }) => theme.fontTheme.LABEL_03};
 `;
 
@@ -187,4 +196,9 @@ const StagingIconHoverIndicator = styled(Icons.Icn_hover_indicator)`
 	circle {
 		stroke: ${({ theme }) => theme.palette.Orange.Orange8};
 	}
+`;
+
+const IconFile = styled(Icons.IcnFile)`
+	width: 1.4rem;
+	height: 1.4rem;
 `;
