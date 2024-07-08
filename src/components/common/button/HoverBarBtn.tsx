@@ -10,7 +10,7 @@ function HoverBarBtn() {
 	return (
 		<HoverBarBtnLayout>
 			<SettingDeleteBtn />
-			<TextBtn size="small" text="취소" color="WHITE" mode="LIGHT" isAction={false} />
+			<TextBtn size="small" text="취소" color="WHITE" mode="LIGHT" isAction />
 			<SettingCheck4 />
 			<Check1Btn type="setting" />
 		</HoverBarBtnLayout>
