@@ -13,7 +13,7 @@ function TargetTaskSection() {
 		{ id: 8 },
 		{ id: 9 },
 		{ id: 10 },
-		{ id: 10 },
+		{ id: 11 },
 	];
 	return (
 		<TaskContainer>
