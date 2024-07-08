@@ -7,6 +7,7 @@ import TextInputDesc from '@/components/common/textbox/TextInputDesc';
 import TextInputStaging from '@/components/common/textbox/TextInputStaging';
 import TextInputTime from '@/components/common/textbox/TextInputTime';
 import TextInputTitle from '@/components/common/textbox/TextInputTitle';
+import TargetArea from '@/components/targetArea/TargetArea';
 
 function Today() {
 	return (
@@ -27,6 +28,7 @@ function Today() {
 			<TextInputStaging />
 			<BtnDate date="2024.07.11" size="big" />
 			<BtnStagingDate />
+			<TargetArea />
 		</div>
 	);
 }
