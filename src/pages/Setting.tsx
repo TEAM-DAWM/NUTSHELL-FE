@@ -1,4 +1,3 @@
-import ArrangeBtn from '@/components/common/button/ArrangeBtn';
 import Check1Btn from '@/components/common/button/Check1Btn';
 import DeleteBtn from '@/components/common/button/DeleteBtn';
 import DeleteCancelBtn from '@/components/common/button/DeleteCancelBtn';
@@ -10,6 +9,7 @@ import SettingCheck2 from '@/components/common/button/SettingCheck2Btn';
 import SettingCheck3 from '@/components/common/button/SettingCheck3Btn';
 import SettingDeleteBtn from '@/components/common/button/SettingDeleteBtn';
 import SettingXBtn from '@/components/common/button/SettingXBtn';
+import SortBtn from '@/components/common/button/SortBtn';
 import StatusDoneBtn from '@/components/common/button/StatusDoneBtn';
 import StatusInProgressBtn from '@/components/common/button/StatusInProgressBtn';
 import StatusStagingBtn from '@/components/common/button/StatusStagingBtn';
@@ -21,7 +21,7 @@ import TodayPlusBtn from '@/components/common/button/TodayPlusBtn';
 function Setting() {
 	return (
 		<div>
-			<ArrangeBtn text="최신 등록순" />
+			<SortBtn text="최신 등록순" />
 			<Check1Btn type="setting" />
 			<DeleteBtn />
 			<DeleteCancelBtn status="delete" />

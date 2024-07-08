@@ -1,16 +1,16 @@
 import styled from '@emotion/styled';
 
-interface ArrangeBtnProps {
+interface SortBtnProps {
 	text: string;
 }
 
-function ArrangeBtn({ text }: ArrangeBtnProps) {
-	return <ArrangeBtnLayout>{text}</ArrangeBtnLayout>;
+function SortBtn({ text }: SortBtnProps) {
+	return <SortBtnLayout>{text}</SortBtnLayout>;
 }
 
-export default ArrangeBtn;
+export default SortBtn;
 
-const ArrangeBtnLayout = styled.button`
+const SortBtnLayout = styled.button`
 	display: flex;
 	align-items: center;
 	width: 10.5rem;
