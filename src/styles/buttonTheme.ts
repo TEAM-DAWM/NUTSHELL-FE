@@ -1,56 +1,58 @@
+import palette from './palette';
+
 const button = {
 	BLUE: {
 		DISABLED: {
-			ICON: '#FFFFFF',
-			BG: '#C2D5FF',
+			ICON: palette.Grey.White,
+			BG: palette.Blue.Blue3,
 		},
 		DEFAULT: {
-			ICON: '#FFFFFF',
-			BG: '#3876F6',
+			ICON: palette.Grey.White,
+			BG: palette.Primary,
 		},
 		HOVER: {
-			ICON: '#FFFFFF',
-			BG: '#245CCE',
+			ICON: palette.Grey.White,
+			BG: palette.Blue.Blue8,
 		},
 		PRESSED: {
-			ICON: '#90B2FF',
-			BG: '#0D47A1',
+			ICON: palette.Blue.Blue4,
+			BG: palette.Blue.Blue9,
 		},
 	},
 	WHITE: {
 		DISABLED: {
-			ICON: '#C6C6D0',
-			BG: '#F4F6FA',
+			ICON: palette.Grey.Grey4,
+			BG: palette.Grey.Grey1,
 		},
 		DEFAULT: {
-			ICON: '#212121',
-			BG: '#FFFFFF',
+			ICON: palette.Grey.White,
+			BG: palette.Grey.Black,
 		},
 		HOVER: {
-			ICON: '#212121',
-			BG: '#C6C6D0',
+			ICON: palette.Grey.Black,
+			BG: palette.Grey.Grey3,
 		},
 		PRESSED: {
-			ICON: '#34343C',
-			BG: '#9090A0',
+			ICON: palette.Grey.Grey8,
+			BG: palette.Grey.Grey4,
 		},
 	},
 	BLACK: {
 		DISABLED: {
-			ICON: '#9090A0',
-			BG: '#464656',
+			ICON: palette.Grey.Grey5,
+			BG: palette.Grey.Grey7,
 		},
 		DEFAULT: {
-			ICON: '#FFFFFF',
-			BG: '#212121',
+			ICON: palette.Grey.White,
+			BG: palette.Grey.Black,
 		},
 		HOVER: {
-			ICON: '#FFFFFF',
-			BG: '#626273',
+			ICON: palette.Grey.White,
+			BG: palette.Grey.Grey6,
 		},
 		PRESSED: {
-			ICON: '#FFFFFF',
-			BG: '#34343C',
+			ICON: palette.Grey.White,
+			BG: palette.Grey.Grey8,
 		},
 	},
 };

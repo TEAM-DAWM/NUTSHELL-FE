@@ -1,41 +1,41 @@
 const palette = {
-	// BLUE
-	BLUE_DISABLED: '#B9D0FF',
-	BLUE_DEFAULT: '#3876F6',
-	BLUE_HOVER: '#245CCE',
-	BLUE_PASSED: '#173B86',
-
-	// GRAY
-	GRAY_DISABLED: '#E9E9EE',
-	GRAY_DEFAULT: '#FFFFFF',
-	GRAY_HOVER: '#CDCDCD',
-	GRAY_PASSED: '#919191',
-
-	// BLACK
-	BLACK_DISABLED: '#494949',
-	BLACK_DEFAULT: '#121212',
-	BLACK_HOVER: '#838383',
-	BLACK_PASSED: '#363636',
-
-	PRIMARY: '#3876F6',
-	SECONDARY: '#FF7950',
-	BLACK: '#212121',
-	WITHE: '#FFFFFF',
-	GREY_01: '#E9E9EE',
-	GREY_02: '#C6C6D0',
-	GREY_03: '#9090A0',
-	GREY_04: '#626273',
-	GREY_05: '#464656',
-	GREY_06: '#34343C',
-
-	// 지원 임시색상
-	grey3: '#E9E9EE',
-	grey4: '#C6C6D0',
-	grey5: '#9090A0',
-	grey6: '#626273',
-	black: '#212121',
-	primary: '#3876F6',
-	white: '#FFFFFF',
+	Primary: '#3876F6',
+	Secondary: '#FF7950',
+	Blue: {
+		Blue1: '#F0F5FF',
+		Blue2: '#DFE9FF',
+		Blue3: '#C2D5FF',
+		Blue4: '#90B2FF',
+		Blue5: '#659EFF',
+		Blue6: '#448AFF',
+		Blue7: '#2962FF',
+		Blue8: '#245CCE',
+		Blue9: '#0D47A1',
+		Blue10: '#173B86',
+	},
+	Orange: {
+		Orange1: '#FFE7DF',
+		Orange2: '#FFDACE',
+		Orange3: '#FFC9B9',
+		Orange4: '#FFAB91',
+		Orange5: '#FF8A65',
+		Orange6: '#F3663A',
+		Orange7: '#D65933',
+		Orange8: '#D84315',
+		Orange9: '#BF360C',
+	},
+	Grey: {
+		White: '#FFFFFF',
+		Grey1: '#F4F6FA',
+		Grey2: '#F0F0F5',
+		Grey3: '#E9E9EE',
+		Grey4: '#C6C6D0',
+		Grey5: '#9090A0',
+		Grey6: '#626273',
+		Grey7: '#464656',
+		Grey8: '#34343C',
+		Black: '#212121',
+	},
 };
 
 export default palette;
