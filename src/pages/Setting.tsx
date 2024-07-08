@@ -16,6 +16,7 @@
 // import StatusTodoBtn from '@/components/common/button/StatusTodoBtn';
 // import TextBtn from '@/components/common/button/textBtn/TextBtn';
 // import TimelineDeleteBtn from '@/components/common/button/TimelineDeleteBtn';
+import HoverBarBtn from '@/components/common/button/HoverBarBtn';
 import TodayPlusBtn from '@/components/common/button/TodayPlusBtn';
 // import NavBar from '@/components/common/NavBar';
 
@@ -43,6 +44,7 @@ function Setting() {
 			<StatusTodoBtn />
 			<TimelineDeleteBtn /> */}
 			<TodayPlusBtn />
+			<HoverBarBtn />
 		</div>
 	);
 }

@@ -3,17 +3,17 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-function SettingCheck3() {
+function SettingCheck4() {
 	return (
-		<SettingCheck3Layout>
+		<SettingCheck4Layout>
 			<StyledSettingCheck4Icon />
-		</SettingCheck3Layout>
+		</SettingCheck4Layout>
 	);
 }
 
-export default SettingCheck3;
+export default SettingCheck4;
 
-const SettingCheck3Css = css`
+const SettingCheck4Css = css`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -23,8 +23,8 @@ const SettingCheck3Css = css`
 	border-radius: 8px;
 `;
 
-const SettingCheck3Layout = styled.button`
-	${SettingCheck3Css}
+const SettingCheck4Layout = styled.button`
+	${SettingCheck4Css}
 	background-color: ${({ theme }) => theme.palette.Blue.Blue1};
 
 	&:hover {
