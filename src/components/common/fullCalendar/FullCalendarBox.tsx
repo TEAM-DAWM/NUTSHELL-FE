@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { ViewMountArg, DatesSetArg, DayCellContentArg } from '@fullcalendar/core';
+import { ViewMountArg, DatesSetArg } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
@@ -9,7 +9,8 @@ import { useState } from 'react';
 import RefreshBtn from '@/components/common/button/RefreshBtn';
 import DayHeaderContent from '@/components/common/fullCalendar/DayHeaderContent';
 import FullCalendarLayout from '@/components/common/fullCalendar/FullCalendarStyle';
-import SlotLabelContent from '@/components/common/fullCalendar/SlotLabelContent';
+import { customDayCellContent, customSlotLabelContent } from '@/components/common/fullCalendar/fullCalendarUtils';
+import { theme } from '@/styles/theme';
 
 interface FullCalendarBoxProps {
 	size: 'small' | 'big';
@@ -25,22 +26,6 @@ function FullCalendarBox({ size }: FullCalendarBoxProps) {
 
 	const handleDatesSet = (dateInfo: DatesSetArg) => {
 		setCurrentView(dateInfo.view.type);
-	};
-
-	const customDayCellContent = (info: DayCellContentArg) => {
-		const number = document.createElement('a');
-		number.classList.add('fc-daygrid-day-number');
-		number.innerHTML = info.dayNumberText.replace('일', '');
-
-		if (info.view.type === 'dayGridMonth') {
-			return {
-				html: number.outerHTML,
-			};
-		}
-
-		return {
-			domNodes: [],
-		};
 	};
 
 	return (
@@ -79,7 +64,7 @@ function FullCalendarBox({ size }: FullCalendarBoxProps) {
 					{ title: 'Lunch', start: '2024-07-08T12:00:00', end: '2024-07-08T12:30:00' },
 					{ title: 'All Day Event', start: '2024-07-08T10:00:00', end: '2024-07-08T12:00:00', allDay: true },
 				]}
-				eventColor="#dfe9ff"
+				eventColor={theme.palette.Blue.Blue2}
 				buttonText={{
 					today: '오늘',
 					month: '월간',
@@ -94,8 +79,8 @@ function FullCalendarBox({ size }: FullCalendarBoxProps) {
 					meridiem: 'short',
 					hour12: true,
 				}}
+				slotLabelContent={customSlotLabelContent}
 				/* eslint-disable */
-				slotLabelContent={(arg) => <SlotLabelContent arg={arg} />}
 				dayHeaderContent={(arg) => <DayHeaderContent arg={arg} currentView={currentView} today={today} />}
 				viewDidMount={handleViewChange}
 				datesSet={handleDatesSet}

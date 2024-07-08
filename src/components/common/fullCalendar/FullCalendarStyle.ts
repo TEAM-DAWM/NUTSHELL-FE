@@ -80,8 +80,9 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 	/* 요일 헤더 높이 조정 */
 
 	.fc .fc-col-header-cell {
-		/* width: 12rem; */
+		box-sizing: border-box;
 		height: 5.5rem;
+		padding: 0.4rem 0.8rem 0.6rem;
 
 		border-right: none;
 		border-left: none;
