@@ -27,6 +27,8 @@ const TodayPlusBtnCss = css`
 
 const TodayPlusBtnLayout = styled.button`
 	${TodayPlusBtnCss}
+	color: ${({ theme }) => theme.palette.Primary};
+
 	background-color: ${({ theme }) => theme.palette.Blue.Blue2};
 
 	path {
@@ -38,6 +40,8 @@ const TodayPlusBtnLayout = styled.button`
 	}
 
 	&:active {
+		color: ${({ theme }) => theme.palette.Grey.White};
+
 		background-color: ${({ theme }) => theme.palette.Primary};
 
 		path {
@@ -47,14 +51,9 @@ const TodayPlusBtnLayout = styled.button`
 `;
 
 const Text = styled.p`
-	color: ${({ theme }) => theme.palette.Primary};
 	text-align: center;
 
 	${({ theme }) => theme.fontTheme.CAPTION_02};
-
-	&:active {
-		color: ${({ theme }) => theme.palette.Grey.White};
-	}
 `;
 
 const StyledPlusArrow = styled(Icons.PlusArrow)`
