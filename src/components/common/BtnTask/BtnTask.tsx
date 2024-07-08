@@ -25,7 +25,7 @@ interface BorderColorProps {
 }
 
 function BtnTask(props: BtnTaskProps) {
-	const { btnType, status, isDescription = false } = props;
+	const { btnType, status = 'Todo', isDescription = false } = props;
 	const [isClicked, setIsClicked] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
 	const [iconHovered, setIconHovered] = useState(false);
