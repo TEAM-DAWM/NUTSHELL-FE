@@ -63,5 +63,5 @@ const DefaultProgressLayout = styled.button`
 `;
 
 const StyledProgressIcon = styled(Icons.ProgressIcon)`
-	width: 1.8667rem;
+	width: 1.86rem;
 `;
