@@ -25,6 +25,7 @@ function Today() {
 			<TextInputTime time="total" />
 			<TextInputStaging />
 			<BtnDate date="2024.07.11" size="big" />
+			<BtnDate date="2024.07.11" size="small" isDelayed />
 			<BtnStagingDate />
 			<TargetArea />
 		</>
