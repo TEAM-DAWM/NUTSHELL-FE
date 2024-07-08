@@ -57,5 +57,6 @@ const SettingCheck4Layout = styled.button<{ isHover: boolean; isPressed: boolean
 `;
 
 const StyledSettingCheck4Icon = styled(Icons.SettingIcons.SettingCheck4)`
-	width: 1.4rem;
+	width: 1.53rem;
+	height: 15.29rem;
 `;

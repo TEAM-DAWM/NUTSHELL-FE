@@ -49,6 +49,6 @@ const SettingDeleteBtnLayout = styled.button<{ isHover: boolean; isPressed: bool
 `;
 
 const StyledDeleteIcon = styled(Icons.DeleteIcon)`
-	width: 1.35rem;
-	height: 1.35rem;
+	width: 1.4rem;
+	height: 1.4rem;
 `;

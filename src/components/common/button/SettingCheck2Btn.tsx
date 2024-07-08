@@ -41,5 +41,6 @@ const SettingCheck2Layout = styled.button`
 `;
 
 const StyledSettingCheck2Icon = styled(Icons.SettingIcons.SettingCheck2)`
-	width: 1.4rem;
+	width: 1.6rem;
+	height: 1.6rem;
 `;

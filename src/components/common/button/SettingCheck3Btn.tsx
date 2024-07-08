@@ -41,5 +41,6 @@ const SettingCheck3Layout = styled.button`
 `;
 
 const StyledSettingCheck3Icon = styled(Icons.SettingIcons.SettingCheck3)`
-	width: 1.4rem;
+	width: 1.6rem;
+	height: 1.6rem;
 `;
