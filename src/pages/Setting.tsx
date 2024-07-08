@@ -2,7 +2,6 @@ import Check1Btn from '@/components/common/button/Check1Btn';
 import DeleteBtn from '@/components/common/button/DeleteBtn';
 import DeleteCancelBtn from '@/components/common/button/DeleteCancelBtn';
 import EnterBtn from '@/components/common/button/EnterBtn';
-import HoverBarBtn from '@/components/common/button/HoverBarBtn';
 import OkayCancelBtn from '@/components/common/button/OkayCancelBtn';
 import ProgressBtn from '@/components/common/button/ProgressBtn';
 import RefreshBtn from '@/components/common/button/RefreshBtn';
@@ -44,7 +43,6 @@ function Setting() {
 			<StatusTodoBtn />
 			<TimelineDeleteBtn />
 			<TodayPlusBtn />
-			<HoverBarBtn />
 		</div>
 	);
 }
