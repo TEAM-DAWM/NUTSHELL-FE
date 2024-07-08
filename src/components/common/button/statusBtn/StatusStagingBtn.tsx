@@ -1,13 +1,29 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 
 import Check1Btn from '@/components/common/button/Check1Btn';
 import SettingDeleteBtn from '@/components/common/button/settingBtn/SettingDeleteBtn';
 
 function StatusStagingBtn() {
+	const [isDeletePressed, setIsDeletePressed] = useState(false);
+	const [isCheckingPressed, setIsCheckingPressed] = useState(false);
+
+	const handleSettingCheckClick = () => {
+		setIsDeletePressed((prev) => !prev);
+	};
+
+	const handleCheckingClick = () => {
+		setIsCheckingPressed((prev) => !prev);
+	};
+
 	return (
 		<StatusStagingBtnLayout>
-			<SettingDeleteBtn isHover={false} isPressed />
-			<Check1Btn type="setting" isHover={false} isPressed />
+			{!isCheckingPressed && (
+				<SettingDeleteBtn isHover={false} isPressed={isDeletePressed} onClick={handleSettingCheckClick} />
+			)}
+			{!isDeletePressed && (
+				<Check1Btn type="setting" isHover={false} isPressed={isCheckingPressed} onClick={handleCheckingClick} />
+			)}
 		</StatusStagingBtnLayout>
 	);
 }
@@ -19,7 +35,7 @@ const StatusStagingBtnLayout = styled.div`
 	gap: 0.4rem;
 	align-items: center;
 	justify-content: center;
-	width: 5.2rem;
+	width: fit-content;
 	height: 2.4rem;
 	padding: 0.4rem;
 
