@@ -18,7 +18,7 @@ function Today() {
 	return (
 		<>
 			<NavBar />
-			<BtnTask btnType={1} />
+			<BtnTask btnType={1} isDescription />
 
 			<p>Done</p>
 			<BtnTask btnType={2} status="Done" />

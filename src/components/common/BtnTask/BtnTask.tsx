@@ -29,6 +29,7 @@ function BtnTask(props: BtnTaskProps) {
 	const [isClicked, setIsClicked] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
 	const [iconHovered, setIconHovered] = useState(false);
+	const [iconClicked, setIconClicked] = useState(false);
 
 	const handleMouseEnter = () => {
 		setIsHovered(true);
@@ -54,12 +55,21 @@ function BtnTask(props: BtnTaskProps) {
 		setIconHovered(false);
 	};
 
+	const handleIconClick = (e: React.MouseEvent) => {
+		if (iconClicked) {
+			setIconClicked(false);
+		} else {
+			stopPropagation(e);
+			setIconClicked(true);
+		}
+	};
+
 	const renderStatusButton = () => {
 		if (btnType === 3) {
 			return <StagingIconHoverIndicator />;
 		}
 
-		if (!iconHovered) {
+		if (!iconHovered && !iconClicked) {
 			return <IconHoverIndicator />;
 		}
 
@@ -89,7 +99,7 @@ function BtnTask(props: BtnTaskProps) {
 			onClick={handleClick}
 		>
 			<BtnTaskContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-				<BtnTaskTextWrapper>
+				<BtnTaskTextWrapper isDescription={isDescription}>
 					{isDescription && <IconFile />}
 					넛쉘 UT 진행하기
 				</BtnTaskTextWrapper>
@@ -100,7 +110,7 @@ function BtnTask(props: BtnTaskProps) {
 				)}
 			</BtnTaskContainer>
 			<IconHoverContainer
-				onClick={stopPropagation}
+				onClick={handleIconClick}
 				onMouseEnter={handleIconMouseEnter}
 				onMouseLeave={handleIconMouseLeave}
 			>
