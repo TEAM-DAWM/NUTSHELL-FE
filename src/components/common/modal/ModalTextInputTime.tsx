@@ -19,6 +19,7 @@ function ModalTextInputTime() {
 const ModalTextInputTimeLayout = styled.div`
 	display: flex;
 	gap: 2rem;
+
 	/* justify-content: space-between; */
 	width: 100%;
 `;

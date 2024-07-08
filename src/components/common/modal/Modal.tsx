@@ -36,13 +36,13 @@ const ModalLayout = styled.div<{ type: string }>`
 	display: flex;
 	flex-direction: column;
 	gap: 1.6rem;
+	box-sizing: border-box;
 	width: ${({ type }) => (type === 'long' ? '37.2rem' : '32.8rem')};
 	padding: 1rem 1.2rem;
 
-	background-color: ${({ theme }) => theme.palette.WITHE};
+	background-color: ${({ theme }) => theme.palette.Grey.White};
 	box-shadow: 0 1.2rem 3rem 0 rgb(0 0 0 / 30%);
 	border-radius: 12px;
-	box-sizing: border-box;
 `;
 
 const ModalHeader = styled.div`
@@ -62,6 +62,8 @@ const ModalFooter = styled.div`
 	justify-content: flex-end;
 `;
 
-const TmpBtn = styled.button``;
+const TmpBtn = styled.button`
+	display: block;
+`;
 
 export default Modal;

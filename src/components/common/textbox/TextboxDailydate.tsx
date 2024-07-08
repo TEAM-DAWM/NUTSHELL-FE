@@ -12,7 +12,6 @@ function TextboxDailydate({ type }: SizeType) {
 		<DailydateLayout type={type}>
 			<DailydateContainer>
 				<DateText>{date}일</DateText>
-				{/* CAPTION_02 추가 후 수정 필요 */}
 				<DayText>{getNameOfDay(dayOfTheWeek)}</DayText>
 			</DailydateContainer>
 		</DailydateLayout>
@@ -33,9 +32,10 @@ const DailydateContainer = styled.div`
 `;
 const DateText = styled.h1`
 	${({ theme }) => theme.fontTheme.HEADLINE_01};
+	color: ${({ theme }) => theme.palette.Grey.Black};
 `;
 const DayText = styled.p`
-	${({ theme }) => theme.fontTheme.CAPTION_01};
-	color: ${({ theme }) => theme.palette.GREY_04};
+	${({ theme }) => theme.fontTheme.CAPTION_02};
+	color: ${({ theme }) => theme.palette.Grey.Grey6};
 `;
 export default TextboxDailydate;

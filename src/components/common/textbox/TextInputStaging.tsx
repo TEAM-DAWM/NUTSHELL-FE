@@ -20,7 +20,7 @@ const StagingLayout = styled.div`
 	height: 7.4rem;
 	padding: 0.8rem;
 
-	border: solid 1px ${({ theme }) => theme.palette.GREY_02};
+	border: solid 1px ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 8px;
 `;
 
@@ -49,6 +49,6 @@ const TmpBtn = styled.div`
 	width: 5rem;
 	height: 2.2rem;
 
-	background-color: ${({ theme }) => theme.palette.GREY_04};
+	background-color: ${({ theme }) => theme.palette.Grey.Grey6};
 `;
 export default TextInputStaging;

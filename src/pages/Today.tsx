@@ -26,6 +26,7 @@ function Today() {
 			<TextInputStaging />
 			<BtnDate date="2024.07.11" size="big" />
 			<BtnStagingDate />
+			<TargetArea />
 		</>
 	);
 }

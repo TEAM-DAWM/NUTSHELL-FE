@@ -32,7 +32,7 @@ const TmpBtn = styled.div`
 	width: 2.6rem;
 	height: 2.6rem;
 
-	background-color: ${({ theme }) => theme.palette.BLACK_DEFAULT};
+	background-color: ${({ theme }) => theme.palette.Grey.Black};
 	border-radius: 6.5px;
 `;
 export default TargetControlSection;

@@ -37,7 +37,7 @@ const NavBarLayout = styled.div`
 	width: 7.2rem;
 	height: 100vh;
 
-	border-right: 1px solid ${({ theme }) => theme.palette.GREY_02};
+	border-right: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 `;
 const ProfileImg = styled.img`
 	width: 4.4rem;
