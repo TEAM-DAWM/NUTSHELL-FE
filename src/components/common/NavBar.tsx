@@ -28,6 +28,8 @@ function NavBar() {
 	);
 }
 const NavBarLayout = styled.div`
+	position: fixed;
+	left: 0;
 	display: flex;
 	flex-direction: column;
 	gap: 12rem;
