@@ -24,10 +24,10 @@ function Setting() {
 	return (
 		<div>
 			<NavBar />
-			<TextBtn size="big" text="전체" color="BLUE" mode="LIGHT" isAction />
-			<TextBtn size="big" text="전체" color="BLUE" mode="DEFAULT" isAction={false} />
+			<TextBtn size="big" text="전체" color="BLUE" mode="LIGHT" isHover isPressed />
+			<TextBtn size="big" text="전체" color="BLUE" mode="DEFAULT" isHover isPressed />
 			<SortBtn text="최신 등록순" />
-			<Check1Btn type="setting" />
+			<Check1Btn type="setting" isHover isPressed />
 			<DeleteBtn />
 			<DeleteCancelBtn status="delete" />
 			<EnterBtn isDisabled={false} />
@@ -36,7 +36,7 @@ function Setting() {
 			<RefreshBtn isDisabled={false} />
 			<SettingCheck2 />
 			<SettingCheck3 />
-			<SettingDeleteBtn />
+			<SettingDeleteBtn isHover isPressed />
 			<SettingXBtn />
 			<StatusDoneBtn />
 			<StatusInProgressBtn />

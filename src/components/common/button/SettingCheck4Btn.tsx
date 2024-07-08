@@ -3,9 +3,14 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-function SettingCheck4() {
+interface SettingCheck4Props {
+	isHover: boolean;
+	isPressed: boolean;
+}
+
+function SettingCheck4({ isHover, isPressed }: SettingCheck4Props) {
 	return (
-		<SettingCheck4Layout>
+		<SettingCheck4Layout isHover={isHover} isPressed={isPressed}>
 			<StyledSettingCheck4Icon />
 		</SettingCheck4Layout>
 	);
@@ -23,21 +28,28 @@ const SettingCheck4Css = css`
 	border-radius: 8px;
 `;
 
-const SettingCheck4Layout = styled.button`
+const SettingCheck4Layout = styled.button<{ isHover: boolean; isPressed: boolean }>`
 	${SettingCheck4Css}
 	background-color: ${({ theme }) => theme.palette.Blue.Blue1};
 
-	&:hover {
-		background-color: ${({ theme }) => theme.palette.Blue.Blue3};
-	}
+	${({ isHover, theme }) =>
+		isHover &&
+		css`
+			&:hover {
+				background-color: ${theme.palette.Blue.Blue3};
+			}
+		`}
+	${({ isPressed, theme }) =>
+		isPressed &&
+		css`
+			&:active {
+				background-color: ${theme.palette.Primary};
 
-	&:active {
-		background-color: ${({ theme }) => theme.palette.Primary};
-
-		path {
-			stroke: ${({ theme }) => theme.palette.Grey.White};
-		}
-	}
+				path {
+					stroke: ${theme.palette.Grey.White};
+				}
+			}
+		`}
 `;
 
 const StyledSettingCheck4Icon = styled(Icons.SettingIcons.SettingCheck4)`

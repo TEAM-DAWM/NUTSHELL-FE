@@ -3,5 +3,6 @@ export interface TextBtnType {
 	color: 'BLUE' | 'WHITE' | 'BLACK';
 	size: 'small' | 'big';
 	text: string;
-	isAction: boolean;
+	isHover: boolean;
+	isPressed: boolean;
 }

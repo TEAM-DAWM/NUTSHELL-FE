@@ -3,9 +3,14 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-function SettingDeleteBtn() {
+interface SettingDeleteBtnProps {
+	isHover: boolean;
+	isPressed: boolean;
+}
+
+function SettingDeleteBtn({ isHover, isPressed }: SettingDeleteBtnProps) {
 	return (
-		<SettingDeleteBtnLayout>
+		<SettingDeleteBtnLayout isHover={isHover} isPressed={isPressed}>
 			<StyledDeleteIcon />
 		</SettingDeleteBtnLayout>
 	);
@@ -23,17 +28,24 @@ const SettingDeleteBtnCss = css`
 	border-radius: 8px;
 `;
 
-const SettingDeleteBtnLayout = styled.button`
+const SettingDeleteBtnLayout = styled.button<{ isHover: boolean; isPressed: boolean }>`
 	${SettingDeleteBtnCss}
 	background-color: ${({ theme }) => theme.palette.Blue.Blue1};
 
-	&:hover {
-		background-color: ${({ theme }) => theme.palette.Blue.Blue3};
-	}
-
-	&:active {
-		background-color: ${({ theme }) => theme.palette.Primary};
-	}
+	${({ isHover, theme }) =>
+		isHover &&
+		css`
+			&:hover {
+				background-color: ${theme.palette.Blue.Blue3};
+			}
+		`}
+	${({ isPressed, theme }) =>
+		isPressed &&
+		css`
+			&:active {
+				background-color: ${theme.palette.Primary};
+			}
+		`}
 `;
 
 const StyledDeleteIcon = styled(Icons.DeleteIcon)`

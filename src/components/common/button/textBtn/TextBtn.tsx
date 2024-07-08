@@ -11,22 +11,26 @@ function TextBtn({ size, text, color, mode, isAction }: TextBtnType) {
 		size: string;
 		color: 'BLUE' | 'WHITE' | 'BLACK';
 		mode: string;
-		isAction: boolean;
+		isHover: boolean;
+		isPressed: boolean;
 	}>`
 		${({ size }) => (size === 'small' ? smallSize : bigSize)};
 		color: ${({ theme }) => theme.textButton[color][mode].TEXT};
 
 		background-color: ${({ theme }) => theme.textButton[color][mode].BG};
 
-		${({ isAction, theme, color }) =>
-			isAction &&
+		${({ isHover, theme, color }) =>
+			isHover &&
 			css`
 				&:hover {
 					color: ${theme.textButton[color].HOVER.TEXT};
 
 					background-color: ${theme.textButton[color].HOVER.BG};
 				}
-
+			`}
+		${({ isPressed, theme, color }) =>
+			isPressed &&
+			css`
 				&:active {
 					color: ${theme.textButton[color].PRESSED.TEXT};
 
@@ -35,7 +39,7 @@ function TextBtn({ size, text, color, mode, isAction }: TextBtnType) {
 			`}
 	`;
 	return (
-		<StyledTextBtn size={size} color={color} mode={mode} isAction={isAction}>
+		<StyledTextBtn size={size} color={color} mode={mode} isHover={isHover} isPressed={isPressed}>
 			{text}
 		</StyledTextBtn>
 	);

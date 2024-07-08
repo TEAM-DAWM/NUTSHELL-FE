@@ -9,10 +9,10 @@ import TextBtn from '@/components/common/button/textBtn/TextBtn';
 function HoverBarBtn() {
 	return (
 		<HoverBarBtnLayout>
-			<SettingDeleteBtn />
-			<TextBtn size="small" text="취소" color="WHITE" mode="LIGHT" isAction />
-			<SettingCheck4 />
-			<Check1Btn type="setting" />
+			<SettingDeleteBtn isHover={false} isPressed />
+			<TextBtn size="small" text="취소" color="WHITE" mode="LIGHT" isHover={false} isPressed />
+			<SettingCheck4 isHover={false} isPressed />
+			<Check1Btn type="setting" isHover={false} isPressed />
 		</HoverBarBtnLayout>
 	);
 }
