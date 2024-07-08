@@ -6,7 +6,7 @@ import TextBtn from '@/components/common/button/textBtn/TextBtn';
 function StatusDoneBtn() {
 	return (
 		<StatusDoneBtnLayout>
-			<TextBtn size="small" text="취소" color="WHITE" mode="LIGHT" isAction />
+			<TextBtn size="small" text="취소" color="WHITE" mode="LIGHT" isHover isPressed />
 			<ProgressBtn type="setting" />
 		</StatusDoneBtnLayout>
 	);

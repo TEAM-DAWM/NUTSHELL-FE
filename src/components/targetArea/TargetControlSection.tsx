@@ -6,7 +6,7 @@ function TargetControlSection() {
 	return (
 		<TargetControlSectionLayout>
 			<BtnWrapper>
-				<TextBtn text="오늘" size="small" color="BLACK" isAction mode="DEFAULT" />
+				<TextBtn text="오늘" size="small" color="BLACK" mode="DEFAULT" isHover isPressed />
 				<TmpBtn />
 				<TmpBtn />
 			</BtnWrapper>

@@ -6,8 +6,8 @@ import TextBtn from '@/components/common/button/textBtn/TextBtn';
 function StatusInProgressBtn() {
 	return (
 		<StatusInProgressBtnLayout>
-			<TextBtn size="small" text="취소" color="WHITE" mode="LIGHT" isAction={false} />
-			<Check1Btn type="setting" />
+			<TextBtn size="small" text="취소" color="WHITE" mode="LIGHT" isHover isPressed />
+			<Check1Btn type="setting" isHover isPressed />
 		</StatusInProgressBtnLayout>
 	);
 }
