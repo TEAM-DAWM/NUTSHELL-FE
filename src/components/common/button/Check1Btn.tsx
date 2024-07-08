@@ -1,17 +1,19 @@
-import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-interface Check1 {
+interface Check1Props {
 	type: 'setting' | 'done';
+	isHover: boolean;
+	isPressed: boolean;
 }
 
-const Check1Btn = ({ type }: Check1) => {
+function Check1Btn({ type, isHover, isPressed }: Check1Props) {
 	return (
-		<>
+		<div>
 			{type === 'setting' ? (
-				<SettingCheck1Layout>
+				<SettingCheck1Layout isHover={isHover} isPressed={isPressed}>
 					<StlyedSettingCheck1Ic />
 				</SettingCheck1Layout>
 			) : (
@@ -19,9 +21,9 @@ const Check1Btn = ({ type }: Check1) => {
 					<StlyedDoneIc />
 				</DoneLayout>
 			)}
-		</>
+		</div>
 	);
-};
+}
 
 export default Check1Btn;
 
@@ -30,30 +32,37 @@ const alignCenterStyle = css`
 	align-items: center;
 	justify-content: center;
 `;
-const SettingCheck1Layout = styled.button`
+const SettingCheck1Layout = styled.button<{ isHover: boolean; isPressed: boolean }>`
 	${alignCenterStyle}
 	width: 2.4rem;
 	height: 2.4rem;
 
-	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* 수정 필요 */
+	background-color: ${({ theme }) => theme.palette.Blue.Blue1};
 	border-radius: 8px;
 
-	&:hover {
-		background-color: ${({ theme }) => theme.palette.BLUE_DISABLED};
-	}
+	${({ isHover, theme }) =>
+		isHover &&
+		css`
+			&:hover {
+				background-color: ${theme.palette.Blue.Blue3};
+			}
+		`}
+	${({ isPressed, theme }) =>
+		isPressed &&
+		css`
+			&:active {
+				background-color: ${theme.palette.Primary};
 
-	&:active {
-		background-color: ${({ theme }) => theme.palette.BLUE_PASSED};
-
-		path {
-			stroke: ${({ theme }) => theme.palette.WITHE};
-		}
-	}
+				path {
+					stroke: ${theme.palette.Grey.White};
+				}
+			}
+		`}
 `;
 
-const StlyedSettingCheck1Ic = styled(Icons.SettingCheck1)`
-	width: 1.3911rem;
-	height: 1.3911rem;
+const StlyedSettingCheck1Ic = styled(Icons.SettingIcons.SettingCheck1)`
+	width: 1.6rem;
+	height: 1.6rem;
 `;
 
 const DoneLayout = styled.button`
@@ -61,11 +70,10 @@ const DoneLayout = styled.button`
 	width: 3.2rem;
 	height: 3.2rem;
 
-	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* 수정 필요 */
+	background-color: ${({ theme }) => theme.palette.Blue.Blue1};
 	border-radius: 10px;
 `;
 
 const StlyedDoneIc = styled(Icons.DoneIcon)`
-	width: 1.8548rem;
-	height: 1.8548rem;
+	width: 1.85rem;
 `;

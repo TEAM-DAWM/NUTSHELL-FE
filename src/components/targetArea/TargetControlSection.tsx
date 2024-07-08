@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
-import TextBtn from '../common/button/TextBtn';
+import TextBtn from '@/components/common/button/textBtn/TextBtn';
 
 function TargetControlSection() {
 	return (
 		<TargetControlSectionLayout>
 			<BtnWrapper>
-				<TextBtn text="오늘" size="small" color="black" isLight={false} />
+				<TextBtn text="오늘" size="small" color="BLACK" mode="DEFAULT" isHover isPressed />
 				<TmpBtn />
 				<TmpBtn />
 			</BtnWrapper>

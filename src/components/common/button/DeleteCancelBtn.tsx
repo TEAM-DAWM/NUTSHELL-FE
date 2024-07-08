@@ -5,9 +5,9 @@ interface DeleteCancelBtnProps {
 	status: 'delete' | 'cancel';
 }
 
-const DeleteCancelBtn = ({ status }: DeleteCancelBtnProps) => {
-	return <>{status === 'delete' ? <DeleteBtn>삭제</DeleteBtn> : <CancelBtn>취소</CancelBtn>}</>;
-};
+function DeleteCancelBtn({ status }: DeleteCancelBtnProps) {
+	return <div>{status === 'delete' ? <DeleteBtn>삭제</DeleteBtn> : <CancelBtn>취소</CancelBtn>}</div>;
+}
 
 export default DeleteCancelBtn;
 
@@ -25,26 +25,26 @@ const DeleteCancelBtnCss = css`
 
 const DeleteBtn = styled.button`
 	${DeleteCancelBtnCss}
-	color: ${({ theme }) => theme.palette.WITHE};
+	color: ${({ theme }) => theme.palette.Grey.White};
 
-	background-color: ${({ theme }) => theme.palette.SECONDARY};
+	background-color: ${({ theme }) => theme.palette.Secondary};
 	${({ theme }) => theme.fontTheme.BODY_02};
 
 	&:hover {
-		background-color: ${({ theme }) => theme.palette.BLACK}; /* 수정 필요 */
+		background-color: ${({ theme }) => theme.palette.Orange.Orange7};
 	}
 `;
 
 const CancelBtn = styled.button`
 	${DeleteCancelBtnCss}
-	color: ${({ theme }) => theme.palette.GREY_05};
+	color: ${({ theme }) => theme.palette.Grey.Grey5};
 
-	background-color: ${({ theme }) => theme.palette.WITHE};
+	background-color: ${({ theme }) => theme.palette.Grey.White};
 	${({ theme }) => theme.fontTheme.BODY_02};
 
 	&:hover {
-		color: ${({ theme }) => theme.palette.GREY_06};
+		color: ${({ theme }) => theme.palette.Grey.Grey6};
 
-		background-color: ${({ theme }) => theme.palette.GREY_03};
+		background-color: ${({ theme }) => theme.palette.Grey.Grey3};
 	}
 `;

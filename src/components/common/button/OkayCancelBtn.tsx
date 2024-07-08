@@ -5,9 +5,9 @@ interface OkayCancelBtnProps {
 	type: 'okay' | 'cancel';
 }
 
-const OkayCancelBtn = ({ type }: OkayCancelBtnProps) => {
-	return <>{type === 'okay' ? <OkayBtn>확인</OkayBtn> : <CancelBtn>취소</CancelBtn>}</>;
-};
+function OkayCancelBtn({ type }: OkayCancelBtnProps) {
+	return <div>{type === 'okay' ? <OkayBtn>확인</OkayBtn> : <CancelBtn>취소</CancelBtn>}</div>;
+}
 
 export default OkayCancelBtn;
 
@@ -23,17 +23,16 @@ const OkayCancelBtnCss = css`
 
 const OkayBtn = styled.button`
 	${OkayCancelBtnCss};
-	color: ${({ theme }) => theme.palette.WITHE};
+	color: ${({ theme }) => theme.palette.Grey.White};
 
-	background-color: ${({ theme }) => theme.palette.BLACK};
+	background-color: ${({ theme }) => theme.palette.Grey.Black};
 	${({ theme }) => theme.fontTheme.BODY_02};
-	box-shadow: 0 0 24px 0 rgb(0 0 0 / 12%);
 `;
 
 const CancelBtn = styled.button`
 	${OkayCancelBtnCss};
-	color: ${({ theme }) => theme.palette.GREY_05};
+	color: ${({ theme }) => theme.palette.Grey.Grey5};
 
-	background-color: ${({ theme }) => theme.palette.WITHE};
+	background-color: ${({ theme }) => theme.palette.Grey.White};
 	${({ theme }) => theme.fontTheme.BODY_02};
 `;

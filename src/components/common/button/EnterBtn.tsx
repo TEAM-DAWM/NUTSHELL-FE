@@ -7,13 +7,13 @@ interface EnterBtnProps {
 	isDisabled: boolean;
 }
 
-const EnterBtn = ({ isDisabled }: EnterBtnProps) => {
+function EnterBtn({ isDisabled }: EnterBtnProps) {
 	return (
 		<EnterBtnLayout isDisabled={isDisabled} disabled={isDisabled}>
 			<StyledIcon />
 		</EnterBtnLayout>
 	);
-};
+}
 
 export default EnterBtn;
 
@@ -29,23 +29,22 @@ const EnterBtnCss = css`
 
 const EnterBtnLayout = styled.button<{ isDisabled: boolean }>`
 	${EnterBtnCss}
-	color: ${({ theme }) => theme.palette.WITHE};
+	color: ${({ theme }) => theme.palette.Grey.White};
 
-	background-color: ${({ theme, isDisabled }) =>
-		isDisabled ? theme.palette.BLUE_DISABLED : theme.palette.PRIMARY}; /* 색 수정 필요 */
+	background-color: ${({ theme, isDisabled }) => (isDisabled ? theme.palette.Blue.Blue3 : theme.palette.Primary)};
 	${({ theme, isDisabled }) =>
 		!isDisabled &&
 		`
 		&:hover {
-			background-color: ${theme.palette.BLUE_PASSED};  /* 수정 필요 */
+			background-color: ${theme.palette.Blue.Blue8};
 			path {
-			stroke: ${theme.palette.BLUE_DEFAULT}; /* 수정 필요 */
+			stroke: ${theme.palette.Blue.Blue2};
 		}
 		}
 		&:active {
-			background-color: ${theme.palette.BLUE_DISABLED};
+			background-color: ${theme.palette.Blue.Blue9};
 			path {
-			stroke: ${theme.palette.BLACK}; /* 수정 필요 */
+			stroke: ${theme.palette.Blue.Blue4};
 		}
 		}
 	`}

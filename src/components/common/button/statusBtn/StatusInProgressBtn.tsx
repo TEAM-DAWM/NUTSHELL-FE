@@ -1,16 +1,16 @@
 import styled from '@emotion/styled';
 
 import Check1Btn from '@/components/common/button/Check1Btn';
-import TextBtn from '@/components/common/button/TextBtn';
+import TextBtn from '@/components/common/button/textBtn/TextBtn';
 
-const StatusInProgressBtn = () => {
+function StatusInProgressBtn() {
 	return (
 		<StatusInProgressBtnLayout>
-			<TextBtn size="small" text="취소" color="white" isLight={true} />
-			<Check1Btn type="setting" />
+			<TextBtn size="small" text="취소" color="WHITE" mode="LIGHT" isHover isPressed />
+			<Check1Btn type="setting" isHover={false} isPressed />
 		</StatusInProgressBtnLayout>
 	);
-};
+}
 
 export default StatusInProgressBtn;
 
@@ -23,6 +23,6 @@ const StatusInProgressBtnLayout = styled.div`
 	height: 2.4rem;
 	padding: 0.4rem;
 
-	border: 1px solid var(${({ theme }) => theme.palette.WITHE});
-	border-radius: 10px;
+	border: 1px solid ${({ theme }) => theme.palette.Grey.White};
+	border-radius: 12px;
 `;

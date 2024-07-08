@@ -23,6 +23,7 @@ import UnselectedBox from '@/assets/svg/Selectbox_Unselected.svg?react';
 import SettingCheck1 from '@/assets/svg/SettingCheck1.svg?react';
 import SettingCheck2 from '@/assets/svg/SettingCheck2Icon.svg?react';
 import SettingCheck3 from '@/assets/svg/SettingCheck3Icon.svg?react';
+import SettingCheck4 from '@/assets/svg/SettingCheck4Icon.svg?react';
 import SettingProgress from '@/assets/svg/SettingProgressIcon.svg?react';
 import SettingX from '@/assets/svg/SettingXIcon.svg?react';
 import IcnXCricle from '@/assets/svg/x-circle.svg?react';
@@ -52,9 +53,12 @@ const Icons = {
 	UnselectedBox,
 	PlusArrow,
 	DeleteIcon,
-	SettingCheck1,
-	SettingCheck2,
-	SettingCheck3,
+	SettingIcons: {
+		SettingCheck1,
+		SettingCheck2,
+		SettingCheck3,
+		SettingCheck4,
+	},
 	SettingX,
 	SettingProgress,
 	DoneIcon,

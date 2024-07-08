@@ -7,14 +7,14 @@ interface RefreshProps {
 	isDisabled: boolean;
 }
 
-const RefreshBtn = ({ isDisabled }: RefreshProps) => {
+function RefreshBtn({ isDisabled }: RefreshProps) {
 	return (
 		<RefreshBtnLayout isDisabled={isDisabled} disabled={isDisabled}>
 			<StyledRefreshIcon />
 			<Text>동기화</Text>
 		</RefreshBtnLayout>
 	);
-};
+}
 
 export default RefreshBtn;
 
@@ -31,19 +31,18 @@ const RefreshBtnCss = css`
 
 const RefreshBtnLayout = styled.button<{ isDisabled: boolean }>`
 	${RefreshBtnCss}
-	color: ${({ theme, isDisabled }) => (isDisabled ? theme.palette.GREY_05 : theme.palette.WITHE)};
+	color: ${({ theme, isDisabled }) => (isDisabled ? theme.palette.Grey.Grey5 : theme.palette.Grey.White)};
 
-	background-color: ${({ theme, isDisabled }) =>
-		isDisabled ? theme.palette.GREY_06 : theme.palette.BLACK}; /* 색 수정 필요 */
+	background-color: ${({ theme, isDisabled }) => (isDisabled ? theme.palette.Grey.Grey7 : theme.palette.Grey.Black)};
 
 	${({ theme, isDisabled }) =>
 		!isDisabled &&
 		`
 			&:hover {
-				background-color: ${theme.palette.GREY_06};
+				background-color: ${theme.palette.Grey.Grey6};
 			}
 			&:active {
-				background-color: ${theme.palette.GREY_05};
+				background-color: ${theme.palette.Grey.Grey8};
 			}
 		`}
 `;
@@ -54,8 +53,7 @@ const StyledRefreshIcon = styled(Icons.Refresh)`
 `;
 
 const Text = styled.p`
-	color: ${({ theme }) => theme.palette.WITHE};
 	text-align: center;
 
-	${({ theme }) => theme.fontTheme.CAPTION_01}; /* 수정 필요 */
+	${({ theme }) => theme.fontTheme.CAPTION_02};
 `;
