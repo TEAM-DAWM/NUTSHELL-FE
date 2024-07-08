@@ -6,7 +6,7 @@ import Icons from '@/assets/svg/index';
 interface SettingCheck4Props {
 	isHover: boolean;
 	isPressed: boolean;
-	onClick: () => void;
+	onClick?: () => void;
 }
 
 function SettingCheck4({ isHover, isPressed, onClick }: SettingCheck4Props) {

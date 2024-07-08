@@ -6,7 +6,7 @@ import Icons from '@/assets/svg/index';
 interface SettingDeleteBtnProps {
 	isHover: boolean;
 	isPressed: boolean;
-	onClick: () => void;
+	onClick?: () => void;
 }
 
 function SettingDeleteBtn({ isHover, isPressed, onClick }: SettingDeleteBtnProps) {

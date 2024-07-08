@@ -7,7 +7,7 @@ interface Check1Props {
 	type: 'setting' | 'done';
 	isHover: boolean;
 	isPressed: boolean;
-	onClick: () => void;
+	onClick?: () => void;
 }
 
 function Check1Btn({ type, isHover, isPressed, onClick }: Check1Props) {
