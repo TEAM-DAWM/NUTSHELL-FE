@@ -13,13 +13,13 @@ export default ArrangeBtn;
 const ArrangeBtnLayout = styled.button`
 	display: flex;
 	align-items: center;
-	width: fit-content;
-	height: 2.6rem;
+	width: 10.5rem;
+	height: 2.9rem;
 	padding: 7px;
 
 	color: ${({ theme }) => theme.palette.GREY_06};
 
-	background-color: ${({ theme }) => theme.palette.grey4};
+	background-color: ${({ theme }) => theme.palette.WITHE};
 	border-radius: 6px;
 
 	${({ theme }) => theme.fontTheme.CAPTION_01}; /* 수정 필요 */

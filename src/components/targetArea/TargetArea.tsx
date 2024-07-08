@@ -26,7 +26,7 @@ const TargetAreaLayout = styled.section`
 	flex-shrink: 0;
 	align-items: flex-start;
 	width: 31rem;
-	height: 100vh;
+	height: fit-content;
 	padding: 0 0.7rem;
 
 	border: 1px solid ${({ theme }) => theme.palette.grey3};

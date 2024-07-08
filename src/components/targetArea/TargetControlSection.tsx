@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
-import ArrangeBtn from '../common/button/ArrangeBtn';
+import TextBtn from '../common/button/TextBtn';
 
 function TargetControlSection() {
 	return (
 		<TargetControlSectionLayout>
 			<BtnWrapper>
-				<ArrangeBtn text="오늘" />
+				<TextBtn text="오늘" size="small" color="black" isLight={false} />
 				<TmpBtn />
 				<TmpBtn />
 			</BtnWrapper>
