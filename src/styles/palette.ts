@@ -1,0 +1,41 @@
+const palette = {
+	// BLUE
+	BLUE_DISABLED: '#B9D0FF',
+	BLUE_DEFAULT: '#3876F6',
+	BLUE_HOVER: '#245CCE',
+	BLUE_PASSED: '#173B86',
+
+	// GRAY
+	GRAY_DISABLED: '#E9E9EE',
+	GRAY_DEFAULT: '#FFFFFF',
+	GRAY_HOVER: '#CDCDCD',
+	GRAY_PASSED: '#919191',
+
+	// BLACK
+	BLACK_DISABLED: '#494949',
+	BLACK_DEFAULT: '#121212',
+	BLACK_HOVER: '#838383',
+	BLACK_PASSED: '#363636',
+
+	PRIMARY: '#3876F6',
+	SECONDARY: '#FF7950',
+	BLACK: '#212121',
+	WITHE: '#FFFFFF',
+	GREY_01: '#E9E9EE',
+	GREY_02: '#C6C6D0',
+	GREY_03: '#9090A0',
+	GREY_04: '#626273',
+	GREY_05: '#464656',
+	GREY_06: '#34343C',
+
+	// 지원 임시색상
+	grey3: '#E9E9EE',
+	grey4: '#C6C6D0',
+	grey5: '#9090A0',
+	grey6: '#626273',
+	black: '#212121',
+	primary: '#3876F6',
+	white: '#FFFFFF',
+};
+
+export default palette;
