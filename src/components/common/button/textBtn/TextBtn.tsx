@@ -6,7 +6,7 @@ import { smallSize, bigSize } from './textBtnStyle';
 
 import { TextBtnType } from '@/types/textBtnType';
 
-function TextBtn({ size, text, color, mode, isAction }: TextBtnType) {
+function TextBtn({ size, text, color, mode, isHover, isPressed }: TextBtnType) {
 	const StyledTextBtn = styled.div<{
 		size: string;
 		color: 'BLUE' | 'WHITE' | 'BLACK';
