@@ -6,7 +6,7 @@ import Icons from '@/assets/svg/index';
 function SettingCheck3() {
 	return (
 		<SettingCheck3Layout>
-			<StyledSettingCheck3Icon />
+			<StyledSettingCheck4Icon />
 		</SettingCheck3Layout>
 	);
 }
@@ -40,7 +40,7 @@ const SettingCheck3Layout = styled.button`
 	}
 `;
 
-const StyledSettingCheck3Icon = styled(Icons.SettingIcons.SettingCheck3)`
-	width: 1.391rem;
-	height: 1.391rem;
+const StyledSettingCheck4Icon = styled(Icons.SettingIcons.SettingCheck4)`
+	width: 1.3911rem;
+	height: 1.3911rem;
 `;

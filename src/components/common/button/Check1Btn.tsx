@@ -51,7 +51,7 @@ const SettingCheck1Layout = styled.button`
 	}
 `;
 
-const StlyedSettingCheck1Ic = styled(Icons.SettingCheck1)`
+const StlyedSettingCheck1Ic = styled(Icons.SettingIcons.SettingCheck1)`
 	width: 1.3911rem;
 	height: 1.3911rem;
 `;

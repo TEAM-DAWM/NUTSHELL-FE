@@ -40,7 +40,7 @@ const SettingCheck2Layout = styled.button`
 	}
 `;
 
-const StyledSettingCheck2Icon = styled(Icons.SettingCheck2)`
+const StyledSettingCheck2Icon = styled(Icons.SettingIcons.SettingCheck2)`
 	width: 1.391rem;
 	height: 0.9563rem;
 `;
