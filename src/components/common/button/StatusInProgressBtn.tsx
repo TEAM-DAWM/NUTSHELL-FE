@@ -7,7 +7,7 @@ function StatusInProgressBtn() {
 	return (
 		<StatusInProgressBtnLayout>
 			<TextBtn size="small" text="취소" color="WHITE" mode="LIGHT" isHover isPressed />
-			<Check1Btn type="setting" isHover isPressed />
+			<Check1Btn type="setting" isHover={false} isPressed />
 		</StatusInProgressBtnLayout>
 	);
 }
@@ -23,6 +23,6 @@ const StatusInProgressBtnLayout = styled.div`
 	height: 2.4rem;
 	padding: 0.4rem;
 
-	border: 1px solid var(${({ theme }) => theme.palette.Grey.White});
-	border-radius: 10px;
+	border: 1px solid ${({ theme }) => theme.palette.Grey.White};
+	border-radius: 12px;
 `;

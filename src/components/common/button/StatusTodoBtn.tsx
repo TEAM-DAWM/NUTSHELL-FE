@@ -1,13 +1,14 @@
 import styled from '@emotion/styled';
 
+import SettingCheck4 from './SettingCheck4Btn';
+
 import Check1Btn from '@/components/common/button/Check1Btn';
-import ProgressBtn from '@/components/common/button/ProgressBtn';
 
 function StatusTodoBtn() {
 	return (
 		<StatusTodoBtnLayout>
-			<ProgressBtn type="setting" />
-			<Check1Btn type="setting" />
+			<SettingCheck4 isHover={false} isPressed />
+			<Check1Btn type="setting" isHover={false} isPressed />
 		</StatusTodoBtnLayout>
 	);
 }
@@ -23,6 +24,6 @@ const StatusTodoBtnLayout = styled.div`
 	height: 2.4rem;
 	padding: 0.4rem;
 
-	border: 1px solid var(${({ theme }) => theme.palette.Grey.White});
-	border-radius: 10px;
+	border: 1px solid ${({ theme }) => theme.palette.Grey.White};
+	border-radius: 12px;
 `;

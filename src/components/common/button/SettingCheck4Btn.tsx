@@ -32,6 +32,10 @@ const SettingCheck4Layout = styled.button<{ isHover: boolean; isPressed: boolean
 	${SettingCheck4Css}
 	background-color: ${({ theme }) => theme.palette.Blue.Blue1};
 
+	path {
+		fill: ${({ theme }) => theme.palette.Primary};
+	}
+
 	${({ isHover, theme }) =>
 		isHover &&
 		css`
@@ -46,7 +50,7 @@ const SettingCheck4Layout = styled.button<{ isHover: boolean; isPressed: boolean
 				background-color: ${theme.palette.Primary};
 
 				path {
-					stroke: ${theme.palette.Grey.White};
+					fill: ${theme.palette.Grey.White};
 				}
 			}
 		`}

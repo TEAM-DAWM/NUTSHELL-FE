@@ -6,8 +6,8 @@ import SettingDeleteBtn from '@/components/common/button/SettingDeleteBtn';
 function StatusStagingBtn() {
 	return (
 		<StatusStagingBtnLayout>
-			<SettingDeleteBtn />
-			<Check1Btn type="setting" />
+			<SettingDeleteBtn isHover={false} isPressed />
+			<Check1Btn type="setting" isHover={false} isPressed />
 		</StatusStagingBtnLayout>
 	);
 }
@@ -23,6 +23,6 @@ const StatusStagingBtnLayout = styled.div`
 	height: 2.4rem;
 	padding: 0.4rem;
 
-	border: 1px solid var(${({ theme }) => theme.palette.Grey.White});
-	border-radius: 10px;
+	border: 1px solid ${({ theme }) => theme.palette.Grey.White};
+	border-radius: 12px;
 `;
