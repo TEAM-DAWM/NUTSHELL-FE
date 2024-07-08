@@ -11,10 +11,11 @@ interface BtnDateProps {
 	time?: string;
 	size?: string;
 	isDelayed?: boolean;
+	isDisabled?: boolean;
 }
 
 function BtnDate(props: BtnDateProps) {
-	const { date = '마감 기한', time = '마감 시간', size = 'big', isDelayed = false } = props;
+	const { date = '마감 기한', time = '마감 시간', size = 'big', isDelayed = false, isDisabled = false } = props;
 	const [isPressed, setIsPressed] = useState(false);
 	const [isClicked, setIsClicked] = useState(false);
 
@@ -36,6 +37,7 @@ function BtnDate(props: BtnDateProps) {
 			isClicked={isClicked}
 			size={size}
 			isDelayed={isDelayed}
+			isDisabled={isDisabled}
 			isDefaultDate={isDefaultDate}
 			isDefaultTime={isDefaultTime}
 			onMouseDown={handleMouseDown}
@@ -103,13 +105,15 @@ const BtnDateLayout = styled.div<{
 	isDelayed: boolean;
 	isDefaultDate: boolean;
 	isDefaultTime: boolean;
+	isDisabled: boolean;
 }>`
 	display: flex;
 	gap: 1rem;
 	align-items: center;
 	width: fit-content;
 	min-width: 1.8rem;
-	padding: ${({ size }) => (size === 'big' ? '0.5rem 1rem' : '0.5rem 1rem')};
+	height: ${({ size }) => (size === 'big' ? '3.2rem' : '2rem')};
+	padding: ${({ size }) => (size === 'big' ? '0.5rem 1rem' : '0rem 1rem')};
 
 	cursor: pointer;
 	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
@@ -140,6 +144,15 @@ const BtnDateLayout = styled.div<{
 			${TextWrapper} {
 				color: ${theme.palette.Grey.White};
 			}
+		`}
+
+	${({ isDisabled }) =>
+		isDisabled &&
+		css`
+			cursor: default;
+			opacity: 0.6;
+
+			pointer-events: none;
 		`}
 
 	&:hover {
