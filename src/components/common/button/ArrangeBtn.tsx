@@ -4,22 +4,22 @@ interface ArrangeBtnProps {
 	text: string;
 }
 
-const ArrangeBtn = ({ text }: ArrangeBtnProps) => {
+function ArrangeBtn({ text }: ArrangeBtnProps) {
 	return <ArrangeBtnLayout>{text}</ArrangeBtnLayout>;
-};
+}
 
 export default ArrangeBtn;
 
 const ArrangeBtnLayout = styled.button`
 	display: flex;
 	align-items: center;
-	width: 10.5rem;
-	height: 2.9rem;
+	width: fit-content;
+	height: 2.6rem;
 	padding: 7px;
 
 	color: ${({ theme }) => theme.palette.GREY_06};
 
-	background-color: ${({ theme }) => theme.palette.WITHE};
+	background-color: ${({ theme }) => theme.palette.grey4};
 	border-radius: 6px;
 
 	${({ theme }) => theme.fontTheme.CAPTION_01}; /* 수정 필요 */
