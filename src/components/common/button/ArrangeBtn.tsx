@@ -4,9 +4,9 @@ interface ArrangeBtnProps {
 	text: string;
 }
 
-const ArrangeBtn = ({ text }: ArrangeBtnProps) => {
+function ArrangeBtn({ text }: ArrangeBtnProps) {
 	return <ArrangeBtnLayout>{text}</ArrangeBtnLayout>;
-};
+}
 
 export default ArrangeBtn;
 
