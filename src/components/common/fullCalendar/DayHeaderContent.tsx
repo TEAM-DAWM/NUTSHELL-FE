@@ -38,13 +38,13 @@ const DayLayout = styled.div`
 
 const WeekDay = styled.div<{ isToday: boolean }>`
 	${({ theme }) => theme.fontTheme.CAPTION_02};
-	color: ${(props) => (props.isToday ? props.theme.palette.BLUE_DISABLED : props.theme.palette.GREY_04)};
+	color: ${({ isToday, theme }) => (isToday ? theme.palette.BLUE_DISABLED : theme.palette.GREY_04)};
 	text-transform: uppercase;
 `;
 
 const WeekDate = styled.div<{ isToday: boolean }>`
 	${({ theme }) => theme.fontTheme.HEADLINE_01};
-	color: ${(props) => (props.isToday ? props.theme.palette.PRIMARY : props.theme.palette.BLACK)};
+	color: ${({ isToday, theme }) => (isToday ? theme.palette.PRIMARY : theme.palette.BLACK)};
 `;
 
 export default DayHeaderContent;
