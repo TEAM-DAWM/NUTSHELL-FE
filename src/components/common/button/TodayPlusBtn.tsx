@@ -27,31 +27,33 @@ const TodayPlusBtnCss = css`
 
 const TodayPlusBtnLayout = styled.button`
 	${TodayPlusBtnCss}
-	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* 색 수정 필요 */
+	background-color: ${({ theme }) => theme.palette.Blue.Blue2};
+
 	path {
-		stroke: ${({ theme }) => theme.palette.PRIMARY};
+		stroke: ${({ theme }) => theme.palette.Primary};
 	}
 
 	&:hover {
-		background-color: ${({ theme }) => theme.palette.GREY_04};
+		background-color: ${({ theme }) => theme.palette.Blue.Blue3};
 	}
 
 	&:active {
-		background-color: ${({ theme }) => theme.palette.GREY_05}; /* svg 색 수정 필요 */
+		background-color: ${({ theme }) => theme.palette.Primary};
+
 		path {
-			stroke: ${({ theme }) => theme.palette.WITHE};
+			stroke: ${({ theme }) => theme.palette.Grey.White};
 		}
 	}
 `;
 
 const Text = styled.p`
-	color: ${({ theme }) => theme.palette.PRIMARY}; /* 폰트 수정 필요 & 아이콘 색상 변경 필요 */
+	color: ${({ theme }) => theme.palette.Primary};
 	text-align: center;
 
-	${({ theme }) => theme.fontTheme.CAPTION_01}; /* 폰트 수정 필요 */
+	${({ theme }) => theme.fontTheme.CAPTION_02};
 
 	&:active {
-		color: ${({ theme }) => theme.palette.WITHE}; /* svg 색 수정 필요 */
+		color: ${({ theme }) => theme.palette.Grey.White};
 	}
 `;
 

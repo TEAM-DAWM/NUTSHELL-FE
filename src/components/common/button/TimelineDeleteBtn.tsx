@@ -20,7 +20,7 @@ const TimelineDeleteBtnLayout = styled.button`
 	width: 1.6rem;
 	height: 1.6rem;
 
-	background: ${({ theme }) => theme.palette.SECONDARY};
+	background: ${({ theme }) => theme.palette.Secondary};
 	border-radius: 50%;
 `;
 

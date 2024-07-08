@@ -25,16 +25,17 @@ const SettingXBtnCss = css`
 
 const SettingXBtnLayout = styled.button`
 	${SettingXBtnCss}
-	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* 수정 필요 */
+	background-color: ${({ theme }) => theme.palette.Blue.Blue1};
 
 	&:hover {
-		background-color: ${({ theme }) => theme.palette.BLUE_DISABLED};
+		background-color: ${({ theme }) => theme.palette.Blue.Blue3};
 	}
 
 	&:active {
-		background-color: ${({ theme }) => theme.palette.PRIMARY}; /* svg 색 수정 필요 */
+		background-color: ${({ theme }) => theme.palette.Primary};
+
 		path {
-			stroke: ${({ theme }) => theme.palette.WITHE};
+			stroke: ${({ theme }) => theme.palette.Grey.White};
 		}
 	}
 `;

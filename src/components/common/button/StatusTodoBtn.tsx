@@ -23,6 +23,6 @@ const StatusTodoBtnLayout = styled.div`
 	height: 2.4rem;
 	padding: 0.4rem;
 
-	border: 1px solid var(${({ theme }) => theme.palette.WITHE});
+	border: 1px solid var(${({ theme }) => theme.palette.Grey.White});
 	border-radius: 10px;
 `;

@@ -25,14 +25,14 @@ const SettingDeleteBtnCss = css`
 
 const SettingDeleteBtnLayout = styled.button`
 	${SettingDeleteBtnCss}
-	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* 수정 필요 */
+	background-color: ${({ theme }) => theme.palette.Blue.Blue1};
 
 	&:hover {
-		background-color: ${({ theme }) => theme.palette.BLUE_DISABLED};
+		background-color: ${({ theme }) => theme.palette.Blue.Blue3};
 	}
 
 	&:active {
-		background-color: ${({ theme }) => theme.palette.PRIMARY}; /* 수정 필요 */
+		background-color: ${({ theme }) => theme.palette.Primary};
 	}
 `;
 

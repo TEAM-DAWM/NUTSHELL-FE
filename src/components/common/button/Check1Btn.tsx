@@ -35,18 +35,18 @@ const SettingCheck1Layout = styled.button`
 	width: 2.4rem;
 	height: 2.4rem;
 
-	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* 수정 필요 */
+	background-color: ${({ theme }) => theme.palette.Blue.Blue1};
 	border-radius: 8px;
 
 	&:hover {
-		background-color: ${({ theme }) => theme.palette.BLUE_DISABLED};
+		background-color: ${({ theme }) => theme.palette.Blue.Blue3};
 	}
 
 	&:active {
-		background-color: ${({ theme }) => theme.palette.BLUE_PASSED};
+		background-color: ${({ theme }) => theme.palette.Primary};
 
 		path {
-			stroke: ${({ theme }) => theme.palette.WITHE};
+			stroke: ${({ theme }) => theme.palette.Grey.White};
 		}
 	}
 `;
@@ -61,7 +61,7 @@ const DoneLayout = styled.button`
 	width: 3.2rem;
 	height: 3.2rem;
 
-	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* 수정 필요 */
+	background-color: ${({ theme }) => theme.palette.Blue.Blue1};
 	border-radius: 10px;
 `;
 
