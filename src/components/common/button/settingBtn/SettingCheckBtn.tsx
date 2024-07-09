@@ -25,7 +25,7 @@ function SettingCheckBtn({ size, type, onClick, isHover, isPressed, isActive }: 
 
 	const isFill = type === 'progress';
 
-	const StyledSettingCheck2Icon = styled(IconComponent)<{ size: string }>`
+	const StyledSettingCheckIcon = styled(IconComponent)<{ size: string }>`
 		${({ size }) => (size === 'small' ? smallIcon : bigIcon)};
 	`;
 
@@ -38,7 +38,7 @@ function SettingCheckBtn({ size, type, onClick, isHover, isPressed, isActive }: 
 			isPressed={isPressed}
 			isActive={isActive}
 		>
-			<StyledSettingCheck2Icon size={size} />
+			<StyledSettingCheckIcon size={size} />
 		</SettingLayout>
 	);
 }
