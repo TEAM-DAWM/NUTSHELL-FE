@@ -14,9 +14,12 @@ const settingIconMap: Record<string, FunctionComponent<SVGProps<SVGSVGElement>>>
 interface SettingCheckBtnProps {
 	size: 'small' | 'big';
 	type: 'complete' | 'check' | 'done' | 'progress' | 'xBtn';
+	onClick?: () => void;
+	isHover: boolean;
+	isPressed: boolean;
 }
 
-function SettingCheckBtn({ size, type }: SettingCheckBtnProps) {
+function SettingCheckBtn({ size, type, onClick, isHover, isPressed }: SettingCheckBtnProps) {
 	const IconComponent = settingIconMap[type];
 
 	const isFill = type === 'progress';
@@ -26,7 +29,7 @@ function SettingCheckBtn({ size, type }: SettingCheckBtnProps) {
 	`;
 
 	return (
-		<SettingLayout size={size} isFill={isFill}>
+		<SettingLayout size={size} isFill={isFill} onClick={onClick} isHover={isHover} isPressed={isPressed}>
 			<StyledSettingCheck2Icon size={size} />
 		</SettingLayout>
 	);

@@ -31,20 +31,28 @@ export const bigIcon = css`
 	height: 2.2rem;
 `;
 
-export const SettingLayout = styled.button<{ size: string; isFill: boolean }>`
+export const SettingLayout = styled.button<{ size: string; isFill: boolean; isHover: boolean; isPressed: boolean }>`
 	${({ size }) => (size === 'small' ? smallSize : bigSize)};
 	${SettingCss}
 	background-color: ${({ theme }) => theme.palette.Blue.Blue1};
 
-	&:hover {
-		background-color: ${({ theme }) => theme.palette.Blue.Blue3};
-	}
-
-	&:active {
-		background-color: ${({ theme }) => theme.palette.Primary};
-
-		path {
-			${({ isFill, theme }) => (isFill ? `fill: ${theme.palette.Grey.White};` : `stroke: ${theme.palette.Grey.White};`)}
+	${({ isHover, theme }) =>
+		isHover &&
+		`
+		&:hover {
+			background-color: ${theme.palette.Blue.Blue3};
 		}
-	}
+	`}
+
+	${({ isPressed, theme, isFill }) =>
+		isPressed &&
+		`
+		&:active {
+			background-color: ${theme.palette.Primary};
+
+			path {
+				${isFill ? `fill: ${theme.palette.Grey.White};` : `stroke: ${theme.palette.Grey.White};`}
+			}
+		}
+	`}
 `;

@@ -40,13 +40,15 @@ function Setting() {
 			<StatusTodoBtn />
 			<TimelineDeleteBtn />
 			<TodayPlusBtn />
-			<SettingCheck2 size="big" type="complete" />
-			<SettingCheck2 size="big" type="check" />
-			<SettingCheck2 size="big" type="done" />
-			<SettingCheck2 size="big" type="progress" />
-			<SettingCheck2 size="big" type="xBtn" />
+			<SettingCheck2 size="big" type="complete" isHover isPressed={false} />
+
 			<Modal isOpen sizeType={{ type: 'long' }} />
 			<Modal isOpen sizeType={{ type: 'short' }} />
+
+			<StatusDoneBtn />
+			<StatusInProgressBtn />
+			<StatusStagingBtn />
+			{/* <SettingDeleteBtn /> */}
 		</div>
 	);
 }
