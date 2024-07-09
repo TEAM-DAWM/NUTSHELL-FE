@@ -70,7 +70,7 @@ const CalanderIcon = styled(Icons.Icn_calander, { target: 'CalanderIcon' })<{ is
 	height: 1.4rem;
 
 	path {
-		stroke: ${({ isDelayed, theme }) => (isDelayed ? theme.palette.Orange.Orange4 : 'currentColor')};
+		stroke: ${({ isDelayed, theme }) => (isDelayed ? theme.palette.Orange.Orange4 : theme.palette.Grey.Grey4)};
 	}
 `;
 
@@ -82,7 +82,7 @@ const ClockIcon = styled(Icons.Icn_date_clock, { target: 'ClockIcon' })<{ isDela
 	height: 1.4rem;
 
 	path {
-		stroke: ${({ isDelayed, theme }) => (isDelayed ? theme.palette.Orange.Orange4 : 'currentColor')};
+		stroke: ${({ isDelayed, theme }) => (isDelayed ? theme.palette.Orange.Orange4 : theme.palette.Grey.Grey4)};
 	}
 `;
 
@@ -94,7 +94,7 @@ const LineIcon = styled(Icons.Icn_line, { target: 'LineIcon' })<{ size: string; 
 	height: ${({ size }) => (size === 'big' ? '2.2rem' : '1.2rem')};
 
 	line {
-		stroke: ${({ isDelayed, theme }) => (isDelayed ? theme.palette.Orange.Orange5 : 'currentColor')};
+		stroke: ${({ isDelayed, theme }) => (isDelayed ? theme.palette.Orange.Orange5 : theme.palette.Grey.Grey4)};
 	}
 `;
 
