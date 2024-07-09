@@ -1,5 +1,8 @@
 import styled from '@emotion/styled';
 
+import BtnTask from '@/components/common/BtnTask/BtnTask';
+import ScrollGradient from '@/components/common/ScrollGradient';
+
 interface DashboardTaskProps {
 	text: string;
 }
@@ -14,7 +17,16 @@ function DashboardTask({ text }: DashboardTaskProps) {
 					<NumberText>개</NumberText>
 				</NumberTextBox>
 			</TextBox>
-			<ScrollArea />
+			<ScrollArea>
+				<BtnTask btnType={2} status="Done" isDescription={false} />
+				<BtnTask btnType={2} status="Done" isDescription={false} />
+				<BtnTask btnType={2} status="Done" isDescription={false} />
+				<BtnTask btnType={2} status="Done" isDescription={false} />
+				<BtnTask btnType={2} status="Done" isDescription={false} />
+				<BtnTask btnType={2} status="Done" isDescription={false} />
+				<BtnTask btnType={2} status="Done" isDescription={false} />
+				<ScrollGradient />
+			</ScrollArea>
 		</TaskLayout>
 	);
 }
