@@ -7,7 +7,6 @@ import GlobalStyle from '@/styles/GlobalStyle.tsx';
 import { theme } from '@/styles/theme.ts';
 
 import '@/styles/font.css';
-import '@/styles/datepicker.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
