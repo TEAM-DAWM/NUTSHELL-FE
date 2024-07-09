@@ -1,21 +1,27 @@
 import styled from '@emotion/styled';
-import ko from 'date-fns/locale/ko';
+import { ko } from 'date-fns/locale';
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import TextBtn from '../button/textBtn/TextBtn';
 
+import CustomHeader from './CustomHeader';
+
 function DatePickerCustom() {
 	const [startDate, setStartDate] = useState(new Date());
 	const [endDate, setEndDate] = useState<Date | undefined>();
-	const onChange = (dates: [Date, Date]) => {
+	const onChange = (dates: [Date | null, Date | null]) => {
 		const [start, end] = dates;
-		setStartDate(start);
-		setEndDate(end);
+		if (start) {
+			setStartDate(start);
+		}
+		if (end) {
+			setEndDate(end);
+		}
 	};
 	return (
-		<CustomPicker
+		<DatePicker
 			locale={ko}
 			selected={startDate}
 			onChange={onChange}
@@ -24,15 +30,12 @@ function DatePickerCustom() {
 			selectsRange
 			inline
 			calendarContainer={Calendar}
+			renderCustomHeader={(props) => <CustomHeader {...props} startDate={startDate} endDate={endDate} />}
 		>
 			<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed />
-		</CustomPicker>
+		</DatePicker>
 	);
 }
-
-const CustomPicker = styled(({ className, ...props }) => <DatePicker {...props} wrapperClassName={className} />)`
-	width: 100%;
-`;
 
 const Calendar = styled.div`
 	display: flex;
@@ -43,6 +46,7 @@ const Calendar = styled.div`
 	overflow: hidden;
 
 	box-shadow: 0 3px 7px 0 rgb(0 0 0 / 38%);
+	border: 0;
 	border-radius: 12px;
 	/* stylelint-disable selector-class-pattern */
 	.react-datepicker__month-container {
@@ -66,22 +70,15 @@ const Calendar = styled.div`
 		display: none;
 	}
 
-	/* 화살표 */
-	.react-datepicker__navigation {
-		position: static;
-
-		background-color: aliceblue;
-	}
-
 	.react-datepicker__header {
-		padding-bottom: 0.7rem;
+		padding: 0;
 
 		background-color: transparent;
 		border: 0;
 	}
 
-	/* 요일 글자 */
 	.react-datepicker__day-names {
+		margin-bottom: 0.7rem;
 	}
 
 	.react-datepicker__day-name {
