@@ -30,6 +30,8 @@ const RefreshBtnCss = css`
 `;
 
 const RefreshBtnLayout = styled.button<{ isDisabled: boolean }>`
+	z-index: 2;
+
 	${RefreshBtnCss}
 	color: ${({ theme, isDisabled }) => (isDisabled ? theme.palette.Grey.Grey5 : theme.palette.Grey.White)};
 
