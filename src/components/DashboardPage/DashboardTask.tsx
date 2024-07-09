@@ -4,14 +4,27 @@ import BtnTask from '@/components/common/BtnTask/BtnTask';
 import ScrollGradient from '@/components/common/ScrollGradient';
 
 interface DashboardTaskProps {
-	text: string;
+	text: 'upcoming' | 'postponed' | 'inprogress';
 }
 
 function DashboardTask({ text }: DashboardTaskProps) {
+	const DASHBOARD_TASK_TYPE = {
+		UPCOMING: '다가오는 할 일',
+		POSTPONED: '지연된 할 일',
+		INPROGRESS: '진행중인 할 일',
+	};
+	let taskStatus = '';
+	if (text === 'upcoming') {
+		taskStatus = DASHBOARD_TASK_TYPE.UPCOMING;
+	} else if (text === 'postponed') {
+		taskStatus = DASHBOARD_TASK_TYPE.POSTPONED;
+	} else if (text === 'inprogress') {
+		taskStatus = DASHBOARD_TASK_TYPE.INPROGRESS;
+	}
 	return (
 		<TaskLayout>
 			<TextBox>
-				<TaskText text={text}>{text}</TaskText>
+				<TaskText text={text}>{taskStatus}</TaskText>
 				<NumberTextBox>
 					<Number>2</Number>
 					<NumberText>개</NumberText>
