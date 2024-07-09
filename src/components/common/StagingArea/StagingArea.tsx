@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import BtnTask from '../BtnTask/BtnTask';
+import ScrollGradient from '../ScrollGradient';
 import TextInputStaging from '../textbox/TextInputStaging';
 
 import StagingAreaSetting from './StagingAreaSetting';
@@ -27,6 +28,7 @@ function StagingArea() {
 							<BtnTask btnType={1} />
 							<BtnTask btnType={1} />
 							<BtnTask btnType={1} />
+							<ScrollGradient />
 						</BtnTaskContainer>
 					</StagingAreaTaskContainer>
 				</StagingAreaUpContainer>
@@ -83,6 +85,6 @@ const StagingAreaTaskContainer = styled.div`
 
 const BtnTaskContainer = styled.div`
 	width: 100%;
-	height: 54.6rem;
+	height: 56.7rem;
 	overflow: scroll;
 `;
