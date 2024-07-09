@@ -6,14 +6,24 @@ import { theme } from '@/styles/theme';
 
 interface TextboxInputProps {
 	variant: 'date' | 'time' | 'smallDate';
+	dateValue: Date | undefined;
 }
-function TextboxInput({ variant }: TextboxInputProps) {
+function TextboxInput({ variant, dateValue }: TextboxInputProps) {
+	const textDateValue = () => {
+		if (dateValue) {
+			const year = dateValue.getFullYear();
+			const month = '0'.concat((dateValue.getMonth() + 1).toString()).slice(-2);
+			const day = '0'.concat(dateValue.getDate().toString()).slice(-2);
+			return `${year}.${month}.${day}`;
+		}
+		return '시간';
+	};
 	return (
 		<InputContainer variant={variant}>
 			{variant === 'time' && <ClockIcon />}
 			<StyledInput
 				type="text"
-				placeholder={variant === 'time' ? '시간 없음' : '2024.07.11'}
+				placeholder={variant === 'time' ? '시간 없음' : textDateValue()}
 				maxLength={10}
 				variant={variant}
 			/>
