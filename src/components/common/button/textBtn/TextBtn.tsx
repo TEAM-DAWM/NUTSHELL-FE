@@ -6,7 +6,7 @@ import { smallSize, bigSize } from './textBtnStyle';
 
 import { TextBtnType } from '@/types/textBtnType';
 
-function TextBtn({ size, text, color, mode, isHover, isPressed }: TextBtnType) {
+function TextBtn({ size, text, color, mode, isHover, isPressed, onClick }: TextBtnType) {
 	const StyledTextBtn = styled.div<{
 		size: string;
 		color: 'BLUE' | 'WHITE' | 'BLACK';
@@ -38,8 +38,9 @@ function TextBtn({ size, text, color, mode, isHover, isPressed }: TextBtnType) {
 				}
 			`}
 	`;
+
 	return (
-		<StyledTextBtn size={size} color={color} mode={mode} isHover={isHover} isPressed={isPressed}>
+		<StyledTextBtn size={size} color={color} mode={mode} isHover={isHover} isPressed={isPressed} onClick={onClick}>
 			{text}
 		</StyledTextBtn>
 	);
