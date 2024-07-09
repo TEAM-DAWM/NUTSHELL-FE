@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import NavBar from '@/components/common/NavBar';
+import AccountArea from '@/components/SettingPage/AccountArea';
 import LogOutBtn from '@/components/SettingPage/LogOutBtn';
 import ProfileArea from '@/components/SettingPage/ProfileArea';
 
@@ -9,7 +10,10 @@ function Setting() {
 		<div>
 			<NavBar />
 			<SettingContainer>
-				<ProfileArea />
+				<Wrapper>
+					<ProfileArea />
+					<AccountArea />
+				</Wrapper>
 				<LogOutBtn />
 			</SettingContainer>
 		</div>
@@ -17,6 +21,12 @@ function Setting() {
 }
 
 export default Setting;
+
+const Wrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+`;
 
 const SettingContainer = styled.div`
 	height: 100vh;
