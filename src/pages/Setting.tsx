@@ -29,8 +29,8 @@ const Wrapper = styled.div`
 `;
 
 const SettingContainer = styled.div`
-	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	height: 100vh;
 `;

@@ -7,7 +7,7 @@ import USERS from '@/constants/users';
 
 function AccountArea() {
 	return (
-		<AcocuntAreaLayout>
+		<AccountAreaWrapper>
 			<AccountText>연동된 계정</AccountText>
 			<AccountWrapper>
 				<CalendarContainer>
@@ -22,90 +22,92 @@ function AccountArea() {
 					<SettingXBtn />
 				</InputBox>
 			</AccountWrapper>
-		</AcocuntAreaLayout>
+		</AccountAreaWrapper>
 	);
 }
 
 export default AccountArea;
 
-const AcocuntAreaLayout = styled.div`
-	height: 20.4rem;
-
+const AccountAreaWrapper = styled.div`
 	display: flex;
-	width: 42.2rem;
 	flex-direction: column;
 	align-items: flex-start;
+	width: 42.2rem;
+	height: 20.4rem;
 `;
 
 const AccountText = styled.div`
 	display: flex;
-	padding: 3.6rem 3.6rem 0.8rem 2rem;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
+	padding: 3.6rem 3.6rem 0.8rem 2rem;
+
 	${({ theme }) => theme.fontTheme.HEADLINE_02}
 	color: ${({ theme }) => theme.palette.Grey.Black}
 `;
 
 const AccountWrapper = styled.div`
 	display: flex;
-	width: 41.5rem;
-	padding: 1.2rem 1.6rem 1.6rem 1.6rem;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 	gap: 1.2rem;
-	margin: 0.8rem 0.3rem 0.8rem 0.7rem;
-	border-radius: 12px;
-	border: 1px solid #e9e9ee;
+	align-items: center;
+	justify-content: center;
 	box-sizing: border-box;
+	width: 41.5rem;
+	margin: 0.8rem 0.3rem 0.8rem 0.7rem;
+	padding: 1.2rem 1.6rem 1.6rem;
+
+	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
+	border-radius: 12px;
 `;
 
 const CalendarContainer = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
 	align-self: stretch;
+	justify-content: space-between;
 	width: 38rem;
 	height: 4rem;
 `;
 
 const CalendarBox = styled.div`
-	height: 4rem;
 	display: flex;
-	justify-content: flex-start;
 	gap: 0.4rem;
+	justify-content: flex-start;
 	box-sizing: border-box;
+	height: 4rem;
 `;
 
 const GoogleImg = styled.img`
-	margin: 0.2rem 0;
 	width: 3.6rem;
 	height: 3.6rem;
+	margin: 0.2rem 0;
 `;
 
 const CalendarText = styled.p`
-	${({ theme }) => theme.fontTheme.BODY_02};
-	width: 7.4rem;
 	align-self: center;
+	width: 7.4rem;
 	margin: 0.6rem 0;
+	${({ theme }) => theme.fontTheme.BODY_02};
 `;
 
 const IconBox = styled(Icons.plus_circle)`
+	box-sizing: border-box;
 	width: 2.4rem;
 	height: 2.4rem;
 	margin: 0.8rem;
-	box-sizing: border-box;
 `;
 
-const InputBox = styled.p`
+const InputBox = styled.div`
 	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	box-sizing: border-box;
 	width: 38.2rem;
 	padding: 0.6rem 0.8rem 0.6rem 1.2rem;
-	justify-content: space-between;
-	align-items: center;
-	border-radius: 8px;
+
 	background: #dfe9fc;
-	box-sizing: border-box;
+	border-radius: 8px;
 `;
 
 const EmailWrapper = styled.p`

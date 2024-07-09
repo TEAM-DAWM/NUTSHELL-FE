@@ -7,18 +7,20 @@ function LogOutBtn() {
 export default LogOutBtn;
 
 const LogOutBox = styled.button`
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	align-self: stretch;
+	justify-content: center;
+	box-sizing: border-box;
 	width: 41.2rem;
 	height: 3.6rem;
-	display: flex;
-	padding: 1.2rem 1.6rem;
-	justify-content: center;
-	align-items: center;
-	gap: 1rem;
-	align-self: stretch;
-	border-radius: 8px;
-	background: ${({ theme }) => theme.palette.Grey.Grey3};
 	margin: 2rem 0 2.8rem 1rem;
-	${({ theme }) => theme.fontTheme.BODY_02};
+	padding: 1.2rem 1.6rem;
+
 	color: ${({ theme }) => theme.palette.Grey.Grey6};
-	box-sizing: border-box;
+
+	background: ${({ theme }) => theme.palette.Grey.Grey3};
+	border-radius: 8px;
+	${({ theme }) => theme.fontTheme.BODY_02};
 `;

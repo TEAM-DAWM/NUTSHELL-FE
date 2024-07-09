@@ -29,16 +29,17 @@ const ProfileAreaLayout = styled.div`
 `;
 
 const ProfileWrapper = styled.div`
-	width: 41.5rem;
-	margin: 0 1rem 0 0.7rem;
-	border-radius: 12px;
-	border: 1px solid #e9e9ee;
 	display: flex;
-	padding: 1.6rem 0 1.6rem 1.6rem;
-	align-items: center;
 	gap: 1.6rem;
+	align-items: center;
 	align-self: stretch;
 	box-sizing: border-box;
+	width: 41.5rem;
+	margin: 0 1rem 0 0.7rem;
+	padding: 1.6rem 0 1.6rem 1.6rem;
+
+	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
+	border-radius: 12px;
 `;
 
 const ProfileImg = styled.img`
@@ -48,8 +49,8 @@ const ProfileImg = styled.img`
 const ProfileTextBox = styled.div`
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
 	gap: 0.4rem;
+	align-items: flex-start;
 `;
 
 const NameText = styled.p`
@@ -64,9 +65,10 @@ const EmailText = styled.p`
 
 const ProfileText = styled.div`
 	display: flex;
-	padding: 3.6rem 3.6rem 1.6rem 2rem;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
+	padding: 3.6rem 3.6rem 1.6rem 2rem;
+
 	${({ theme }) => theme.fontTheme.HEADLINE_02}
 	color: ${({ theme }) => theme.palette.Grey.Black}
 `;
