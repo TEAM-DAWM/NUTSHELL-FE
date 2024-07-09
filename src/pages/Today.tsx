@@ -6,6 +6,7 @@ import StatusInProgressBtn from '@/components/common/button/statusBtn/StatusInPr
 import StatusStagingBtn from '@/components/common/button/statusBtn/StatusStagingBtn';
 import StatusTodoBtn from '@/components/common/button/statusBtn/StatusTodoBtn';
 import NavBar from '@/components/common/NavBar';
+import ScrollGradient from '@/components/common/ScrollGradient';
 import TextboxDailydate from '@/components/common/textbox/TextboxDailydate';
 import TextboxInput from '@/components/common/textbox/TextboxInput';
 import TextInputDesc from '@/components/common/textbox/TextInputDesc';
@@ -18,6 +19,9 @@ function Today() {
 	return (
 		<>
 			<NavBar />
+
+			<ScrollGradient />
+
 			<BtnTask btnType={1} isDescription />
 
 			<p>Done</p>
