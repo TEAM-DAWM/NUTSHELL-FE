@@ -9,7 +9,7 @@ function ModalHeaderBtn({ type }: SizeType) {
 		<ModalHeaderBtnLayout>
 			<DeleteBtn />
 			{type === 'long' && <SettingCheckBtn type="progress" size="big" isHover isPressed={false} isActive />}
-			<SettingCheckBtn type="done" size="big" isHover isPressed={false} isActive />
+			<SettingCheckBtn type="complete" size="big" isHover isPressed={false} isActive />
 		</ModalHeaderBtnLayout>
 	);
 }

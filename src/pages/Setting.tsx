@@ -47,8 +47,6 @@ function Setting() {
 			<StatusTodoBtn />
 			<SettingCheck2 size="big" type="complete" isHover isPressed={false} isActive />
 			<SettingCheck2 size="big" type="complete" isHover isPressed={false} isActive />
-
-			{/* <SettingDeleteBtn /> */}
 		</div>
 	);
 }
