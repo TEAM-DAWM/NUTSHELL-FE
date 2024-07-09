@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import ArrangeBtn from '@/components/common/arrangeBtn/ArrangeBtn';
+import DatePickerCustom from '@/components/common/datePicker/DatePickerCustom';
 
 function DashBoard() {
 	return (
@@ -52,6 +53,7 @@ function DashBoard() {
 				<ArrangeBtn type="calendar" color="BLACK" mode="DEFAULT" size="small" />
 				<ArrangeBtn type="calendar" color="BLACK" mode="DISABLED" size="small" />
 			</Wrapper>
+			<DatePickerCustom />
 		</>
 	);
 }
