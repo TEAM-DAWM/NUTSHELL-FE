@@ -31,7 +31,7 @@ export const bigIcon = css`
 	height: 2.2rem;
 `;
 
-export const SettingLayout = styled.button<{ size: string }>`
+export const SettingLayout = styled.button<{ size: string; isFill: boolean }>`
 	${({ size }) => (size === 'small' ? smallSize : bigSize)};
 	${SettingCss}
 	background-color: ${({ theme }) => theme.palette.Blue.Blue1};
@@ -44,9 +44,7 @@ export const SettingLayout = styled.button<{ size: string }>`
 		background-color: ${({ theme }) => theme.palette.Primary};
 
 		path {
-			/* fill: ${({ theme }) => theme.palette.Grey.White}; */
-
-			stroke: ${({ theme }) => theme.palette.Grey.White};
+			${({ isFill, theme }) => (isFill ? `fill: ${theme.palette.Grey.White};` : `stroke: ${theme.palette.Grey.White};`)}
 		}
 	}
 `;

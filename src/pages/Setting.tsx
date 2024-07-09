@@ -6,9 +6,7 @@ import OkayCancelBtn from '@/components/common/button/OkayCancelBtn';
 import ProgressBtn from '@/components/common/button/ProgressBtn';
 import RefreshBtn from '@/components/common/button/RefreshBtn';
 import SettingCheck2 from '@/components/common/button/settingBtn/SettingCheck2Btn';
-import SettingCheck3 from '@/components/common/button/settingBtn/SettingCheck3Btn';
 import SettingDeleteBtn from '@/components/common/button/settingBtn/SettingDeleteBtn';
-import SettingXBtn from '@/components/common/button/settingBtn/SettingXBtn';
 import SortBtn from '@/components/common/button/SortBtn';
 import StatusDoneBtn from '@/components/common/button/statusBtn/StatusDoneBtn';
 import StatusInProgressBtn from '@/components/common/button/statusBtn/StatusInProgressBtn';
@@ -35,12 +33,7 @@ function Setting() {
 			<ProgressBtn type="defaultProgress" />
 			<RefreshBtn isDisabled={false} />
 
-			{/* <SettingCheck2 size="small" /> */}
-			<SettingCheck3 size="small" />
-			<SettingCheck3 size="big" />
 			<SettingDeleteBtn isHover isPressed />
-			<SettingXBtn size="big" />
-			<SettingXBtn size="small" />
 			<StatusDoneBtn />
 			<StatusInProgressBtn />
 			<StatusStagingBtn />
@@ -51,7 +44,7 @@ function Setting() {
 			<SettingCheck2 size="big" type="check" />
 			<SettingCheck2 size="big" type="done" />
 			<SettingCheck2 size="big" type="progress" />
-
+			<SettingCheck2 size="big" type="xBtn" />
 			<Modal isOpen sizeType={{ type: 'long' }} />
 			<Modal isOpen sizeType={{ type: 'short' }} />
 		</div>
