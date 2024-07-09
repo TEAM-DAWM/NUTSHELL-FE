@@ -23,7 +23,7 @@ const ScrollGradientTop = styled.div`
 	width: 100%;
 	height: 2.2rem;
 
-	background: linear-gradient(180deg, rgb(255 255 255 / 0%) 0%, #fff 65.91%);
+	background: linear-gradient(180deg, rgb(255 255 255 / 0%) 0%, ${({ theme }) => theme.palette.Grey.White} 65.91%);
 `;
 
 const ScrollGradientBottom = styled.div`
