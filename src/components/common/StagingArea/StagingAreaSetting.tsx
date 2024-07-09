@@ -53,7 +53,7 @@ const StagingAreaSettingLayout = styled.div`
 
 const TextBtnContainer = styled.div`
 	display: flex;
-	gap: 4px;
+	gap: 0.4rem;
 	align-items: center;
 	padding-left: 0.4rem;
 `;

@@ -42,9 +42,9 @@ export default StagingArea;
 
 const StagingAreaLayout = styled.div`
 	display: inline-flex;
-	gap: 8px;
+	gap: 0.8rem;
 	align-items: center;
-	padding: 0 7px;
+	padding: 0 0.7rem;
 
 	border-right: 1px solid #e4e4e4;
 	border-radius: 0 12px 12px 0;
