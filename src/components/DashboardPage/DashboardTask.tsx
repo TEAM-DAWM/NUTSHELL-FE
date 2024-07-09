@@ -18,13 +18,13 @@ function DashboardTask({ text }: DashboardTaskProps) {
 				</NumberTextBox>
 			</TextBox>
 			<ScrollArea>
-				<BtnTask btnType={2} status="Done" isDescription={false} />
-				<BtnTask btnType={2} status="Done" isDescription={false} />
-				<BtnTask btnType={2} status="Done" isDescription={false} />
-				<BtnTask btnType={2} status="Done" isDescription={false} />
-				<BtnTask btnType={2} status="Done" isDescription={false} />
-				<BtnTask btnType={2} status="Done" isDescription={false} />
-				<BtnTask btnType={2} status="Done" isDescription={false} />
+				<BtnTask btnType="target" status="Done" isDescription={false} />
+				<BtnTask btnType="target" status="Done" isDescription={false} />
+				<BtnTask btnType="target" status="Done" isDescription={false} />
+				<BtnTask btnType="target" status="Done" isDescription={false} />
+				<BtnTask btnType="target" status="Done" isDescription={false} />
+				<BtnTask btnType="target" status="Done" isDescription={false} />
+				<BtnTask btnType="target" status="Done" isDescription={false} />
 				<ScrollGradient />
 			</ScrollArea>
 		</TaskLayout>
@@ -56,8 +56,8 @@ const TaskText = styled.div<{ text: string }>`
 	align-items: flex-start;
 	min-width: 11.8rem;
 	padding: 1.8rem 0 2rem 2.2rem;
-
 	${({ theme }) => theme.fontTheme.HEADLINE_02};
+
 	color: ${({ theme }) => theme.palette.Grey.Black};
 `;
 
