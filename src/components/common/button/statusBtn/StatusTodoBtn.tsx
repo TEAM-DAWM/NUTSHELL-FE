@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import SettingCheck4 from '@/components/common/button/settingBtn/SettingCheck4Btn';
 import SettingCheckBtn from '@/components/common/button/settingBtn/SettingCheckBtn';
 
 function StatusTodoBtn() {
@@ -19,7 +18,14 @@ function StatusTodoBtn() {
 	return (
 		<StatusTodoBtnLayout isPressed={isSettingPressed}>
 			{!isCheckingPressed && (
-				<SettingCheck4 isHover={false} isPressed={isSettingPressed} onClick={handleSettingCheckClick} />
+				<SettingCheckBtn
+					size="small"
+					type="progress"
+					isHover={false}
+					isPressed={isSettingPressed}
+					isActive={false}
+					onClick={handleSettingCheckClick}
+				/>
 			)}
 			{!isSettingPressed && (
 				<SettingCheckBtn
