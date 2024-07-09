@@ -17,9 +17,10 @@ interface SettingCheckBtnProps {
 	onClick?: () => void;
 	isHover: boolean;
 	isPressed: boolean;
+	isActive: boolean;
 }
 
-function SettingCheckBtn({ size, type, onClick, isHover, isPressed }: SettingCheckBtnProps) {
+function SettingCheckBtn({ size, type, onClick, isHover, isPressed, isActive }: SettingCheckBtnProps) {
 	const IconComponent = settingIconMap[type];
 
 	const isFill = type === 'progress';
@@ -29,7 +30,14 @@ function SettingCheckBtn({ size, type, onClick, isHover, isPressed }: SettingChe
 	`;
 
 	return (
-		<SettingLayout size={size} isFill={isFill} onClick={onClick} isHover={isHover} isPressed={isPressed}>
+		<SettingLayout
+			size={size}
+			isFill={isFill}
+			onClick={onClick}
+			isHover={isHover}
+			isPressed={isPressed}
+			isActive={isActive}
+		>
 			<StyledSettingCheck2Icon size={size} />
 		</SettingLayout>
 	);

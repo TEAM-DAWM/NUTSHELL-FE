@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import SettingCheck4 from '@/components/common/button/settingBtn/SettingCheck4Btn';
+import SettingCheckBtn from '@/components/common/button/settingBtn/SettingCheckBtn';
 import TextBtn from '@/components/common/button/textBtn/TextBtn';
 
 function StatusDoneBtn() {
@@ -15,7 +15,14 @@ function StatusDoneBtn() {
 	return (
 		<StatusDoneBtnLayout isPressed={isPressed}>
 			{!isPressed && <TextBtn size="small" text="취소" color="WHITE" mode="LIGHT" isHover isPressed />}
-			<SettingCheck4 isHover={false} isPressed={isPressed} onClick={handleSettingCheckClick} />
+			<SettingCheckBtn
+				size="small"
+				type="progress"
+				isHover={false}
+				isPressed={isPressed}
+				isActive={false}
+				onClick={handleSettingCheckClick}
+			/>
 		</StatusDoneBtnLayout>
 	);
 }

@@ -31,7 +31,13 @@ export const bigIcon = css`
 	height: 2.2rem;
 `;
 
-export const SettingLayout = styled.button<{ size: string; isFill: boolean; isHover: boolean; isPressed: boolean }>`
+export const SettingLayout = styled.button<{
+	size: string;
+	isFill: boolean;
+	isHover: boolean;
+	isPressed: boolean;
+	isActive: boolean;
+}>`
 	${({ size }) => (size === 'small' ? smallSize : bigSize)};
 	${SettingCss}
 	background-color: ${({ theme }) => theme.palette.Blue.Blue1};
@@ -44,8 +50,8 @@ export const SettingLayout = styled.button<{ size: string; isFill: boolean; isHo
 		}
 	`}
 
-	${({ isPressed, theme, isFill }) =>
-		isPressed &&
+	${({ isActive, theme, isFill }) =>
+		isActive &&
 		`
 		&:active {
 			background-color: ${theme.palette.Primary};
@@ -54,5 +60,16 @@ export const SettingLayout = styled.button<{ size: string; isFill: boolean; isHo
 				${isFill ? `fill: ${theme.palette.Grey.White};` : `stroke: ${theme.palette.Grey.White};`}
 			}
 		}
+	`}
+	
+	${({ isPressed, theme, isFill }) =>
+		isPressed &&
+		`
+	
+		background-color: ${theme.palette.Primary};
+
+			path {
+				${isFill ? `fill: ${theme.palette.Grey.White};` : `stroke: ${theme.palette.Grey.White};`}
+			}
 	`}
 `;

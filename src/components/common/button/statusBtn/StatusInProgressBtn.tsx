@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import Check1Btn from '@/components/common/button/Check1Btn';
+import SettingCheckBtn from '@/components/common/button/settingBtn/SettingCheckBtn';
 import TextBtn from '@/components/common/button/textBtn/TextBtn';
 
 function StatusInProgressBtn() {
@@ -14,7 +14,14 @@ function StatusInProgressBtn() {
 	return (
 		<StatusInProgressBtnLayout isPressed={isPressed}>
 			{!isPressed && <TextBtn size="small" text="취소" color="WHITE" mode="LIGHT" isHover isPressed />}
-			<Check1Btn type="setting" isHover={false} isPressed={isPressed} onClick={handleSettingCheckClick} />
+			<SettingCheckBtn
+				size="small"
+				type="complete"
+				isHover={false}
+				isPressed={isPressed}
+				isActive={false}
+				onClick={handleSettingCheckClick}
+			/>
 		</StatusInProgressBtnLayout>
 	);
 }

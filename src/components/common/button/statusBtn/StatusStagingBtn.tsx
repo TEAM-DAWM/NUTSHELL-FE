@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import Check1Btn from '@/components/common/button/Check1Btn';
+import SettingCheckBtn from '@/components/common/button/settingBtn/SettingCheckBtn';
 import SettingDeleteBtn from '@/components/common/button/settingBtn/SettingDeleteBtn';
 
 function StatusStagingBtn() {
@@ -22,7 +22,14 @@ function StatusStagingBtn() {
 				<SettingDeleteBtn isHover={false} isPressed={isDeletePressed} onClick={handleSettingCheckClick} />
 			)}
 			{!isDeletePressed && (
-				<Check1Btn type="setting" isHover={false} isPressed={isCheckingPressed} onClick={handleCheckingClick} />
+				<SettingCheckBtn
+					size="small"
+					type="complete"
+					isHover={false}
+					isPressed={isCheckingPressed}
+					isActive={false}
+					onClick={handleCheckingClick}
+				/>
 			)}
 		</StatusStagingBtnLayout>
 	);

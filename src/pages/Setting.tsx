@@ -1,4 +1,3 @@
-import Check1Btn from '@/components/common/button/Check1Btn';
 import DeleteBtn from '@/components/common/button/DeleteBtn';
 import DeleteCancelBtn from '@/components/common/button/DeleteCancelBtn';
 import EnterBtn from '@/components/common/button/EnterBtn';
@@ -25,7 +24,6 @@ function Setting() {
 			<TextBtn size="big" text="전체" color="BLUE" mode="LIGHT" isHover isPressed />
 			<TextBtn size="big" text="전체" color="BLUE" mode="DEFAULT" isHover isPressed />
 			<SortBtn text="최신 등록순" />
-			<Check1Btn type="setting" isHover isPressed />
 			<DeleteBtn />
 			<DeleteCancelBtn status="delete" />
 			<EnterBtn isDisabled={false} />
@@ -37,10 +35,8 @@ function Setting() {
 			<StatusDoneBtn />
 			<StatusInProgressBtn />
 			<StatusStagingBtn />
-			<StatusTodoBtn />
 			<TimelineDeleteBtn />
 			<TodayPlusBtn />
-			<SettingCheck2 size="big" type="complete" isHover isPressed={false} />
 
 			<Modal isOpen sizeType={{ type: 'long' }} />
 			<Modal isOpen sizeType={{ type: 'short' }} />
@@ -48,6 +44,10 @@ function Setting() {
 			<StatusDoneBtn />
 			<StatusInProgressBtn />
 			<StatusStagingBtn />
+			<StatusTodoBtn />
+			<SettingCheck2 size="big" type="complete" isHover isPressed={false} isActive />
+			<SettingCheck2 size="big" type="complete" isHover isPressed={false} isActive />
+
 			{/* <SettingDeleteBtn /> */}
 		</div>
 	);
