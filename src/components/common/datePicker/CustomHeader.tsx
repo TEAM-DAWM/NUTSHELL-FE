@@ -13,15 +13,15 @@ function CustomHeader({
 	prevMonthButtonDisabled,
 	nextMonthButtonDisabled,
 }: {
-	startDate: Date;
-	endDate: Date | undefined;
+	startDate: Date | null;
+	endDate: Date | null;
 	decreaseMonth: () => void;
 	increaseMonth: () => void;
 	prevMonthButtonDisabled: boolean;
 	nextMonthButtonDisabled: boolean;
 }) {
 	let diff = 0;
-	if (endDate) {
+	if (endDate && startDate) {
 		diff = Math.abs(endDate.getTime() - startDate.getTime());
 		diff = Math.ceil(diff / (1000 * 60 * 60 * 24));
 	}

@@ -9,24 +9,20 @@ import TextBtn from '../button/textBtn/TextBtn';
 import CustomHeader from './CustomHeader';
 
 function DatePickerCustom() {
-	const [startDate, setStartDate] = useState(new Date());
-	const [endDate, setEndDate] = useState<Date | undefined>();
+	const [startDate, setStartDate] = useState<Date | null>(new Date());
+	const [endDate, setEndDate] = useState<Date | null>(null);
 	const onChange = (dates: [Date | null, Date | null]) => {
 		const [start, end] = dates;
-		if (start) {
-			setStartDate(start);
-		}
-		if (end) {
-			setEndDate(end);
-		}
+		setStartDate(start);
+		setEndDate(end);
 	};
 	return (
 		<DatePicker
 			locale={ko}
 			selected={startDate}
 			onChange={onChange}
-			startDate={startDate}
-			endDate={endDate}
+			startDate={startDate as Date | undefined}
+			endDate={endDate as Date | undefined}
 			selectsRange
 			inline
 			calendarContainer={Calendar}
