@@ -1,14 +1,10 @@
+import styled from '@emotion/styled';
 import { useState } from 'react';
-import styled from 'styled-components';
 
 import ArrangeBtn from '../arrangeBtn/ArrangeBtn';
 import TextBtn from '../button/textBtn/TextBtn';
 
-interface StagingAreaSettingProps {
-	// 전체 / 지연인지 클릭이벤트?
-}
-
-function StagingAreaSetting(props: StagingAreaSettingProps) {
+function StagingAreaSetting() {
 	const [activeButton, setActiveButton] = useState<'전체' | '취소'>('전체');
 
 	const handleButtonClick = (button: '전체' | '취소') => {
