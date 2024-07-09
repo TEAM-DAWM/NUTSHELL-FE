@@ -9,8 +9,8 @@ function ModalHeaderBtn({ type }: SizeType) {
 	return (
 		<ModalHeaderBtnLayout>
 			<DeleteBtn />
-			{type === 'long' && <SettingCheck4 isHover={false} isPressed={false} />}
-			<Check1Btn type="setting" isHover={false} isPressed={false} />
+			{type === 'long' && <SettingCheck4 isHover isPressed={false} />}
+			<Check1Btn type="setting" isHover isPressed={false} />
 		</ModalHeaderBtnLayout>
 	);
 }
