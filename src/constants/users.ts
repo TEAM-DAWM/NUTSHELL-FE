@@ -1,7 +1,9 @@
 const USERS = {
 	code: 'success',
 	data: {
-		name: '김민서',
+		givenName: '민서',
+		familyName: '김',
+		image: 'https://aefawefwaewfwafwfawefawfe',
 		email: 'ryan000310@gmail.com',
 		googleCalenders: [
 			{
@@ -10,7 +12,7 @@ const USERS = {
 			},
 			{
 				id: 2,
-				email: 'minseo00@gmail.com',
+				email: 'nutshell@gmail.com',
 			},
 		],
 	},

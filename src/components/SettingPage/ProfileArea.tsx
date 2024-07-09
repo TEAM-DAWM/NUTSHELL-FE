@@ -10,7 +10,9 @@ function ProfileArea() {
 			<ProfileWrapper>
 				<ProfileImg src={sampleImg} alt="프로필" />
 				<ProfileTextBox>
-					<NameText>{USERS.data.name}</NameText>
+					<LastName>
+						{USERS.data.familyName} {USERS.data.givenName}
+					</LastName>
 					<EmailText>{USERS.data.email}</EmailText>
 				</ProfileTextBox>
 			</ProfileWrapper>
@@ -53,7 +55,7 @@ const ProfileTextBox = styled.div`
 	align-items: flex-start;
 `;
 
-const NameText = styled.p`
+const LastName = styled.p`
 	${({ theme }) => theme.fontTheme.TITLE_03}
 	color: ${({ theme }) => theme.palette.Grey.Black}
 `;
