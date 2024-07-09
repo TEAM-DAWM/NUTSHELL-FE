@@ -5,7 +5,7 @@ import EnterBtn from '@/components/common/button/EnterBtn';
 import OkayCancelBtn from '@/components/common/button/OkayCancelBtn';
 import ProgressBtn from '@/components/common/button/ProgressBtn';
 import RefreshBtn from '@/components/common/button/RefreshBtn';
-import SettingCheck2 from '@/components/common/button/settingBtn/SettingCheck2Btn';
+import SettingCheck2 from '@/components/common/button/settingBtn/SettingCheckBtn';
 import SettingDeleteBtn from '@/components/common/button/settingBtn/SettingDeleteBtn';
 import SortBtn from '@/components/common/button/SortBtn';
 import StatusDoneBtn from '@/components/common/button/statusBtn/StatusDoneBtn';
