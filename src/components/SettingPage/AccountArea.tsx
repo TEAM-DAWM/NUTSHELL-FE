@@ -106,11 +106,11 @@ const InputBox = styled.div`
 	width: 38.2rem;
 	padding: 0.6rem 0.8rem 0.6rem 1.2rem;
 
-	background: #dfe9fc;
+	background: ${({ theme }) => theme.palette.Blue.Blue2};
 	border-radius: 8px;
 `;
 
 const EmailWrapper = styled.p`
 	${({ theme }) => theme.fontTheme.BODY_02};
-	color: #5a5a61;
+	color: ${({ theme }) => theme.palette.Grey.Grey7};
 `;
