@@ -6,11 +6,12 @@ import Icons from '@/assets/svg/index';
 interface SettingDeleteBtnProps {
 	isHover: boolean;
 	isPressed: boolean;
+	onClick?: () => void;
 }
 
-function SettingDeleteBtn({ isHover, isPressed }: SettingDeleteBtnProps) {
+function SettingDeleteBtn({ isHover, isPressed, onClick }: SettingDeleteBtnProps) {
 	return (
-		<SettingDeleteBtnLayout isHover={isHover} isPressed={isPressed}>
+		<SettingDeleteBtnLayout isHover={isHover} isPressed={isPressed} onClick={onClick}>
 			<StyledDeleteIcon />
 		</SettingDeleteBtnLayout>
 	);
@@ -30,20 +31,13 @@ const SettingDeleteBtnCss = css`
 
 const SettingDeleteBtnLayout = styled.button<{ isHover: boolean; isPressed: boolean }>`
 	${SettingDeleteBtnCss}
-	background-color: ${({ theme }) => theme.palette.Blue.Blue1};
+	background-color: ${({ theme, isPressed }) => (isPressed ? theme.palette.Primary : theme.palette.Blue.Blue1)};
 
 	${({ isHover, theme }) =>
 		isHover &&
 		css`
 			&:hover {
 				background-color: ${theme.palette.Blue.Blue3};
-			}
-		`}
-	${({ isPressed, theme }) =>
-		isPressed &&
-		css`
-			&:active {
-				background-color: ${theme.palette.Primary};
 			}
 		`}
 `;

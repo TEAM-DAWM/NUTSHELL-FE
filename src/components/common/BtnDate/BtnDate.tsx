@@ -11,10 +11,11 @@ interface BtnDateProps {
 	time?: string;
 	size?: string;
 	isDelayed?: boolean;
+	isDisabled?: boolean;
 }
 
 function BtnDate(props: BtnDateProps) {
-	const { date = '마감 기한', time = '마감 시간', size = 'big', isDelayed = false } = props;
+	const { date = '마감 기한', time = '마감 시간', size = 'big', isDelayed = false, isDisabled = false } = props;
 	const [isPressed, setIsPressed] = useState(false);
 	const [isClicked, setIsClicked] = useState(false);
 
@@ -36,6 +37,7 @@ function BtnDate(props: BtnDateProps) {
 			isClicked={isClicked}
 			size={size}
 			isDelayed={isDelayed}
+			isDisabled={isDisabled}
 			isDefaultDate={isDefaultDate}
 			isDefaultTime={isDefaultTime}
 			onMouseDown={handleMouseDown}
@@ -44,20 +46,20 @@ function BtnDate(props: BtnDateProps) {
 			<BtnDateText icon={<CalanderIcon isDelayed={isDelayed} />} text={date} isDefault={isDefaultDate} size={size} />
 			<LineIcon size={size} isDelayed={isDelayed} />
 			<BtnDateText icon={<ClockIcon isDelayed={isDelayed} />} text={time} isDefault={isDefaultTime} size={size} />
-			<XIcon isClicked={isClicked} />
+			<XIcon isClicked={isClicked} size={size} />
 		</BtnDateLayout>
 	);
 }
 
 export default BtnDate;
 
-const XIcon = styled((props: React.SVGProps<SVGSVGElement> & { isClicked: boolean }) => {
+const XIcon = styled((props: React.SVGProps<SVGSVGElement> & { isClicked: boolean; size: string }) => {
 	const { isClicked, ...rest } = props;
 	return <Icons.IcnXCricle {...rest} />;
 })<{ isClicked: boolean }>`
 	display: ${({ isClicked }) => (isClicked ? 'flex' : 'none')};
-	width: 2rem;
-	height: 2rem;
+	width: ${({ size }) => (size === 'big' ? '2rem' : '1.6rem')};
+	height: ${({ size }) => (size === 'big' ? '2rem' : '1.6rem')};
 `;
 
 const CalanderIcon = styled(Icons.Icn_calander, { target: 'CalanderIcon' })<{ isDelayed: boolean }>`
@@ -103,15 +105,16 @@ const BtnDateLayout = styled.div<{
 	isDelayed: boolean;
 	isDefaultDate: boolean;
 	isDefaultTime: boolean;
+	isDisabled: boolean;
 }>`
 	display: flex;
 	gap: 1rem;
 	align-items: center;
 	width: fit-content;
 	min-width: 1.8rem;
-	padding: 0.5rem 1rem;
+	height: ${({ size }) => (size === 'big' ? '3.2rem' : '2rem')};
+	padding: ${({ size }) => (size === 'big' ? '0.5rem 1rem' : '0rem 1rem')};
 
-	background: ${({ theme }) => theme.palette.Grey.White};
 	cursor: pointer;
 	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-color: ${({ isClicked, theme }) => (isClicked ? theme.palette.Primary : theme.palette.Grey.Grey3)};
@@ -138,18 +141,26 @@ const BtnDateLayout = styled.div<{
 	${({ isPressed, theme }) =>
 		isPressed &&
 		css`
-			border-width: 0;
-
 			${TextWrapper} {
 				color: ${theme.palette.Grey.White};
 			}
 		`}
 
+	${({ isDisabled }) =>
+		isDisabled &&
+		css`
+			cursor: default;
+			opacity: 0.6;
+
+			pointer-events: none;
+		`}
+
 	&:hover {
 		color: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey6)};
 
-		background: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey3)};
-		border-width: 0;
+		background: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey5 : theme.palette.Grey.Grey4)};
+		box-shadow: ${({ isPressed, theme }) =>
+			isPressed ? `1px 0 0 0 ${theme.palette.Grey.Grey5} inset` : `1px 0 0 0 ${theme.palette.Grey.Grey4} inset`};
 
 		${TextWrapper} {
 			color: ${({ isDefaultDate, isDefaultTime, theme }) =>

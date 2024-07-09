@@ -7,13 +7,14 @@ interface Check1Props {
 	type: 'setting' | 'done';
 	isHover: boolean;
 	isPressed: boolean;
+	onClick?: () => void;
 }
 
-function Check1Btn({ type, isHover, isPressed }: Check1Props) {
+function Check1Btn({ type, isHover, isPressed, onClick }: Check1Props) {
 	return (
 		<div>
 			{type === 'setting' ? (
-				<SettingCheck1Layout isHover={isHover} isPressed={isPressed}>
+				<SettingCheck1Layout isHover={isHover} isPressed={isPressed} onClick={onClick}>
 					<StlyedSettingCheck1Ic />
 				</SettingCheck1Layout>
 			) : (
@@ -37,7 +38,11 @@ const SettingCheck1Layout = styled.button<{ isHover: boolean; isPressed: boolean
 	width: 2.4rem;
 	height: 2.4rem;
 
-	background-color: ${({ theme }) => theme.palette.Blue.Blue1};
+	background-color: ${({ theme, isPressed }) => (isPressed ? theme.palette.Primary : theme.palette.Blue.Blue1)};
+
+	path {
+		stroke: ${({ theme, isPressed }) => (isPressed ? theme.palette.Grey.White : theme.palette.Primary)};
+	}
 	border-radius: 8px;
 
 	${({ isHover, theme }) =>
@@ -45,17 +50,6 @@ const SettingCheck1Layout = styled.button<{ isHover: boolean; isPressed: boolean
 		css`
 			&:hover {
 				background-color: ${theme.palette.Blue.Blue3};
-			}
-		`}
-	${({ isPressed, theme }) =>
-		isPressed &&
-		css`
-			&:active {
-				background-color: ${theme.palette.Primary};
-
-				path {
-					stroke: ${theme.palette.Grey.White};
-				}
 			}
 		`}
 `;
