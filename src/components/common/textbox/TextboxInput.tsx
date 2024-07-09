@@ -6,7 +6,7 @@ import { theme } from '@/styles/theme';
 
 interface TextboxInputProps {
 	variant: 'date' | 'time' | 'smallDate';
-	dateValue: Date | undefined;
+	dateValue?: Date | undefined;
 }
 function TextboxInput({ variant, dateValue }: TextboxInputProps) {
 	const textDateValue = () => {
