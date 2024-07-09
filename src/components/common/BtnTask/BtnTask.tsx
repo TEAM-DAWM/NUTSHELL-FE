@@ -78,13 +78,14 @@ function BtnTask(props: BtnTaskProps) {
 		}
 
 		if (btnType === 2) {
-			if (status === 'Done') {
-				return <StatusDoneBtn />;
+			switch (status) {
+				case 'Done':
+					return <StatusDoneBtn />;
+				case 'InProgress':
+					return <StatusInProgressBtn />;
+				default:
+					return <StatusTodoBtn />;
 			}
-			if (status === 'InProgress') {
-				return <StatusInProgressBtn />;
-			}
-			return <StatusTodoBtn />;
 		}
 
 		return null;
@@ -103,11 +104,7 @@ function BtnTask(props: BtnTaskProps) {
 					{isDescription && <IconFile />}
 					넛쉘 UT 진행하기
 				</BtnTaskTextWrapper>
-				{btnType === 3 ? (
-					<BtnDate date="2024.07.11" time="22:22" size="small" isDelayed />
-				) : (
-					<BtnDate date="2024.07.11" time="22:22" size="small" />
-				)}
+				<BtnDate date="2024.07.11" time="22:22" size="small" isDelayed={btnType === 3} />
 			</BtnTaskContainer>
 			<IconHoverContainer
 				onClick={handleIconClick}
@@ -123,18 +120,18 @@ function BtnTask(props: BtnTaskProps) {
 export default BtnTask;
 
 const getBorderColor = ({ isHovered, isClicked, iconHovered, theme, btnType }: BorderColorProps) => {
-	let borderColor;
-
+	const defaultColor = theme.palette.Grey.Grey1;
+	const hoverColor = theme.palette.Blue.Blue1;
+	const clickColor = theme.palette.Primary;
+	const orangeColor = theme.palette.Orange.Orange8;
+	let borderColor = defaultColor;
 	if (btnType === 3) {
-		borderColor = theme.palette.Orange.Orange8;
+		borderColor = orangeColor;
 	} else if (iconHovered || isHovered) {
-		borderColor = theme.palette.Blue.Blue1;
+		borderColor = hoverColor;
 	} else if (isClicked) {
-		borderColor = theme.palette.Primary;
-	} else {
-		borderColor = theme.palette.Grey.Grey1;
+		borderColor = clickColor;
 	}
-
 	return css`
 		border-color: ${borderColor};
 	`;
@@ -161,7 +158,7 @@ const BtnTaskLayout = styled('div', { target: 'BtnTaskLayout' })<{
 const BtnTaskContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 6px;
+	gap: 0.6rem;
 	align-items: flex-start;
 	width: 100%;
 	padding: 0.8rem 0 0.8rem 1.2rem;
@@ -169,7 +166,7 @@ const BtnTaskContainer = styled.div`
 
 const BtnTaskTextWrapper = styled.div<{ isDescription: boolean }>`
 	display: flex;
-	gap: 4px;
+	gap: 0.4rem;
 	align-items: center;
 	align-self: stretch;
 	padding-left: ${({ isDescription }) => (isDescription ? '0rem' : '0.4rem')};
@@ -179,29 +176,27 @@ const BtnTaskTextWrapper = styled.div<{ isDescription: boolean }>`
 
 const IconHoverContainer = styled('div', { target: 'IconHoverContainer' })`
 	display: flex;
-	gap: 4px;
+	gap: 0.4rem;
 	align-items: center;
-	padding: 0 12px 0 8px;
+	padding: 0 1.2rem 0 0.8rem;
+`;
+
+const IconHoverCss = css`
+	display: flex;
+	gap: 0.6rem;
+	align-items: center;
+	justify-content: center;
+	width: 1.4rem;
+	height: 1.4rem;
+	padding: 0.3rem;
 `;
 
 const IconHoverIndicator = styled(Icons.Icn_hover_indicator, { target: 'IconHoverIndicator' })`
-	display: flex;
-	gap: 6px;
-	align-items: center;
-	justify-content: center;
-	width: 1.4rem;
-	height: 1.4rem;
-	padding: 3px;
+	${IconHoverCss}
 `;
 
 const StagingIconHoverIndicator = styled(Icons.Icn_hover_indicator)`
-	display: flex;
-	gap: 6px;
-	align-items: center;
-	justify-content: center;
-	width: 1.4rem;
-	height: 1.4rem;
-	padding: 3px;
+	${IconHoverCss}
 
 	circle {
 		stroke: ${({ theme }) => theme.palette.Orange.Orange8};
