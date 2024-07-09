@@ -17,6 +17,7 @@ import StatusTodoBtn from '@/components/common/button/statusBtn/StatusTodoBtn';
 import TextBtn from '@/components/common/button/textBtn/TextBtn';
 import TimelineDeleteBtn from '@/components/common/button/TimelineDeleteBtn';
 import TodayPlusBtn from '@/components/common/button/TodayPlusBtn';
+import Modal from '@/components/common/modal/Modal';
 import NavBar from '@/components/common/NavBar';
 
 function Setting() {
@@ -43,6 +44,9 @@ function Setting() {
 			<StatusTodoBtn />
 			<TimelineDeleteBtn />
 			<TodayPlusBtn />
+
+			<Modal isOpen sizeType={{ type: 'long' }} />
+			<Modal isOpen sizeType={{ type: 'short' }} />
 		</div>
 	);
 }

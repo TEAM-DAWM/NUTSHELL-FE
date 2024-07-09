@@ -1,14 +1,16 @@
 import styled from '@emotion/styled';
 
-import Icons from '@/assets/svg/index';
+import Check1Btn from '@/components/common/button/Check1Btn';
+import DeleteBtn from '@/components/common/button/DeleteBtn';
+import SettingCheck4 from '@/components/common/button/settingBtn/SettingCheck4Btn';
 import { SizeType } from '@/types/textInputType';
 
 function ModalHeaderBtn({ type }: SizeType) {
 	return (
 		<ModalHeaderBtnLayout>
-			<TmpIcon />
-			{type === 'long' && <TmpIcon />}
-			<TmpIcon />
+			<DeleteBtn />
+			{type === 'long' && <SettingCheck4 isHover={false} isPressed={false} />}
+			<Check1Btn type="setting" isHover={false} isPressed={false} />
 		</ModalHeaderBtnLayout>
 	);
 }
@@ -18,8 +20,4 @@ const ModalHeaderBtnLayout = styled.div`
 	gap: 0.6rem;
 `;
 
-const TmpIcon = styled(Icons.Icn_clock)`
-	width: 3.2rem;
-	height: 3.2rem;
-`;
 export default ModalHeaderBtn;
