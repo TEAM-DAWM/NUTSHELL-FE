@@ -5,13 +5,34 @@ export const SettingCss = css`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+`;
+
+export const smallSize = css`
 	width: 2.4rem;
 	height: 2.4rem;
 
 	border-radius: 8px;
 `;
 
-export const SettingLayout = styled.button`
+export const bigSize = css`
+	width: 3.2rem;
+	height: 3.2rem;
+
+	border-radius: 10px;
+`;
+
+export const smallIcon = css`
+	width: 1.6rem;
+	height: 1.6rem;
+`;
+
+export const bigIcon = css`
+	width: 2.2rem;
+	height: 2.2rem;
+`;
+
+export const SettingLayout = styled.button<{ size: string }>`
+	${({ size }) => (size === 'small' ? smallSize : bigSize)};
 	${SettingCss}
 	background-color: ${({ theme }) => theme.palette.Blue.Blue1};
 
@@ -23,6 +44,8 @@ export const SettingLayout = styled.button`
 		background-color: ${({ theme }) => theme.palette.Primary};
 
 		path {
+			/* fill: ${({ theme }) => theme.palette.Grey.White}; */
+
 			stroke: ${({ theme }) => theme.palette.Grey.White};
 		}
 	}

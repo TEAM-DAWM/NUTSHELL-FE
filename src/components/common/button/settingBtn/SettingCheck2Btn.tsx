@@ -1,19 +1,31 @@
 import styled from '@emotion/styled';
+import { FunctionComponent, SVGProps } from 'react';
 
 import Icons from '@/assets/svg/index';
-import { SettingLayout } from '@/components/common/button/settingBtn/settingBtnStyle';
+import { SettingLayout, smallIcon, bigIcon } from '@/components/common/button/settingBtn/settingBtnStyle';
 
-function SettingCheck2() {
+const settingIconMap: Record<string, FunctionComponent<SVGProps<SVGSVGElement>>> = {
+	complete: Icons.SettingIcons.SettingCheck1,
+	check: Icons.SettingIcons.SettingCheck2,
+	done: Icons.SettingIcons.SettingCheck3,
+	progress: Icons.SettingIcons.SettingCheck4,
+};
+interface SettingCheckBtnProps {
+	size: 'small' | 'big';
+	type: 'complete' | 'check' | 'done' | 'progress';
+}
+
+function SettingCheckBtn({ size, type }: SettingCheckBtnProps) {
+	const IconComponent = settingIconMap[type];
+
+	const StyledSettingCheck2Icon = styled(IconComponent)<{ size: string }>`
+		${({ size }) => (size === 'small' ? smallIcon : bigIcon)};
+	`;
 	return (
-		<SettingLayout>
-			<StyledSettingCheck2Icon />
+		<SettingLayout size={size}>
+			<StyledSettingCheck2Icon size={size} />
 		</SettingLayout>
 	);
 }
 
-export default SettingCheck2;
-
-const StyledSettingCheck2Icon = styled(Icons.SettingIcons.SettingCheck2)`
-	width: 1.6rem;
-	height: 1.6rem;
-`;
+export default SettingCheckBtn;

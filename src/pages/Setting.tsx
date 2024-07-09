@@ -34,16 +34,23 @@ function Setting() {
 			<OkayCancelBtn type="okay" />
 			<ProgressBtn type="defaultProgress" />
 			<RefreshBtn isDisabled={false} />
-			<SettingCheck2 />
-			<SettingCheck3 />
+
+			{/* <SettingCheck2 size="small" /> */}
+			<SettingCheck3 size="small" />
+			<SettingCheck3 size="big" />
 			<SettingDeleteBtn isHover isPressed />
-			<SettingXBtn />
+			<SettingXBtn size="big" />
+			<SettingXBtn size="small" />
 			<StatusDoneBtn />
 			<StatusInProgressBtn />
 			<StatusStagingBtn />
 			<StatusTodoBtn />
 			<TimelineDeleteBtn />
 			<TodayPlusBtn />
+			<SettingCheck2 size="big" type="complete" />
+			<SettingCheck2 size="big" type="check" />
+			<SettingCheck2 size="big" type="done" />
+			<SettingCheck2 size="big" type="progress" />
 
 			<Modal isOpen sizeType={{ type: 'long' }} />
 			<Modal isOpen sizeType={{ type: 'short' }} />

@@ -70,4 +70,5 @@ const DoneLayout = styled.button`
 
 const StlyedDoneIc = styled(Icons.DoneIcon)`
 	width: 1.85rem;
+	height: 1.85rem;
 `;

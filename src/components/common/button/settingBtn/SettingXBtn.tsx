@@ -1,19 +1,22 @@
 import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
-import { SettingLayout } from '@/components/common/button/settingBtn/settingBtnStyle';
+import { SettingLayout, smallIcon, bigIcon } from '@/components/common/button/settingBtn/settingBtnStyle';
 
-function SettingXBtn() {
+interface SettingXBtnProps {
+	size: 'small' | 'big';
+}
+
+function SettingXBtn({ size }: SettingXBtnProps) {
 	return (
-		<SettingLayout>
-			<StyledSettingX />
+		<SettingLayout size={size}>
+			<StyledSettingX size={size} />
 		</SettingLayout>
 	);
 }
 
 export default SettingXBtn;
 
-const StyledSettingX = styled(Icons.SettingX)`
-	width: 1.6rem;
-	height: 1.6rem;
+const StyledSettingX = styled(Icons.SettingX)<{ size: string }>`
+	${({ size }) => (size === 'small' ? smallIcon : bigIcon)};
 `;
