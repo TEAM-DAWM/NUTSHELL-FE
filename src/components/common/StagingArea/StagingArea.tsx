@@ -46,7 +46,7 @@ const StagingAreaLayout = styled.div`
 	align-items: center;
 	padding: 0 0.7rem;
 
-	border-right: 1px solid #e4e4e4;
+	border-right: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 0 12px 12px 0;
 `;
 
