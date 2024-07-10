@@ -1,3 +1,4 @@
+
 import DeleteBtn from '@/components/common/button/DeleteBtn';
 import DeleteCancelBtn from '@/components/common/button/DeleteCancelBtn';
 import EnterBtn from '@/components/common/button/EnterBtn';
@@ -15,7 +16,14 @@ import TextBtn from '@/components/common/button/textBtn/TextBtn';
 import TimelineDeleteBtn from '@/components/common/button/TimelineDeleteBtn';
 import TodayPlusBtn from '@/components/common/button/TodayPlusBtn';
 import Modal from '@/components/common/modal/Modal';
+
+import styled from '@emotion/styled';
+
+
 import NavBar from '@/components/common/NavBar';
+import AccountArea from '@/components/SettingPage/AccountArea';
+import LogOutBtn from '@/components/SettingPage/LogOutBtn';
+import ProfileArea from '@/components/SettingPage/ProfileArea';
 
 function Setting() {
 	return (
@@ -47,8 +55,28 @@ function Setting() {
 			<StatusTodoBtn />
 			<SettingCheck2 size="big" type="complete" isHover isPressed={false} isActive />
 			<SettingCheck2 size="big" type="complete" isHover isPressed={false} isActive />
+			<SettingContainer>
+				<Wrapper>
+					<ProfileArea />
+					<AccountArea />
+				</Wrapper>
+				<LogOutBtn />
+			</SettingContainer>
 		</div>
 	);
 }
 
 export default Setting;
+
+const Wrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+`;
+
+const SettingContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100vh;
+`;

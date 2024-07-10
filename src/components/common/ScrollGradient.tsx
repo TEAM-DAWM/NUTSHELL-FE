@@ -12,10 +12,14 @@ function ScrollGradient() {
 export default ScrollGradient;
 
 const ScrollGradientLayout = styled.div`
+	position: sticky;
+	bottom: 0;
+	z-index: 1;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	width: 100%;
 `;
 
 const ScrollGradientTop = styled.div`
