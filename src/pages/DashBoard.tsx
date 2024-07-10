@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import DateCorrectionModal from '@/components/common/datePicker/DateCorrectionModal';
 import DatePickerCustom from '@/components/common/datePicker/DatePickerCustom';
 import DashboardTask from '@/components/DashboardPage/DashboardTask';
+import DateArea from '@/components/DashboardPage/DateArea';
 import TaskSummary from '@/components/DashboardPage/TaskSummary';
 import PERIOD from '@/constants/tasksPeriod';
 import getNameOfDayKor from '@/utils/getNameOfDayKor';
@@ -43,6 +44,9 @@ function DashBoard() {
 				<DashboardTask text="postponed" />
 				<DashboardTask text="inprogress" />
 			</DashBoardTaskWrapper>
+			<DataWrapper>
+				<DateArea />
+			</DataWrapper>
 			<TaskSummaryWrapper>
 				{SUMMARY_INFO.map((info) => (
 					<TaskSummary key={info.name} text={info.text} data={info.data} unit={info.unit} />
@@ -94,11 +98,22 @@ const DashBoardTaskWrapper = styled.div`
 	padding-left: 0.7rem;
 `;
 
+const DataWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	align-self: stretch;
+	width: 100%;
+	height: 6.7rem;
+	padding-top: 1rem;
+`;
+
 const TaskSummaryWrapper = styled.div`
 	display: flex;
 	gap: 1rem;
 	align-items: center;
 	align-self: stretch;
+	width: 100%;
 	height: 21.4rem;
 	padding: 0 0 2.8rem 0.7rem;
 `;
