@@ -36,7 +36,7 @@ function Setting() {
 			<ProgressBtn type="defaultProgress" />
 			<RefreshBtn isDisabled={false} />
 
-			<SettingDeleteBtn isHover isPressed />
+			<SettingDeleteBtn size="big" isHover isPressed={false} isActive />
 			<StatusDoneBtn />
 			<StatusInProgressBtn />
 			<StatusStagingBtn />

@@ -1,48 +1,68 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
+import { smallIcon, bigIcon, SettingCss, smallSize, bigSize } from './settingBtnStyle';
+
 import Icons from '@/assets/svg/index';
 
 interface SettingDeleteBtnProps {
+	size: 'small' | 'big';
+	onClick?: () => void;
 	isHover: boolean;
 	isPressed: boolean;
-	onClick?: () => void;
+	isActive: boolean;
 }
 
-function SettingDeleteBtn({ isHover, isPressed, onClick }: SettingDeleteBtnProps) {
+function SettingDeleteBtn({ size, onClick, isHover, isPressed, isActive }: SettingDeleteBtnProps) {
+	const StyledSettingDeleteIcon = styled(Icons.DeleteIcon)<{ size: string }>`
+		${({ size }) => (size === 'small' ? smallIcon : bigIcon)}
+	`;
 	return (
-		<SettingDeleteBtnLayout isHover={isHover} isPressed={isPressed} onClick={onClick}>
-			<StyledDeleteIcon />
+		<SettingDeleteBtnLayout size={size} onClick={onClick} isHover={isHover} isPressed={isPressed} isActive={isActive}>
+			<StyledSettingDeleteIcon size={size} />
 		</SettingDeleteBtnLayout>
 	);
 }
 
 export default SettingDeleteBtn;
 
-const SettingDeleteBtnCss = css`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 2.4rem;
-	height: 2.4rem;
-
-	border-radius: 8px;
-`;
-
-const SettingDeleteBtnLayout = styled.button<{ isHover: boolean; isPressed: boolean }>`
-	${SettingDeleteBtnCss}
-	background-color: ${({ theme, isPressed }) => (isPressed ? theme.palette.Primary : theme.palette.Blue.Blue1)};
+const SettingDeleteBtnLayout = styled.button<{
+	size: string;
+	isHover: boolean;
+	isPressed: boolean;
+	isActive: boolean;
+}>`
+	${SettingCss}
+	${({ size }) => (size === 'small' ? smallSize : bigSize)};
+	background-color: ${({ theme }) => theme.palette.Orange.Orange2};
 
 	${({ isHover, theme }) =>
 		isHover &&
 		css`
 			&:hover {
-				background-color: ${theme.palette.Blue.Blue3};
+				background-color: ${theme.palette.Orange.Orange4};
 			}
 		`}
-`;
 
-const StyledDeleteIcon = styled(Icons.DeleteIcon)`
-	width: 1.4rem;
-	height: 1.4rem;
+	${({ isActive, theme }) =>
+		isActive &&
+		css`
+			&:active {
+				background-color: ${theme.palette.Secondary};
+
+				path {
+					stroke: ${theme.palette.Grey.White};
+				}
+			}
+		`}
+
+	${({ isPressed, theme }) =>
+		isPressed &&
+		css`
+			background-color: ${theme.palette.Secondary};
+
+			path {
+				stroke: ${theme.palette.Grey.White};
+			}
+		`}
 `;
