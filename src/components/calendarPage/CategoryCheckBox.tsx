@@ -16,7 +16,15 @@ function CategoryCheckBox({ category }: CategoryCheckBoxProps) {
 
 	return (
 		<CategoryContent>
-			{isClicked && <CheckBoxBtn onClick={handleCheckBoxClick}/> : <StlyedDoneIc onClick={handleCheckBoxClick}/>}
+			{isClicked ? (
+				<IconWrapper onClick={handleCheckBoxClick}>
+					<SelectedIcon />
+				</IconWrapper>
+			) : (
+				<IconWrapper onClick={handleCheckBoxClick}>
+					<UnSelectedIcon />
+				</IconWrapper>
+			)}
 			<CategoryTitle>{category}</CategoryTitle>
 		</CategoryContent>
 	);
@@ -33,29 +41,24 @@ const CategoryContent = styled.div`
 	color: ${({ theme }) => theme.palette.Grey.Grey7};
 `;
 
-const SelectedIcon = styled(Icons.Icn_selectbox_selected)`
-		width: 1.6rem;
-    height: 1.6rem;
+const IconWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 3.2rem;
+	height: 3.2rem;
+
+	cursor: pointer;
 `;
 
-const CheckBoxBtn = styled.div<{ isClicked: boolean }>`
+const SelectedIcon = styled(Icons.Icn_selectbox_selected)`
 	width: 1.6rem;
 	height: 1.6rem;
-	margin: 0.8rem;
+`;
 
-	background-color: ${({ theme }) => theme.palette.Grey.White};
-	cursor: pointer;
-	border: 2px solid ${({ theme }) => theme.palette.Grey.Grey5};
-	border-radius: 4px;
-
-	appearance: none;
-
-	&:checked {
-		background-image: url(${Icons.Icn_selectbox_selected});
-		background-repeat: no-repeat;
-		background-position: center;
-		border: 2px solid ${({ theme }) => theme.palette.Primary};
-	}
+const UnSelectedIcon = styled(Icons.Icn_selectbox_Unselected)`
+	width: 1.6rem;
+	height: 1.6rem;
 `;
 
 const CategoryTitle = styled.p`
