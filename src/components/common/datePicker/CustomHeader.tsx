@@ -4,6 +4,7 @@ import ArrangeBtn from '../arrangeBtn/ArrangeBtn';
 import TextboxInput from '../textbox/TextboxInput';
 
 import DayDiffText from './DayDiffText';
+
 import { warnRef } from '@/utils/refStatus';
 
 interface CustonHeaderProps {
@@ -33,13 +34,15 @@ function CustomHeader({
 	let diff = 0;
 	if (endDate && startDate) {
 		diff = Math.abs(endDate.getTime() - startDate.getTime());
-		diff = Math.ceil(diff / (1000 * 60 * 60 * 24));
+		diff = Math.ceil(diff / (1000 * 60 * 60 * 24)) + 1;
 	}
 
 	const onStartChange = (date: Date) => {
 		if (endDate && endDate <= date) {
 			warnRef(startDateTextRef);
-			startDateTextRef.current && (startDateTextRef.current.value = '');
+			if (startDateTextRef.current) {
+				startDateTextRef.current.value = '';
+			}
 		} else {
 			onChange(date, 'start');
 		}
@@ -47,7 +50,9 @@ function CustomHeader({
 	const onEndChange = (date: Date) => {
 		if (startDate && date <= startDate) {
 			warnRef(endDateTextRef);
-			endDateTextRef.current && (endDateTextRef.current.value = '');
+			if (endDateTextRef.current) {
+				endDateTextRef.current.value = '';
+			}
 		} else {
 			onChange(date, 'end');
 		}

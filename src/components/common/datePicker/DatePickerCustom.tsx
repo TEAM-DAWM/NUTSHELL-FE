@@ -7,6 +7,7 @@ import TextBtn from '../button/textBtn/TextBtn';
 
 import CustomHeader from './CustomHeader';
 import CalendarStyle from './DatePickerStyle';
+
 import formatDatetoString from '@/utils/formatDatetoString';
 import { blurRef } from '@/utils/refStatus';
 
@@ -20,11 +21,15 @@ function DatePickerCustom() {
 		const [start, end] = dates;
 		setStartDate(start);
 		blurRef(startDateTextRef);
-		startDateTextRef.current && (startDateTextRef.current.value = formatDatetoString(start));
+		if (startDateTextRef.current) {
+			startDateTextRef.current.value = formatDatetoString(start);
+		}
 
 		setEndDate(end);
 		blurRef(endDateTextRef);
-		endDateTextRef.current && (endDateTextRef.current.value = formatDatetoString(end));
+		if (endDateTextRef.current) {
+			endDateTextRef.current.value = formatDatetoString(end);
+		}
 	};
 	const onDateChange = (date: Date, mode: 'start' | 'end') => {
 		if (mode === 'start') {
