@@ -52,7 +52,7 @@ function Setting() {
 			<StatusTodoBtn />
 			<SettingCheck size="big" type="complete" isHover isPressed={false} isActive />
 			<SettingCheck size="big" type="complete" isHover isPressed={false} isActive />
-			<SettingCheck size="big" type="xBtn" isHover isPressed={false} isActive />
+			<SettingCheck size="big" type="close" isHover isPressed={false} isActive />
 			<SettingContainer>
 				<Wrapper>
 					<ProfileArea />

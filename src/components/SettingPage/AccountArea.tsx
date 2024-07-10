@@ -19,7 +19,7 @@ function AccountArea() {
 				</CalendarContainer>
 				<InputBox>
 					<EmailWrapper>{USERS.data.email}</EmailWrapper>
-					<SettingCheckBtn size="small" type="xBtn" isHover isPressed={false} isActive />
+					<SettingCheckBtn size="small" type="close" isHover isPressed={false} isActive />
 				</InputBox>
 			</AccountWrapper>
 		</AccountAreaWrapper>

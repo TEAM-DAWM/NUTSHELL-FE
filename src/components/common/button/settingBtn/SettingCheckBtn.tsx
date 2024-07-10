@@ -9,11 +9,11 @@ const settingIconMap: Record<string, FunctionComponent<SVGProps<SVGSVGElement>>>
 	check: Icons.SettingIcons.SettingCheck2,
 	done: Icons.SettingIcons.SettingCheck3,
 	progress: Icons.SettingIcons.SettingCheck4,
-	xBtn: Icons.SettingX,
+	close: Icons.SettingX,
 };
 interface SettingCheckBtnProps {
 	size: 'small' | 'big';
-	type: 'complete' | 'check' | 'done' | 'progress' | 'xBtn';
+	type: 'complete' | 'check' | 'done' | 'progress' | 'close';
 	onClick?: () => void;
 	isHover: boolean;
 	isPressed: boolean;
