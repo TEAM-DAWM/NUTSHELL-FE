@@ -11,8 +11,7 @@ const textButtonCss = css`
 `;
 
 export const smallSize = css`
-	width: 4.5rem;
-	height: 2.6rem;
+	padding: 0.3rem 1.2rem;
 
 	${textButtonCss}
 	${theme.fontTheme.CAPTION_02}
