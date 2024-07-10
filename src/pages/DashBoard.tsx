@@ -13,15 +13,15 @@ function DashBoard() {
 		},
 		{
 			name: 'postponed',
-			text: '평균 진행중인 할 일 갯수',
-			data: PERIOD.data.avgInprogressTasks,
-			unit: '개',
+			text: '평균 지연율',
+			data: PERIOD.data.avgDeferredRate,
+			unit: '%',
 		},
 		{
 			name: 'inprogress',
-			text: '진행중인 할 일',
-			data: PERIOD.data.avgDeferredRate,
-			unit: '%',
+			text: '평균 진행중인 할 일 갯수',
+			data: PERIOD.data.avgInprogressTasks,
+			unit: '개',
 		},
 	];
 
