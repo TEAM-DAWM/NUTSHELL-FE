@@ -4,6 +4,7 @@ import ArrangeBtn from '../arrangeBtn/ArrangeBtn';
 import TextboxInput from '../textbox/TextboxInput';
 
 import DayDiffText from './DayDiffText';
+import { warnRef } from '@/utils/refStatus';
 
 interface CustonHeaderProps {
 	startDate: Date | null;
@@ -13,6 +14,8 @@ interface CustonHeaderProps {
 	prevMonthButtonDisabled: boolean;
 	nextMonthButtonDisabled: boolean;
 	onChange: (date: Date, mode: 'start' | 'end') => void;
+	startDateTextRef: React.RefObject<HTMLInputElement>;
+	endDateTextRef: React.RefObject<HTMLInputElement>;
 }
 
 function CustomHeader({
@@ -23,7 +26,10 @@ function CustomHeader({
 	prevMonthButtonDisabled,
 	nextMonthButtonDisabled,
 	onChange,
+	startDateTextRef,
+	endDateTextRef,
 }: CustonHeaderProps) {
+	/** 일 차이 계산 */
 	let diff = 0;
 	if (endDate && startDate) {
 		diff = Math.abs(endDate.getTime() - startDate.getTime());
@@ -32,16 +38,16 @@ function CustomHeader({
 
 	const onStartChange = (date: Date) => {
 		if (endDate && endDate < date) {
-			alert('시작날짜가 종료날짜보다 뒤에 있음');
+			warnRef(startDateTextRef);
+			startDateTextRef.current && (startDateTextRef.current.value = '');
 		} else {
 			onChange(date, 'start');
 		}
 	};
 	const onEndChange = (date: Date) => {
-		// 기타 안되는 예외사항 처리
-		// 이후 모달 만들어서 처리하기
 		if (startDate && date < startDate) {
-			alert('종료날짜가 시작날짜를 앞섬');
+			warnRef(endDateTextRef);
+			endDateTextRef.current && (endDateTextRef.current.value = '');
 		} else {
 			onChange(date, 'end');
 		}
@@ -51,8 +57,13 @@ function CustomHeader({
 		<div className="react-datepicker__header-custom">
 			<InfoBox>
 				<InfoWrapper>
-					<TextboxInput variant="smallDate" dateValue={startDate} onChange={onStartChange} />
-					<TextboxInput variant="smallDate" dateValue={endDate} onChange={onEndChange} />
+					<TextboxInput
+						variant="smallDate"
+						dateValue={startDate}
+						onChange={onStartChange}
+						dateTextRef={startDateTextRef}
+					/>
+					<TextboxInput variant="smallDate" dateValue={endDate} onChange={onEndChange} dateTextRef={endDateTextRef} />
 				</InfoWrapper>
 				<DayDiffText diff={diff} />
 			</InfoBox>

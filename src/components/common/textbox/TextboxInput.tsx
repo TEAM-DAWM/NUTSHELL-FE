@@ -4,22 +4,15 @@ import styled from '@emotion/styled';
 import Icons from '@/assets/svg/index';
 import { theme } from '@/styles/theme';
 import dotFormatDate from '@/utils/dotFormatDate';
+import formatDatetoString from '@/utils/formatDatetoString';
 
 interface TextboxInputProps {
 	variant: 'date' | 'time' | 'smallDate';
 	dateValue?: Date | null;
 	onChange?: (date: Date) => void;
+	dateTextRef?: React.RefObject<HTMLInputElement>;
 }
-function TextboxInput({ variant, dateValue, onChange }: TextboxInputProps) {
-	const textDateValue = () => {
-		if (dateValue) {
-			const year = dateValue.getFullYear();
-			const month = '0'.concat((dateValue.getMonth() + 1).toString()).slice(-2);
-			const day = '0'.concat(dateValue.getDate().toString()).slice(-2);
-			return `${year}.${month}.${day}`;
-		}
-		return '시간';
-	};
+function TextboxInput({ variant, dateValue, onChange, dateTextRef }: TextboxInputProps) {
 	const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (onChange) {
 			const formattedInput = dotFormatDate(e.target.value);
@@ -35,10 +28,11 @@ function TextboxInput({ variant, dateValue, onChange }: TextboxInputProps) {
 			{variant === 'time' && <ClockIcon />}
 			<StyledInput
 				type="text"
-				placeholder={variant === 'time' ? '시간 없음' : textDateValue()}
+				placeholder={variant === 'time' ? '시간 없음' : formatDatetoString(dateValue)}
 				maxLength={10}
 				variant={variant}
 				onChange={handleDateChange}
+				ref={dateTextRef}
 			/>
 		</InputContainer>
 	);
