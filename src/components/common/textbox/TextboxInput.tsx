@@ -14,7 +14,7 @@ interface TextboxInputProps {
 }
 function TextboxInput({ variant, dateValue, onChange, dateTextRef }: TextboxInputProps) {
 	const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (onChange) {
+		if (onChange && dateValue) {
 			const formattedInput = dotFormatDate(e.target.value);
 			e.target.value = formattedInput;
 			if (formattedInput && formattedInput.length > 9) {
@@ -54,6 +54,7 @@ const InputContainer = styled.div<{ variant: 'date' | 'time' | 'smallDate' }>`
 	display: flex;
 	gap: 0.5rem;
 	align-items: center;
+	box-sizing: border-box;
 	width: 15.4rem;
 	height: 2.6rem;
 	padding: 0.3rem 1rem;
