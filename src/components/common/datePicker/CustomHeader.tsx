@@ -41,7 +41,7 @@ function CustomHeader({
 		if (endDate && endDate <= date) {
 			warnRef(startDateTextRef);
 			if (startDateTextRef.current) {
-				startDateTextRef.current.value = '';
+				Object.assign(startDateTextRef.current, { value: '' });
 			}
 		} else {
 			onChange(date, 'start');
@@ -51,7 +51,7 @@ function CustomHeader({
 		if (startDate && date <= startDate) {
 			warnRef(endDateTextRef);
 			if (endDateTextRef.current) {
-				endDateTextRef.current.value = '';
+				Object.assign(endDateTextRef.current, { value: '' });
 			}
 		} else {
 			onChange(date, 'end');
