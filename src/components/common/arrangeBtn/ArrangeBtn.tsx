@@ -12,7 +12,7 @@ const iconMap: Record<string, FunctionComponent<SVGProps<SVGSVGElement>>> = {
 	set: Icons.ArrangeBtn.IcnArrangeSet,
 	calendar: Icons.ArrangeBtn.IcnArrangeCalendar,
 };
-function ArrangeBtn({ type, mode, color, size }: ArrangeBtnType) {
+function ArrangeBtn({ type, mode, color, size, onClick }: ArrangeBtnType) {
 	const IconComponent = iconMap[type];
 	const StyledIcon = styled(IconComponent)<{ size: string; color: string; mode: string }>`
 		${({ size }) => (size === 'small' ? smallSize : bigSize)};
@@ -45,7 +45,7 @@ function ArrangeBtn({ type, mode, color, size }: ArrangeBtnType) {
 		}
 	`;
 
-	return <StyledIcon size={size} color={color} mode={mode} />;
+	return <StyledIcon size={size} color={color} mode={mode} onClick={onClick} />;
 }
 
 export default ArrangeBtn;

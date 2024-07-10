@@ -25,16 +25,16 @@ const button = {
 			BG: palette.Grey.Grey1,
 		},
 		DEFAULT: {
-			ICON: palette.Grey.White,
-			BG: palette.Grey.Black,
+			ICON: palette.Grey.Black,
+			BG: palette.Grey.White,
 		},
 		HOVER: {
 			ICON: palette.Grey.Black,
-			BG: palette.Grey.Grey3,
+			BG: palette.Grey.Grey4,
 		},
 		PRESSED: {
 			ICON: palette.Grey.Grey8,
-			BG: palette.Grey.Grey4,
+			BG: palette.Grey.Grey3,
 		},
 	},
 	BLACK: {

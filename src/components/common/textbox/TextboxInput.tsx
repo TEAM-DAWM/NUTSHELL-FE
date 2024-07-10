@@ -3,19 +3,36 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 import { theme } from '@/styles/theme';
+import dotFormatDate from '@/utils/dotFormatDate';
+import formatDatetoString from '@/utils/formatDatetoString';
 
 interface TextboxInputProps {
 	variant: 'date' | 'time' | 'smallDate';
+	dateValue?: Date | null;
+	onChange?: (date: Date) => void;
+	dateTextRef?: React.RefObject<HTMLInputElement>;
 }
-function TextboxInput({ variant }: TextboxInputProps) {
+function TextboxInput({ variant, dateValue, onChange, dateTextRef }: TextboxInputProps) {
+	const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (onChange) {
+			const formattedInput = dotFormatDate(e.target.value);
+			e.target.value = formattedInput;
+			if (formattedInput && formattedInput.length > 9) {
+				const valueDate = new Date(formattedInput);
+				onChange(valueDate);
+			}
+		}
+	};
 	return (
 		<InputContainer variant={variant}>
 			{variant === 'time' && <ClockIcon />}
 			<StyledInput
 				type="text"
-				placeholder={variant === 'time' ? '시간 없음' : '2024.07.11'}
+				placeholder={variant === 'time' ? '시간 없음' : formatDatetoString(dateValue)}
 				maxLength={10}
 				variant={variant}
+				onChange={handleDateChange}
+				ref={dateTextRef}
 			/>
 		</InputContainer>
 	);
@@ -46,6 +63,7 @@ const InputContainer = styled.div<{ variant: 'date' | 'time' | 'smallDate' }>`
 
 	&:focus-within {
 		background-color: ${({ theme }) => theme.palette.Blue.Blue2};
+		outline: solid 1px ${theme.palette.Primary};
 	}
 
 	${({ variant }) => variant === 'smallDate' && smallDateStyle}

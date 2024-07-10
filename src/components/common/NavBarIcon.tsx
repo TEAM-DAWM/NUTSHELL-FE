@@ -34,6 +34,20 @@ const IconLayout = styled.div`
 	align-items: center;
 	width: 100%;
 	height: 6.4rem;
+
+	&:hover {
+		div {
+			background-color: ${({ theme }) => theme.palette.Grey.Grey1};
+		}
+
+		p {
+			color: ${({ theme }) => theme.palette.Primary};
+		}
+
+		svg {
+			color: ${({ theme }) => theme.palette.Primary};
+		}
+	}
 `;
 const IconContainer = styled.div<{ $iscurrent: boolean }>`
 	display: flex;
