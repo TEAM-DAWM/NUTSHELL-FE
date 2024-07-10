@@ -11,6 +11,7 @@ const textButtonCss = css`
 `;
 
 export const smallSize = css`
+	height: 2.6rem;
 	padding: 0.3rem 1.2rem;
 
 	${textButtonCss}
@@ -18,8 +19,8 @@ export const smallSize = css`
 `;
 
 export const bigSize = css`
-	width: 6rem;
 	height: 3.2rem;
+	padding: 0.7rem 1.6rem;
 
 	${textButtonCss}
 	${theme.fontTheme.BODY_02}
