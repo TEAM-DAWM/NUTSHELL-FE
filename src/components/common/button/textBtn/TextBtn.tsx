@@ -15,10 +15,6 @@ function TextBtn({ size, text, color, mode, isHover, isPressed, onClick }: TextB
 		isPressed: boolean;
 	}>`
 		${({ size }) => (size === 'small' ? smallSize : bigSize)};
-		box-sizing: border-box;
-		width: 4.5rem;
-		padding: 0 1.2rem;
-
 		color: ${({ theme }) => theme.textButton[color][mode].TEXT};
 
 		background-color: ${({ theme }) => theme.textButton[color][mode].BG};
