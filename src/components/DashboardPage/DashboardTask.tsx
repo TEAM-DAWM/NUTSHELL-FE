@@ -2,17 +2,14 @@ import styled from '@emotion/styled';
 
 import BtnTask from '@/components/common/BtnTask/BtnTask';
 import ScrollGradient from '@/components/common/ScrollGradient';
+import DASHBOARD_TASK_TYPE from '@/constants/dashboardTask';
+import TODAY from '@/constants/tasksToday';
 
 interface DashboardTaskProps {
 	text: 'upcoming' | 'postponed' | 'inprogress';
 }
 
 function DashboardTask({ text }: DashboardTaskProps) {
-	const DASHBOARD_TASK_TYPE = {
-		UPCOMING: '다가오는 할 일',
-		POSTPONED: '지연된 할 일',
-		INPROGRESS: '진행중인 할 일',
-	};
 	let taskStatus = '';
 	if (text === 'upcoming') {
 		taskStatus = DASHBOARD_TASK_TYPE.UPCOMING;
@@ -26,7 +23,7 @@ function DashboardTask({ text }: DashboardTaskProps) {
 			<TextBox>
 				<TaskText text={text}>{taskStatus}</TaskText>
 				<NumberTextBox>
-					<Number>2</Number>
+					<Number>{TODAY.data.tasks.length}</Number>
 					<NumberText>개</NumberText>
 				</NumberTextBox>
 			</TextBox>
@@ -53,7 +50,7 @@ const TaskLayout = styled.div`
 	width: 41.7rem;
 	height: 41rem;
 
-	border: 1px solid #dedede;
+	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 12px;
 `;
 
