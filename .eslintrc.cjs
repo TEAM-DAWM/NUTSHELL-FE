@@ -19,6 +19,7 @@ module.exports = {
 	parser: '@typescript-eslint/parser',
 	plugins: ['react', 'react-hooks', 'react-refresh', '@typescript-eslint'],
 	rules: {
+		'no-alert': 'off',
 		'react/jsx-props-no-spreading': 'off',
 		'no-use-before-define': 'off',
 		'@typescript-eslint/no-use-before-define': 'off',
