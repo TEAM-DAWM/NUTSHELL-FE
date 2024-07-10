@@ -5,6 +5,16 @@ import TextboxInput from '../textbox/TextboxInput';
 
 import DayDiffText from './DayDiffText';
 
+interface CustonHeaderProps {
+	startDate: Date | null;
+	endDate: Date | null;
+	decreaseMonth: () => void;
+	increaseMonth: () => void;
+	prevMonthButtonDisabled: boolean;
+	nextMonthButtonDisabled: boolean;
+	onChange: (date: Date, mode: 'start' | 'end') => void;
+}
+
 function CustomHeader({
 	startDate,
 	endDate,
@@ -12,25 +22,37 @@ function CustomHeader({
 	increaseMonth,
 	prevMonthButtonDisabled,
 	nextMonthButtonDisabled,
-}: {
-	startDate: Date | null;
-	endDate: Date | null;
-	decreaseMonth: () => void;
-	increaseMonth: () => void;
-	prevMonthButtonDisabled: boolean;
-	nextMonthButtonDisabled: boolean;
-}) {
+	onChange,
+}: CustonHeaderProps) {
 	let diff = 0;
 	if (endDate && startDate) {
 		diff = Math.abs(endDate.getTime() - startDate.getTime());
 		diff = Math.ceil(diff / (1000 * 60 * 60 * 24));
 	}
+
+	const onStartChange = (date: Date) => {
+		if (endDate && endDate < date) {
+			alert('시작날짜가 종료날짜보다 뒤에 있음');
+		} else {
+			onChange(date, 'start');
+		}
+	};
+	const onEndChange = (date: Date) => {
+		// 기타 안되는 예외사항 처리
+		// 이후 모달 만들어서 처리하기
+		if (startDate && date < startDate) {
+			alert('종료날짜가 시작날짜를 앞섬');
+		} else {
+			onChange(date, 'end');
+		}
+	};
+
 	return (
 		<div className="react-datepicker__header-custom">
 			<InfoBox>
 				<InfoWrapper>
-					<TextboxInput variant="smallDate" dateValue={startDate} />
-					<TextboxInput variant="smallDate" dateValue={endDate} />
+					<TextboxInput variant="smallDate" dateValue={startDate} onChange={onStartChange} />
+					<TextboxInput variant="smallDate" dateValue={endDate} onChange={onEndChange} />
 				</InfoWrapper>
 				<DayDiffText diff={diff} />
 			</InfoBox>

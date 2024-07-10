@@ -3,12 +3,14 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 import { theme } from '@/styles/theme';
+import dotFormatDate from '@/utils/dotFormatDate';
 
 interface TextboxInputProps {
 	variant: 'date' | 'time' | 'smallDate';
 	dateValue?: Date | null;
+	onChange?: (date: Date) => void;
 }
-function TextboxInput({ variant, dateValue }: TextboxInputProps) {
+function TextboxInput({ variant, dateValue, onChange }: TextboxInputProps) {
 	const textDateValue = () => {
 		if (dateValue) {
 			const year = dateValue.getFullYear();
@@ -18,6 +20,16 @@ function TextboxInput({ variant, dateValue }: TextboxInputProps) {
 		}
 		return '시간';
 	};
+	const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (onChange) {
+			const formattedInput = dotFormatDate(e.target.value);
+			e.target.value = formattedInput;
+			if (formattedInput && formattedInput.length > 9) {
+				const valueDate = new Date(formattedInput);
+				onChange(valueDate);
+			}
+		}
+	};
 	return (
 		<InputContainer variant={variant}>
 			{variant === 'time' && <ClockIcon />}
@@ -26,6 +38,7 @@ function TextboxInput({ variant, dateValue }: TextboxInputProps) {
 				placeholder={variant === 'time' ? '시간 없음' : textDateValue()}
 				maxLength={10}
 				variant={variant}
+				onChange={handleDateChange}
 			/>
 		</InputContainer>
 	);

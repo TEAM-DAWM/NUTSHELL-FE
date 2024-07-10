@@ -16,6 +16,13 @@ function DatePickerCustom() {
 		setStartDate(start);
 		setEndDate(end);
 	};
+	const onDateChange = (date: Date, mode: 'start' | 'end') => {
+		if (mode === 'start') {
+			setStartDate(date);
+		} else {
+			setEndDate(date);
+		}
+	};
 	return (
 		<DatePicker
 			locale={ko}
@@ -26,7 +33,9 @@ function DatePickerCustom() {
 			selectsRange
 			inline
 			calendarContainer={Calendar}
-			renderCustomHeader={(props) => <CustomHeader {...props} startDate={startDate} endDate={endDate} />}
+			renderCustomHeader={(props) => (
+				<CustomHeader {...props} startDate={startDate} endDate={endDate} onChange={onDateChange} />
+			)}
 		>
 			<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed />
 		</DatePicker>
