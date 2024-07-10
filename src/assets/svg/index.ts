@@ -6,6 +6,8 @@ import Icn_date_clock from '@/assets/svg/clock.svg?react';
 import DeleteIcon from '@/assets/svg/Delete.svg?react';
 import DoneIcon from '@/assets/svg/DoneIcon.svg?react';
 import TimelineDelete from '@/assets/svg/ic_delete.svg?react';
+import Icn_selectbox_selected from '@/assets/svg/ic_selectbox_selected.svg?react';
+import Icn_selectbox_Unselected from '@/assets/svg/ic_selectbox_unselected.svg?react';
 import IcnArrangeCalendar from '@/assets/svg/icn_arrange_calendar.svg?react';
 import IcnArrangeLeft from '@/assets/svg/icn_arrange_left.svg?react';
 import IcnArrangeRight from '@/assets/svg/icn_arrange_right.svg?react';
@@ -72,6 +74,8 @@ const Icons = {
 	TimelineDelete,
 	ClockCheck,
 	plus_circle,
+	Icn_selectbox_selected,
+	Icn_selectbox_Unselected,
 };
 
 export default Icons;
