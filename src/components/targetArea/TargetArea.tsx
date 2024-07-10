@@ -25,8 +25,7 @@ const TargetAreaLayout = styled.section`
 	flex-direction: column;
 	flex-shrink: 0;
 	align-items: flex-start;
-	width: 31rem;
-	height: fit-content;
+	height: 74.8rem;
 	margin: 1rem;
 	padding: 0 0.7rem;
 

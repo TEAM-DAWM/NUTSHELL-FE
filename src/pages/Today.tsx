@@ -25,8 +25,6 @@ function Today() {
 		<>
 			<NavBar />
 
-			<ModalArrange />
-
 			<TodayLayout>
 				<StagingArea />
 				<TargetArea />
@@ -34,6 +32,8 @@ function Today() {
 					<FullCalendarBox size="small" />
 				</CalendarWrapper>
 			</TodayLayout>
+
+			<ModalArrange />
 
 			<ScrollGradient />
 

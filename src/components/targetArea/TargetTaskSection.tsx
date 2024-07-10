@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import BtnTask from '../common/BtnTask/BtnTask';
+import ScrollGradient from '../common/ScrollGradient';
 
 import { TaskType } from '@/types/tasks/taskType';
 
@@ -60,6 +61,7 @@ function TargetTaskSection() {
 					id={task.id}
 				/>
 			))}
+			<ScrollGradient />
 		</TaskContainer>
 	);
 }
@@ -71,4 +73,5 @@ const TaskContainer = styled.div`
 	height: 64rem;
 	overflow: scroll;
 `;
+
 export default TargetTaskSection;

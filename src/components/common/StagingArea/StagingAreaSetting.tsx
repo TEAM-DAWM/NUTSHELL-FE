@@ -33,7 +33,7 @@ function StagingAreaSetting() {
 					onClick={() => handleButtonClick('취소')}
 				/>
 			</TextBtnContainer>
-			<ArrangeBtn type="set" mode="DISABLED" color="WHITE" size="small" />
+			<ArrangeBtn type="set" mode="DEFAULT" color="WHITE" size="small" />
 		</StagingAreaSettingLayout>
 	);
 }
