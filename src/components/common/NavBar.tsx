@@ -30,6 +30,7 @@ function NavBar() {
 const NavBarLayout = styled.div`
 	position: fixed;
 	left: 0;
+	z-index: 2;
 	display: flex;
 	flex-direction: column;
 	gap: 12rem;
@@ -37,6 +38,7 @@ const NavBarLayout = styled.div`
 	width: 7.2rem;
 	height: 100vh;
 
+	background-color: ${({ theme }) => theme.palette.Grey.White};
 	border-right: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 `;
 const ProfileImg = styled.img`
