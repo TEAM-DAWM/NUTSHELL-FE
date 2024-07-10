@@ -1,11 +1,13 @@
 import styled from '@emotion/styled';
 
 import ArrangeBtn from '@/components/common/arrangeBtn/ArrangeBtn';
+import TaskSummary from '@/components/DashboardPage/TaskSummary';
 
 function DashBoard() {
 	return (
 		<>
 			{/* right */}
+			<TaskSummary text="complete" />
 			<Wrapper>
 				<ArrangeBtn type="right" color="BLUE" mode="DEFAULT" size="small" />
 				<ArrangeBtn type="right" color="BLUE" mode="DISABLED" size="small" />
