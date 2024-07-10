@@ -15,7 +15,7 @@ export const smallSize = css`
 	height: 2.6rem;
 
 	${textButtonCss}
-	${theme.fontTheme.CAPTION_01}
+	${theme.fontTheme.CAPTION_02}
 `;
 
 export const bigSize = css`

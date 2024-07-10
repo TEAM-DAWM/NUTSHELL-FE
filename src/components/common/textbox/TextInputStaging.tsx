@@ -1,12 +1,15 @@
 import styled from '@emotion/styled';
 
+import BtnStagingDate from '../BtnDate/BtnStagingDate';
+import EnterBtn from '../button/EnterBtn';
+
 function TextInputStaging() {
 	return (
 		<StagingLayout>
 			<TextArea placeholder="해야하는 일들을 쏟아내보세요." />
 			<BtnWrapper>
-				<TmpBtn />
-				<TmpBtn />
+				<BtnStagingDate />
+				<EnterBtn />
 			</BtnWrapper>
 		</StagingLayout>
 	);
@@ -34,6 +37,7 @@ const TextArea = styled.textarea`
 	&:focus {
 		outline: none;
 	}
+	resize: none;
 `;
 
 const BtnWrapper = styled.div`
@@ -44,11 +48,4 @@ const BtnWrapper = styled.div`
 	height: fit-content;
 `;
 
-/** 임시 버튼 */
-const TmpBtn = styled.div`
-	width: 5rem;
-	height: 2.2rem;
-
-	background-color: ${({ theme }) => theme.palette.Grey.Grey6};
-`;
 export default TextInputStaging;

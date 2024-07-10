@@ -5,4 +5,5 @@ export interface TextBtnType {
 	text: string;
 	isHover: boolean;
 	isPressed: boolean;
+	onClick?: () => void;
 }

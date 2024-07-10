@@ -7,6 +7,7 @@ import StatusStagingBtn from '@/components/common/button/statusBtn/StatusStaging
 import StatusTodoBtn from '@/components/common/button/statusBtn/StatusTodoBtn';
 import NavBar from '@/components/common/NavBar';
 import ScrollGradient from '@/components/common/ScrollGradient';
+import StagingArea from '@/components/common/StagingArea/StagingArea';
 import TextboxDailydate from '@/components/common/textbox/TextboxDailydate';
 import TextboxInput from '@/components/common/textbox/TextboxInput';
 import TextInputDesc from '@/components/common/textbox/TextInputDesc';
@@ -22,17 +23,19 @@ function Today() {
 
 			<ScrollGradient />
 
-			<BtnTask btnType={1} isDescription />
+			<StagingArea />
+
+			<BtnTask btnType="staging" isDescription />
 
 			<p>Done</p>
-			<BtnTask btnType={2} status="Done" />
+			<BtnTask btnType="target" status="Done" />
 			<p>InProgress</p>
-			<BtnTask btnType={2} status="InProgress" />
+			<BtnTask btnType="target" status="InProgress" />
 			<p>Todo(default)</p>
-			<BtnTask btnType={2} />
+			<BtnTask btnType="target" />
 
 			<p>Staging</p>
-			<BtnTask btnType={3} />
+			<BtnTask btnType="delayed" />
 
 			<p>Done</p>
 			<StatusDoneBtn />

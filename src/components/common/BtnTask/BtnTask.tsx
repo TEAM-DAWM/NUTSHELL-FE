@@ -2,16 +2,15 @@ import { css, Theme } from '@emotion/react';
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
 
-import BtnDate from '../BtnDate/BtnDate';
-import StatusDoneBtn from '../button/statusBtn/StatusDoneBtn';
-import StatusInProgressBtn from '../button/statusBtn/StatusInProgressBtn';
-import StatusStagingBtn from '../button/statusBtn/StatusStagingBtn';
-import StatusTodoBtn from '../button/statusBtn/StatusTodoBtn';
-
 import Icons from '@/assets/svg/index';
+import BtnDate from '@/components/common/BtnDate/BtnDate';
+import StatusDoneBtn from '@/components/common/button/statusBtn/StatusDoneBtn';
+import StatusInProgressBtn from '@/components/common/button/statusBtn/StatusInProgressBtn';
+import StatusStagingBtn from '@/components/common/button/statusBtn/StatusStagingBtn';
+import StatusTodoBtn from '@/components/common/button/statusBtn/StatusTodoBtn';
 
 interface BtnTaskProps {
-	btnType: number;
+	btnType: 'staging' | 'target' | 'delayed';
 	status?: string;
 	isDescription?: boolean;
 }
@@ -21,7 +20,7 @@ interface BorderColorProps {
 	isClicked: boolean;
 	iconHovered: boolean;
 	theme: Theme;
-	btnType: number;
+	btnType: string;
 }
 
 function BtnTask(props: BtnTaskProps) {
@@ -65,7 +64,7 @@ function BtnTask(props: BtnTaskProps) {
 	};
 
 	const renderStatusButton = () => {
-		if (btnType === 3) {
+		if (btnType === 'delayed') {
 			return <StagingIconHoverIndicator />;
 		}
 
@@ -73,11 +72,11 @@ function BtnTask(props: BtnTaskProps) {
 			return <IconHoverIndicator />;
 		}
 
-		if (btnType === 1) {
+		if (btnType === 'staging') {
 			return <StatusStagingBtn />;
 		}
 
-		if (btnType === 2) {
+		if (btnType === 'target') {
 			switch (status) {
 				case 'Done':
 					return <StatusDoneBtn />;
@@ -104,7 +103,7 @@ function BtnTask(props: BtnTaskProps) {
 					{isDescription && <IconFile />}
 					넛쉘 UT 진행하기
 				</BtnTaskTextWrapper>
-				<BtnDate date="2024.07.11" time="22:22" size="small" isDelayed={btnType === 3} />
+				<BtnDate date="2024.07.11" time="22:22" size="small" isDelayed={btnType === 'delayed'} />
 			</BtnTaskContainer>
 			<IconHoverContainer
 				onClick={handleIconClick}
@@ -125,7 +124,7 @@ const getBorderColor = ({ isHovered, isClicked, iconHovered, theme, btnType }: B
 	const clickColor = theme.palette.Primary;
 	const orangeColor = theme.palette.Orange.Orange8;
 	let borderColor = defaultColor;
-	if (btnType === 3) {
+	if (btnType === 'delayed') {
 		borderColor = orangeColor;
 	} else if (iconHovered || isHovered) {
 		borderColor = hoverColor;
@@ -141,7 +140,7 @@ const BtnTaskLayout = styled('div', { target: 'BtnTaskLayout' })<{
 	isClicked: boolean;
 	isHovered: boolean;
 	iconHovered: boolean;
-	btnType: number;
+	btnType: string;
 }>`
 	display: flex;
 	align-items: center;
