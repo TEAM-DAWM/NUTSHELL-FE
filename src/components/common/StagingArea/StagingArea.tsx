@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
 
-import BtnTask from '../BtnTask/BtnTask';
-import ScrollGradient from '../ScrollGradient';
-import TextInputStaging from '../textbox/TextInputStaging';
-
-import StagingAreaSetting from './StagingAreaSetting';
+import BtnTask from '@/components/common/BtnTask/BtnTask';
+import ScrollGradient from '@/components/common/ScrollGradient';
+import StagingAreaSetting from '@/components/common/StagingArea/StagingAreaSetting';
+import TextInputStaging from '@/components/common/textbox/TextInputStaging';
 
 function StagingArea() {
 	return (
@@ -15,19 +14,17 @@ function StagingArea() {
 					<StagingAreaTaskContainer>
 						<StagingAreaSetting />
 						<BtnTaskContainer>
-							<BtnTask btnType={1} />
-							<BtnTask btnType={1} />
-							<BtnTask btnType={1} />
-							<BtnTask btnType={1} />
-							<BtnTask btnType={1} />
-							<BtnTask btnType={1} />
-							<BtnTask btnType={1} />
-							<BtnTask btnType={1} />
-							<BtnTask btnType={1} />
-							<BtnTask btnType={1} />
-							<BtnTask btnType={1} />
-							<BtnTask btnType={1} />
-							<BtnTask btnType={1} />
+							<BtnTask btnType="staging" />
+							<BtnTask btnType="staging" />
+							<BtnTask btnType="staging" />
+							<BtnTask btnType="staging" />
+							<BtnTask btnType="staging" />
+							<BtnTask btnType="staging" />
+							<BtnTask btnType="staging" />
+							<BtnTask btnType="staging" />
+							<BtnTask btnType="staging" />
+							<BtnTask btnType="staging" />
+							<BtnTask btnType="staging" />
 							<ScrollGradient />
 						</BtnTaskContainer>
 					</StagingAreaTaskContainer>

@@ -25,17 +25,17 @@ function Today() {
 
 			<StagingArea />
 
-			<BtnTask btnType={1} isDescription />
+			<BtnTask btnType="staging" isDescription />
 
 			<p>Done</p>
-			<BtnTask btnType={2} status="Done" />
+			<BtnTask btnType="target" status="Done" />
 			<p>InProgress</p>
-			<BtnTask btnType={2} status="InProgress" />
+			<BtnTask btnType="target" status="InProgress" />
 			<p>Todo(default)</p>
-			<BtnTask btnType={2} />
+			<BtnTask btnType="target" />
 
 			<p>Staging</p>
-			<BtnTask btnType={3} />
+			<BtnTask btnType="delayed" />
 
 			<p>Done</p>
 			<StatusDoneBtn />
