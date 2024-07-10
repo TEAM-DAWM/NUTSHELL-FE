@@ -12,7 +12,7 @@ import CalendarStyle from './DatePickerStyle';
 
 import formatDatetoString from '@/utils/formatDatetoString';
 
-function DateCorrectionModal() {
+function DateCorrectionModal({ isDateOnly }: { isDateOnly: boolean }) {
 	const prevDate: Date = new Date();
 	const [currentDate, setCurrentDate] = useState<Date | null>(null);
 	const dateTextRef = useRef<HTMLInputElement>(null);
@@ -35,7 +35,7 @@ function DateCorrectionModal() {
 			)}
 		>
 			<BottomBtnWrapper>
-				<TextboxInput variant="time" dateTextRef={timeTextRef} />
+				{isDateOnly && <TextboxInput variant="time" dateTextRef={timeTextRef} />}
 				<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed />
 			</BottomBtnWrapper>
 		</DatePicker>
@@ -43,7 +43,8 @@ function DateCorrectionModal() {
 }
 const BottomBtnWrapper = styled.div`
 	display: flex;
-	justify-content: space-between;
+	gap: 0.5rem;
+	justify-content: flex-end;
 	width: 100%;
 `;
 export default DateCorrectionModal;

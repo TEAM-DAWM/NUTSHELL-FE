@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 const CalendarStyle = styled.div`
 	display: flex;
 	flex-direction: column;
+	flex-shrink: 0;
 	align-items: center;
 	width: 22.8rem;
 	height: fit-content;
