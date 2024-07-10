@@ -3,6 +3,8 @@ import { useState } from 'react';
 
 import SortBtn from '../../button/SortBtn';
 
+import SORT_BY from '@/constants/sortType';
+
 function ModalArrange() {
 	const [activeSorByDateAdded, setActiveSorByDateAdded] = useState<string | null>(null);
 	const [activeSorByDeadLine, setActiveSorByDeadLine] = useState<string | null>(null);
@@ -19,27 +21,27 @@ function ModalArrange() {
 		<ModalArrangeLayout>
 			<SortBy>
 				<SortBtn
-					text="최신 등록순"
-					isActive={activeSorByDateAdded === '최신 등록순'}
-					onClick={() => handleSortByDateAddedClick('최신 등록순')}
+					text={SORT_BY.NEWEST}
+					isActive={activeSorByDateAdded === SORT_BY.NEWEST}
+					onClick={() => handleSortByDateAddedClick(SORT_BY.NEWEST)}
 				/>
 				<SortBtn
-					text="오래된 등록순"
-					isActive={activeSorByDateAdded === '오래된 등록순'}
+					text={SORT_BY.OLDEST}
+					isActive={activeSorByDateAdded === SORT_BY.OLDEST}
 					onClick={() => handleSortByDateAddedClick('오래된 등록순')}
 				/>
 			</SortBy>
 			<ModalArrangeLine />
 			<SortBy>
 				<SortBtn
-					text="가까운 마감기한순"
-					isActive={activeSorByDeadLine === '가까운 마감기한순'}
-					onClick={() => handleSortByDeadLineClick('가까운 마감기한순')}
+					text={SORT_BY.CLOSEST}
+					isActive={activeSorByDeadLine === SORT_BY.CLOSEST}
+					onClick={() => handleSortByDeadLineClick(SORT_BY.CLOSEST)}
 				/>
 				<SortBtn
-					text="먼 마감기한순"
-					isActive={activeSorByDeadLine === '먼 마감기한순'}
-					onClick={() => handleSortByDeadLineClick('먼 마감기한순')}
+					text={SORT_BY.CLOSEST}
+					isActive={activeSorByDeadLine === SORT_BY.CLOSEST}
+					onClick={() => handleSortByDeadLineClick(SORT_BY.CLOSEST)}
 				/>
 			</SortBy>
 		</ModalArrangeLayout>
