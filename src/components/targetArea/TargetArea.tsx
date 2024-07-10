@@ -27,6 +27,7 @@ const TargetAreaLayout = styled.section`
 	align-items: flex-start;
 	width: 31rem;
 	height: fit-content;
+	margin: 1rem;
 	padding: 0 0.7rem;
 
 	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};

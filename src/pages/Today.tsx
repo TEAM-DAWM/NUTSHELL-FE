@@ -1,3 +1,5 @@
+import styled from '@emotion/styled';
+
 import BtnDate from '@/components/common/BtnDate/BtnDate';
 import BtnStagingDate from '@/components/common/BtnDate/BtnStagingDate';
 import BtnTask from '@/components/common/BtnTask/BtnTask';
@@ -5,6 +7,7 @@ import StatusDoneBtn from '@/components/common/button/statusBtn/StatusDoneBtn';
 import StatusInProgressBtn from '@/components/common/button/statusBtn/StatusInProgressBtn';
 import StatusStagingBtn from '@/components/common/button/statusBtn/StatusStagingBtn';
 import StatusTodoBtn from '@/components/common/button/statusBtn/StatusTodoBtn';
+import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
 import ModalArrange from '@/components/common/modal/ModalArrange/ModalArrange';
 import NavBar from '@/components/common/NavBar';
 import ScrollGradient from '@/components/common/ScrollGradient';
@@ -23,6 +26,14 @@ function Today() {
 			<NavBar />
 
 			<ModalArrange />
+
+			<TodayLayout>
+				<StagingArea />
+				<TargetArea />
+				<CalendarWrapper>
+					<FullCalendarBox size="small" />
+				</CalendarWrapper>
+			</TodayLayout>
 
 			<ScrollGradient />
 
@@ -72,3 +83,20 @@ function Today() {
 }
 
 export default Today;
+
+const TodayLayout = styled.div`
+	display: flex;
+`;
+
+const CalendarWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 65rem;
+	height: 72.8rem;
+	margin: 1rem 0;
+	padding: 18px 0 0 23px;
+
+	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
+	border-radius: 12px;
+`;
