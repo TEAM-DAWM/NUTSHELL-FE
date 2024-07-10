@@ -38,7 +38,11 @@ function DashBoard() {
 				<DateText>{getTodayDate()}</DateText>
 				<DayText>{getNameOfDayKor(dayOfTheWeekKor)}</DayText>
 			</DateContainer>
-			<DashboardTask text="upcoming" />
+			<DashBoardTaskWrapper>
+				<DashboardTask text="upcoming" />
+				<DashboardTask text="postponed" />
+				<DashboardTask text="inprogress" />
+			</DashBoardTaskWrapper>
 			<TaskSummaryWrapper>
 				{SUMMARY_INFO.map((info) => (
 					<TaskSummary key={info.name} text={info.text} data={info.data} unit={info.unit} />
@@ -64,7 +68,7 @@ const DashBoardLayout = styled.div`
 const DateContainer = styled.div`
 	display: flex;
 	align-items: end;
-	justify-content: center;
+	justify-content: flex-start;
 	width: 25.3rem;
 	height: 7.7rem;
 	padding: 2.8rem 2.2rem 2.1rem;
@@ -80,6 +84,14 @@ const DayText = styled.p`
 
 	${({ theme }) => theme.fontTheme.LABEL_01};
 	color: ${({ theme }) => theme.palette.Grey.Grey6};
+`;
+
+const DashBoardTaskWrapper = styled.div`
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	align-self: stretch;
+	padding-left: 0.7rem;
 `;
 
 const TaskSummaryWrapper = styled.div`

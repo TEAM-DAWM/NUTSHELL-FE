@@ -95,6 +95,7 @@ const TaskLayout = styled.div`
 	flex-direction: column;
 	align-items: flex-start;
 	align-self: stretch;
+	box-sizing: border-box;
 	width: 41.7rem;
 	height: 41rem;
 

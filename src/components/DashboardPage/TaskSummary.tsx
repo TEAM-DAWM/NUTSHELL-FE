@@ -27,7 +27,6 @@ export default TaskSummary;
 
 const TaskSummaryLayout = styled.div`
 	display: flex;
-	flex: 1 0 0;
 	flex-direction: column;
 	gap: 2rem;
 	align-items: flex-start;
