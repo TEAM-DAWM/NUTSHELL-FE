@@ -1,63 +1,56 @@
 import styled from '@emotion/styled';
 
-import ArrangeBtn from '@/components/common/arrangeBtn/ArrangeBtn';
 import TaskSummary from '@/components/DashboardPage/TaskSummary';
+import PERIOD from '@/constants/tasksPeriod';
 
 function DashBoard() {
+	const SUMMARY_INFO = [
+		{
+			name: 'complete',
+			text: '완료한 할 일 갯수',
+			data: PERIOD.data.completeTasks,
+			unit: '개',
+		},
+		{
+			name: 'postponed',
+			text: '평균 진행중인 할 일 갯수',
+			data: PERIOD.data.avgInprogressTasks,
+			unit: '개',
+		},
+		{
+			name: 'inprogress',
+			text: '진행중인 할 일',
+			data: PERIOD.data.avgDeferredRate,
+			unit: '%',
+		},
+	];
+
 	return (
-		<>
-			{/* right */}
-			<TaskSummary text="complete" />
-			<Wrapper>
-				<ArrangeBtn type="right" color="BLUE" mode="DEFAULT" size="small" />
-				<ArrangeBtn type="right" color="BLUE" mode="DISABLED" size="small" />
-
-				<ArrangeBtn type="right" color="WHITE" mode="DEFAULT" size="small" />
-				<ArrangeBtn type="right" color="WHITE" mode="DISABLED" size="small" />
-
-				<ArrangeBtn type="right" color="BLACK" mode="DEFAULT" size="small" />
-				<ArrangeBtn type="right" color="BLACK" mode="DISABLED" size="small" />
-			</Wrapper>
-
-			{/* left */}
-			<Wrapper>
-				<ArrangeBtn type="left" color="BLUE" mode="DEFAULT" size="small" />
-				<ArrangeBtn type="left" color="BLUE" mode="DISABLED" size="small" />
-
-				<ArrangeBtn type="left" color="WHITE" mode="DEFAULT" size="small" />
-				<ArrangeBtn type="left" color="WHITE" mode="DISABLED" size="small" />
-
-				<ArrangeBtn type="left" color="BLACK" mode="DEFAULT" size="small" />
-				<ArrangeBtn type="left" color="BLACK" mode="DISABLED" size="small" />
-			</Wrapper>
-
-			{/* set */}
-			<Wrapper>
-				<ArrangeBtn type="set" color="BLUE" mode="DEFAULT" size="small" />
-				<ArrangeBtn type="set" color="BLUE" mode="DISABLED" size="small" />
-
-				<ArrangeBtn type="set" color="WHITE" mode="DEFAULT" size="small" />
-				<ArrangeBtn type="set" color="WHITE" mode="DISABLED" size="small" />
-
-				<ArrangeBtn type="set" color="BLACK" mode="DEFAULT" size="small" />
-				<ArrangeBtn type="set" color="BLACK" mode="DISABLED" size="small" />
-			</Wrapper>
-
-			{/* calendar */}
-			<Wrapper>
-				<ArrangeBtn type="calendar" color="BLUE" mode="DEFAULT" size="small" />
-				<ArrangeBtn type="calendar" color="BLUE" mode="DISABLED" size="small" />
-
-				<ArrangeBtn type="calendar" color="WHITE" mode="DEFAULT" size="small" />
-				<ArrangeBtn type="calendar" color="WHITE" mode="DISABLED" size="small" />
-
-				<ArrangeBtn type="calendar" color="BLACK" mode="DEFAULT" size="small" />
-				<ArrangeBtn type="calendar" color="BLACK" mode="DISABLED" size="small" />
-			</Wrapper>
-		</>
+		<DashBoardWrapper>
+			<TaskSummaryWrapper>
+				{SUMMARY_INFO.map((info) => (
+					<TaskSummary key={info.name} text={info.text} data={info.data} unit={info.unit} />
+				))}
+			</TaskSummaryWrapper>
+		</DashBoardWrapper>
 	);
 }
-const Wrapper = styled.div`
-	display: flex;
-`;
+
 export default DashBoard;
+
+const DashBoardWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 127.8rem;
+	height: 100vh;
+`;
+
+const TaskSummaryWrapper = styled.div`
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	align-self: stretch;
+	height: 21.4rem;
+	padding: 0 0 2.8rem 0.7rem;
+`;

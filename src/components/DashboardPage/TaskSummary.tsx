@@ -1,43 +1,22 @@
 import styled from '@emotion/styled';
 
 import sampleImg from '@/assets/images/sample.png';
-import PERIOD from '@/constants/tasksPeriod';
 
 interface TaskSummaryProps {
-	text: 'complete' | 'postponed' | 'inprogress';
+	text: string;
+	data: number;
+	unit: string;
 }
 
-function TaskSummary({ text }: TaskSummaryProps) {
-	const TASK_SUMMARY_TYPE = {
-		COMPLETE: '완료한 할 일 갯수',
-		POSTPONED: '평균 진행중인 할 일 갯수',
-		INPROGRESS: '진행중인 할 일',
-	};
-	let summaryTask = '';
-	if (text === 'complete') {
-		summaryTask = TASK_SUMMARY_TYPE.COMPLETE;
-	} else if (text === 'postponed') {
-		summaryTask = TASK_SUMMARY_TYPE.POSTPONED;
-	} else if (text === 'inprogress') {
-		summaryTask = TASK_SUMMARY_TYPE.INPROGRESS;
-	}
-
-	let summaryNumber = 0;
-	if (text === 'complete') {
-		summaryNumber = PERIOD.data.completeTasks;
-	} else if (text === 'postponed') {
-		summaryNumber = PERIOD.data.avgDeferredRate;
-	} else if (text === 'inprogress') {
-		summaryNumber = PERIOD.data.avgInprogressTasks;
-	}
+function TaskSummary({ text, data, unit }: TaskSummaryProps) {
 	return (
 		<TaskSummaryLayout>
 			<ProfileImg src={sampleImg} alt="프로필" />
 			<TextWrapper>
-				<SummaryText text={text}>{summaryTask}</SummaryText>
+				<SummaryText>{text}</SummaryText>
 				<NumberTaskBox>
-					<Number>{summaryNumber}</Number>
-					<NumberText>개</NumberText>
+					<Number>{data}</Number>
+					<NumberText>{unit}</NumberText>
 				</NumberTaskBox>
 			</TextWrapper>
 		</TaskSummaryLayout>
@@ -78,7 +57,7 @@ const TextWrapper = styled.div`
 	margin-bottom: 3rem;
 `;
 
-const SummaryText = styled.p<{ text: string }>`
+const SummaryText = styled.p`
 	${({ theme }) => theme.fontTheme.HEADLINE_03}
 	color: ${({ theme }) => theme.palette.Grey.Grey7}
 `;
