@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import DashboardTask from '@/components/DashboardPage/DashboardTask';
 import TaskSummary from '@/components/DashboardPage/TaskSummary';
 import PERIOD from '@/constants/tasksPeriod';
 
@@ -27,6 +28,7 @@ function DashBoard() {
 
 	return (
 		<DashBoardWrapper>
+			<DashboardTask text="upcoming" />
 			<TaskSummaryWrapper>
 				{SUMMARY_INFO.map((info) => (
 					<TaskSummary key={info.name} text={info.text} data={info.data} unit={info.unit} />
