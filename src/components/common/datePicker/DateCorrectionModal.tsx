@@ -35,7 +35,7 @@ function DateCorrectionModal({ isDateOnly }: { isDateOnly: boolean }) {
 			)}
 		>
 			<BottomBtnWrapper>
-				{isDateOnly && <TextboxInput variant="time" dateTextRef={timeTextRef} />}
+				{!isDateOnly && <TextboxInput variant="time" dateTextRef={timeTextRef} />}
 				<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed />
 			</BottomBtnWrapper>
 		</DatePicker>
