@@ -24,5 +24,4 @@ export const bigSize = css`
 
 	${textButtonCss}
 	${theme.fontTheme.BODY_02}
-	box-shadow: 0 0 24px 0 rgb(0 0 0 / 12%);
 `;

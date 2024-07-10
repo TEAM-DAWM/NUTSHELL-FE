@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import google_calendar from '@/assets/images/google_calendar.png';
 import Icons from '@/assets/svg/index';
-import SettingXBtn from '@/components/common/button/settingBtn/SettingXBtn';
+import SettingCheckBtn from '@/components/common/button/settingBtn/SettingCheckBtn';
 import USERS from '@/constants/users';
 
 function AccountArea() {
@@ -19,7 +19,7 @@ function AccountArea() {
 				</CalendarContainer>
 				<InputBox>
 					<EmailWrapper>{USERS.data.email}</EmailWrapper>
-					<SettingXBtn />
+					<SettingCheckBtn size="small" type="close" isHover isPressed={false} isActive />
 				</InputBox>
 			</AccountWrapper>
 		</AccountAreaWrapper>

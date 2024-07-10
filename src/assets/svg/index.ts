@@ -1,6 +1,7 @@
 import Icn_arrow_narrow_right from '@/assets/svg/arrow-narrow-right.svg?react';
 import Arrow_up from '@/assets/svg/arrow-up.svg?react';
 import Icn_calander from '@/assets/svg/calendar-minus-01.svg?react';
+import ClockCheck from '@/assets/svg/clock-check.svg?react';
 import Icn_date_clock from '@/assets/svg/clock.svg?react';
 import DeleteIcon from '@/assets/svg/Delete.svg?react';
 import DoneIcon from '@/assets/svg/DoneIcon.svg?react';
@@ -69,6 +70,7 @@ const Icons = {
 	DoneIcon,
 	ProgressIcon,
 	TimelineDelete,
+	ClockCheck,
 	plus_circle,
 };
 
