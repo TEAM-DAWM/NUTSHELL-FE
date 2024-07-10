@@ -4,10 +4,10 @@ import styled from '@emotion/styled';
 import Icons from '@/assets/svg/index';
 
 interface EnterBtnProps {
-	isDisabled: boolean;
+	isDisabled?: boolean;
 }
 
-function EnterBtn({ isDisabled }: EnterBtnProps) {
+function EnterBtn({ isDisabled = false }: EnterBtnProps) {
 	return (
 		<EnterBtnLayout isDisabled={isDisabled} disabled={isDisabled}>
 			<StyledIcon />

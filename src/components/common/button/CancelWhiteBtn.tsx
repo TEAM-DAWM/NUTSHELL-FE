@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-function DeleteBtn() {
+function CancelWhiteBtn() {
 	return (
 		<DeleteBtnLayout>
 			<StlyedDeleteIcon />
@@ -10,7 +10,7 @@ function DeleteBtn() {
 	);
 }
 
-export default DeleteBtn;
+export default CancelWhiteBtn;
 
 const DeleteBtnLayout = styled.button`
 	display: flex;

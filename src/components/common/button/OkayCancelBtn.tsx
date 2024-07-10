@@ -27,6 +27,12 @@ const OkayBtn = styled.button`
 
 	background-color: ${({ theme }) => theme.palette.Grey.Black};
 	${({ theme }) => theme.fontTheme.BODY_02};
+
+	&:hover {
+		color: ${({ theme }) => theme.palette.Grey.White};
+
+		background-color: ${({ theme }) => theme.palette.Grey.Grey7};
+	}
 `;
 
 const CancelBtn = styled.button`
@@ -35,4 +41,10 @@ const CancelBtn = styled.button`
 
 	background-color: ${({ theme }) => theme.palette.Grey.White};
 	${({ theme }) => theme.fontTheme.BODY_02};
+
+	&:hover {
+		color: ${({ theme }) => theme.palette.Grey.Grey6};
+
+		background-color: ${({ theme }) => theme.palette.Grey.Grey3};
+	}
 `;

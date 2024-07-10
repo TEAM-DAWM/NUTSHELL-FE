@@ -19,8 +19,6 @@ function ModalTextInputTime() {
 const ModalTextInputTimeLayout = styled.div`
 	display: flex;
 	gap: 2rem;
-
-	/* justify-content: space-between; */
 	width: 100%;
 `;
 
@@ -30,7 +28,7 @@ const TextInputTimeBox = styled.div`
 	align-items: center;
 `;
 
-const TmpIcon = styled(Icons.Icn_clock)`
+const TmpIcon = styled(Icons.ClockCheck)`
 	width: 2.4rem;
 	height: 2.4rem;
 `;

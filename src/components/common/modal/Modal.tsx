@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 
+import BtnDate from '@/components/common/BtnDate/BtnDate';
+import OkayCancelBtn from '@/components/common/button/OkayCancelBtn';
 import ModalHeaderBtn from '@/components/common/modal/ModalHeaderBtn';
 import ModalTextInputTime from '@/components/common/modal/ModalTextInputTime';
 import TextInputBox from '@/components/common/modal/TextInputBox';
-import TextboxInput from '@/components/common/textbox/TextboxInput';
 import { SizeType } from '@/types/textInputType';
 
 interface ModalProps {
@@ -16,7 +17,7 @@ function Modal({ isOpen, sizeType }: ModalProps) {
 		isOpen && (
 			<ModalLayout type={sizeType.type}>
 				<ModalHeader>
-					<TextboxInput variant="date" />
+					<BtnDate />
 					<ModalHeaderBtn type={sizeType.type} />
 				</ModalHeader>
 				<ModalBody>
@@ -24,8 +25,8 @@ function Modal({ isOpen, sizeType }: ModalProps) {
 					{sizeType.type === 'long' && <ModalTextInputTime />}
 				</ModalBody>
 				<ModalFooter>
-					<TmpBtn>취소</TmpBtn>
-					<TmpBtn>확인</TmpBtn>
+					<OkayCancelBtn type="cancel" />
+					<OkayCancelBtn type="okay" />
 				</ModalFooter>
 			</ModalLayout>
 		)
@@ -60,10 +61,6 @@ const ModalFooter = styled.div`
 	display: flex;
 	gap: 0.4rem;
 	justify-content: flex-end;
-`;
-
-const TmpBtn = styled.button`
-	display: block;
 `;
 
 export default Modal;
