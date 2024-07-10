@@ -1,20 +1,27 @@
 import styled from '@emotion/styled';
 
-function CategoryBox() {
+interface CategoryBoxProps {
+	email: string;
+	categoryList: string[];
+}
+
+function CategoryBox({ email, categoryList }: CategoryBoxProps) {
 	return (
 		<CategoryBoxLayout>
 			<TitleSection>카테고리</TitleSection>
 			<HeaderSection>
 				<TitleBox>카테고리</TitleBox>
 				<EmailBox>
-					<EmailText>hongildong@gmail.com</EmailText>
+					<EmailText>{email}</EmailText>
 				</EmailBox>
 			</HeaderSection>
 			<CategoryList>
-				<CategoryContent>
-					<CheckBoxBtn type="checkbox" />
-					<CategoryTitle>내 할 일</CategoryTitle>
-				</CategoryContent>
+				{categoryList.map((category) => (
+					<CategoryContent key={category}>
+						<CheckBoxBtn type="checkbox" />
+						<CategoryTitle>{category}</CategoryTitle>
+					</CategoryContent>
+				))}
 			</CategoryList>
 		</CategoryBoxLayout>
 	);
