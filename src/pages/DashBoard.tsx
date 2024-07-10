@@ -5,6 +5,8 @@ import DatePickerCustom from '@/components/common/datePicker/DatePickerCustom';
 import DashboardTask from '@/components/DashboardPage/DashboardTask';
 import TaskSummary from '@/components/DashboardPage/TaskSummary';
 import PERIOD from '@/constants/tasksPeriod';
+import getNameOfDayKor from '@/utils/getNameOfDayKor';
+import getTodayDate from '@/utils/getTodayDate';
 
 function DashBoard() {
 	const SUMMARY_INFO = [
@@ -27,9 +29,15 @@ function DashBoard() {
 			unit: '개',
 		},
 	];
+	const today = new Date();
+	const dayOfTheWeekKor = today.getDay();
 
 	return (
-		<DashBoardWrapper>
+		<DashBoardLayout>
+			<DateContainer>
+				<DateText>{getTodayDate()}</DateText>
+				<DayText>{getNameOfDayKor(dayOfTheWeekKor)}</DayText>
+			</DateContainer>
 			<DashboardTask text="upcoming" />
 			<TaskSummaryWrapper>
 				{SUMMARY_INFO.map((info) => (
@@ -39,18 +47,39 @@ function DashBoard() {
 			<DateCorrectionModal isDateOnly />
 			<DateCorrectionModal isDateOnly={false} />
 			<DatePickerCustom />
-		</DashBoardWrapper>
+		</DashBoardLayout>
 	);
 }
 
 export default DashBoard;
 
-const DashBoardWrapper = styled.div`
+const DashBoardLayout = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	width: 127.8rem;
 	height: 100vh;
+`;
+
+const DateContainer = styled.div`
+	display: flex;
+	align-items: end;
+	justify-content: center;
+	width: 25.3rem;
+	height: 7.7rem;
+	padding: 2.8rem 2.2rem 2.1rem;
+`;
+
+const DateText = styled.p`
+	${({ theme }) => theme.fontTheme.HEADLINE_01}
+	color : ${({ theme }) => theme.palette.Grey.Black}
+`;
+
+const DayText = styled.p`
+	margin: 0 0 0.1rem 0.8rem;
+
+	${({ theme }) => theme.fontTheme.LABEL_01};
+	color: ${({ theme }) => theme.palette.Grey.Grey6};
 `;
 
 const TaskSummaryWrapper = styled.div`
