@@ -19,7 +19,13 @@ function StatusStagingBtn() {
 	return (
 		<StatusStagingBtnLayout>
 			{!isCheckingPressed && (
-				<SettingDeleteBtn isHover={false} isPressed={isDeletePressed} onClick={handleSettingCheckClick} />
+				<SettingDeleteBtn
+					size="small"
+					isHover={false}
+					isActive={false}
+					isPressed={isDeletePressed}
+					onClick={handleSettingCheckClick}
+				/>
 			)}
 			{!isDeletePressed && (
 				<SettingCheckBtn

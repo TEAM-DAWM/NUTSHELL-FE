@@ -1,13 +1,14 @@
 import styled from '@emotion/styled';
 
-import DeleteBtn from '@/components/common/button/DeleteBtn';
+import SettingDeleteBtn from '../button/settingBtn/SettingDeleteBtn';
+
 import SettingCheckBtn from '@/components/common/button/settingBtn/SettingCheckBtn';
 import { SizeType } from '@/types/textInputType';
 
 function ModalHeaderBtn({ type }: SizeType) {
 	return (
 		<ModalHeaderBtnLayout>
-			<DeleteBtn />
+			<SettingDeleteBtn size="big" isHover isPressed={false} isActive />
 			{type === 'long' && <SettingCheckBtn type="progress" size="big" isHover isPressed={false} isActive />}
 			<SettingCheckBtn type="complete" size="big" isHover isPressed={false} isActive />
 		</ModalHeaderBtnLayout>
