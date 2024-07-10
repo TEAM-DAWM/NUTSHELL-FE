@@ -11,16 +11,16 @@ const textButtonCss = css`
 `;
 
 export const smallSize = css`
-	width: 4.5rem;
 	height: 2.6rem;
+	padding: 0.3rem 1.2rem;
 
 	${textButtonCss}
 	${theme.fontTheme.CAPTION_02}
 `;
 
 export const bigSize = css`
-	width: 6rem;
 	height: 3.2rem;
+	padding: 0.7rem 1.6rem;
 
 	${textButtonCss}
 	${theme.fontTheme.BODY_02}
