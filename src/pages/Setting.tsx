@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 
-import DeleteBtn from '@/components/common/button/DeleteBtn';
 import DeleteCancelBtn from '@/components/common/button/DeleteCancelBtn';
 import EnterBtn from '@/components/common/button/EnterBtn';
 import OkayCancelBtn from '@/components/common/button/OkayCancelBtn';
@@ -29,7 +28,6 @@ function Setting() {
 			<TextBtn size="big" text="전체" color="BLUE" mode="LIGHT" isHover isPressed />
 			<TextBtn size="big" text="전체" color="BLUE" mode="DEFAULT" isHover isPressed />
 			<SortBtn text="최신 등록순" />
-			<DeleteBtn />
 			<DeleteCancelBtn status="delete" />
 			<EnterBtn isDisabled={false} />
 			<OkayCancelBtn type="okay" />
