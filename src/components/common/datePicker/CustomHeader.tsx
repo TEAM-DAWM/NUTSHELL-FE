@@ -37,7 +37,7 @@ function CustomHeader({
 	}
 
 	const onStartChange = (date: Date) => {
-		if (endDate && endDate < date) {
+		if (endDate && endDate <= date) {
 			warnRef(startDateTextRef);
 			startDateTextRef.current && (startDateTextRef.current.value = '');
 		} else {
@@ -45,7 +45,7 @@ function CustomHeader({
 		}
 	};
 	const onEndChange = (date: Date) => {
-		if (startDate && date < startDate) {
+		if (startDate && date <= startDate) {
 			warnRef(endDateTextRef);
 			endDateTextRef.current && (endDateTextRef.current.value = '');
 		} else {
