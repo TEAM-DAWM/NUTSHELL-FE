@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 import CategoryCheckBox from '@/components/calendarPage/CategoryCheckBox';
 
-
 interface CategoryBoxProps {
 	email: string;
 	categoryList: string[];
@@ -11,7 +10,6 @@ interface CategoryBoxProps {
 function CategoryBox({ email, categoryList }: CategoryBoxProps) {
 	return (
 		<CategoryBoxLayout>
-			<TitleSection>카테고리</TitleSection>
 			<HeaderSection>
 				<TitleBox>카테고리</TitleBox>
 				<EmailBox>
@@ -28,23 +26,13 @@ function CategoryBox({ email, categoryList }: CategoryBoxProps) {
 }
 
 const CategoryBoxLayout = styled.div`
-	width: 31.7rem;
-	height: 49rem;
-
-	border: 1px solid #e4e4e4;
-	border-radius: 12px;
-`;
-
-const TitleSection = styled.section`
 	display: flex;
 	flex-direction: column;
 	gap: 1.2rem;
 	width: 31.7rem;
 	height: 49rem;
-	padding: 2rem 0.8rem 1.8rem 2.8rem;
-	${({ theme }) => theme.fontTheme.HEADLINE_02}
 
-	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
+	border: 1px solid #e4e4e4;
 	border-radius: 12px;
 `;
 
