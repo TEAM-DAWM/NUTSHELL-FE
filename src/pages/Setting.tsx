@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 
 import DeleteBtn from '@/components/common/button/DeleteBtn';
 import DeleteCancelBtn from '@/components/common/button/DeleteCancelBtn';
@@ -5,7 +6,7 @@ import EnterBtn from '@/components/common/button/EnterBtn';
 import OkayCancelBtn from '@/components/common/button/OkayCancelBtn';
 import ProgressBtn from '@/components/common/button/ProgressBtn';
 import RefreshBtn from '@/components/common/button/RefreshBtn';
-import SettingCheck2 from '@/components/common/button/settingBtn/SettingCheckBtn';
+import SettingCheck from '@/components/common/button/settingBtn/SettingCheckBtn';
 import SettingDeleteBtn from '@/components/common/button/settingBtn/SettingDeleteBtn';
 import SortBtn from '@/components/common/button/SortBtn';
 import StatusDoneBtn from '@/components/common/button/statusBtn/StatusDoneBtn';
@@ -16,10 +17,6 @@ import TextBtn from '@/components/common/button/textBtn/TextBtn';
 import TimelineDeleteBtn from '@/components/common/button/TimelineDeleteBtn';
 import TodayPlusBtn from '@/components/common/button/TodayPlusBtn';
 import Modal from '@/components/common/modal/Modal';
-
-import styled from '@emotion/styled';
-
-
 import NavBar from '@/components/common/NavBar';
 import AccountArea from '@/components/SettingPage/AccountArea';
 import LogOutBtn from '@/components/SettingPage/LogOutBtn';
@@ -53,8 +50,9 @@ function Setting() {
 			<StatusInProgressBtn />
 			<StatusStagingBtn />
 			<StatusTodoBtn />
-			<SettingCheck2 size="big" type="complete" isHover isPressed={false} isActive />
-			<SettingCheck2 size="big" type="complete" isHover isPressed={false} isActive />
+			<SettingCheck size="big" type="complete" isHover isPressed={false} isActive />
+			<SettingCheck size="big" type="complete" isHover isPressed={false} isActive />
+			<SettingCheck size="big" type="xBtn" isHover isPressed={false} isActive />
 			<SettingContainer>
 				<Wrapper>
 					<ProfileArea />
