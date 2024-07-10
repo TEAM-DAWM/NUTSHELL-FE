@@ -70,6 +70,10 @@ const CalendarStyle = styled.div`
 		border-radius: 0;
 	}
 
+	.react-datepicker__day--keyboard-selected {
+		background-color: transparent;
+	}
+
 	.react-datepicker__day--selected {
 		background-color: ${({ theme }) => theme.palette.Primary};
 		border-radius: 6px;

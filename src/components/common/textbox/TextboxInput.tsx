@@ -63,6 +63,7 @@ const InputContainer = styled.div<{ variant: 'date' | 'time' | 'smallDate' }>`
 
 	&:focus-within {
 		background-color: ${({ theme }) => theme.palette.Blue.Blue2};
+		outline: solid 1px ${theme.palette.Primary};
 	}
 
 	${({ variant }) => variant === 'smallDate' && smallDateStyle}
