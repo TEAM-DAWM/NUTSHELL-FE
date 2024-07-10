@@ -44,32 +44,31 @@ export const SettingLayout = styled.button<{
 
 	${({ isHover, theme }) =>
 		isHover &&
-		`
-		&:hover {
-			background-color: ${theme.palette.Blue.Blue3};
-		}
-	`}
+		css`
+			&:hover {
+				background-color: ${theme.palette.Blue.Blue3};
+			}
+		`}
 
 	${({ isActive, theme, isFill }) =>
 		isActive &&
-		`
-		&:active {
+		css`
+			&:active {
+				background-color: ${theme.palette.Primary};
+
+				path {
+					${isFill ? `fill: ${theme.palette.Grey.White};` : `stroke: ${theme.palette.Grey.White};`}
+				}
+			}
+		`}
+	
+	${({ isPressed, theme, isFill }) =>
+		isPressed &&
+		css`
 			background-color: ${theme.palette.Primary};
 
 			path {
 				${isFill ? `fill: ${theme.palette.Grey.White};` : `stroke: ${theme.palette.Grey.White};`}
 			}
-		}
-	`}
-	
-	${({ isPressed, theme, isFill }) =>
-		isPressed &&
-		`
-	
-		background-color: ${theme.palette.Primary};
-
-			path {
-				${isFill ? `fill: ${theme.palette.Grey.White};` : `stroke: ${theme.palette.Grey.White};`}
-			}
-	`}
+		`}
 `;
