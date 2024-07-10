@@ -5,6 +5,7 @@ import StatusDoneBtn from '@/components/common/button/statusBtn/StatusDoneBtn';
 import StatusInProgressBtn from '@/components/common/button/statusBtn/StatusInProgressBtn';
 import StatusStagingBtn from '@/components/common/button/statusBtn/StatusStagingBtn';
 import StatusTodoBtn from '@/components/common/button/statusBtn/StatusTodoBtn';
+import ModalArrange from '@/components/common/modal/ModalArrange/ModalArrange';
 import NavBar from '@/components/common/NavBar';
 import ScrollGradient from '@/components/common/ScrollGradient';
 import StagingArea from '@/components/common/StagingArea/StagingArea';
@@ -20,6 +21,8 @@ function Today() {
 	return (
 		<>
 			<NavBar />
+
+			<ModalArrange />
 
 			<ScrollGradient />
 
