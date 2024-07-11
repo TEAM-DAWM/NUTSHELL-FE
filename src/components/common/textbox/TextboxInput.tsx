@@ -8,6 +8,7 @@ import checkTimeFormat from '@/utils/checkTimeFormat';
 import dotFormatDate from '@/utils/dotFormatDate';
 import dotFormatTime from '@/utils/dotFormatTime';
 import formatDatetoString from '@/utils/formatDatetoString';
+import { blurRef, warnRef } from '@/utils/refStatus';
 
 interface TextboxInputProps {
 	variant: 'date' | 'time' | 'smallDate';
@@ -22,11 +23,14 @@ function TextboxInput({ variant, dateValue, onChange, dateTextRef }: TextboxInpu
 			e.target.value = formattedInput;
 
 			if (formattedInput && formattedInput.length > 9) {
-				if (!checkDateFormat(formattedInput)) {
-					alert('유효한 날짜가 아님');
+				if (!checkDateFormat(formattedInput) && dateTextRef) {
+					warnRef(dateTextRef);
 					e.target.value = '';
 				} else {
 					const valueDate = new Date(formattedInput);
+					if (dateTextRef) {
+						blurRef(dateTextRef);
+					}
 					onChange(valueDate);
 				}
 			}
@@ -38,15 +42,17 @@ function TextboxInput({ variant, dateValue, onChange, dateTextRef }: TextboxInpu
 
 			// 유효한 시간인지 검사
 			if (formattedInput && formattedInput.length > 4) {
-				if (!checkTimeFormat(formattedInput)) {
-					alert('유효한 시간이 아님');
+				if (!checkTimeFormat(formattedInput) && dateTextRef) {
+					warnRef(dateTextRef);
 					e.target.value = '';
+				} else if (dateTextRef) {
+					blurRef(dateTextRef);
 				}
 			}
 		}
 	};
 	return (
-		<InputContainer variant={variant}>
+		<InputContainer variant={variant} ref={dateTextRef}>
 			{variant === 'time' && <ClockIcon />}
 			<StyledInput
 				type="text"
@@ -54,7 +60,6 @@ function TextboxInput({ variant, dateValue, onChange, dateTextRef }: TextboxInpu
 				maxLength={10}
 				variant={variant}
 				onChange={handleDateChange}
-				ref={dateTextRef}
 			/>
 		</InputContainer>
 	);
