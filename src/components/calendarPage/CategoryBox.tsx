@@ -32,7 +32,7 @@ const CategoryBoxLayout = styled.div`
 	width: 31.7rem;
 	height: 49rem;
 
-	border: 1px solid #e4e4e4;
+	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 12px;
 `;
 
