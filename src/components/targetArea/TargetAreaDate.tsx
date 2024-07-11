@@ -1,11 +1,10 @@
 import styled from '@emotion/styled';
 
+import getToday from '@/utils/getToday';
+
 /** nnnn년 nn월 nn일 */
 function TargetAreaDate() {
-	const today = new Date();
-	const date = today.getDate();
-	const month = today.getMonth() + 1;
-	const year = today.getFullYear();
+	const { year, month, date } = getToday();
 	return (
 		<DateText>
 			{year}년 {month}월 {date}일
