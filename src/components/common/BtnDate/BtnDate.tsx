@@ -5,17 +5,24 @@ import { useState } from 'react';
 import BtnDateText, { TextWrapper } from './BtnDateText';
 
 import Icons from '@/assets/svg/index';
+import { SizeType } from '@/types/textInputType';
 
 interface BtnDateProps {
 	date?: string;
 	time?: string;
-	size?: string;
+	size?: SizeType;
 	isDelayed?: boolean;
 	isDisabled?: boolean;
 }
 
 function BtnDate(props: BtnDateProps) {
-	const { date = '마감 기한', time = '마감 시간', size = 'big', isDelayed = false, isDisabled = false } = props;
+	const {
+		date = '마감 기한',
+		time = '마감 시간',
+		size = { type: 'long' },
+		isDelayed = false,
+		isDisabled = false,
+	} = props;
 	const [isPressed, setIsPressed] = useState(false);
 	const [isClicked, setIsClicked] = useState(false);
 
@@ -27,7 +34,6 @@ function BtnDate(props: BtnDateProps) {
 		setIsPressed(false);
 		setIsClicked((prev) => !prev);
 	};
-
 	const isDefaultDate = date === '마감 기한';
 	const isDefaultTime = time === '마감 시간';
 
@@ -35,7 +41,7 @@ function BtnDate(props: BtnDateProps) {
 		<BtnDateLayout
 			isPressed={isPressed}
 			isClicked={isClicked}
-			size={size}
+			size={size.type}
 			isDelayed={isDelayed}
 			isDisabled={isDisabled}
 			isDefaultDate={isDefaultDate}
@@ -43,10 +49,15 @@ function BtnDate(props: BtnDateProps) {
 			onMouseDown={handleMouseDown}
 			onMouseUp={handleMouseUp}
 		>
-			<BtnDateText icon={<CalanderIcon isDelayed={isDelayed} />} text={date} isDefault={isDefaultDate} size={size} />
-			<LineIcon size={size} isDelayed={isDelayed} />
-			<BtnDateText icon={<ClockIcon isDelayed={isDelayed} />} text={time} isDefault={isDefaultTime} size={size} />
-			<XIcon isClicked={isClicked} size={size} />
+			<BtnDateText
+				icon={<CalanderIcon isDelayed={isDelayed} />}
+				text={date}
+				isDefault={isDefaultDate}
+				size={size.type}
+			/>
+			<LineIcon size={size.type} isDelayed={isDelayed} />
+			<BtnDateText icon={<ClockIcon isDelayed={isDelayed} />} text={time} isDefault={isDefaultTime} size={size.type} />
+			<XIcon isClicked={isClicked} size={size.type} />
 		</BtnDateLayout>
 	);
 }
@@ -58,8 +69,8 @@ const XIcon = styled((props: React.SVGProps<SVGSVGElement> & { isClicked: boolea
 	return <Icons.IcnXCricle {...rest} />;
 })<{ isClicked: boolean }>`
 	display: ${({ isClicked }) => (isClicked ? 'flex' : 'none')};
-	width: ${({ size }) => (size === 'big' ? '2rem' : '1.6rem')};
-	height: ${({ size }) => (size === 'big' ? '2rem' : '1.6rem')};
+	width: ${({ size }) => (size === 'long' ? '2rem' : '1.6rem')};
+	height: ${({ size }) => (size === 'long' ? '2rem' : '1.6rem')};
 `;
 
 const CalanderIcon = styled(Icons.Icn_calander, {
@@ -100,7 +111,7 @@ const LineIcon = styled(Icons.Icn_line, {
 	align-items: center;
 	justify-content: center;
 	width: 0.1rem;
-	height: ${({ size }) => (size === 'big' ? '2.2rem' : '1.2rem')};
+	height: ${({ size }) => (size === 'long' ? '2.2rem' : '1.2rem')};
 
 	line {
 		stroke: ${({ isDelayed, theme }) => (isDelayed ? theme.palette.Orange.Orange5 : theme.palette.Grey.Grey4)};
@@ -121,8 +132,8 @@ const BtnDateLayout = styled.div<{
 	align-items: center;
 	width: fit-content;
 	min-width: 1.8rem;
-	height: ${({ size }) => (size === 'big' ? '3.2rem' : '2rem')};
-	padding: ${({ size }) => (size === 'big' ? '0.5rem 1rem' : '0rem 1rem')};
+	height: ${({ size }) => (size === 'long' ? '2.2rem' : '2rem')};
+	padding: ${({ size }) => (size === 'long' ? '0.5rem 1rem' : '0rem 1rem')};
 
 	cursor: pointer;
 	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
@@ -141,10 +152,10 @@ const BtnDateLayout = styled.div<{
 	${({ isClicked, size, theme }) =>
 		isClicked &&
 		css`
-			padding-right: ${size === 'big' ? '0.6rem' : '0.2rem'};
+			padding-right: ${size === 'long' ? '0.6rem' : '0.2rem'};
 
 			border-color: ${theme.palette.Primary};
-			border-width: ${size === 'big' ? '2px' : '1px'};
+			border-width: ${size === 'long' ? '2px' : '1px'};
 		`}
 
 	${({ isPressed, theme }) =>
