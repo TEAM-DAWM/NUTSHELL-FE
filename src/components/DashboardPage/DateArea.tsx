@@ -1,15 +1,25 @@
 import styled from '@emotion/styled';
+import { useRef, useState } from 'react';
+
+import PeriodTextInput from './PeriodTextInput';
 
 import Icons from '@/assets/svg/index';
 
 function DateArea() {
+	const [date, setDate] = useState<Date | null>(new Date());
+	const inputRef = useRef<HTMLInputElement>(null);
+
+	// eslint-disable-next-line @typescript-eslint/no-shadow
+	const handleChange = (date: Date) => {
+		setDate(date);
+	};
 	return (
 		<DateAreaLayout>
 			<PlaceholderWrapper>
 				<StlyedCalendarIcon />
-				<HardCoding>2024년 7월 11일</HardCoding>
+				<PeriodTextInput startDate="2024-01-01" dateValue={date} onChange={handleChange} dateTextRef={inputRef} />
 				<StyledArrowIcon />
-				<HardCoding>2024년 7월 11일</HardCoding>
+				<PeriodTextInput endDate="2024-12-31" dateValue={date} onChange={handleChange} dateTextRef={inputRef} />
 			</PlaceholderWrapper>
 			<PastDateWrapper>
 				<PastWeekBtn>지난 1주일</PastWeekBtn>
@@ -43,23 +53,23 @@ const PlaceholderWrapper = styled.div`
 `;
 
 const StlyedCalendarIcon = styled(Icons.Icn_calander)`
-	width: 2.4rem;
-	height: 2.4rem;
+	width: 2rem;
+	height: 2rem;
 
 	path {
 		stroke: ${({ theme }) => theme.palette.Grey.Grey5};
 	}
 `;
 
-const HardCoding = styled.span`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 13.9rem;
-	height: 3.2rem;
-	padding: 0.7rem 1.6rem;
-	${({ theme }) => theme.fontTheme.BODY_02};
-`;
+// const HardCoding = styled.span`
+// 	display: flex;
+// 	align-items: center;
+// 	justify-content: center;
+// 	width: 13.9rem;
+// 	height: 3.2rem;
+// 	padding: 0.7rem 1.6rem;
+// 	${({ theme }) => theme.fontTheme.BODY_02};
+// `;
 
 const StyledArrowIcon = styled(Icons.Icn_arrow_narrow_right)`
 	width: 2.4rem;
