@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import ArrangeBtn from '../../common/arrangeBtn/ArrangeBtn';
+import ArrangeBtn from '@/components/common/arrangeBtn/ArrangeBtn';
 
 interface CustonHeaderProps {
 	date: Date;
