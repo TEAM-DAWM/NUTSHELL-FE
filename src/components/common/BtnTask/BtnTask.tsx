@@ -126,7 +126,7 @@ function BtnTask(props: BtnTaskProps) {
 					{renderStatusButton()}
 				</IconHoverContainer>
 			</BtnTaskLayout>
-			<Modal isOpen={isClicked} sizeType={{ type: 'short' }} top={top} left={left} />
+			<Modal isOpen={isClicked} sizeType={{ type: 'short' }} top={top} left={left} onClose={handleClick} />
 		</ModalLayout>
 	);
 }
