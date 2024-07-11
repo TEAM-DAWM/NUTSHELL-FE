@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 import { theme } from '@/styles/theme';
+import checkDateFormat from '@/utils/checkDateFormat';
 import checkTimeFormat from '@/utils/checkTimeFormat';
 import dotFormatDate from '@/utils/dotFormatDate';
 import dotFormatTime from '@/utils/dotFormatTime';
@@ -19,9 +20,15 @@ function TextboxInput({ variant, dateValue, onChange, dateTextRef }: TextboxInpu
 		if ((variant === 'date' || variant === 'smallDate') && onChange) {
 			const formattedInput = dotFormatDate(e.target.value);
 			e.target.value = formattedInput;
+
 			if (formattedInput && formattedInput.length > 9) {
-				const valueDate = new Date(formattedInput);
-				onChange(valueDate);
+				if (!checkDateFormat(formattedInput)) {
+					alert('유효한 날짜가 아님');
+					e.target.value = '';
+				} else {
+					const valueDate = new Date(formattedInput);
+					onChange(valueDate);
+				}
 			}
 		}
 
