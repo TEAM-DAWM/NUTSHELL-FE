@@ -12,8 +12,8 @@ function DateArea() {
 				<HardCoding>2024년 7월 11일</HardCoding>
 			</PlaceholderWrapper>
 			<PastDateWrapper>
-				<PastDateBtn>지난 1주일</PastDateBtn>
-				<PastDateBtn>지난 1달</PastDateBtn>
+				<PastWeekBtn>지난 1주일</PastWeekBtn>
+				<PastMonthBtn>지난 1달</PastMonthBtn>
 			</PastDateWrapper>
 		</DateAreaLayout>
 	);
@@ -78,10 +78,29 @@ const PastDateWrapper = styled.span`
 	height: 2.6rem;
 `;
 
-const PastDateBtn = styled.button`
+const PastWeekBtn = styled.button`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	width: 7.4rem;
+	height: 2.6rem;
+	padding: 0.3rem 1.2rem;
+
+	color: ${({ theme }) => theme.fontTheme.CAPTION_02};
+
+	background-color: ${({ theme }) => theme.palette.Grey.White};
+	${({ theme }) => theme.palette.Grey.Black};
+	border: 1px solid;
+	border-color: ${({ theme }) => theme.palette.Grey.Grey3};
+	border-radius: 8px;
+`;
+
+const PastMonthBtn = styled.button`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 6.3rem;
+	height: 2.6rem;
 	padding: 0.3rem 1.2rem;
 
 	color: ${({ theme }) => theme.fontTheme.CAPTION_02};
