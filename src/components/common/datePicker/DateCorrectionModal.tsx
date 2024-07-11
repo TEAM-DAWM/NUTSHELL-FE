@@ -25,13 +25,6 @@ function DateCorrectionModal({ isDateOnly }: { isDateOnly: boolean }) {
 		}
 	};
 
-	const onTimeChange = (timeVal: string) => {
-		// 현재 사용되지 않지만 이후 시간값 api 연결시 필요
-		// setTime(timeVal);
-		if (timeTextRef.current) {
-			timeTextRef.current.value = timeVal;
-		}
-	};
 	return (
 		<DatePicker
 			locale={ko}
@@ -44,7 +37,7 @@ function DateCorrectionModal({ isDateOnly }: { isDateOnly: boolean }) {
 			)}
 		>
 			<BottomBtnWrapper>
-				{!isDateOnly && <TextboxInput variant="time" dateTextRef={timeTextRef} onTimeChange={onTimeChange} />}
+				{!isDateOnly && <TextboxInput variant="time" dateTextRef={timeTextRef} />}
 				<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed />
 			</BottomBtnWrapper>
 		</DatePicker>

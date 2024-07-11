@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 import { theme } from '@/styles/theme';
+import checkTimeFormat from '@/utils/checkTimeFormat';
 import dotFormatDate from '@/utils/dotFormatDate';
 import dotFormatTime from '@/utils/dotFormatTime';
 import formatDatetoString from '@/utils/formatDatetoString';
@@ -11,10 +12,9 @@ interface TextboxInputProps {
 	variant: 'date' | 'time' | 'smallDate';
 	dateValue?: Date | null;
 	onChange?: (date: Date) => void;
-	onTimeChange?: (time: string) => void;
 	dateTextRef?: React.RefObject<HTMLInputElement>;
 }
-function TextboxInput({ variant, dateValue, onChange, onTimeChange, dateTextRef }: TextboxInputProps) {
+function TextboxInput({ variant, dateValue, onChange, dateTextRef }: TextboxInputProps) {
 	const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if ((variant === 'date' || variant === 'smallDate') && onChange) {
 			const formattedInput = dotFormatDate(e.target.value);
@@ -25,10 +25,17 @@ function TextboxInput({ variant, dateValue, onChange, onTimeChange, dateTextRef 
 			}
 		}
 
-		if (variant === 'time' && onTimeChange) {
+		if (variant === 'time') {
 			const formattedInput = dotFormatTime(e.target.value);
 			e.target.value = formattedInput;
-			onTimeChange(formattedInput);
+
+			// 유효한 시간인지 검사
+			if (formattedInput && formattedInput.length > 4) {
+				if (!checkTimeFormat(formattedInput)) {
+					alert('유효한 시간이 아님');
+					e.target.value = '';
+				}
+			}
 		}
 	};
 	return (
