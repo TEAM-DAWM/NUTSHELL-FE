@@ -15,12 +15,21 @@ import formatDatetoString from '@/utils/formatDatetoString';
 function DateCorrectionModal({ isDateOnly }: { isDateOnly: boolean }) {
 	const prevDate: Date = new Date();
 	const [currentDate, setCurrentDate] = useState<Date | null>(null);
+	// const [time, setTime] = useState<string>('');
 	const dateTextRef = useRef<HTMLInputElement>(null);
 	const timeTextRef = useRef<HTMLInputElement>(null);
 	const onChange = (date: Date | null) => {
 		setCurrentDate(date);
 		if (dateTextRef.current) {
 			dateTextRef.current.value = formatDatetoString(date);
+		}
+	};
+
+	const onTimeChange = (timeVal: string) => {
+		// 현재 사용되지 않지만 이후 시간값 api 연결시 필요
+		// setTime(timeVal);
+		if (timeTextRef.current) {
+			timeTextRef.current.value = timeVal;
 		}
 	};
 	return (
@@ -35,7 +44,7 @@ function DateCorrectionModal({ isDateOnly }: { isDateOnly: boolean }) {
 			)}
 		>
 			<BottomBtnWrapper>
-				{!isDateOnly && <TextboxInput variant="time" dateTextRef={timeTextRef} />}
+				{!isDateOnly && <TextboxInput variant="time" dateTextRef={timeTextRef} onTimeChange={onTimeChange} />}
 				<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed />
 			</BottomBtnWrapper>
 		</DatePicker>
