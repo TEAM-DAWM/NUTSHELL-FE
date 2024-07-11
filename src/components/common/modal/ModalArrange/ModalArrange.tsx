@@ -39,9 +39,9 @@ function ModalArrange() {
 					onClick={() => handleSortByDeadLineClick(SORT_BY.CLOSEST)}
 				/>
 				<SortBtn
-					text={SORT_BY.CLOSEST}
-					isActive={activeSorByDeadLine === SORT_BY.CLOSEST}
-					onClick={() => handleSortByDeadLineClick(SORT_BY.CLOSEST)}
+					text={SORT_BY.FARTHEST}
+					isActive={activeSorByDeadLine === SORT_BY.FARTHEST}
+					onClick={() => handleSortByDeadLineClick(SORT_BY.FARTHEST)}
 				/>
 			</SortBy>
 		</ModalArrangeLayout>
