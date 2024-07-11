@@ -18,36 +18,24 @@ interface TextboxInputProps {
 }
 function TextboxInput({ variant, dateValue, onChange, dateTextRef }: TextboxInputProps) {
 	const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if ((variant === 'date' || variant === 'smallDate') && onChange) {
-			const formattedInput = dotFormatDate(e.target.value);
-			e.target.value = formattedInput;
+		const { value } = e.target;
+		const formattedInput = variant === 'time' ? dotFormatTime(value) : dotFormatDate(value);
+		e.target.value = formattedInput;
 
-			if (formattedInput && formattedInput.length > 9) {
-				if (!checkDateFormat(formattedInput) && dateTextRef) {
-					warnRef(dateTextRef);
-					e.target.value = '';
-				} else {
-					const valueDate = new Date(formattedInput);
-					if (dateTextRef) {
-						blurRef(dateTextRef);
-					}
-					onChange(valueDate);
-				}
-			}
-		}
-
-		if (variant === 'time') {
-			const formattedInput = dotFormatTime(e.target.value);
-			e.target.value = formattedInput;
-
-			// 유효한 시간인지 검사
-			if (formattedInput && formattedInput.length > 4) {
-				if (!checkTimeFormat(formattedInput) && dateTextRef) {
-					warnRef(dateTextRef);
-					e.target.value = '';
-				} else if (dateTextRef) {
-					blurRef(dateTextRef);
-				}
+		if (formattedInput && formattedInput.length > (variant === 'time' ? 4 : 9)) {
+			const isValid = variant === 'time' ? checkTimeFormat(formattedInput) : checkDateFormat(formattedInput);
+			if (!isValid && dateTextRef) {
+				// 유효하지 않음
+				warnRef(dateTextRef);
+				e.target.value = '';
+			} else if (variant === 'date' && onChange) {
+				// 유효하고 date 인 경우
+				const valueDate = new Date(formattedInput);
+				if (dateTextRef) blurRef(dateTextRef);
+				onChange(valueDate);
+			} else if (dateTextRef) {
+				// 유효하고 time 인 경우
+				blurRef(dateTextRef);
 			}
 		}
 	};
