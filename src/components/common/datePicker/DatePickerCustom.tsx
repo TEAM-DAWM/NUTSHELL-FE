@@ -22,13 +22,15 @@ function DatePickerCustom() {
 		setStartDate(start);
 		blurRef(startDateTextRef);
 		if (startDateTextRef.current) {
-			startDateTextRef.current.value = formatDatetoString(start);
+			const inputElement = startDateTextRef.current.querySelector('input');
+			if (inputElement) inputElement.value = formatDatetoString(start);
 		}
 
 		setEndDate(end);
 		blurRef(endDateTextRef);
 		if (endDateTextRef.current) {
-			endDateTextRef.current.value = formatDatetoString(end);
+			const inputElement = endDateTextRef.current.querySelector('input');
+			if (inputElement) inputElement.value = formatDatetoString(end);
 		}
 	};
 	const onDateChange = (date: Date, mode: 'start' | 'end') => {

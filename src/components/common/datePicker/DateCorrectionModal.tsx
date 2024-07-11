@@ -21,7 +21,8 @@ function DateCorrectionModal({ isDateOnly }: { isDateOnly: boolean }) {
 	const onChange = (date: Date | null) => {
 		setCurrentDate(date);
 		if (dateTextRef.current) {
-			dateTextRef.current.value = formatDatetoString(date);
+			const inputElement = dateTextRef.current.querySelector('input');
+			if (inputElement) inputElement.value = formatDatetoString(date);
 		}
 	};
 
