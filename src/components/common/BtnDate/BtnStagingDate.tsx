@@ -1,8 +1,12 @@
 import styled from '@emotion/styled';
 
-function BtnStagingDate() {
+interface BtnStagingDateProps {
+	onClick?: () => void;
+}
+
+function BtnStagingDate({ onClick }: BtnStagingDateProps) {
 	return (
-		<BtnStagingDateLayout>
+		<BtnStagingDateLayout onClick={onClick}>
 			<BtnStagingDateText>⇥ 마감 기한 설정</BtnStagingDateText>
 		</BtnStagingDateLayout>
 	);

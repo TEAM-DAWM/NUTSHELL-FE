@@ -12,10 +12,10 @@ import CalendarStyle from './DatePickerStyle';
 
 import formatDatetoString from '@/utils/formatDatetoString';
 
-function DateCorrectionModal({ isDateOnly }: { isDateOnly: boolean }) {
+function DateCorrectionModal({ isDateOnly = false }: { isDateOnly?: boolean }) {
 	const prevDate: Date = new Date();
 	const [currentDate, setCurrentDate] = useState<Date | null>(null);
-	// const [time, setTime] = useState<string>('');
+
 	const dateTextRef = useRef<HTMLInputElement>(null);
 	const timeTextRef = useRef<HTMLInputElement>(null);
 	const onChange = (date: Date | null) => {
@@ -26,23 +26,33 @@ function DateCorrectionModal({ isDateOnly }: { isDateOnly: boolean }) {
 	};
 
 	return (
-		<DatePicker
-			locale={ko}
-			selected={currentDate}
-			onChange={onChange}
-			inline
-			calendarContainer={CalendarStyle}
-			renderCustomHeader={(props) => (
-				<CorrectionCustomHeader {...props} prevDate={prevDate} dateTextRef={dateTextRef} onChange={onChange} />
-			)}
-		>
-			<BottomBtnWrapper>
-				{!isDateOnly && <TextboxInput variant="time" dateTextRef={timeTextRef} />}
-				<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed />
-			</BottomBtnWrapper>
-		</DatePicker>
+		<DateCorrectionModalLayout>
+			<DatePicker
+				locale={ko}
+				selected={currentDate}
+				onChange={onChange}
+				inline
+				calendarContainer={CalendarStyle}
+				renderCustomHeader={(props) => (
+					<CorrectionCustomHeader {...props} prevDate={prevDate} dateTextRef={dateTextRef} onChange={onChange} />
+				)}
+			>
+				<BottomBtnWrapper>
+					{!isDateOnly && <TextboxInput variant="time" dateTextRef={timeTextRef} />}
+					<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed />
+				</BottomBtnWrapper>
+			</DatePicker>
+		</DateCorrectionModalLayout>
 	);
 }
+
+const DateCorrectionModalLayout = styled.div`
+	position: absolute;
+	bottom: 7.6rem;
+	left: -1.1rem;
+	z-index: 2;
+`;
+
 const BottomBtnWrapper = styled.div`
 	display: flex;
 	gap: 0.5rem;

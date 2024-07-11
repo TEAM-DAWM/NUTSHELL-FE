@@ -9,7 +9,6 @@ import StatusStagingBtn from '@/components/common/button/statusBtn/StatusStaging
 import StatusTodoBtn from '@/components/common/button/statusBtn/StatusTodoBtn';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
 import NavBar from '@/components/common/NavBar';
-import ScrollGradient from '@/components/common/ScrollGradient';
 import StagingArea from '@/components/common/StagingArea/StagingArea';
 import TextboxDailydate from '@/components/common/textbox/TextboxDailydate';
 import TextboxInput from '@/components/common/textbox/TextboxInput';
@@ -31,8 +30,6 @@ function Today() {
 					<FullCalendarBox size="small" />
 				</CalendarWrapper>
 			</TodayLayout>
-
-			<ScrollGradient />
 
 			<StagingArea />
 
