@@ -4,8 +4,51 @@ import BtnTask from '@/components/common/BtnTask/BtnTask';
 import ScrollGradient from '@/components/common/ScrollGradient';
 import StagingAreaSetting from '@/components/common/StagingArea/StagingAreaSetting';
 import TextInputStaging from '@/components/common/textbox/TextInputStaging';
+import { TaskType } from '@/types/tasks/taskType';
 
 function StagingArea() {
+	const dummyTaskList: TaskType[] = [
+		{
+			id: 0,
+			name: '바보~',
+			deadLine: {
+				date: '2024-06-30',
+				time: '12:30',
+			},
+			hasDescription: false,
+			status: '진행중',
+		},
+		{
+			id: 1,
+			name: '넛수레',
+			deadLine: {
+				date: '2024-06-30',
+				time: '12:30',
+			},
+			hasDescription: true,
+			status: '지연',
+		},
+		{
+			id: 2,
+			name: '콘하스',
+			deadLine: {
+				date: '2024-06-30',
+				time: '12:30',
+			},
+			hasDescription: true,
+			status: '완료',
+		},
+		{
+			id: 3,
+			name: '김지원',
+			deadLine: {
+				date: '2024-06-30',
+				time: '12:30',
+			},
+			hasDescription: true,
+			status: '미완료',
+		},
+	];
 	return (
 		<StagingAreaLayout>
 			<StagingAreaContainer>
@@ -14,17 +57,17 @@ function StagingArea() {
 					<StagingAreaTaskContainer>
 						<StagingAreaSetting />
 						<BtnTaskContainer>
-							<BtnTask btnType="staging" />
-							<BtnTask btnType="staging" />
-							<BtnTask btnType="staging" />
-							<BtnTask btnType="staging" />
-							<BtnTask btnType="staging" />
-							<BtnTask btnType="staging" />
-							<BtnTask btnType="staging" />
-							<BtnTask btnType="staging" />
-							<BtnTask btnType="staging" />
-							<BtnTask btnType="staging" />
-							<BtnTask btnType="staging" />
+							{dummyTaskList.map((task) => (
+								<BtnTask
+									key={task.id + task.name}
+									btnType="staging"
+									hasDescription={task.hasDescription}
+									id={task.id}
+									name={task.name}
+									status={task.status}
+									deadLine={task.deadLine}
+								/>
+							))}
 							<ScrollGradient />
 						</BtnTaskContainer>
 					</StagingAreaTaskContainer>
