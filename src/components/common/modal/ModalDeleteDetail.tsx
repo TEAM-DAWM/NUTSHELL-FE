@@ -2,16 +2,19 @@ import styled from '@emotion/styled';
 
 import DeleteCancelBtn from '@/components/common/button/DeleteCancelBtn';
 
-function ModalDeleteBox() {
+function ModalDeleteDetail() {
 	return (
-		<ModalDeleteBoxLayout>
+		<ModalDeleteDetailLayout>
 			<DeleteCancelBtn status="cancel" />
 			<DeleteCancelBtn status="delete" />
-		</ModalDeleteBoxLayout>
+		</ModalDeleteDetailLayout>
 	);
 }
 
-const ModalDeleteBoxLayout = styled.div`
+const ModalDeleteDetailLayout = styled.div`
+	position: absolute;
+	top: 0.6rem;
+	left: -0.2rem;
 	display: flex;
 	flex-direction: column;
 	gap: 0.3rem;
@@ -26,4 +29,4 @@ const ModalDeleteBoxLayout = styled.div`
 	box-shadow: 0 16px 35px 0 rgb(72 87 120 / 25%);
 	border-radius: 10px;
 `;
-export default ModalDeleteBox;
+export default ModalDeleteDetail;

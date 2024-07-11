@@ -16,8 +16,6 @@ import TextBtn from '@/components/common/button/textBtn/TextBtn';
 import TimelineDeleteBtn from '@/components/common/button/TimelineDeleteBtn';
 import TodayPlusBtn from '@/components/common/button/TodayPlusBtn';
 import Modal from '@/components/common/modal/Modal';
-import ModalDeleteBox from '@/components/common/modal/ModalDeleteBox';
-import ModalDeleteBtn from '@/components/common/modal/ModalDeleteBtn';
 import NavBar from '@/components/common/NavBar';
 import AccountArea from '@/components/SettingPage/AccountArea';
 import LogOutBtn from '@/components/SettingPage/LogOutBtn';
@@ -53,8 +51,6 @@ function Setting() {
 			<SettingCheck size="big" type="complete" isHover isPressed={false} isActive />
 			<SettingCheck size="big" type="complete" isHover isPressed={false} isActive />
 			<SettingCheck size="big" type="close" isHover isPressed={false} isActive />
-			<ModalDeleteBox />
-			<ModalDeleteBtn />
 			<SettingContainer>
 				<Wrapper>
 					<ProfileArea />
