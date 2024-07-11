@@ -86,10 +86,10 @@ const CalendarWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	width: 65rem;
+	width: fit-content;
 	height: 72.8rem;
 	margin: 1rem 0;
-	padding: 18px 0 0 23px;
+	padding: 1.8rem 0.7rem 0 2.3rem;
 
 	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 12px;

@@ -12,6 +12,7 @@ function MainLayout() {
 	);
 }
 const MainLayOutContainer = styled.div`
+	box-sizing: border-box;
 	width: 136.6rem;
 	height: 76.8rem;
 	padding-left: 7.2rem;

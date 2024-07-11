@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 const FullCalendarLayout = styled.div<{ size: string }>`
-	width: ${({ size }) => (size === 'big' ? '89.7rem' : '64.3rem')};
+	width: ${({ size }) => (size === 'big' ? '91rem' : '58rem')};
 	height: 70rem;
 
 	.fc .fc-toolbar.fc-header-toolbar {
