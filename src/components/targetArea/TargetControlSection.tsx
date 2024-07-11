@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import ArrangeBtn from '../common/arrangeBtn/ArrangeBtn';
+
 import TextBtn from '@/components/common/button/textBtn/TextBtn';
 
 function TargetControlSection() {
@@ -7,10 +9,10 @@ function TargetControlSection() {
 		<TargetControlSectionLayout>
 			<BtnWrapper>
 				<TextBtn text="오늘" size="small" color="BLACK" mode="DEFAULT" isHover isPressed />
-				<TmpBtn />
-				<TmpBtn />
+				<ArrangeBtn color="BLACK" mode="DEFAULT" size="small" type="left" />
+				<ArrangeBtn color="BLACK" mode="DEFAULT" size="small" type="right" />
 			</BtnWrapper>
-			<TmpBtn />
+			<ArrangeBtn color="WHITE" mode="DEFAULT" size="small" type="calendar" />
 		</TargetControlSectionLayout>
 	);
 }
@@ -28,11 +30,5 @@ const BtnWrapper = styled.div`
 	gap: 0.4rem;
 	width: fit-content;
 `;
-const TmpBtn = styled.div`
-	width: 2.6rem;
-	height: 2.6rem;
 
-	background-color: ${({ theme }) => theme.palette.Grey.Black};
-	border-radius: 6.5px;
-`;
 export default TargetControlSection;
