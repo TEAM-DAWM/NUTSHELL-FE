@@ -34,6 +34,9 @@ function BtnTask(props: BtnTaskProps) {
 	const [top, setTop] = useState(0);
 	const [left, setLeft] = useState(0);
 
+	const MODAL_HEIGHT = 362;
+	const SCREEN_HEIGHT = 768;
+
 	const handleMouseEnter = () => {
 		setIsHovered(true);
 	};
@@ -44,7 +47,9 @@ function BtnTask(props: BtnTaskProps) {
 
 	const handleClick = (e: React.MouseEvent) => {
 		const rect = e.currentTarget.getBoundingClientRect();
-		setTop(rect.top);
+		const calculatedTop = rect.top;
+		const adjustedTop = Math.min(calculatedTop, SCREEN_HEIGHT - MODAL_HEIGHT);
+		setTop(adjustedTop);
 		setLeft(rect.right + 6);
 		setIsClicked((prev) => !prev);
 	};
