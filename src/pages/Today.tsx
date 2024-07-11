@@ -62,9 +62,9 @@ function Today() {
 			<TextInputTime time="end" />
 			<TextInputTime time="total" />
 			<TextInputStaging />
-			<BtnDate date="2024.07.11" size="big" />
-			<BtnDate date="2024.07.11" size="small" />
-			<BtnDate date="2024.07.11" size="small" isDelayed />
+			<BtnDate date="2024.07.11" size={{ type: 'long' }} />
+			<BtnDate date="2024.07.11" size={{ type: 'short' }} />
+			<BtnDate date="2024.07.11" size={{ type: 'short' }} isDelayed />
 			<BtnStagingDate />
 			<TargetArea />
 		</>
