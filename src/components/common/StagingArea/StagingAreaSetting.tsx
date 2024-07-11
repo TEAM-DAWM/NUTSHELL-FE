@@ -17,6 +17,10 @@ function StagingAreaSetting() {
 		setIsModalOpen((prev) => !prev);
 	};
 
+	const handleCloseModal = () => {
+		setIsModalOpen(false);
+	};
+
 	return (
 		<StagingAreaSettingLayout>
 			<TextBtnContainer>
@@ -43,11 +47,20 @@ function StagingAreaSetting() {
 				<ArrangeBtn type="set" mode="DEFAULT" color="WHITE" size="small" onClick={handleArrangeBtnClick} />
 				{isModalOpen && <ModalArrange />}
 			</ArrangeContainer>
+			{isModalOpen && <ModalBackdrop onClick={handleCloseModal} />}
 		</StagingAreaSettingLayout>
 	);
 }
 
 export default StagingAreaSetting;
+
+const ModalBackdrop = styled.div`
+	position: absolute;
+	top: 0;
+	z-index: 3;
+	width: 100vw;
+	height: 100vh;
+`;
 
 const StagingAreaSettingLayout = styled.div`
 	display: flex;
