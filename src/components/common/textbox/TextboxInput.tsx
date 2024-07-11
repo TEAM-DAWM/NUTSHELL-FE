@@ -28,7 +28,7 @@ function TextboxInput({ variant, dateValue, onChange, dateTextRef }: TextboxInpu
 				// 유효하지 않음
 				warnRef(dateTextRef);
 				e.target.value = '';
-			} else if (variant === 'date' && onChange) {
+			} else if ((variant === 'date' || variant === 'smallDate') && onChange) {
 				// 유효하고 date 인 경우
 				const valueDate = new Date(formattedInput);
 				if (dateTextRef) blurRef(dateTextRef);
