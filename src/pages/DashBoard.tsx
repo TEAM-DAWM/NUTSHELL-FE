@@ -7,7 +7,7 @@ import DateArea from '@/components/DashboardPage/DateArea';
 import TaskSummary from '@/components/DashboardPage/TaskSummary';
 import PERIOD from '@/constants/tasksPeriod';
 import getNameOfDayKor from '@/utils/getNameOfDayKor';
-import getTodayDate from '@/utils/getTodayDate';
+import getToday from '@/utils/getToday';
 
 function DashBoard() {
 	const SUMMARY_INFO = [
@@ -32,11 +32,14 @@ function DashBoard() {
 	];
 	const today = new Date();
 	const dayOfTheWeekKor = today.getDay();
+	const { year, month, date } = getToday();
 
 	return (
 		<DashBoardLayout>
 			<DateContainer>
-				<DateText>{getTodayDate()}</DateText>
+				<DateText>
+					{year}년 {month}월 {date}일
+				</DateText>
 				<DayText>{getNameOfDayKor(dayOfTheWeekKor)}</DayText>
 			</DateContainer>
 			<DashBoardTaskWrapper>
