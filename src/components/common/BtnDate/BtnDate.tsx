@@ -62,7 +62,10 @@ const XIcon = styled((props: React.SVGProps<SVGSVGElement> & { isClicked: boolea
 	height: ${({ size }) => (size === 'big' ? '2rem' : '1.6rem')};
 `;
 
-const CalanderIcon = styled(Icons.Icn_calander, { target: 'CalanderIcon' })<{ isDelayed: boolean }>`
+const CalanderIcon = styled(Icons.Icn_calander, {
+	target: 'CalanderIcon',
+	shouldForwardProp: (prop) => prop !== 'isDelayed',
+})<{ isDelayed: boolean }>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -74,7 +77,10 @@ const CalanderIcon = styled(Icons.Icn_calander, { target: 'CalanderIcon' })<{ is
 	}
 `;
 
-const ClockIcon = styled(Icons.Icn_date_clock, { target: 'ClockIcon' })<{ isDelayed: boolean }>`
+const ClockIcon = styled(Icons.Icn_date_clock, {
+	target: 'ClockIcon',
+	shouldForwardProp: (prop) => prop !== 'isDelayed',
+})<{ isDelayed: boolean }>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -86,7 +92,10 @@ const ClockIcon = styled(Icons.Icn_date_clock, { target: 'ClockIcon' })<{ isDela
 	}
 `;
 
-const LineIcon = styled(Icons.Icn_line, { target: 'LineIcon' })<{ size: string; isDelayed: boolean }>`
+const LineIcon = styled(Icons.Icn_line, {
+	target: 'LineIcon',
+	shouldForwardProp: (prop) => prop !== 'isDelayed' && prop !== 'size',
+})<{ size: string; isDelayed: boolean }>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
