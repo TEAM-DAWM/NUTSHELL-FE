@@ -72,6 +72,17 @@ const TaskContainer = styled.div`
 	width: 100%;
 	height: 64rem;
 	overflow: scroll;
+
+	::-webkit-scrollbar {
+		width: 0.6rem;
+	}
+
+	::-webkit-scrollbar-thumb {
+		width: 0.6rem;
+
+		background-color: ${({ theme }) => theme.palette.Grey.Grey6};
+		border-radius: 3px;
+	}
 `;
 
 export default TargetTaskSection;

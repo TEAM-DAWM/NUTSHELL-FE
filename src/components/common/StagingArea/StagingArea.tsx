@@ -213,4 +213,15 @@ const BtnTaskContainer = styled.div`
 	width: 100%;
 	height: 56.7rem;
 	overflow: hidden auto;
+
+	::-webkit-scrollbar {
+		width: 0.6rem;
+	}
+
+	::-webkit-scrollbar-thumb {
+		width: 0.6rem;
+
+		background-color: ${({ theme }) => theme.palette.Grey.Grey6};
+		border-radius: 3px;
+	}
 `;
