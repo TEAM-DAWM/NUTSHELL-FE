@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 
-import SettingDeleteBtn from '../button/settingBtn/SettingDeleteBtn';
-
 import SettingCheckBtn from '@/components/common/button/settingBtn/SettingCheckBtn';
+import SettingDeleteBtn from '@/components/common/button/settingBtn/SettingDeleteBtn';
 import { SizeType } from '@/types/textInputType';
 
 function ModalHeaderBtn({ type }: SizeType) {
