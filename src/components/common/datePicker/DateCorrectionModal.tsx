@@ -50,7 +50,7 @@ const DateCorrectionModalLayout = styled.div`
 	position: absolute;
 	bottom: 7.6rem;
 	left: -1.1rem;
-	z-index: 2;
+	z-index: 4;
 `;
 
 const BottomBtnWrapper = styled.div`
