@@ -70,9 +70,9 @@ function BtnTask(props: BtnTaskProps) {
 		if (iconClicked) {
 			setIconClicked(false);
 		} else {
-			stopPropagation(e);
 			setIconClicked(true);
 		}
+		stopPropagation(e);
 	};
 
 	const renderStatusButton = () => {
