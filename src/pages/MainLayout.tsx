@@ -12,7 +12,11 @@ function MainLayout() {
 	);
 }
 const MainLayOutContainer = styled.div`
+	width: 1294px;
+	height: 768px;
 	padding-left: 7.2rem;
+
+	border: 1px solid red;
 `;
 
 export default MainLayout;

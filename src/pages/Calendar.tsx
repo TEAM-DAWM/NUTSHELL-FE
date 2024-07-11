@@ -23,6 +23,8 @@ function Calendar() {
 const CalendarLayout = styled.div`
 	display: flex;
 	gap: 1rem;
+	box-sizing: border-box;
+	height: 76.8rem;
 	padding: 10px 16px 10px 7px;
 `;
 
