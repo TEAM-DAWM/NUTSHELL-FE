@@ -15,7 +15,6 @@ import StatusTodoBtn from '@/components/common/button/statusBtn/StatusTodoBtn';
 import TextBtn from '@/components/common/button/textBtn/TextBtn';
 import TimelineDeleteBtn from '@/components/common/button/TimelineDeleteBtn';
 import TodayPlusBtn from '@/components/common/button/TodayPlusBtn';
-import Modal from '@/components/common/modal/Modal';
 import NavBar from '@/components/common/NavBar';
 import AccountArea from '@/components/SettingPage/AccountArea';
 import LogOutBtn from '@/components/SettingPage/LogOutBtn';
@@ -40,9 +39,6 @@ function Setting() {
 			<StatusStagingBtn />
 			<TimelineDeleteBtn />
 			<TodayPlusBtn />
-
-			<Modal isOpen sizeType={{ type: 'long' }} />
-			<Modal isOpen sizeType={{ type: 'short' }} />
 
 			<StatusDoneBtn />
 			<StatusInProgressBtn />

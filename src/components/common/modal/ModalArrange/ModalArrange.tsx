@@ -5,11 +5,7 @@ import SortBtn from '../../button/SortBtn';
 
 import SORT_BY from '@/constants/sortType';
 
-interface ModalArrangeProps {
-	// onClose: React.MouseEventHandler;
-}
-
-function ModalArrange({ onClose }: ModalArrangeProps) {
+function ModalArrange() {
 	const [activeSorByDateAdded, setActiveSorByDateAdded] = useState<string | null>(null);
 	const [activeSorByDeadLine, setActiveSorByDeadLine] = useState<string | null>(null);
 
