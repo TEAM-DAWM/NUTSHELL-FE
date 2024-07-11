@@ -54,6 +54,7 @@ const ModalArrangeLayout = styled.div`
 	position: absolute;
 	top: 3rem;
 	left: 0;
+	z-index: 1;
 	display: flex;
 	flex-direction: column;
 	flex-shrink: 0;

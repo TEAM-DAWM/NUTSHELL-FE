@@ -48,7 +48,88 @@ function StagingArea() {
 			hasDescription: true,
 			status: '미완료',
 		},
+		{
+			id: 0,
+			name: '바보~',
+			deadLine: {
+				date: '2024-06-30',
+				time: '12:30',
+			},
+			hasDescription: false,
+			status: '진행중',
+		},
+		{
+			id: 1,
+			name: '넛수레',
+			deadLine: {
+				date: '2024-06-30',
+				time: '12:30',
+			},
+			hasDescription: true,
+			status: '지연',
+		},
+		{
+			id: 2,
+			name: '콘하스',
+			deadLine: {
+				date: '2024-06-30',
+				time: '12:30',
+			},
+			hasDescription: true,
+			status: '완료',
+		},
+		{
+			id: 3,
+			name: '김지원',
+			deadLine: {
+				date: '2024-06-30',
+				time: '12:30',
+			},
+			hasDescription: true,
+			status: '미완료',
+		},
+		{
+			id: 0,
+			name: '바보~',
+			deadLine: {
+				date: '2024-06-30',
+				time: '12:30',
+			},
+			hasDescription: false,
+			status: '진행중',
+		},
+		{
+			id: 1,
+			name: '넛수레',
+			deadLine: {
+				date: '2024-06-30',
+				time: '12:30',
+			},
+			hasDescription: true,
+			status: '지연',
+		},
+		{
+			id: 2,
+			name: '콘하스',
+			deadLine: {
+				date: '2024-06-30',
+				time: '12:30',
+			},
+			hasDescription: true,
+			status: '완료',
+		},
+		{
+			id: 3,
+			name: '김지원',
+			deadLine: {
+				date: '2024-06-30',
+				time: '12:30',
+			},
+			hasDescription: true,
+			status: '미완료',
+		},
 	];
+
 	return (
 		<StagingAreaLayout>
 			<StagingAreaContainer>
@@ -125,7 +206,11 @@ const StagingAreaTaskContainer = styled.div`
 `;
 
 const BtnTaskContainer = styled.div`
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
 	width: 100%;
 	height: 56.7rem;
-	overflow: scroll;
+	overflow: hidden auto;
 `;

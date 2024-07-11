@@ -10,12 +10,14 @@ import { SizeType } from '@/types/textInputType';
 interface ModalProps {
 	isOpen: boolean;
 	sizeType: SizeType;
+	top: number;
+	left: number;
 }
 
-function Modal({ isOpen, sizeType }: ModalProps) {
+function Modal({ isOpen, sizeType, top, left }: ModalProps) {
 	return (
 		isOpen && (
-			<ModalLayout type={sizeType.type}>
+			<ModalLayout type={sizeType.type} top={top} left={left}>
 				<ModalHeader>
 					<BtnDate />
 					<ModalHeaderBtn type={sizeType.type} />
@@ -33,7 +35,11 @@ function Modal({ isOpen, sizeType }: ModalProps) {
 	);
 }
 
-const ModalLayout = styled.div<{ type: string }>`
+const ModalLayout = styled.div<{ type: string; top: number; left: number }>`
+	position: fixed;
+	top: ${({ top }) => top}px;
+	left: ${({ left }) => left}px;
+	z-index: 2;
 	display: flex;
 	flex-direction: column;
 	gap: 1.6rem;
