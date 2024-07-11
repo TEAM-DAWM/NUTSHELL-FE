@@ -51,6 +51,9 @@ function ModalArrange() {
 export default ModalArrange;
 
 const ModalArrangeLayout = styled.div`
+	position: absolute;
+	top: 3rem;
+	left: 0;
 	display: flex;
 	flex-direction: column;
 	flex-shrink: 0;

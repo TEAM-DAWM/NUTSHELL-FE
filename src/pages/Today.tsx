@@ -8,7 +8,6 @@ import StatusInProgressBtn from '@/components/common/button/statusBtn/StatusInPr
 import StatusStagingBtn from '@/components/common/button/statusBtn/StatusStagingBtn';
 import StatusTodoBtn from '@/components/common/button/statusBtn/StatusTodoBtn';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
-import ModalArrange from '@/components/common/modal/ModalArrange/ModalArrange';
 import NavBar from '@/components/common/NavBar';
 import ScrollGradient from '@/components/common/ScrollGradient';
 import StagingArea from '@/components/common/StagingArea/StagingArea';
@@ -32,8 +31,6 @@ function Today() {
 					<FullCalendarBox size="small" />
 				</CalendarWrapper>
 			</TodayLayout>
-
-			<ModalArrange />
 
 			<ScrollGradient />
 
