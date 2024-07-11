@@ -30,9 +30,11 @@ const CategoryBoxLayout = styled.div`
 	flex-direction: column;
 	gap: 1.2rem;
 	width: 31.7rem;
-	height: 49rem;
+	height: 100%;
+	min-height: 46.1rem;
+	max-height: 49.3rem;
 
-	border: 1px solid #e4e4e4;
+	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 12px;
 `;
 
