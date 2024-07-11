@@ -11,7 +11,7 @@ function DateArea() {
 				<StlyedCalendarIcon />
 				<TextBtn size="big" color="WHITE" mode="DEFAULT" isHover isPressed text="2024년 7월 2일" />
 				<StyledArrowIcon />
-				<TextBtn size="big" color="WHITE" mode="DEFAULT" isHover isPressed text="2024년 7월 11일" />
+				<TextBtn size="big" color="WHITE" mode="DEFAULT" isHover isPressed text="2024년 7월 12일" />
 			</PlaceholderWrapper>
 			<PastDateWrapper>
 				<PastWeekBtn>지난 1주일</PastWeekBtn>
