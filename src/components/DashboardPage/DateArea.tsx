@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import TextBtn from '../common/button/textBtn/TextBtn';
+
 import Icons from '@/assets/svg/index';
 
 function DateArea() {
@@ -7,9 +9,9 @@ function DateArea() {
 		<DateAreaLayout>
 			<PlaceholderWrapper>
 				<StlyedCalendarIcon />
-				<HardCoding />
+				<TextBtn size="big" color="WHITE" mode="DEFAULT" isHover isPressed text="2024년 7월 2일" />
 				<StyledArrowIcon />
-				<HardCoding />
+				<TextBtn size="big" color="WHITE" mode="DEFAULT" isHover isPressed text="2024년 7월 11일" />
 			</PlaceholderWrapper>
 			<PastDateWrapper>
 				<PastWeekBtn>지난 1주일</PastWeekBtn>
@@ -25,7 +27,7 @@ const DateAreaLayout = styled.div`
 	display: flex;
 	gap: 1.2rem;
 	align-items: flex-end;
-	justify-content: center;
+	justify-content: flex-start;
 	width: 51.9rem;
 	height: 5.7rem;
 	padding: 1rem 0 0.7rem 1.4rem;
@@ -34,7 +36,8 @@ const DateAreaLayout = styled.div`
 const PlaceholderWrapper = styled.div`
 	display: flex;
 	align-items: center;
-	width: 35rem;
+	box-sizing: border-box;
+	width: 36rem;
 	height: 4rem;
 	padding: 0.4rem 1.2rem;
 
@@ -49,16 +52,6 @@ const StlyedCalendarIcon = styled(Icons.Icn_calander)`
 	path {
 		stroke: ${({ theme }) => theme.palette.Grey.Grey5};
 	}
-`;
-
-const HardCoding = styled.span`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 13.9rem;
-	height: 3.2rem;
-	padding: 0.7rem 1.6rem;
-	${({ theme }) => theme.fontTheme.BODY_02};
 `;
 
 const StyledArrowIcon = styled(Icons.Icn_arrow_narrow_right)`
