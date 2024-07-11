@@ -12,6 +12,10 @@ function TextInputStaging() {
 		setIsModalOpen((prev) => !prev);
 	};
 
+	const handleCloseModal = () => {
+		setIsModalOpen(false);
+	};
+
 	return (
 		<StagingLayout>
 			<TextArea placeholder="해야하는 일들을 쏟아내보세요." />
@@ -20,11 +24,22 @@ function TextInputStaging() {
 					{isModalOpen && <DateCorrectionModal />}
 					<BtnStagingDate onClick={handleArrangeBtnClick} />
 				</SetDeadLineContainer>
+				{isModalOpen && <ModalBackdrop onClick={handleCloseModal} />}
+
 				<EnterBtn />
 			</BtnWrapper>
 		</StagingLayout>
 	);
 }
+
+const ModalBackdrop = styled.div`
+	position: absolute;
+	top: 0;
+	z-index: 3;
+	width: 100vw;
+	height: 100vh;
+`;
+
 const StagingLayout = styled.div`
 	display: flex;
 	flex-direction: column;
