@@ -8,11 +8,10 @@ import StatusDoneBtn from '@/components/common/button/statusBtn/StatusDoneBtn';
 import StatusInProgressBtn from '@/components/common/button/statusBtn/StatusInProgressBtn';
 import StatusStagingBtn from '@/components/common/button/statusBtn/StatusStagingBtn';
 import StatusTodoBtn from '@/components/common/button/statusBtn/StatusTodoBtn';
+import { TaskType } from '@/types/tasks/taskType';
 
-interface BtnTaskProps {
+interface BtnTaskProps extends TaskType {
 	btnType: 'staging' | 'target' | 'delayed';
-	status?: string;
-	isDescription?: boolean;
 }
 
 interface BorderColorProps {
@@ -24,7 +23,7 @@ interface BorderColorProps {
 }
 
 function BtnTask(props: BtnTaskProps) {
-	const { btnType, status = 'Todo', isDescription = false } = props;
+	const { btnType, name, deadLine, hasDescription, status } = props;
 	const [isClicked, setIsClicked] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
 	const [iconHovered, setIconHovered] = useState(false);
@@ -78,9 +77,9 @@ function BtnTask(props: BtnTaskProps) {
 
 		if (btnType === 'target') {
 			switch (status) {
-				case 'Done':
+				case '완료':
 					return <StatusDoneBtn />;
-				case 'InProgress':
+				case '진행중':
 					return <StatusInProgressBtn />;
 				default:
 					return <StatusTodoBtn />;
@@ -99,11 +98,11 @@ function BtnTask(props: BtnTaskProps) {
 			onClick={handleClick}
 		>
 			<BtnTaskContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-				<BtnTaskTextWrapper isDescription={isDescription}>
-					{isDescription && <IconFile />}
-					넛쉘 UT 진행하기
+				<BtnTaskTextWrapper isDescription={hasDescription}>
+					{hasDescription && <IconFile />}
+					{name}
 				</BtnTaskTextWrapper>
-				<BtnDate date="2024.07.11" time="22:22" size="small" isDelayed={btnType === 'delayed'} />
+				<BtnDate date={deadLine?.date} time={deadLine?.time} size="small" isDelayed={btnType === 'delayed'} />
 			</BtnTaskContainer>
 			<IconHoverContainer
 				onClick={handleIconClick}

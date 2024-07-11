@@ -4,6 +4,7 @@ import BtnTask from '@/components/common/BtnTask/BtnTask';
 import ScrollGradient from '@/components/common/ScrollGradient';
 import DASHBOARD_TASK_TYPE from '@/constants/dashboardTask';
 import TODAY from '@/constants/tasksToday';
+import { TaskType } from '@/types/tasks/taskType';
 
 interface DashboardTaskProps {
 	text: 'upcoming' | 'postponed' | 'inprogress';
@@ -18,6 +19,49 @@ function DashboardTask({ text }: DashboardTaskProps) {
 	} else if (text === 'inprogress') {
 		taskStatus = DASHBOARD_TASK_TYPE.INPROGRESS;
 	}
+
+	const dummyTaskList: TaskType[] = [
+		{
+			id: 10,
+			name: '바보~',
+			deadLine: {
+				date: '2024-06-30',
+				time: '12:30',
+			},
+			hasDescription: false,
+			status: '진행중',
+		},
+		{
+			id: 11,
+			name: '넛수레',
+			deadLine: {
+				date: '2024-06-30',
+				time: '12:30',
+			},
+			hasDescription: true,
+			status: '지연',
+		},
+		{
+			id: 12,
+			name: '콘하스',
+			deadLine: {
+				date: '2024-06-30',
+				time: '12:30',
+			},
+			hasDescription: true,
+			status: '완료',
+		},
+		{
+			id: 13,
+			name: '김지원',
+			deadLine: {
+				date: '2024-06-30',
+				time: '12:30',
+			},
+			hasDescription: true,
+			status: '미완료',
+		},
+	];
 	return (
 		<TaskLayout>
 			<TextBox>
@@ -28,13 +72,17 @@ function DashboardTask({ text }: DashboardTaskProps) {
 				</NumberTextBox>
 			</TextBox>
 			<ScrollArea>
-				<BtnTask btnType="target" status="Done" isDescription={false} />
-				<BtnTask btnType="target" status="Done" isDescription={false} />
-				<BtnTask btnType="target" status="Done" isDescription={false} />
-				<BtnTask btnType="target" status="Done" isDescription={false} />
-				<BtnTask btnType="target" status="Done" isDescription={false} />
-				<BtnTask btnType="target" status="Done" isDescription={false} />
-				<BtnTask btnType="target" status="Done" isDescription={false} />
+				{dummyTaskList.map((task) => (
+					<BtnTask
+						key={task.id + task.name}
+						hasDescription={task.hasDescription}
+						id={task.id}
+						name={task.name}
+						status={task.status}
+						deadLine={task.deadLine}
+						btnType="target"
+					/>
+				))}
 				<ScrollGradient />
 			</ScrollArea>
 		</TaskLayout>

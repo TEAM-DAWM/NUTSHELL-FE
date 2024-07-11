@@ -28,17 +28,17 @@ function Today() {
 
 			<StagingArea />
 
-			<BtnTask btnType="staging" isDescription />
+			<BtnTask btnType="staging" hasDescription id={99} name="예시" status="미완료" />
 
 			<p>Done</p>
-			<BtnTask btnType="target" status="Done" />
+			<BtnTask btnType="target" hasDescription id={99} name="예시" status="완료" />
 			<p>InProgress</p>
-			<BtnTask btnType="target" status="InProgress" />
+			<BtnTask btnType="target" hasDescription id={99} name="예시" status="진행중" />
 			<p>Todo(default)</p>
-			<BtnTask btnType="target" />
+			<BtnTask btnType="target" hasDescription id={99} name="예시" status="미완료" />
 
 			<p>Staging</p>
-			<BtnTask btnType="delayed" />
+			<BtnTask btnType="target" hasDescription id={99} name="예시" status="지연" />
 
 			<p>Done</p>
 			<StatusDoneBtn />
