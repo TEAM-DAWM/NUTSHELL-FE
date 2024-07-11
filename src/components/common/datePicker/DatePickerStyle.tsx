@@ -3,15 +3,18 @@ import styled from '@emotion/styled';
 const CalendarStyle = styled.div`
 	display: flex;
 	flex-direction: column;
+	flex-shrink: 0;
 	align-items: center;
 	width: 22.8rem;
-	padding: 1.6rem 1.2rem;
+	height: fit-content;
+	padding: 1.6rem 0;
 	overflow: hidden;
 
 	box-shadow: 0 3px 7px 0 rgb(0 0 0 / 38%);
 	border: 0;
 	border-radius: 12px;
 	/* stylelint-disable selector-class-pattern */
+
 	.react-datepicker__month-container {
 		display: flex;
 		flex-direction: column;
@@ -55,7 +58,8 @@ const CalendarStyle = styled.div`
 	/** 주 날짜 */
 	.react-datepicker__week {
 		display: flex;
-		width: 19.6rem;
+		justify-content: center;
+		width: 22rem;
 	}
 
 	/* 선택된 날짜 */
@@ -63,8 +67,8 @@ const CalendarStyle = styled.div`
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 100%;
-		height: 2.9rem;
+		width: 2.8rem;
+		height: 2.8rem;
 		margin: 0;
 
 		border-radius: 0;
@@ -106,8 +110,9 @@ const CalendarStyle = styled.div`
 	}
 
 	.react-datepicker__children-container {
-		align-self: flex-end;
-		width: fit-content;
+		display: flex;
+		justify-content: end;
+		width: 20.4rem;
 		margin: 0;
 		padding: 0;
 	}

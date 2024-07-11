@@ -110,7 +110,7 @@ const InfoWrapper = styled.div`
 const InfoBox = styled.div`
 	display: flex;
 	justify-content: space-between;
-	width: 22.8rem;
+	width: 20.4rem;
 	padding-bottom: 0.6rem;
 `;
 export default CustomHeader;
