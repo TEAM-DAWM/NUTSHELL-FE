@@ -25,7 +25,7 @@ const CalendarLayout = styled.div`
 	gap: 1rem;
 	box-sizing: border-box;
 	height: 76.8rem;
-	padding: 10px 16px 10px 7px;
+	padding: 1rem 1.6rem 1rem 0.7rem;
 `;
 
 const LeftSection = styled.section`
@@ -46,7 +46,7 @@ const FullCalendarBoxWapper = styled.div`
 	box-sizing: border-box;
 	width: 94.4rem;
 	height: 74.8rem;
-	padding: 18px 0 7px 17px;
+	padding: 18px 0 0 17px;
 
 	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 12px;
