@@ -15,6 +15,7 @@ import formatDatetoString from '@/utils/formatDatetoString';
 function DateCorrectionModal({ isDateOnly }: { isDateOnly: boolean }) {
 	const prevDate: Date = new Date();
 	const [currentDate, setCurrentDate] = useState<Date | null>(null);
+	// const [time, setTime] = useState<string>('');
 	const dateTextRef = useRef<HTMLInputElement>(null);
 	const timeTextRef = useRef<HTMLInputElement>(null);
 	const onChange = (date: Date | null) => {
@@ -23,6 +24,7 @@ function DateCorrectionModal({ isDateOnly }: { isDateOnly: boolean }) {
 			dateTextRef.current.value = formatDatetoString(date);
 		}
 	};
+
 	return (
 		<DatePicker
 			locale={ko}
