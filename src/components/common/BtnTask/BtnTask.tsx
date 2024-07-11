@@ -102,7 +102,12 @@ function BtnTask(props: BtnTaskProps) {
 					{hasDescription && <IconFile />}
 					{name}
 				</BtnTaskTextWrapper>
-				<BtnDate date={deadLine?.date} time={deadLine?.time} size="small" isDelayed={btnType === 'delayed'} />
+				<BtnDate
+					date={deadLine?.date}
+					time={deadLine?.time}
+					size={{ type: 'short' }}
+					isDelayed={btnType === 'delayed'}
+				/>
 			</BtnTaskContainer>
 			<IconHoverContainer
 				onClick={handleIconClick}
