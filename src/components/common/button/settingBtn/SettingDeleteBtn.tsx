@@ -32,6 +32,8 @@ const SettingDeleteBtnLayout = styled.button<{
 	isPressed: boolean;
 	isActive: boolean;
 }>`
+	flex-shrink: 0;
+
 	${SettingCss}
 	${({ size }) => (size === 'small' ? smallSize : bigSize)};
 	background-color: ${({ theme }) => theme.palette.Orange.Orange2};
