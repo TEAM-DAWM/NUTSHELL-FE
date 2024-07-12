@@ -18,7 +18,7 @@ function ModalArrange() {
 	};
 
 	return (
-		<ModalArrangeLayout>
+		<ModalArrangeLayout onClick={(e) => e.stopPropagation()}>
 			<SortBy>
 				<SortBtn
 					text={SORT_BY.NEWEST}
@@ -39,9 +39,9 @@ function ModalArrange() {
 					onClick={() => handleSortByDeadLineClick(SORT_BY.CLOSEST)}
 				/>
 				<SortBtn
-					text={SORT_BY.CLOSEST}
-					isActive={activeSorByDeadLine === SORT_BY.CLOSEST}
-					onClick={() => handleSortByDeadLineClick(SORT_BY.CLOSEST)}
+					text={SORT_BY.FARTHEST}
+					isActive={activeSorByDeadLine === SORT_BY.FARTHEST}
+					onClick={() => handleSortByDeadLineClick(SORT_BY.FARTHEST)}
 				/>
 			</SortBy>
 		</ModalArrangeLayout>
@@ -51,6 +51,10 @@ function ModalArrange() {
 export default ModalArrange;
 
 const ModalArrangeLayout = styled.div`
+	position: absolute;
+	top: 3rem;
+	left: 0;
+	z-index: 4;
 	display: flex;
 	flex-direction: column;
 	flex-shrink: 0;

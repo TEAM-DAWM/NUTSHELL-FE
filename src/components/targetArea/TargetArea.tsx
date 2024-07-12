@@ -25,9 +25,9 @@ const TargetAreaLayout = styled.section`
 	flex-direction: column;
 	flex-shrink: 0;
 	align-items: flex-start;
-	width: 31rem;
-	height: fit-content;
-	padding: 0 0.7rem;
+	height: 74.8rem;
+	margin: 1rem;
+	padding: 0 0.1rem 0 0.7rem;
 
 	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 12px;

@@ -1,19 +1,45 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 
 import BtnStagingDate from '../BtnDate/BtnStagingDate';
 import EnterBtn from '../button/EnterBtn';
+import DateCorrectionModal from '../datePicker/DateCorrectionModal';
 
 function TextInputStaging() {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const handleArrangeBtnClick = () => {
+		setIsModalOpen((prev) => !prev);
+	};
+
+	const handleCloseModal = () => {
+		setIsModalOpen(false);
+	};
+
 	return (
 		<StagingLayout>
 			<TextArea placeholder="해야하는 일들을 쏟아내보세요." />
 			<BtnWrapper>
-				<BtnStagingDate />
+				<SetDeadLineContainer>
+					{isModalOpen && <DateCorrectionModal />}
+					<BtnStagingDate onClick={handleArrangeBtnClick} />
+				</SetDeadLineContainer>
+				{isModalOpen && <ModalBackdrop onClick={handleCloseModal} />}
+
 				<EnterBtn />
 			</BtnWrapper>
 		</StagingLayout>
 	);
 }
+
+const ModalBackdrop = styled.div`
+	position: absolute;
+	top: 0;
+	z-index: 3;
+	width: 100vw;
+	height: 100vh;
+`;
+
 const StagingLayout = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -46,6 +72,10 @@ const BtnWrapper = styled.div`
 	justify-content: space-between;
 	width: 100%;
 	height: fit-content;
+`;
+
+const SetDeadLineContainer = styled.div`
+	position: relative;
 `;
 
 export default TextInputStaging;

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import BtnTask from '../common/BtnTask/BtnTask';
+import ScrollGradient from '../common/ScrollGradient';
 
 import { TaskType } from '@/types/tasks/taskType';
 
@@ -47,6 +48,7 @@ function TargetTaskSection() {
 			status: '미완료',
 		},
 	];
+
 	return (
 		<TaskContainer>
 			{dummyTaskList.map((task) => (
@@ -60,6 +62,7 @@ function TargetTaskSection() {
 					id={task.id}
 				/>
 			))}
+			<ScrollGradient />
 		</TaskContainer>
 	);
 }
@@ -69,6 +72,17 @@ const TaskContainer = styled.div`
 	gap: 1rem;
 	width: 100%;
 	height: 64rem;
-	overflow: scroll;
+	overflow: hidden;
+	overflow-y: scroll;
+
+	::-webkit-scrollbar {
+		width: 0.6rem;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background-color: ${({ theme }) => theme.palette.Grey.Grey6};
+		border-radius: 3px;
+	}
 `;
+
 export default TargetTaskSection;

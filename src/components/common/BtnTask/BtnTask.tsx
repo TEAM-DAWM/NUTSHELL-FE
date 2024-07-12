@@ -2,6 +2,8 @@ import { css, Theme } from '@emotion/react';
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
 
+import Modal from '../modal/Modal';
+
 import Icons from '@/assets/svg/index';
 import BtnDate from '@/components/common/BtnDate/BtnDate';
 import StatusDoneBtn from '@/components/common/button/statusBtn/StatusDoneBtn';
@@ -29,6 +31,12 @@ function BtnTask(props: BtnTaskProps) {
 	const [iconHovered, setIconHovered] = useState(false);
 	const [iconClicked, setIconClicked] = useState(false);
 
+	const [top, setTop] = useState(0);
+	const [left, setLeft] = useState(0);
+
+	const MODAL_HEIGHT = 362;
+	const SCREEN_HEIGHT = 768;
+
 	const handleMouseEnter = () => {
 		setIsHovered(true);
 	};
@@ -37,7 +45,12 @@ function BtnTask(props: BtnTaskProps) {
 		setIsHovered(false);
 	};
 
-	const handleClick = () => {
+	const handleClick = (e: React.MouseEvent) => {
+		const rect = e.currentTarget.getBoundingClientRect();
+		const calculatedTop = rect.top;
+		const adjustedTop = Math.min(calculatedTop, SCREEN_HEIGHT - MODAL_HEIGHT);
+		setTop(adjustedTop);
+		setLeft(rect.right + 6);
 		setIsClicked((prev) => !prev);
 	};
 
@@ -57,9 +70,9 @@ function BtnTask(props: BtnTaskProps) {
 		if (iconClicked) {
 			setIconClicked(false);
 		} else {
-			stopPropagation(e);
 			setIconClicked(true);
 		}
+		stopPropagation(e);
 	};
 
 	const renderStatusButton = () => {
@@ -90,33 +103,36 @@ function BtnTask(props: BtnTaskProps) {
 	};
 
 	return (
-		<BtnTaskLayout
-			isClicked={isClicked}
-			isHovered={isHovered}
-			iconHovered={iconHovered}
-			btnType={btnType}
-			onClick={handleClick}
-		>
-			<BtnTaskContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-				<BtnTaskTextWrapper isDescription={hasDescription}>
-					{hasDescription && <IconFile />}
-					{name}
-				</BtnTaskTextWrapper>
-				<BtnDate
-					date={deadLine?.date}
-					time={deadLine?.time}
-					size={{ type: 'short' }}
-					isDelayed={btnType === 'delayed'}
-				/>
-			</BtnTaskContainer>
-			<IconHoverContainer
-				onClick={handleIconClick}
-				onMouseEnter={handleIconMouseEnter}
-				onMouseLeave={handleIconMouseLeave}
+		<ModalLayout>
+			<BtnTaskLayout
+				isClicked={isClicked}
+				isHovered={isHovered}
+				iconHovered={iconHovered}
+				btnType={btnType}
+				onClick={handleClick}
 			>
-				{renderStatusButton()}
-			</IconHoverContainer>
-		</BtnTaskLayout>
+				<BtnTaskContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+					<BtnTaskTextWrapper isDescription={hasDescription}>
+						{hasDescription && <IconFile />}
+						{name}
+					</BtnTaskTextWrapper>
+					<BtnDate
+						date={deadLine?.date}
+						time={deadLine?.time}
+						size={{ type: 'short' }}
+						isDelayed={btnType === 'delayed'}
+					/>
+				</BtnTaskContainer>
+				<IconHoverContainer
+					onClick={handleIconClick}
+					onMouseEnter={handleIconMouseEnter}
+					onMouseLeave={handleIconMouseLeave}
+				>
+					{renderStatusButton()}
+				</IconHoverContainer>
+			</BtnTaskLayout>
+			<Modal isOpen={isClicked} sizeType={{ type: 'short' }} top={top} left={left} onClose={handleClick} />
+		</ModalLayout>
 	);
 }
 
@@ -139,6 +155,10 @@ const getBorderColor = ({ isHovered, isClicked, iconHovered, theme, btnType }: B
 		border-color: ${borderColor};
 	`;
 };
+
+const ModalLayout = styled.div`
+	display: flex;
+`;
 
 const BtnTaskLayout = styled('div', { target: 'BtnTaskLayout' })<{
 	isClicked: boolean;
