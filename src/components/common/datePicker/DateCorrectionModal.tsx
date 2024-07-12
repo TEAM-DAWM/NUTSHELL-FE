@@ -11,6 +11,7 @@ import CorrectionCustomHeader from './CorrectionCustomHeader';
 import CalendarStyle from './DatePickerStyle';
 
 import formatDatetoString from '@/utils/formatDatetoString';
+import { blurRef } from '@/utils/refStatus';
 
 function DateCorrectionModal({ isDateOnly = false }: { isDateOnly?: boolean }) {
 	const prevDate: Date = new Date();
@@ -21,7 +22,9 @@ function DateCorrectionModal({ isDateOnly = false }: { isDateOnly?: boolean }) {
 	const onChange = (date: Date | null) => {
 		setCurrentDate(date);
 		if (dateTextRef.current) {
-			dateTextRef.current.value = formatDatetoString(date);
+			const inputElement = dateTextRef.current.querySelector('input');
+			if (inputElement) inputElement.value = formatDatetoString(date);
+			blurRef(dateTextRef);
 		}
 	};
 

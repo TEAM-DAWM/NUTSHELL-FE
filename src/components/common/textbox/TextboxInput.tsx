@@ -7,54 +7,47 @@ import checkDateFormat from '@/utils/checkDateFormat';
 import checkTimeFormat from '@/utils/checkTimeFormat';
 import dotFormatDate from '@/utils/dotFormatDate';
 import dotFormatTime from '@/utils/dotFormatTime';
-import formatDatetoString from '@/utils/formatDatetoString';
+import { blurRef, focusRef, warnRef } from '@/utils/refStatus';
 
 interface TextboxInputProps {
 	variant: 'date' | 'time' | 'smallDate';
-	dateValue?: Date | null;
 	onChange?: (date: Date) => void;
 	dateTextRef?: React.RefObject<HTMLInputElement>;
+	placeholder?: string;
 }
-function TextboxInput({ variant, dateValue, onChange, dateTextRef }: TextboxInputProps) {
+function TextboxInput({ variant, onChange, dateTextRef, placeholder }: TextboxInputProps) {
 	const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if ((variant === 'date' || variant === 'smallDate') && onChange) {
-			const formattedInput = dotFormatDate(e.target.value);
-			e.target.value = formattedInput;
-
-			if (formattedInput && formattedInput.length > 9) {
-				if (!checkDateFormat(formattedInput)) {
-					alert('유효한 날짜가 아님');
-					e.target.value = '';
-				} else {
-					const valueDate = new Date(formattedInput);
-					onChange(valueDate);
-				}
-			}
-		}
-
-		if (variant === 'time') {
-			const formattedInput = dotFormatTime(e.target.value);
-			e.target.value = formattedInput;
-
-			// 유효한 시간인지 검사
-			if (formattedInput && formattedInput.length > 4) {
-				if (!checkTimeFormat(formattedInput)) {
-					alert('유효한 시간이 아님');
-					e.target.value = '';
-				}
+		const { value } = e.target;
+		const formattedInput = variant === 'time' ? dotFormatTime(value) : dotFormatDate(value);
+		e.target.value = formattedInput;
+		if (dateTextRef) focusRef(dateTextRef);
+		if (formattedInput && formattedInput.length > (variant === 'time' ? 4 : 9)) {
+			const isValid = variant === 'time' ? checkTimeFormat(formattedInput) : checkDateFormat(formattedInput);
+			if (!isValid && dateTextRef) {
+				// 유효하지 않음
+				warnRef(dateTextRef);
+				// 유효하지 않은 경우 인풋 삭제 필요?
+				e.target.value = '';
+			} else if ((variant === 'date' || variant === 'smallDate') && onChange) {
+				// 유효하고 date 인 경우
+				const valueDate = new Date(formattedInput);
+				if (dateTextRef) blurRef(dateTextRef);
+				onChange(valueDate);
+			} else if (dateTextRef) {
+				// 유효하고 time 인 경우
+				blurRef(dateTextRef);
 			}
 		}
 	};
 	return (
-		<InputContainer variant={variant}>
+		<InputContainer variant={variant} ref={dateTextRef}>
 			{variant === 'time' && <ClockIcon />}
 			<StyledInput
 				type="text"
-				placeholder={variant === 'time' ? '시간 없음' : formatDatetoString(dateValue)}
+				placeholder={variant === 'time' ? '시간 없음' : placeholder}
 				maxLength={10}
 				variant={variant}
 				onChange={handleDateChange}
-				ref={dateTextRef}
 			/>
 		</InputContainer>
 	);
@@ -83,11 +76,6 @@ const InputContainer = styled.div<{ variant: 'date' | 'time' | 'smallDate' }>`
 
 	background-color: ${({ theme }) => theme.palette.Grey.Grey1};
 	border-radius: 8px;
-
-	&:focus-within {
-		background-color: ${({ theme }) => theme.palette.Blue.Blue2};
-		outline: solid 1px ${theme.palette.Primary};
-	}
 
 	${({ variant }) => variant === 'smallDate' && smallDateStyle}
 `;

@@ -13,3 +13,10 @@ export const blurRef = (ref: React.RefObject<HTMLInputElement>) => {
 	ref.current?.style.setProperty('outline', `none`);
 	ref.current?.style.setProperty('background-color', `${theme.palette.Grey.Grey1}`);
 };
+
+/** ref 파란줄 */
+export const focusRef = (ref: React.RefObject<HTMLInputElement>) => {
+	ref.current?.focus();
+	ref.current?.style.setProperty('outline', `solid 1px ${theme.palette.Primary}`);
+	ref.current?.style.setProperty('background-color', `${theme.palette.Blue.Blue2}`);
+};
