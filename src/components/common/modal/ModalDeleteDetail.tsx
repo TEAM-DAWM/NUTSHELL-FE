@@ -2,19 +2,39 @@ import styled from '@emotion/styled';
 
 import DeleteCancelBtn from '@/components/common/button/DeleteCancelBtn';
 
-function ModalDeleteDetail() {
+interface ModalDeleteDetailProps {
+	top: number;
+	left: number;
+	onClose: React.MouseEventHandler;
+}
+
+function ModalDeleteDetail({ top, left, onClose }: ModalDeleteDetailProps) {
 	return (
-		<ModalDeleteDetailLayout>
-			<DeleteCancelBtn status="cancel" />
-			<DeleteCancelBtn status="delete" />
-		</ModalDeleteDetailLayout>
+		<ModalBackdrop onClick={onClose}>
+			<ModalDeleteDetailLayout top={top} left={left} onClick={(e) => e.stopPropagation()}>
+				<DeleteCancelBtn status="cancel" />
+				<DeleteCancelBtn status="delete" />
+			</ModalDeleteDetailLayout>
+		</ModalBackdrop>
 	);
 }
 
-const ModalDeleteDetailLayout = styled.div`
-	position: absolute;
-	top: 0.6rem;
-	left: -0.2rem;
+const ModalBackdrop = styled.div`
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 3;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+	height: 100vh;
+`;
+
+const ModalDeleteDetailLayout = styled.div<{ top: number; left: number }>`
+	position: fixed;
+	top: ${({ top }) => top}px;
+	left: ${({ left }) => left}px;
 	display: flex;
 	flex-direction: column;
 	gap: 0.3rem;
