@@ -15,5 +15,9 @@ const TextInputDescLayout = styled.textarea<{ type: string }>`
 	${({ theme }) => theme.fontTheme.BODY_02};
 	border: solid 1px ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 5px;
+
+	&:focus {
+		outline: none;
+	}
 `;
 export default TextInputDesc;
