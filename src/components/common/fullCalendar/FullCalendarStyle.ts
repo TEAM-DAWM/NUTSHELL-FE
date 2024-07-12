@@ -21,11 +21,26 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 
 		color: ${(color) => color.theme.palette.Grey.Grey8};
 
-		background-color: ${({ theme }) => theme.palette.Blue.Blue2};
-		box-shadow: 2px 0 0 0 ${({ theme }) => theme.palette.Primary} inset;
 		border: none;
 		border-radius: 4px;
 		${({ theme }) => theme.fontTheme.CAPTION_03};
+	}
+
+	.tasks .fc-event-main {
+		background-color: ${({ theme }) => theme.palette.Blue.Blue2};
+	}
+
+	.schedule .fc-event-main {
+		background-color: ${({ theme }) => theme.palette.Grey.Grey2};
+		box-shadow: 2px 0 0 0 ${({ theme }) => theme.palette.Grey.Grey6} inset;
+	}
+
+	.tasks .fc-event-main:hover {
+		background-color: ${({ theme }) => theme.palette.Blue.Blue3};
+	}
+
+	.schedule .fc-event-main:hover {
+		background-color: ${({ theme }) => theme.palette.Grey.Grey3};
 	}
 
 	.fc-v-event .fc-event-main-frame {
@@ -143,6 +158,10 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 	/* 오늘 배경색 없애기 */
 	.fc .fc-day-today {
 		background: none;
+	}
+
+	.fc-timegrid-event {
+		border-radius: 4px;
 	}
 
 	/* event에 있는 기본 스타일 지우기  */
