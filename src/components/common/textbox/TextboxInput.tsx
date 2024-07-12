@@ -7,16 +7,15 @@ import checkDateFormat from '@/utils/checkDateFormat';
 import checkTimeFormat from '@/utils/checkTimeFormat';
 import dotFormatDate from '@/utils/dotFormatDate';
 import dotFormatTime from '@/utils/dotFormatTime';
-import formatDatetoString from '@/utils/formatDatetoString';
 import { blurRef, focusRef, warnRef } from '@/utils/refStatus';
 
 interface TextboxInputProps {
 	variant: 'date' | 'time' | 'smallDate';
-	dateValue?: Date | null;
 	onChange?: (date: Date) => void;
 	dateTextRef?: React.RefObject<HTMLInputElement>;
+	placeholder?: string;
 }
-function TextboxInput({ variant, dateValue, onChange, dateTextRef }: TextboxInputProps) {
+function TextboxInput({ variant, onChange, dateTextRef, placeholder }: TextboxInputProps) {
 	const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { value } = e.target;
 		const formattedInput = variant === 'time' ? dotFormatTime(value) : dotFormatDate(value);
@@ -45,7 +44,7 @@ function TextboxInput({ variant, dateValue, onChange, dateTextRef }: TextboxInpu
 			{variant === 'time' && <ClockIcon />}
 			<StyledInput
 				type="text"
-				placeholder={variant === 'time' ? '시간 없음' : formatDatetoString(dateValue)}
+				placeholder={variant === 'time' ? '시간 없음' : placeholder}
 				maxLength={10}
 				variant={variant}
 				onChange={handleDateChange}

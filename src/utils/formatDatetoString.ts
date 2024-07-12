@@ -8,7 +8,7 @@ const formatDatetoString = (date: Date | undefined | null) => {
 		const day = '0'.concat(date.getDate().toString()).slice(-2);
 		return `${year}.${month}.${day}`;
 	}
-	return '시간';
+	return '';
 };
 
 export default formatDatetoString;

@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 import ArrangeBtn from '../arrangeBtn/ArrangeBtn';
 import TextboxInput from '../textbox/TextboxInput';
 
+import formatDatetoString from '@/utils/formatDatetoString';
+
 interface CustomHeaderProps {
 	prevDate: Date | null;
 	decreaseMonth: () => void;
@@ -25,7 +27,12 @@ function CorrectionCustomHeader({
 	return (
 		<div className="react-datepicker__header-custom">
 			<InfoBox>
-				<TextboxInput variant="date" dateValue={prevDate} onChange={onChange} dateTextRef={dateTextRef} />
+				<TextboxInput
+					variant="date"
+					placeholder={formatDatetoString(prevDate)}
+					onChange={onChange}
+					dateTextRef={dateTextRef}
+				/>
 				<div className="react-datepicker__navigation-wrapper">
 					<BtnWrapper className="react-datepicker__navigation-container">
 						<ArrangeBtn

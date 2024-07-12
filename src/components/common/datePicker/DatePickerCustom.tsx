@@ -17,22 +17,44 @@ function DatePickerCustom() {
 	const startDateTextRef = useRef<HTMLInputElement>(null);
 	const endDateTextRef = useRef<HTMLInputElement>(null);
 
+	/** ref 안에 Input DOM 있는지 검사하고 있다면 반환, 없으면 false 반환 */
+	const inputElementOfRef = (ref: React.RefObject<HTMLInputElement>) => {
+		if (ref.current) {
+			const inputElement = ref.current.querySelector('input');
+			if (inputElement) {
+				return inputElement;
+			}
+		}
+		return false;
+	};
+
+	/** 캘린더에서 날짜 선택할 경우 변경 */
 	const onChange = (dates: [Date | null, Date | null]) => {
 		const [start, end] = dates;
 		setStartDate(start);
 		blurRef(startDateTextRef);
-		if (startDateTextRef.current) {
-			const inputElement = startDateTextRef.current.querySelector('input');
-			if (inputElement) inputElement.value = formatDatetoString(start);
+		// 캘린더에서 선택한 시작시간 인풋에 반영
+		const startInputEle = inputElementOfRef(startDateTextRef);
+		if (startInputEle) {
+			startInputEle.value = formatDatetoString(start);
 		}
 
+		const endInputEle = inputElementOfRef(endDateTextRef);
+		// 시작 날짜는 있고 마감 날짜는 없을 경우
+		if (start && end === null) {
+			if (endInputEle) {
+				endInputEle.value = '';
+				endInputEle.placeholder = '마감 날짜';
+			}
+		}
+
+		// 캘린더에서 선택한 마감시간 인풋에 반영
+		if (endInputEle) endInputEle.value = formatDatetoString(end);
 		setEndDate(end);
 		blurRef(endDateTextRef);
-		if (endDateTextRef.current) {
-			const inputElement = endDateTextRef.current.querySelector('input');
-			if (inputElement) inputElement.value = formatDatetoString(end);
-		}
 	};
+
+	/** 인풋에서 날짜 타이핑했을 경우 변경 */
 	const onDateChange = (date: Date, mode: 'start' | 'end') => {
 		if (mode === 'start') {
 			blurRef(startDateTextRef);

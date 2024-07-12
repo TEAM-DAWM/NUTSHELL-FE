@@ -5,6 +5,7 @@ import TextboxInput from '../textbox/TextboxInput';
 
 import DayDiffText from './DayDiffText';
 
+import formatDatetoString from '@/utils/formatDatetoString';
 import { warnRef } from '@/utils/refStatus';
 
 interface CustonHeaderProps {
@@ -63,18 +64,22 @@ function CustomHeader({
 			onChange(date, 'end');
 		}
 	};
-
 	return (
 		<div className="react-datepicker__header-custom">
 			<InfoBox>
 				<InfoWrapper>
 					<TextboxInput
 						variant="smallDate"
-						dateValue={startDate}
+						placeholder={formatDatetoString(startDate)}
 						onChange={onStartChange}
 						dateTextRef={startDateTextRef}
 					/>
-					<TextboxInput variant="smallDate" dateValue={endDate} onChange={onEndChange} dateTextRef={endDateTextRef} />
+					<TextboxInput
+						variant="smallDate"
+						placeholder={formatDatetoString(new Date())}
+						onChange={onEndChange}
+						dateTextRef={endDateTextRef}
+					/>
 				</InfoWrapper>
 				<DayDiffText diff={diff} />
 			</InfoBox>
