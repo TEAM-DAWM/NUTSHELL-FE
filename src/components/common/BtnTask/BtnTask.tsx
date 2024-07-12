@@ -157,7 +157,7 @@ const getBorderColor = ({ isHovered, isClicked, iconHovered, theme, btnType }: B
 };
 
 const ModalLayout = styled.div`
-	position: relative;
+	display: flex;
 `;
 
 const BtnTaskLayout = styled('div', { target: 'BtnTaskLayout' })<{

@@ -64,6 +64,7 @@ const ModalLayout = styled.div<{ type: string; top: number; left: number }>`
 	box-sizing: border-box;
 	width: ${({ type }) => (type === 'long' ? '37.2rem' : '32.8rem')};
 	padding: 1rem 1.2rem;
+	overflow: hidden;
 
 	background-color: ${({ theme }) => theme.palette.Grey.White};
 	box-shadow: 0 1.2rem 3rem 0 rgb(0 0 0 / 30%);

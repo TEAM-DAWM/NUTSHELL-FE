@@ -48,6 +48,7 @@ function TargetTaskSection() {
 			status: '미완료',
 		},
 	];
+
 	return (
 		<TaskContainer>
 			{dummyTaskList.map((task) => (
@@ -71,15 +72,14 @@ const TaskContainer = styled.div`
 	gap: 1rem;
 	width: 100%;
 	height: 64rem;
-	overflow: scroll;
+	overflow: hidden;
+	overflow-y: scroll;
 
 	::-webkit-scrollbar {
 		width: 0.6rem;
 	}
 
 	::-webkit-scrollbar-thumb {
-		width: 0.6rem;
-
 		background-color: ${({ theme }) => theme.palette.Grey.Grey6};
 		border-radius: 3px;
 	}
