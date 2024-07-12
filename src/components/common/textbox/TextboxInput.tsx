@@ -8,7 +8,7 @@ import checkTimeFormat from '@/utils/checkTimeFormat';
 import dotFormatDate from '@/utils/dotFormatDate';
 import dotFormatTime from '@/utils/dotFormatTime';
 import formatDatetoString from '@/utils/formatDatetoString';
-import { blurRef, warnRef } from '@/utils/refStatus';
+import { blurRef, focusRef, warnRef } from '@/utils/refStatus';
 
 interface TextboxInputProps {
 	variant: 'date' | 'time' | 'smallDate';
@@ -21,13 +21,14 @@ function TextboxInput({ variant, dateValue, onChange, dateTextRef }: TextboxInpu
 		const { value } = e.target;
 		const formattedInput = variant === 'time' ? dotFormatTime(value) : dotFormatDate(value);
 		e.target.value = formattedInput;
-
+		if (dateTextRef) focusRef(dateTextRef);
 		if (formattedInput && formattedInput.length > (variant === 'time' ? 4 : 9)) {
 			const isValid = variant === 'time' ? checkTimeFormat(formattedInput) : checkDateFormat(formattedInput);
 			if (!isValid && dateTextRef) {
 				// 유효하지 않음
 				warnRef(dateTextRef);
-				e.target.value = '';
+				// 유효하지 않은 경우 인풋 삭제 필요?
+				// e.target.value = '';
 			} else if ((variant === 'date' || variant === 'smallDate') && onChange) {
 				// 유효하고 date 인 경우
 				const valueDate = new Date(formattedInput);
@@ -76,11 +77,6 @@ const InputContainer = styled.div<{ variant: 'date' | 'time' | 'smallDate' }>`
 
 	background-color: ${({ theme }) => theme.palette.Grey.Grey1};
 	border-radius: 8px;
-
-	&:focus-within {
-		background-color: ${({ theme }) => theme.palette.Blue.Blue2};
-		outline: solid 1px ${theme.palette.Primary};
-	}
 
 	${({ variant }) => variant === 'smallDate' && smallDateStyle}
 `;
