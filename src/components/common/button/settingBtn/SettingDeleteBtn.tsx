@@ -7,7 +7,7 @@ import Icons from '@/assets/svg/index';
 
 interface SettingDeleteBtnProps {
 	size: 'small' | 'big';
-	onClick?: () => void;
+	onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 	isHover: boolean;
 	isPressed: boolean;
 	isActive: boolean;
