@@ -27,7 +27,7 @@ function TextboxInput({ variant, onChange, dateTextRef, placeholder }: TextboxIn
 				// 유효하지 않음
 				warnRef(dateTextRef);
 				// 유효하지 않은 경우 인풋 삭제 필요?
-				// e.target.value = '';
+				e.target.value = '';
 			} else if ((variant === 'date' || variant === 'smallDate') && onChange) {
 				// 유효하고 date 인 경우
 				const valueDate = new Date(formattedInput);

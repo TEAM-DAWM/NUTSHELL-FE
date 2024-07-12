@@ -1,5 +1,5 @@
 import { ko } from 'date-fns/locale';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
@@ -12,10 +12,24 @@ import formatDatetoString from '@/utils/formatDatetoString';
 import { blurRef } from '@/utils/refStatus';
 
 function DatePickerCustom() {
-	const [startDate, setStartDate] = useState<Date | null>(new Date());
-	const [endDate, setEndDate] = useState<Date | null>(new Date());
+	const today = new Date();
+	const [startDate, setStartDate] = useState<Date | null>(today);
+	const [endDate, setEndDate] = useState<Date | null>(null);
 	const startDateTextRef = useRef<HTMLInputElement>(null);
 	const endDateTextRef = useRef<HTMLInputElement>(null);
+
+	// 초기값 이주 전으로 설정
+	useEffect(() => {
+		if (startDate) {
+			const newEndDate = new Date(startDate);
+			newEndDate.setDate(startDate.getDate() - 13);
+			setEndDate(newEndDate);
+			if (endDateTextRef.current) {
+				const inputElement = endDateTextRef.current.querySelector('input');
+				if (inputElement) inputElement.placeholder = formatDatetoString(newEndDate);
+			}
+		}
+	}, []);
 
 	/** ref 안에 Input DOM 있는지 검사하고 있다면 반환, 없으면 false 반환 */
 	const inputElementOfRef = (ref: React.RefObject<HTMLInputElement>) => {
