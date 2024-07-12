@@ -13,7 +13,7 @@ import { blurRef } from '@/utils/refStatus';
 
 function DatePickerCustom() {
 	const [startDate, setStartDate] = useState<Date | null>(new Date());
-	const [endDate, setEndDate] = useState<Date | null>(null);
+	const [endDate, setEndDate] = useState<Date | null>(new Date());
 	const startDateTextRef = useRef<HTMLInputElement>(null);
 	const endDateTextRef = useRef<HTMLInputElement>(null);
 
