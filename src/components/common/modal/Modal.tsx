@@ -49,8 +49,6 @@ const ModalBackdrop = styled.div`
 	justify-content: center;
 	width: 100vw;
 	height: 100vh;
-
-	background: rgb(0 0 0 / 50%);
 `;
 
 const ModalLayout = styled.div<{ type: string; top: number; left: number }>`
