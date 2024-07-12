@@ -11,13 +11,14 @@ module.exports = {
 		'airbnb-typescript',
 		'prettier',
 		'plugin:storybook/recommended',
+		'plugin:@tanstack/eslint-plugin-query/recommended',
 	],
 	parserOptions: {
 		project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
 	},
 	ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts'],
 	parser: '@typescript-eslint/parser',
-	plugins: ['react', 'react-hooks', 'react-refresh', '@typescript-eslint'],
+	plugins: ['react', 'react-hooks', 'react-refresh', '@typescript-eslint', '@tanstack/query'],
 	rules: {
 		'no-alert': 'off',
 		'react/jsx-props-no-spreading': 'off',
