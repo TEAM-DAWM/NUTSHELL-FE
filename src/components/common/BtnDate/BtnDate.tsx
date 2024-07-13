@@ -69,7 +69,7 @@ function BtnDate(props: BtnDateProps) {
 					isDefault={isDefaultTime}
 					size={size.type}
 				/>
-				{size.type === 'long' && <XIcon size={size.type} />}
+				{isClicked && size.type === 'long' && <XIcon size={size.type} />}
 			</BtnDateLayout>
 			{isClicked && (
 				<>
