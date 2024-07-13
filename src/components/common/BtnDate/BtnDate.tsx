@@ -2,10 +2,13 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
+import DateCorrectionModal from '../datePicker/DateCorrectionModal';
+
 import BtnDateText, { TextWrapper } from './BtnDateText';
 
 import Icons from '@/assets/svg/index';
 import { SizeType } from '@/types/textInputType';
+import MODAL from '@/constants/modalLocation';
 
 interface BtnDateProps {
 	date?: string;
@@ -40,31 +43,59 @@ function BtnDate(props: BtnDateProps) {
 	const isDefaultTime = time === '마감 시간';
 
 	return (
-		<BtnDateLayout
-			isPressed={isPressed}
-			isClicked={isClicked}
-			size={size.type}
-			isDelayed={isDelayed}
-			isDisabled={isDisabled}
-			isDefaultDate={isDefaultDate}
-			isDefaultTime={isDefaultTime}
-			onMouseDown={handleMouseDown}
-			onMouseUp={handleMouseUp}
-		>
-			<BtnDateText
-				icon={<CalanderIcon isDelayed={isDelayed} />}
-				text={date}
-				isDefault={isDefaultDate}
+		<ModalLayout>
+			<BtnDateLayout
+				isPressed={isPressed}
+				isClicked={isClicked}
 				size={size.type}
-			/>
-			<LineIcon size={size.type} isDelayed={isDelayed} />
-			<BtnDateText icon={<ClockIcon isDelayed={isDelayed} />} text={time} isDefault={isDefaultTime} size={size.type} />
-			{isClicked && <XIcon size={size.type} />}
-		</BtnDateLayout>
+				isDelayed={isDelayed}
+				isDisabled={isDisabled}
+				isDefaultDate={isDefaultDate}
+				isDefaultTime={isDefaultTime}
+				onMouseDown={handleMouseDown}
+				onMouseUp={handleMouseUp}
+			>
+				<BtnDateText
+					icon={<CalanderIcon isDelayed={isDelayed} />}
+					text={date}
+					isDefault={isDefaultDate}
+					size={size.type}
+				/>
+				<LineIcon size={size.type} isDelayed={isDelayed} />
+				<BtnDateText
+					icon={<ClockIcon isDelayed={isDelayed} />}
+					text={time}
+					isDefault={isDefaultTime}
+					size={size.type}
+				/>
+				{size.type === 'long' && <XIcon size={size.type} />}
+			</BtnDateLayout>
+			{isClicked && (
+				<>
+					<DateCorrectionModal
+						top={MODAL.DATE_CORRECTION.TASK_MODAL.top}
+						left={MODAL.DATE_CORRECTION.TASK_MODAL.left}
+					/>
+					<ModalBackdrop onClick={handleMouseUp} />
+				</>
+			)}
+		</ModalLayout>
 	);
 }
 
 export default BtnDate;
+
+const ModalLayout = styled.div`
+	position: relative;
+`;
+
+const ModalBackdrop = styled.div`
+	position: absolute;
+	top: 0;
+	z-index: 3;
+	width: 100vw;
+	height: 100vh;
+`;
 
 const XIcon = styled(Icons.IcnXCricle)<{ size: string }>`
 	width: ${({ size }) => (size === 'long' ? '2rem' : '1.6rem')};
