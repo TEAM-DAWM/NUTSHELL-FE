@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { ViewMountArg, DatesSetArg } from '@fullcalendar/core';
+import { ViewMountArg, DatesSetArg, EventClickArg } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
@@ -10,6 +10,8 @@ import RefreshBtn from '@/components/common/button/RefreshBtn';
 import DayHeaderContent from '@/components/common/fullCalendar/DayHeaderContent';
 import FullCalendarLayout from '@/components/common/fullCalendar/FullCalendarStyle';
 import { customDayCellContent, customSlotLabelContent } from '@/components/common/fullCalendar/fullCalendarUtils';
+import Modal from '../modal/Modal';
+import MODAL from '@/constants/modalLocation';
 
 interface FullCalendarBoxProps {
 	size: 'small' | 'big';
@@ -19,6 +21,8 @@ interface FullCalendarBoxProps {
 function FullCalendarBox({ size, selectDate }: FullCalendarBoxProps) {
 	const today = new Date().toDateString();
 	const [currentView, setCurrentView] = useState('timeGridWeek');
+
+	const [isModalOpen, setModalOpen] = useState(false);
 
 	const handleViewChange = (view: ViewMountArg) => {
 		setCurrentView(view.view.type);
@@ -35,6 +39,23 @@ function FullCalendarBox({ size, selectDate }: FullCalendarBoxProps) {
 			calendarApi.gotoDate(selectDate);
 		}
 	}, [selectDate]);
+
+	const [top, setTop] = useState(0);
+	const [left, setLeft] = useState(0);
+
+	const handleEventClick = (info: EventClickArg) => {
+		const rect = info.el.getBoundingClientRect();
+		const calculatedTop = rect.top;
+		const adjustedTop = Math.min(calculatedTop, MODAL.SCREEN_HEIGHT - MODAL.TASK_MODAL_HEIGHT);
+		setTop(adjustedTop);
+		setLeft(rect.left - MODAL.TASK_MODAL_WIDTH + 40);
+		setModalOpen(true);
+	};
+
+	/** 모달 닫기 */
+	const closeModal = () => {
+		setModalOpen(false);
+	};
 
 	return (
 		<FullCalendarLayout size={size}>
@@ -116,7 +137,11 @@ function FullCalendarBox({ size, selectDate }: FullCalendarBoxProps) {
 					hour12: false,
 				}}
 				droppable={true}
+				eventClick={handleEventClick}
 			/>
+			{isModalOpen && (
+				<Modal isOpen={isModalOpen} sizeType={{ type: 'short' }} top={top} left={left} onClose={closeModal} />
+			)}
 		</FullCalendarLayout>
 	);
 }
