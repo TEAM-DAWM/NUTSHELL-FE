@@ -1,27 +1,53 @@
 import styled from '@emotion/styled';
+import { useState, useEffect } from 'react';
 
 import TextBtn from '../common/button/textBtn/TextBtn';
+import DatePickerCustom from '../common/datePicker/DatePickerCustom';
 
 import Icons from '@/assets/svg/index';
+import formatDatetoString from '@/utils/formatDatetoString';
 
 function DateArea() {
+	const today = new Date();
+	const [startDate, setStartDate] = useState(today);
+	const [endDate, setEndDate] = useState<Date | null>();
+	const [isClicked, setIsClicked] = useState(false);
+
+	const handleClick = () => {
+		setIsClicked((prev) => !prev);
+	};
+	useEffect(() => {
+		const newEndDate = new Date(startDate);
+		newEndDate.setDate(startDate.getDate() - 13);
+		setEndDate(newEndDate);
+	}, []);
+
 	return (
-		<DateAreaLayout>
-			<PlaceholderWrapper>
-				<StlyedCalendarIcon />
-				<TextBtn size="big" color="WHITE" mode="DEFAULT" isHover isPressed text="2024년 7월 2일" />
-				<StyledArrowIcon />
-				<TextBtn size="big" color="WHITE" mode="DEFAULT" isHover isPressed text="2024년 7월 12일" />
-			</PlaceholderWrapper>
-			<PastDateWrapper>
-				<PastWeekBtn>지난 1주일</PastWeekBtn>
-				<PastMonthBtn>지난 1달</PastMonthBtn>
-			</PastDateWrapper>
-		</DateAreaLayout>
+		<DatePickerCustomLayout>
+			<DateAreaLayout>
+				<PlaceholderWrapper onClick={handleClick}>
+					<StlyedCalendarIcon />
+					<TextBtn size="big" color="WHITE" mode="DEFAULT" isHover isPressed text={formatDatetoString(endDate)} />
+					<StyledArrowIcon />
+					<TextBtn size="big" color="WHITE" mode="DEFAULT" isHover isPressed text={formatDatetoString(startDate)} />
+					<DatePickerWrapper>
+						<DatePickerCustom isOpen={isClicked} onClose={handleClick} />
+					</DatePickerWrapper>
+				</PlaceholderWrapper>
+				<PastDateWrapper>
+					<PastWeekBtn>지난 1주일</PastWeekBtn>
+					<PastMonthBtn>지난 1달</PastMonthBtn>
+				</PastDateWrapper>
+			</DateAreaLayout>
+		</DatePickerCustomLayout>
 	);
 }
 
 export default DateArea;
+
+const DatePickerCustomLayout = styled.div`
+	display: flex;
+`;
 
 const DateAreaLayout = styled.div`
 	display: flex;
@@ -29,15 +55,14 @@ const DateAreaLayout = styled.div`
 	align-items: flex-end;
 	justify-content: flex-start;
 	width: 51.9rem;
-	height: 5.7rem;
-	padding: 1rem 0 0.7rem 1.4rem;
+	margin: 1rem 0 0.7rem 1.4rem;
 `;
 
 const PlaceholderWrapper = styled.div`
+	position: relative;
 	display: flex;
 	align-items: center;
 	box-sizing: border-box;
-	width: 36rem;
 	height: 4rem;
 	padding: 0.4rem 1.2rem;
 
@@ -103,4 +128,11 @@ const PastMonthBtn = styled.button`
 	border: 1px solid;
 	border-color: ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 8px;
+`;
+
+const DatePickerWrapper = styled.div`
+	position: absolute;
+	bottom: 0.6rem;
+	left: 0;
+	z-index: 3;
 `;

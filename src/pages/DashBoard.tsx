@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
 
-import DateCorrectionModal from '@/components/common/datePicker/DateCorrectionModal';
-import DatePickerCustom from '@/components/common/datePicker/DatePickerCustom';
 import DashboardTask from '@/components/DashboardPage/DashboardTask';
 import DateArea from '@/components/DashboardPage/DateArea';
 import TaskSummary from '@/components/DashboardPage/TaskSummary';
@@ -55,9 +53,6 @@ function DashBoard() {
 					<TaskSummary key={info.name} text={info.text} data={info.data} unit={info.unit} />
 				))}
 			</TaskSummaryWrapper>
-			<DateCorrectionModal isDateOnly />
-			<DateCorrectionModal isDateOnly={false} />
-			<DatePickerCustom />
 		</DashBoardLayout>
 	);
 }
@@ -67,7 +62,6 @@ export default DashBoard;
 const DashBoardLayout = styled.div`
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
 	width: 127.8rem;
 	height: 100vh;
 `;
@@ -77,8 +71,7 @@ const DateContainer = styled.div`
 	align-items: end;
 	justify-content: flex-start;
 	width: 25.3rem;
-	height: 7.7rem;
-	padding: 2.8rem 2.2rem 2.1rem;
+	padding: 2.8rem 2.1rem 2.2rem;
 `;
 
 const DateText = styled.p`
@@ -87,7 +80,7 @@ const DateText = styled.p`
 `;
 
 const DayText = styled.p`
-	margin: 0 0 0.1rem 0.8rem;
+	margin: 0.8rem 0.8rem 0;
 
 	${({ theme }) => theme.fontTheme.LABEL_01};
 	color: ${({ theme }) => theme.palette.Grey.Grey6};
@@ -108,7 +101,7 @@ const DataWrapper = styled.div`
 	align-self: stretch;
 	width: 100%;
 	height: 6.7rem;
-	padding-top: 1rem;
+	margin-top: 1rem;
 `;
 
 const TaskSummaryWrapper = styled.div`

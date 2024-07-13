@@ -30,6 +30,7 @@ const TaskSummaryLayout = styled.div`
 	flex-direction: column;
 	gap: 2rem;
 	align-items: flex-start;
+	align-self: flex-start;
 	justify-content: center;
 	box-sizing: border-box;
 	width: 41.7rem;
