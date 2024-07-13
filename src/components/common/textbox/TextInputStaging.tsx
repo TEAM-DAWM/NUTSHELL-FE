@@ -5,6 +5,7 @@ import BtnStagingDate from '../BtnDate/BtnStagingDate';
 import EnterBtn from '../button/EnterBtn';
 import DateCorrectionModal from '../datePicker/DateCorrectionModal';
 import MODAL from '@/constants/modalLocation';
+import ModalBackdrop from '../modal/ModalBackdrop';
 
 function TextInputStaging() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,14 +41,6 @@ function TextInputStaging() {
 		</StagingLayout>
 	);
 }
-
-const ModalBackdrop = styled.div`
-	position: absolute;
-	top: 0;
-	z-index: 3;
-	width: 100vw;
-	height: 100vh;
-`;
 
 const StagingLayout = styled.div`
 	display: flex;

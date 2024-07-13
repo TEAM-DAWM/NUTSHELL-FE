@@ -6,6 +6,7 @@ import ModalHeaderBtn from '@/components/common/modal/ModalHeaderBtn';
 import ModalTextInputTime from '@/components/common/modal/ModalTextInputTime';
 import TextInputBox from '@/components/common/modal/TextInputBox';
 import { SizeType } from '@/types/textInputType';
+import ModalBackdrop from './ModalBackdrop';
 
 interface ModalProps {
 	isOpen: boolean;
@@ -37,18 +38,6 @@ function Modal({ isOpen, sizeType, top, left, onClose }: ModalProps) {
 		)
 	);
 }
-
-const ModalBackdrop = styled.div`
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 3;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100vw;
-	height: 100vh;
-`;
 
 const ModalLayout = styled.div<{ type: string; top: number; left: number }>`
 	position: fixed;

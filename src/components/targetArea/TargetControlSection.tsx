@@ -6,6 +6,7 @@ import DateCorrectionModal from '../common/datePicker/DateCorrectionModal';
 
 import TextBtn from '@/components/common/button/textBtn/TextBtn';
 import MODAL from '@/constants/modalLocation';
+import ModalBackdrop from '../common/modal/ModalBackdrop';
 
 function TargetControlSection() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,16 +41,6 @@ function TargetControlSection() {
 
 const ModalLayout = styled.div`
 	position: relative;
-`;
-
-const ModalBackdrop = styled.div`
-	position: absolute;
-	top: 0;
-	right: 0;
-	left: 0;
-	z-index: 3;
-	width: 100vw;
-	height: 100vh;
 `;
 
 const TargetControlSectionLayout = styled.div`

@@ -9,6 +9,7 @@ import BtnDateText, { TextWrapper } from './BtnDateText';
 import Icons from '@/assets/svg/index';
 import { SizeType } from '@/types/textInputType';
 import MODAL from '@/constants/modalLocation';
+import ModalBackdrop from '../modal/ModalBackdrop';
 
 interface BtnDateProps {
 	date?: string;
@@ -87,14 +88,6 @@ export default BtnDate;
 
 const ModalLayout = styled.div`
 	position: relative;
-`;
-
-const ModalBackdrop = styled.div`
-	position: absolute;
-	top: 0;
-	z-index: 3;
-	width: 100vw;
-	height: 100vh;
 `;
 
 const XIcon = styled(Icons.IcnXCricle)<{ size: string }>`

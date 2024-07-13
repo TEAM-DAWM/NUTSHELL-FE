@@ -4,6 +4,7 @@ import { useState } from 'react';
 import ArrangeBtn from '../arrangeBtn/ArrangeBtn';
 import TextBtn from '../button/textBtn/TextBtn';
 import ModalArrange from '../modal/ModalArrange/ModalArrange';
+import ModalBackdrop from '../modal/ModalBackdrop';
 
 function StagingAreaSetting() {
 	const [activeButton, setActiveButton] = useState<'전체' | '지연'>('전체');
@@ -53,14 +54,6 @@ function StagingAreaSetting() {
 }
 
 export default StagingAreaSetting;
-
-const ModalBackdrop = styled.div`
-	position: absolute;
-	top: 0;
-	z-index: 3;
-	width: 100vw;
-	height: 100vh;
-`;
 
 const StagingAreaSettingLayout = styled.div`
 	display: flex;
