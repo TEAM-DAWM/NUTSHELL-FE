@@ -152,13 +152,13 @@ const BtnDateLayout = styled.div<{
 			pointer-events: none;
 		`}
 
-	${({ isClicked, size, theme }) =>
+	${({ isClicked, theme }) =>
 		isClicked &&
 		css`
-			padding-right: ${size === 'long' ? '0.6rem' : '0.2rem'};
+			padding-right: 0.6rem;
 
 			border-color: ${theme.palette.Primary};
-			border-width: ${size === 'long' ? '2px' : '1px'};
+			border-width: 1px;
 		`}
 
 	${({ isPressed, theme }) =>
