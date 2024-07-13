@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 interface OkayCancelBtnProps {
 	type: 'okay' | 'cancel';
-	onClick: () => void;
+	onClick?: () => void;
 }
 
 function OkayCancelBtn({ type, onClick }: OkayCancelBtnProps) {
