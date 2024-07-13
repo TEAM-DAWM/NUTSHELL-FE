@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import React from 'react';
 
 import BtnDate from '@/components/common/BtnDate/BtnDate';
 import OkayCancelBtn from '@/components/common/button/OkayCancelBtn';
@@ -13,7 +12,7 @@ interface ModalProps {
 	sizeType: SizeType;
 	top: number;
 	left: number;
-	onClose: React.MouseEventHandler;
+	onClose: () => void;
 }
 
 function Modal({ isOpen, sizeType, top, left, onClose }: ModalProps) {
@@ -30,8 +29,8 @@ function Modal({ isOpen, sizeType, top, left, onClose }: ModalProps) {
 						{sizeType.type === 'long' && <ModalTextInputTime />}
 					</ModalBody>
 					<ModalFooter>
-						<OkayCancelBtn type="cancel" />
-						<OkayCancelBtn type="okay" />
+						<OkayCancelBtn type="cancel" onClick={onClose} />
+						<OkayCancelBtn type="okay" onClick={onClose} />
 					</ModalFooter>
 				</ModalLayout>
 			</ModalBackdrop>

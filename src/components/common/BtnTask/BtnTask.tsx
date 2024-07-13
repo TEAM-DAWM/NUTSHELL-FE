@@ -26,6 +26,7 @@ interface BorderColorProps {
 
 function BtnTask(props: BtnTaskProps) {
 	const { btnType, name, deadLine, hasDescription, status } = props;
+	const [isModalOpen, setModalOpen] = useState(false);
 	const [isClicked, setIsClicked] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
 	const [iconHovered, setIconHovered] = useState(false);
@@ -45,15 +46,25 @@ function BtnTask(props: BtnTaskProps) {
 		setIsHovered(false);
 	};
 
-	const handleClick = (e: React.MouseEvent) => {
+	/** 모달 띄우기 */
+	const handleDoubleClick = (e: React.MouseEvent) => {
 		const rect = e.currentTarget.getBoundingClientRect();
 		const calculatedTop = rect.top;
 		const adjustedTop = Math.min(calculatedTop, SCREEN_HEIGHT - MODAL_HEIGHT);
 		setTop(adjustedTop);
 		setLeft(rect.right + 6);
+		setModalOpen((prev) => !prev);
+	};
+
+	/** 보더 색상 */
+	const handleClick = () => {
 		setIsClicked((prev) => !prev);
 	};
 
+	/** 모달 닫기 */
+	const closeModal = () => {
+		setModalOpen(false);
+	};
 	const stopPropagation = (e: React.MouseEvent) => {
 		e.stopPropagation();
 	};
@@ -109,6 +120,7 @@ function BtnTask(props: BtnTaskProps) {
 				isHovered={isHovered}
 				iconHovered={iconHovered}
 				btnType={btnType}
+				onDoubleClick={handleDoubleClick}
 				onClick={handleClick}
 			>
 				<BtnTaskContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
@@ -131,7 +143,7 @@ function BtnTask(props: BtnTaskProps) {
 					{renderStatusButton()}
 				</IconHoverContainer>
 			</BtnTaskLayout>
-			<Modal isOpen={isClicked} sizeType={{ type: 'short' }} top={top} left={left} onClose={handleClick} />
+			<Modal isOpen={isModalOpen} sizeType={{ type: 'short' }} top={top} left={left} onClose={closeModal} />
 		</ModalLayout>
 	);
 }
@@ -140,16 +152,16 @@ export default BtnTask;
 
 const getBorderColor = ({ isHovered, isClicked, iconHovered, theme, btnType }: BorderColorProps) => {
 	const defaultColor = theme.palette.Grey.Grey1;
-	const hoverColor = theme.palette.Blue.Blue1;
+	const hoverColor = theme.palette.Blue.Blue3;
 	const clickColor = theme.palette.Primary;
 	const orangeColor = theme.palette.Orange.Orange8;
 	let borderColor = defaultColor;
 	if (btnType === 'delayed') {
 		borderColor = orangeColor;
-	} else if (iconHovered || isHovered) {
-		borderColor = hoverColor;
 	} else if (isClicked) {
 		borderColor = clickColor;
+	} else if (iconHovered || isHovered) {
+		borderColor = hoverColor;
 	}
 	return css`
 		border-color: ${borderColor};
