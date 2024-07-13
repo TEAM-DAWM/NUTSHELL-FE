@@ -27,12 +27,14 @@ function BtnDate(props: BtnDateProps) {
 	const [isClicked, setIsClicked] = useState(false);
 
 	const handleMouseDown = () => {
-		setIsPressed(true);
+		if (size.type !== 'short') setIsPressed(true);
 	};
 
 	const handleMouseUp = () => {
-		setIsPressed(false);
-		setIsClicked((prev) => !prev);
+		if (size.type !== 'short') {
+			setIsPressed(false);
+			setIsClicked((prev) => !prev);
+		}
 	};
 	const isDefaultDate = date === '마감 기한';
 	const isDefaultTime = time === '마감 시간';
