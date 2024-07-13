@@ -2,7 +2,6 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useState, useEffect } from 'react';
 
-import TextBtn from '../common/button/textBtn/TextBtn';
 import DatePickerCustom from '../common/datePicker/DatePickerCustom';
 
 import Icons from '@/assets/svg/index';
@@ -41,11 +40,11 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 	return (
 		<DatePickerCustomLayout>
 			<DateAreaLayout>
-				<PlaceholderWrapper onClick={handleClick}>
+				<PlaceholderWrapper isHover={isHover} isPressed={isPressed} onClick={handleClick}>
 					<StlyedCalendarIcon />
-					<TextBtn size="big" color="WHITE" mode="DEFAULT" isHover isPressed text={formatDatetoString(endDate)} />
+					<DateText>{formatDatetoString(endDate)}</DateText>
 					<StyledArrowIcon />
-					<TextBtn size="big" color="WHITE" mode="DEFAULT" isHover isPressed text={formatDatetoString(startDate)} />
+					<DateText>{formatDatetoString(startDate)}</DateText>
 					<DatePickerWrapper>
 						<DatePickerCustom isOpen={isClicked} onClose={handleClick} />
 					</DatePickerWrapper>
@@ -78,7 +77,7 @@ const DateAreaLayout = styled.div`
 	margin: 1rem 0 0.7rem 1.4rem;
 `;
 
-const PlaceholderWrapper = styled.div`
+const PlaceholderWrapper = styled.div<{ isHover: boolean; isPressed: boolean }>`
 	position: relative;
 	display: flex;
 	align-items: center;
@@ -86,8 +85,36 @@ const PlaceholderWrapper = styled.div`
 	height: 4rem;
 	padding: 0.4rem 1.2rem;
 
+	background-color: ${({ theme }) => theme.textButton.WHITE.DEFAULT.BG};
 	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 8px;
+	${({ theme }) => theme.fontTheme.BODY_02};
+
+	${({ isHover, theme }) =>
+		isHover &&
+		css`
+			&:hover {
+				color: ${theme.textButton.WHITE.HOVER.TEXT};
+
+				background-color: ${theme.textButton.WHITE.HOVER.BG};
+			}
+		`}
+	${({ isPressed, theme }) =>
+		isPressed &&
+		css`
+			&:active {
+				color: ${theme.textButton.WHITE.PRESSED.TEXT};
+
+				background-color: ${theme.textButton.WHITE.PRESSED.BG};
+			}
+		`}
+`;
+
+const DateText = styled.p`
+	padding: 0.5rem 1.6rem;
+
+	color: ${({ theme }) => theme.textButton.WHITE.DEFAULT.TEXT};
+	${({ theme }) => theme.fontTheme.BODY_02};
 `;
 
 const StlyedCalendarIcon = styled(Icons.Icn_calander)`
