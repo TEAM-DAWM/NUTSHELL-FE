@@ -57,7 +57,7 @@ function BtnDate(props: BtnDateProps) {
 			/>
 			<LineIcon size={size.type} isDelayed={isDelayed} />
 			<BtnDateText icon={<ClockIcon isDelayed={isDelayed} />} text={time} isDefault={isDefaultTime} size={size.type} />
-			{isClicked && size.type === 'long' && <XIcon size={size.type} />}
+			{isClicked && <XIcon size={size.type} />}
 		</BtnDateLayout>
 	);
 }
