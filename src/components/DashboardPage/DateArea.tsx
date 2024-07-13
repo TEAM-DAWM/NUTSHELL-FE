@@ -40,15 +40,17 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 	return (
 		<DatePickerCustomLayout>
 			<DateAreaLayout>
-				<PlaceholderWrapper isHover={isHover} isPressed={isPressed} onClick={handleClick}>
-					<StlyedCalendarIcon />
-					<DateText>{formatDatetoString(endDate)}</DateText>
-					<StyledArrowIcon />
-					<DateText>{formatDatetoString(startDate)}</DateText>
+				<DatePickerContainer>
+					<PlaceholderWrapper isHover={isHover} isPressed={isPressed} onClick={handleClick}>
+						<StlyedCalendarIcon />
+						<DateText>{formatDatetoString(endDate)}</DateText>
+						<StyledArrowIcon />
+						<DateText>{formatDatetoString(startDate)}</DateText>
+					</PlaceholderWrapper>
 					<DatePickerWrapper>
 						<DatePickerCustom isOpen={isClicked} onClose={handleClick} />
 					</DatePickerWrapper>
-				</PlaceholderWrapper>
+				</DatePickerContainer>
 				<PastDateWrapper>
 					<PastWeekBtn isHover={isHover} isPressed={isPressed} onClick={handleClickPastWeek}>
 						지난 1주일
@@ -77,8 +79,12 @@ const DateAreaLayout = styled.div`
 	margin: 1rem 0 0.7rem 1.4rem;
 `;
 
-const PlaceholderWrapper = styled.div<{ isHover: boolean; isPressed: boolean }>`
+const DatePickerContainer = styled.div`
 	position: relative;
+	display: flex;
+`;
+
+const PlaceholderWrapper = styled.div<{ isHover: boolean; isPressed: boolean }>`
 	display: flex;
 	align-items: center;
 	box-sizing: border-box;
