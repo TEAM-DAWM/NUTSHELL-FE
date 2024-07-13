@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import DeleteCancelBtn from '@/components/common/button/DeleteCancelBtn';
+import ModalBackdrop from './ModalBackdrop';
 
 interface ModalDeleteDetailProps {
 	top: number;
@@ -18,18 +19,6 @@ function ModalDeleteDetail({ top, left, onClose }: ModalDeleteDetailProps) {
 		</ModalBackdrop>
 	);
 }
-
-const ModalBackdrop = styled.div`
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 3;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100vw;
-	height: 100vh;
-`;
 
 const ModalDeleteDetailLayout = styled.div<{ top: number; left: number }>`
 	position: fixed;

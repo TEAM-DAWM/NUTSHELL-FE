@@ -19,5 +19,6 @@ const TextInputDescLayout = styled.textarea<{ type: string }>`
 	&:focus {
 		outline: none;
 	}
+	resize: none;
 `;
 export default TextInputDesc;

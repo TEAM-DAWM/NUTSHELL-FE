@@ -4,12 +4,13 @@ import { useState } from 'react';
 import ArrangeBtn from '../arrangeBtn/ArrangeBtn';
 import TextBtn from '../button/textBtn/TextBtn';
 import ModalArrange from '../modal/ModalArrange/ModalArrange';
+import ModalBackdrop from '../modal/ModalBackdrop';
 
 function StagingAreaSetting() {
-	const [activeButton, setActiveButton] = useState<'전체' | '취소'>('전체');
+	const [activeButton, setActiveButton] = useState<'전체' | '지연'>('전체');
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const handleTextBtnClick = (button: '전체' | '취소') => {
+	const handleTextBtnClick = (button: '전체' | '지연') => {
 		setActiveButton(button);
 	};
 
@@ -35,12 +36,12 @@ function StagingAreaSetting() {
 				/>
 				<TextBtn
 					size="small"
-					text="취소"
-					color={activeButton === '취소' ? 'BLUE' : 'WHITE'}
-					mode={activeButton === '취소' ? 'DEFAULT' : 'LIGHT'}
+					text="지연"
+					color={activeButton === '지연' ? 'BLUE' : 'WHITE'}
+					mode={activeButton === '지연' ? 'DEFAULT' : 'LIGHT'}
 					isHover
 					isPressed
-					onClick={() => handleTextBtnClick('취소')}
+					onClick={() => handleTextBtnClick('지연')}
 				/>
 			</TextBtnContainer>
 			<ArrangeContainer>
@@ -53,14 +54,6 @@ function StagingAreaSetting() {
 }
 
 export default StagingAreaSetting;
-
-const ModalBackdrop = styled.div`
-	position: absolute;
-	top: 0;
-	z-index: 3;
-	width: 100vw;
-	height: 100vh;
-`;
 
 const StagingAreaSettingLayout = styled.div`
 	display: flex;
