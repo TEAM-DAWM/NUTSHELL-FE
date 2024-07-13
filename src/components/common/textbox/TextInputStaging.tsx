@@ -4,6 +4,7 @@ import { useState } from 'react';
 import BtnStagingDate from '../BtnDate/BtnStagingDate';
 import EnterBtn from '../button/EnterBtn';
 import DateCorrectionModal from '../datePicker/DateCorrectionModal';
+import MODAL from '@/constants/modalLocation';
 
 function TextInputStaging() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,7 +22,15 @@ function TextInputStaging() {
 			<TextArea placeholder="해야하는 일들을 쏟아내보세요." />
 			<BtnWrapper>
 				<SetDeadLineContainer>
-					{isModalOpen && <DateCorrectionModal />}
+					{isModalOpen && (
+						<>
+							<DateCorrectionModal
+								top={MODAL.DATE_CORRECTION.SET_DEADLINE.top}
+								left={MODAL.DATE_CORRECTION.SET_DEADLINE.left}
+							/>
+							<ModalBackdrop onClick={handleCloseModal} />
+						</>
+					)}
 					<BtnStagingDate onClick={handleArrangeBtnClick} />
 				</SetDeadLineContainer>
 				{isModalOpen && <ModalBackdrop onClick={handleCloseModal} />}
