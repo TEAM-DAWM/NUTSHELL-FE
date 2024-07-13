@@ -22,6 +22,16 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 	const handleClick = () => {
 		setIsClicked((prev) => !prev);
 	};
+	const handleClickPastWeek = () => {
+		const PastWeekEndDate = new Date(startDate);
+		PastWeekEndDate.setDate(startDate.getDate() - 6);
+		setEndDate(PastWeekEndDate);
+	};
+	const handleClickPastMonth = () => {
+		const PastMonthEndDate = new Date(startDate);
+		PastMonthEndDate.setDate(startDate.getDate() - 30);
+		setEndDate(PastMonthEndDate);
+	};
 	useEffect(() => {
 		const newEndDate = new Date(startDate);
 		newEndDate.setDate(startDate.getDate() - 13);
@@ -41,10 +51,10 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 					</DatePickerWrapper>
 				</PlaceholderWrapper>
 				<PastDateWrapper>
-					<PastWeekBtn isHover isPressed>
+					<PastWeekBtn isHover={isHover} isPressed={isPressed} onClick={handleClickPastWeek}>
 						지난 1주일
 					</PastWeekBtn>
-					<PastMonthBtn isHover isPressed>
+					<PastMonthBtn isHover={isHover} isPressed={isPressed} onClick={handleClickPastMonth}>
 						지난 1달
 					</PastMonthBtn>
 				</PastDateWrapper>

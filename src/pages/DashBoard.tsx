@@ -46,7 +46,7 @@ function DashBoard() {
 				<DashboardTask text="inprogress" />
 			</DashBoardTaskWrapper>
 			<DataWrapper>
-				<DateArea />
+				<DateArea isHover isPressed />
 			</DataWrapper>
 			<TaskSummaryWrapper>
 				{SUMMARY_INFO.map((info) => (
