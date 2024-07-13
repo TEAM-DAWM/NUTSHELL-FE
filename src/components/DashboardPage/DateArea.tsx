@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useState, useEffect } from 'react';
 
@@ -7,7 +8,12 @@ import DatePickerCustom from '../common/datePicker/DatePickerCustom';
 import Icons from '@/assets/svg/index';
 import formatDatetoString from '@/utils/formatDatetoString';
 
-function DateArea() {
+interface DateAreaProps {
+	isHover: boolean;
+	isPressed: boolean;
+}
+
+function DateArea({ isHover, isPressed }: DateAreaProps) {
 	const today = new Date();
 	const [startDate, setStartDate] = useState(today);
 	const [endDate, setEndDate] = useState<Date | null>();
@@ -35,8 +41,12 @@ function DateArea() {
 					</DatePickerWrapper>
 				</PlaceholderWrapper>
 				<PastDateWrapper>
-					<PastWeekBtn>지난 1주일</PastWeekBtn>
-					<PastMonthBtn>지난 1달</PastMonthBtn>
+					<PastWeekBtn isHover isPressed>
+						지난 1주일
+					</PastWeekBtn>
+					<PastMonthBtn isHover isPressed>
+						지난 1달
+					</PastMonthBtn>
 				</PastDateWrapper>
 			</DateAreaLayout>
 		</DatePickerCustomLayout>
@@ -96,7 +106,7 @@ const PastDateWrapper = styled.span`
 	height: 2.6rem;
 `;
 
-const PastWeekBtn = styled.button`
+const PastWeekBtn = styled.button<{ isHover: boolean; isPressed: boolean }>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -111,9 +121,27 @@ const PastWeekBtn = styled.button`
 	border: 1px solid;
 	border-color: ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 8px;
+	${({ isHover, theme }) =>
+		isHover &&
+		css`
+			&:hover {
+				color: ${theme.textButton.WHITE.HOVER.TEXT};
+
+				background-color: ${theme.textButton.WHITE.HOVER.BG};
+			}
+		`}
+	${({ isPressed, theme }) =>
+		isPressed &&
+		css`
+			&:active {
+				color: ${theme.textButton.WHITE.PRESSED.TEXT};
+
+				background-color: ${theme.textButton.WHITE.PRESSED.BG};
+			}
+		`}
 `;
 
-const PastMonthBtn = styled.button`
+const PastMonthBtn = styled.button<{ isHover: boolean; isPressed: boolean }>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -128,11 +156,29 @@ const PastMonthBtn = styled.button`
 	border: 1px solid;
 	border-color: ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 8px;
+	${({ isHover, theme }) =>
+		isHover &&
+		css`
+			&:hover {
+				color: ${theme.textButton.WHITE.HOVER.TEXT};
+
+				background-color: ${theme.textButton.WHITE.HOVER.BG};
+			}
+		`}
+	${({ isPressed, theme }) =>
+		isPressed &&
+		css`
+			&:active {
+				color: ${theme.textButton.WHITE.PRESSED.TEXT};
+
+				background-color: ${theme.textButton.WHITE.PRESSED.BG};
+			}
+		`}
 `;
 
 const DatePickerWrapper = styled.div`
 	position: absolute;
-	bottom: 0.6rem;
+	bottom: 4.6rem;
 	left: 0;
 	z-index: 3;
 `;
