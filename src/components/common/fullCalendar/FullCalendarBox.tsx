@@ -10,7 +10,6 @@ import RefreshBtn from '@/components/common/button/RefreshBtn';
 import DayHeaderContent from '@/components/common/fullCalendar/DayHeaderContent';
 import FullCalendarLayout from '@/components/common/fullCalendar/FullCalendarStyle';
 import { customDayCellContent, customSlotLabelContent } from '@/components/common/fullCalendar/fullCalendarUtils';
-import { theme } from '@/styles/theme';
 
 interface FullCalendarBoxProps {
 	size: 'small' | 'big';
@@ -58,13 +57,29 @@ function FullCalendarBox({ size }: FullCalendarBoxProps) {
 				selectable
 				nowIndicator
 				dayMaxEvents
+				// netshell에서 할당한 이벤트 : tasks, 구글 캘린더에서 가져온 이벤트 : schedule
 				events={[
-					{ title: 'Meeting', start: '2024-07-06T10:00:00', end: '2024-07-06T12:00:00' },
-					{ title: 'Lunch', start: '2024-07-07T12:00:00', end: '2024-07-07T12:45:00' },
-					{ title: 'Lunch', start: '2024-07-08T12:00:00', end: '2024-07-08T12:30:00' },
-					{ title: 'All Day Event', start: '2024-07-08T10:00:00', end: '2024-07-08T12:00:00', allDay: true },
+					{ title: 'Meeting', start: '2024-07-06T10:00:00', end: '2024-07-06T12:00:00', classNames: 'tasks' },
+					{ title: 'Lunch', start: '2024-07-07T12:00:00', end: '2024-07-07T12:45:00', classNames: 'tasks' },
+					{ title: 'Lunch', start: '2024-07-08T12:00:00', end: '2024-07-08T12:30:00', classNames: 'tasks' },
+					{
+						title: 'All Day Event',
+						start: '2024-07-08T10:00:00',
+						end: '2024-07-08T12:00:00',
+						allDay: true,
+						classNames: 'task',
+					},
+					{ title: 'Meeting', start: '2024-07-11T10:00:00', end: '2024-07-11T12:00:00', classNames: 'schedule' },
+					{ title: 'Lunch', start: '2024-07-12T12:00:00', end: '2024-07-12T12:45:00', classNames: 'schedule' },
+					{ title: 'Lunch', start: '2024-07-11T12:00:00', end: '2024-07-11T12:30:00', classNames: 'schedule' },
+					{
+						title: 'All Day Event',
+						start: '2024-07-12T10:00:00',
+						end: '2024-07-12T12:00:00',
+						allDay: true,
+						classNames: 'schedule',
+					},
 				]}
-				eventColor={theme.palette.Blue.Blue2}
 				buttonText={{
 					today: '오늘',
 					month: '월간',
@@ -90,6 +105,7 @@ function FullCalendarBox({ size }: FullCalendarBoxProps) {
 					minute: '2-digit',
 					hour12: false,
 				}}
+				droppable={true}
 			/>
 		</FullCalendarLayout>
 	);
