@@ -21,6 +21,7 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 
 		color: ${(color) => color.theme.palette.Grey.Grey8};
 
+		background-color: ${({ theme }) => theme.palette.Blue.Blue2};
 		border: none;
 		border-radius: 4px;
 		${({ theme }) => theme.fontTheme.CAPTION_03};
@@ -255,12 +256,20 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		border: none;
 	}
 
-	.fc .fc-daygrid-event-harness {
-		margin: 0;
+	.fc .fc-daygrid-day-frame .fc-event-main:hover {
+		background-color: ${({ theme }) => theme.palette.Blue.Blue8};
 	}
 
-	.fc .fc-daygrid-day-frame .fc-daygrid-event-harness {
-		background-color: ${({ theme }) => theme.palette.Grey.White};
+	.fc .fc-daygrid-day-frame .schedule .fc-event-main {
+		background-color: ${({ theme }) => theme.palette.Grey.Grey6};
+	}
+
+	.fc .fc-daygrid-day-frame .tasks .fc-event-main:hover {
+		background-color: ${({ theme }) => theme.palette.Grey.Grey7};
+	}
+
+	.fc .fc-daygrid-event-harness {
+		margin: 0;
 	}
 
 	.fc .fc-daygrid-event {
@@ -283,15 +292,30 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		height: 2.1rem;
 		margin: 0.1rem;
 
-		background-color: ${({ theme }) => theme.palette.Primary};
+		border-radius: 4px;
 	}
 
 	.fc .fc-daygrid-dot-event {
 		padding: 0.4rem 0.6rem;
 
-		background-color: ${({ theme }) => theme.palette.Blue.Blue2};
-		border-left: 2px solid ${({ theme }) => theme.palette.Primary};
 		border-radius: 4px;
+	}
+
+	.fc .fc-daygrid-dot-event.schedule {
+		background-color: ${({ theme }) => theme.palette.Grey.Grey2};
+		box-shadow: 2px 0 0 0 ${({ theme }) => theme.palette.Grey.Grey6} inset;
+	}
+
+	.fc .fc-daygrid-dot-event.tasks {
+		background-color: ${({ theme }) => theme.palette.Blue.Blue2};
+	}
+
+	.fc .fc-daygrid-dot-event.schedule:hover {
+		background-color: ${({ theme }) => theme.palette.Grey.Grey3};
+	}
+
+	.fc .fc-daygrid-dot-event.tasks:hover {
+		background-color: ${({ theme }) => theme.palette.Blue.Blue3};
 	}
 
 	.fc .fc-h-event {

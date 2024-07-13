@@ -150,6 +150,7 @@ const style = css`
 
 	:root {
 		--fc-highlight-color: #dfe9ff;
+		--fc-event-border-color: #ffff;
 	}
 `;
 
