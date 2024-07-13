@@ -21,7 +21,7 @@ function Calendar() {
 			</LeftSection>
 			<RightSection>
 				<FullCalendarBoxWapper>
-					<FullCalendarBox size="big" />
+					<FullCalendarBox size="big" selectDate={selectDate}/>
 				</FullCalendarBoxWapper>
 			</RightSection>
 		</CalendarLayout>
