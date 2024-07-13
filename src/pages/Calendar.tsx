@@ -3,12 +3,20 @@ import styled from '@emotion/styled';
 import CategoryBox from '@/components/calendarPage/CategoryBox';
 import MiniCalendar from '@/components/calendarPage/miniCalendar/MiniCalendar';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
+import { useState } from 'react';
 
 function Calendar() {
+	const today = new Date();
+	const [selectDate, setSelectDate] = useState<Date | null>(today);
+
+	const onClickDate = (date: Date | null) => {
+		setSelectDate(date);
+	};
+
 	return (
 		<CalendarLayout>
 			<LeftSection>
-				<MiniCalendar />
+				<MiniCalendar selectDate={selectDate} onClickDate={onClickDate} />
 				<CategoryBox email="hongildong@gmail.com" categoryList={['내 할 일', '공부', '운동']} />
 			</LeftSection>
 			<RightSection>
