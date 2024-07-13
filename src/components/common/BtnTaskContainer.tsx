@@ -1,13 +1,13 @@
 import { theme } from '@/styles/theme';
 import styled from '@emotion/styled';
 
-const BtnTaskContainer = styled.div`
+const BtnTaskContainer = styled.div<{ type: string }>`
 	position: relative;
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 	width: 100%;
-	height: 56.7rem;
+	height: ${({ type }) => (type === 'staging' ? '56.7rem' : '64rem')};
 	overflow: auto;
 	overflow-y: scroll;
 

@@ -49,7 +49,7 @@ function TargetTaskSection() {
 	];
 
 	return (
-		<BtnTaskContainer>
+		<BtnTaskContainer type="target">
 			{dummyTaskList.map((task) => (
 				<BtnTask
 					btnType="target"

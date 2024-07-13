@@ -133,7 +133,7 @@ function StagingAreaTaskContainer() {
 	return (
 		<StagingAreaTaskContainerLayout>
 			<StagingAreaSetting />
-			<BtnTaskContainer>
+			<BtnTaskContainer type="staging">
 				{dummyTaskList.map((task) => (
 					<BtnTask
 						key={task.id + task.name}
