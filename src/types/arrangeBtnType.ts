@@ -3,7 +3,7 @@ export interface ArrangeBtnType {
 	mode: 'DISABLED' | 'DEFAULT';
 	color: 'BLUE' | 'WHITE' | 'BLACK';
 	size: 'big' | 'small';
-	onClick?: () => void;
+	onClick?: React.MouseEventHandler;
 	className?: string;
 	'aria-label'?: string;
 	disabled?: boolean;
