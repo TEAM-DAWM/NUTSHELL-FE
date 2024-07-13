@@ -9,6 +9,7 @@ import IconHoverContainer from './IconHoverContainer';
 import Icons from '@/assets/svg/index';
 import BtnDate from '@/components/common/BtnDate/BtnDate';
 import { TaskType } from '@/types/tasks/taskType';
+import MODAL from '@/constants/modalLocation';
 
 interface BtnTaskProps extends TaskType {
 	btnType: 'staging' | 'target' | 'delayed';
@@ -30,9 +31,6 @@ function BtnTask(props: BtnTaskProps) {
 	const [top, setTop] = useState(0);
 	const [left, setLeft] = useState(0);
 
-	const MODAL_HEIGHT = 362;
-	const SCREEN_HEIGHT = 768;
-
 	const handleMouseEnter = () => {
 		setIsHovered(true);
 	};
@@ -45,7 +43,7 @@ function BtnTask(props: BtnTaskProps) {
 	const handleDoubleClick = (e: React.MouseEvent) => {
 		const rect = e.currentTarget.getBoundingClientRect();
 		const calculatedTop = rect.top;
-		const adjustedTop = Math.min(calculatedTop, SCREEN_HEIGHT - MODAL_HEIGHT);
+		const adjustedTop = Math.min(calculatedTop, MODAL.SCREEN_HEIGHT - MODAL.TASK_MODAL_HEIGHT);
 		setTop(adjustedTop);
 		setLeft(rect.right + 6);
 		setModalOpen((prev) => !prev);
