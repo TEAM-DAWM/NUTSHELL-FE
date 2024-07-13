@@ -27,21 +27,62 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		${({ theme }) => theme.fontTheme.CAPTION_03};
 	}
 
-	.tasks .fc-event-main {
+	.fc-event-main .tasks {
 		background-color: ${({ theme }) => theme.palette.Blue.Blue2};
 	}
 
 	.schedule .fc-event-main {
 		background-color: ${({ theme }) => theme.palette.Grey.Grey2};
-		box-shadow: 2px 0 0 0 ${({ theme }) => theme.palette.Grey.Grey6} inset;
 	}
 
-	.tasks .fc-event-main:hover {
+	/* 종일 이벤트 테두리 */
+	.fc .fc-daygrid-day-frame .fc-event-main {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-sizing: border-box;
+		height: 2.1rem;
+		padding: 0.3rem 1.2rem;
+
+		color: ${({ theme }) => theme.palette.Grey.White};
+
+		background-color: ${({ theme }) => theme.palette.Primary};
+		border: none;
+	}
+
+	/* fc-timegrid-col-events : 주간 이벤트 , fc-daygrid-day-frame: 월간 이벤트 */
+	.fc .fc-timegrid-col-events .fc-event-main:hover {
 		background-color: ${({ theme }) => theme.palette.Blue.Blue3};
 	}
 
-	.schedule .fc-event-main:hover {
+	.fc .fc-daygrid-day-frame .schedule .fc-event-main {
+		background-color: ${({ theme }) => theme.palette.Grey.Grey6};
+	}
+
+	.fc .fc-timegrid-col-events .schedule .fc-event-main {
+		background-color: ${({ theme }) => theme.palette.Grey.Grey2};
+		box-shadow: 2px 0 0 0 ${({ theme }) => theme.palette.Grey.Grey6} inset;
+	}
+
+	.fc .fc-daygrid-day-frame .fc-event-main:hover {
+		background-color: ${({ theme }) => theme.palette.Blue.Blue8};
+	}
+
+	.fc .fc-timegrid-col-events .schedule .fc-event-main:hover {
 		background-color: ${({ theme }) => theme.palette.Grey.Grey3};
+	}
+
+	.fc .fc-daygrid-day-frame .schedule .fc-event-main:hover {
+		background-color: ${({ theme }) => theme.palette.Grey.Grey7};
+	}
+
+	/* user-select: none 상태에서의 스타일 */
+	.schedule[style*='user-select: none'] {
+		background-color: ${({ theme }) => theme.palette.Grey.Grey4} !important;
+	}
+
+	.tasks[style*='user-select: none'] {
+		background-color: ${({ theme }) => theme.palette.Blue.Blue4} !important;
 	}
 
 	.fc-v-event .fc-event-main-frame {
@@ -241,33 +282,6 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		${({ theme }) => theme.fontTheme.HEADLINE_02};
 	}
 
-	/* 종일 이벤트 테두리 */
-	.fc .fc-daygrid-day-frame .fc-event-main {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		box-sizing: border-box;
-		height: 2.1rem;
-		padding: 0.3rem 1.2rem;
-
-		color: ${({ theme }) => theme.palette.Grey.White};
-
-		background-color: ${({ theme }) => theme.palette.Primary};
-		border: none;
-	}
-
-	.fc .fc-daygrid-day-frame .fc-event-main:hover {
-		background-color: ${({ theme }) => theme.palette.Blue.Blue8};
-	}
-
-	.fc .fc-daygrid-day-frame .schedule .fc-event-main {
-		background-color: ${({ theme }) => theme.palette.Grey.Grey6};
-	}
-
-	.fc .fc-daygrid-day-frame .tasks .fc-event-main:hover {
-		background-color: ${({ theme }) => theme.palette.Grey.Grey7};
-	}
-
 	.fc .fc-daygrid-event-harness {
 		margin: 0;
 	}
@@ -310,6 +324,7 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		background-color: ${({ theme }) => theme.palette.Blue.Blue2};
 	}
 
+	/* 월간 이벤트 호버 효과 */
 	.fc .fc-daygrid-dot-event.schedule:hover {
 		background-color: ${({ theme }) => theme.palette.Grey.Grey3};
 	}

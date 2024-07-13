@@ -57,6 +57,7 @@ function FullCalendarBox({ size }: FullCalendarBoxProps) {
 				selectable
 				nowIndicator
 				dayMaxEvents
+				// netshell에서 할당한 이벤트 : tasks, 구글 캘린더에서 가져온 이벤트 : schedule
 				events={[
 					{ title: 'Meeting', start: '2024-07-06T10:00:00', end: '2024-07-06T12:00:00', classNames: 'tasks' },
 					{ title: 'Lunch', start: '2024-07-07T12:00:00', end: '2024-07-07T12:45:00', classNames: 'tasks' },

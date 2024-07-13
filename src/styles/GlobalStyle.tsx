@@ -149,7 +149,7 @@ const style = css`
 	}
 
 	:root {
-		--fc-highlight-color: #dfe9ff;
+		--fc-highlight-color: #0f00;
 		--fc-event-border-color: #ffff;
 	}
 `;
