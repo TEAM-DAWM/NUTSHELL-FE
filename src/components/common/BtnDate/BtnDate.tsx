@@ -133,7 +133,12 @@ const BtnDateLayout = styled.div<{
 	height: ${({ size }) => (size === 'long' ? '2.2rem' : '2rem')};
 	padding: ${({ size }) => (size === 'long' ? '0.5rem 1rem' : '0rem 1rem')};
 
-	cursor: pointer;
+	${({ size }) =>
+		size !== 'short' &&
+		css`
+			cursor: pointer;
+		`};
+
 	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-color: ${({ isClicked, theme }) => (isClicked ? theme.palette.Primary : theme.palette.Grey.Grey3)};
 	border-radius: 8px;
@@ -173,26 +178,30 @@ const BtnDateLayout = styled.div<{
 			pointer-events: none;
 		`}
 
-	&:hover {
-		color: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey6)};
+		${({ size, isPressed, theme, isDefaultDate, isDefaultTime }) =>
+		size !== 'short' &&
+		css`
+			&:hover {
+				color: ${isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey6};
 
-		background: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey5 : theme.palette.Grey.Grey4)};
-		box-shadow: ${({ isPressed, theme }) =>
-			isPressed ? `1px 0 0 0 ${theme.palette.Grey.Grey5} inset` : `1px 0 0 0 ${theme.palette.Grey.Grey4} inset`};
+				background: ${isPressed ? theme.palette.Grey.Grey5 : theme.palette.Grey.Grey4};
+				box-shadow: ${isPressed
+					? `1px 0 0 0 ${theme.palette.Grey.Grey5} inset`
+					: `1px 0 0 0 ${theme.palette.Grey.Grey4} inset`};
 
-		${TextWrapper} {
-			color: ${({ isDefaultDate, isDefaultTime, theme }) =>
-				isDefaultDate || isDefaultTime ? theme.palette.Grey.Grey6 : theme.palette.Grey.Black};
-		}
-	}
+				${TextWrapper} {
+					color: ${isDefaultDate || isDefaultTime ? theme.palette.Grey.Grey6 : theme.palette.Grey.Black};
+				}
+			}
 
-	&:hover ${CalanderIcon}, &:hover ${ClockIcon}, &:hover ${LineIcon} {
-		path {
-			stroke: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey5)};
-		}
+			&:hover ${CalanderIcon}, &:hover ${ClockIcon}, &:hover ${LineIcon} {
+				path {
+					stroke: ${isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey5};
+				}
 
-		line {
-			stroke: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey5)};
-		}
-	}
+				line {
+					stroke: ${isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey5};
+				}
+			}
+		`};
 `;
