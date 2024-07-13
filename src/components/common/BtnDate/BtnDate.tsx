@@ -57,18 +57,14 @@ function BtnDate(props: BtnDateProps) {
 			/>
 			<LineIcon size={size.type} isDelayed={isDelayed} />
 			<BtnDateText icon={<ClockIcon isDelayed={isDelayed} />} text={time} isDefault={isDefaultTime} size={size.type} />
-			<XIcon isClicked={isClicked} size={size.type} />
+			{isClicked && size.type === 'long' && <XIcon size={size.type} />}
 		</BtnDateLayout>
 	);
 }
 
 export default BtnDate;
 
-const XIcon = styled((props: React.SVGProps<SVGSVGElement> & { isClicked: boolean; size: string }) => {
-	const { isClicked, ...rest } = props;
-	return <Icons.IcnXCricle {...rest} />;
-})<{ isClicked: boolean }>`
-	display: ${({ isClicked }) => (isClicked ? 'flex' : 'none')};
+const XIcon = styled(Icons.IcnXCricle)<{ size: string }>`
 	width: ${({ size }) => (size === 'long' ? '2rem' : '1.6rem')};
 	height: ${({ size }) => (size === 'long' ? '2rem' : '1.6rem')};
 `;
