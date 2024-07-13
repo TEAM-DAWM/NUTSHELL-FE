@@ -9,6 +9,8 @@ const textButtonCss = css`
 	box-sizing: border-box;
 	width: fit-content;
 
+	white-space: nowrap;
+
 	border-radius: 8px;
 `;
 
