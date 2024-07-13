@@ -3,10 +3,15 @@ import styled from '@emotion/styled';
 
 interface OkayCancelBtnProps {
 	type: 'okay' | 'cancel';
+	onClick?: () => void;
 }
 
-function OkayCancelBtn({ type }: OkayCancelBtnProps) {
-	return <div>{type === 'okay' ? <OkayBtn>확인</OkayBtn> : <CancelBtn>취소</CancelBtn>}</div>;
+function OkayCancelBtn({ type, onClick }: OkayCancelBtnProps) {
+	return (
+		<div>
+			{type === 'okay' ? <OkayBtn onClick={onClick}>확인</OkayBtn> : <CancelBtn onClick={onClick}>취소</CancelBtn>}
+		</div>
+	);
 }
 
 export default OkayCancelBtn;

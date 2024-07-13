@@ -27,12 +27,14 @@ function BtnDate(props: BtnDateProps) {
 	const [isClicked, setIsClicked] = useState(false);
 
 	const handleMouseDown = () => {
-		setIsPressed(true);
+		if (size.type !== 'short') setIsPressed(true);
 	};
 
 	const handleMouseUp = () => {
-		setIsPressed(false);
-		setIsClicked((prev) => !prev);
+		if (size.type !== 'short') {
+			setIsPressed(false);
+			setIsClicked((prev) => !prev);
+		}
 	};
 	const isDefaultDate = date === '마감 기한';
 	const isDefaultTime = time === '마감 시간';
@@ -57,18 +59,14 @@ function BtnDate(props: BtnDateProps) {
 			/>
 			<LineIcon size={size.type} isDelayed={isDelayed} />
 			<BtnDateText icon={<ClockIcon isDelayed={isDelayed} />} text={time} isDefault={isDefaultTime} size={size.type} />
-			<XIcon isClicked={isClicked} size={size.type} />
+			{isClicked && <XIcon size={size.type} />}
 		</BtnDateLayout>
 	);
 }
 
 export default BtnDate;
 
-const XIcon = styled((props: React.SVGProps<SVGSVGElement> & { isClicked: boolean; size: string }) => {
-	const { isClicked, ...rest } = props;
-	return <Icons.IcnXCricle {...rest} />;
-})<{ isClicked: boolean }>`
-	display: ${({ isClicked }) => (isClicked ? 'flex' : 'none')};
+const XIcon = styled(Icons.IcnXCricle)<{ size: string }>`
 	width: ${({ size }) => (size === 'long' ? '2rem' : '1.6rem')};
 	height: ${({ size }) => (size === 'long' ? '2rem' : '1.6rem')};
 `;
@@ -135,7 +133,12 @@ const BtnDateLayout = styled.div<{
 	height: ${({ size }) => (size === 'long' ? '2.2rem' : '2rem')};
 	padding: ${({ size }) => (size === 'long' ? '0.5rem 1rem' : '0rem 1rem')};
 
-	cursor: pointer;
+	${({ size }) =>
+		size !== 'short' &&
+		css`
+			cursor: pointer;
+		`};
+
 	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-color: ${({ isClicked, theme }) => (isClicked ? theme.palette.Primary : theme.palette.Grey.Grey3)};
 	border-radius: 8px;
@@ -149,13 +152,13 @@ const BtnDateLayout = styled.div<{
 			pointer-events: none;
 		`}
 
-	${({ isClicked, size, theme }) =>
+	${({ isClicked, theme }) =>
 		isClicked &&
 		css`
-			padding-right: ${size === 'long' ? '0.6rem' : '0.2rem'};
+			padding-right: 0.6rem;
 
 			border-color: ${theme.palette.Primary};
-			border-width: ${size === 'long' ? '2px' : '1px'};
+			border-width: 1px;
 		`}
 
 	${({ isPressed, theme }) =>
@@ -175,26 +178,30 @@ const BtnDateLayout = styled.div<{
 			pointer-events: none;
 		`}
 
-	&:hover {
-		color: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey6)};
+		${({ size, isPressed, theme, isDefaultDate, isDefaultTime }) =>
+		size !== 'short' &&
+		css`
+			&:hover {
+				color: ${isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey6};
 
-		background: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey5 : theme.palette.Grey.Grey4)};
-		box-shadow: ${({ isPressed, theme }) =>
-			isPressed ? `1px 0 0 0 ${theme.palette.Grey.Grey5} inset` : `1px 0 0 0 ${theme.palette.Grey.Grey4} inset`};
+				background: ${isPressed ? theme.palette.Grey.Grey5 : theme.palette.Grey.Grey4};
+				box-shadow: ${isPressed
+					? `1px 0 0 0 ${theme.palette.Grey.Grey5} inset`
+					: `1px 0 0 0 ${theme.palette.Grey.Grey4} inset`};
 
-		${TextWrapper} {
-			color: ${({ isDefaultDate, isDefaultTime, theme }) =>
-				isDefaultDate || isDefaultTime ? theme.palette.Grey.Grey6 : theme.palette.Grey.Black};
-		}
-	}
+				${TextWrapper} {
+					color: ${isDefaultDate || isDefaultTime ? theme.palette.Grey.Grey6 : theme.palette.Grey.Black};
+				}
+			}
 
-	&:hover ${CalanderIcon}, &:hover ${ClockIcon}, &:hover ${LineIcon} {
-		path {
-			stroke: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey5)};
-		}
+			&:hover ${CalanderIcon}, &:hover ${ClockIcon}, &:hover ${LineIcon} {
+				path {
+					stroke: ${isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey5};
+				}
 
-		line {
-			stroke: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey5)};
-		}
-	}
+				line {
+					stroke: ${isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey5};
+				}
+			}
+		`};
 `;
