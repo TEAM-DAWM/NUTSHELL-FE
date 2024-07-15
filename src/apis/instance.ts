@@ -29,12 +29,16 @@ export const privateInstance = axios.create({
 
 // refresh token api
 export async function postRefreshToken() {
-	const response = await privateInstance.post('/api/auth/re-issue', {
-		headers: {
-			'Content-Type': 'application/json',
-			Authorization: `Bearer ${localStorage.getItem('refreshToken')}`,
-		},
-	});
+	const response = await axios.post(
+		`${API_URL}/api/auth/re-issue`,
+		{},
+		{
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${localStorage.getItem('refreshToken')}`,
+			},
+		}
+	);
 	return response;
 }
 
