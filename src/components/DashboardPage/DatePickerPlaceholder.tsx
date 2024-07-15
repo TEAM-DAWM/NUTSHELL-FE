@@ -8,7 +8,7 @@ interface DatePickerPlaceholderProps {
 	isHover: boolean;
 	isPressed: boolean;
 	startDate: Date;
-	endDate: Date | null | undefined;
+	endDate: Date;
 	handleClick: () => void;
 }
 
