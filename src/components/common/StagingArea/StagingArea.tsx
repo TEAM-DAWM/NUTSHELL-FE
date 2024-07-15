@@ -26,7 +26,6 @@ function StagingArea(props: StagingAreaProps) {
 									selectedTarget={selectedTarget}
 									tasks={tasks}
 								/>
-								{provided.placeholder}
 							</div>
 						)}
 					</Droppable>
