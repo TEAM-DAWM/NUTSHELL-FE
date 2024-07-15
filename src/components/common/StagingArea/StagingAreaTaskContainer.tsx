@@ -23,7 +23,7 @@ function StagingAreaTaskContainer(props: StagingAreaTaskContainerProps) {
 			<BtnTaskContainer type="staging">
 				{tasks.map((task, index) => (
 					<Draggable key={task.id} draggableId={task.id.toString()} index={index}>
-						{(provided) => (
+						{(provided, snapshot) => (
 							<div
 								ref={provided.innerRef}
 								{...provided.draggableProps}
@@ -40,6 +40,7 @@ function StagingAreaTaskContainer(props: StagingAreaTaskContainerProps) {
 									deadLine={task.deadLine}
 									selectedTarget={selectedTarget}
 									handleSelectedTarget={handleSelectedTarget}
+									isDragging={snapshot.isDragging}
 								/>
 							</div>
 						)}
