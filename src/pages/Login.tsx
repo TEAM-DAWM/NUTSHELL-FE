@@ -1,14 +1,19 @@
 import styled from '@emotion/styled';
 import { useGoogleLogin } from '@react-oauth/google';
+import { useNavigate } from 'react-router-dom';
 
 import userLogin from '@/apis/login/loginAxios';
 
 function Login() {
+	const navigate = useNavigate();
+
 	const googleSocialLogin = useGoogleLogin({
 		onSuccess: async ({ code }) => {
 			try {
 				const response = userLogin(code);
-				console.log(response);
+				if ((await response).code === 'success') {
+					navigate('/today');
+				}
 			} catch (error) {
 				console.error(error);
 			}
