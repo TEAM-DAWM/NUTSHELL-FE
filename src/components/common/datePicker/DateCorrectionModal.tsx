@@ -17,10 +17,20 @@ interface DateCorrectionModalProps {
 	isDateOnly?: boolean;
 	top?: number;
 	left?: number;
+	date: string;
+	onClick: () => void;
+	handleCurrentDate: (newDate: Date | null) => void;
 }
 
-function DateCorrectionModal({ isDateOnly = false, top = 0, left = 0 }: DateCorrectionModalProps) {
-	const prevDate: Date = new Date();
+function DateCorrectionModal({
+	isDateOnly = false,
+	top = 0,
+	left = 0,
+	date,
+	onClick,
+	handleCurrentDate,
+}: DateCorrectionModalProps) {
+	const prevDate: Date = new Date(date);
 	const [currentDate, setCurrentDate] = useState<Date | null>(null);
 
 	const dateTextRef = useRef<HTMLInputElement>(null);
@@ -34,6 +44,12 @@ function DateCorrectionModal({ isDateOnly = false, top = 0, left = 0 }: DateCorr
 		}
 	};
 
+	/** 모달 확인, 닫기버튼 */
+	const onSave = () => {
+		console.log('save');
+		handleCurrentDate(currentDate);
+		onClick();
+	};
 	return (
 		<DateCorrectionModalLayout top={top} left={left} onClick={(e) => e.stopPropagation()}>
 			<DatePicker
@@ -48,7 +64,7 @@ function DateCorrectionModal({ isDateOnly = false, top = 0, left = 0 }: DateCorr
 			>
 				<BottomBtnWrapper>
 					{!isDateOnly && <TextboxInput variant="time" dateTextRef={timeTextRef} />}
-					<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed />
+					<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed onClick={onSave} />
 				</BottomBtnWrapper>
 			</DatePicker>
 		</DateCorrectionModalLayout>

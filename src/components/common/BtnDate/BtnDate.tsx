@@ -10,6 +10,7 @@ import Icons from '@/assets/svg/index';
 import { SizeType } from '@/types/textInputType';
 import MODAL from '@/constants/modalLocation';
 import ModalBackdrop from '../modal/ModalBackdrop';
+import formatDatetoString from '@/utils/formatDatetoString';
 
 interface BtnDateProps {
 	date?: string;
@@ -29,7 +30,11 @@ function BtnDate(props: BtnDateProps) {
 	} = props;
 	const [isPressed, setIsPressed] = useState(false);
 	const [isClicked, setIsClicked] = useState(false);
+	const [currentDate, setCurrentDate] = useState(date ? new Date(date) : null);
 
+	const handleCurrentDate = (newDate: Date | null) => {
+		setCurrentDate(newDate);
+	};
 	const handleMouseDown = () => {
 		if (size.type !== 'short') setIsPressed(true);
 	};
@@ -58,7 +63,7 @@ function BtnDate(props: BtnDateProps) {
 			>
 				<BtnDateText
 					icon={<CalanderIcon isDelayed={isDelayed} />}
-					text={date}
+					text={formatDatetoString(currentDate)}
 					isDefault={isDefaultDate}
 					size={size.type}
 				/>
@@ -76,6 +81,9 @@ function BtnDate(props: BtnDateProps) {
 					<DateCorrectionModal
 						top={MODAL.DATE_CORRECTION.TASK_MODAL.top}
 						left={MODAL.DATE_CORRECTION.TASK_MODAL.left}
+						date={date}
+						onClick={handleMouseUp}
+						handleCurrentDate={handleCurrentDate}
 					/>
 					<ModalBackdrop onClick={handleMouseUp} />
 				</>
