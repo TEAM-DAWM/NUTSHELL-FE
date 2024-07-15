@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { LoginResponse } from '@/apis/login/loginInterface';
+
 const API_URL = `${import.meta.env.VITE_BASE_URL}`;
 
 const MESSAGES = {
@@ -29,7 +31,7 @@ export const privateInstance = axios.create({
 
 // refresh token api
 export async function postRefreshToken() {
-	const response = await axios.post(
+	const response = await axios.post<LoginResponse>(
 		`${API_URL}/api/auth/re-issue`,
 		{},
 		{
@@ -58,15 +60,15 @@ privateInstance.interceptors.response.use(
 
 			// 리프레시 토큰 요청이 성공할 때
 			if (response.status === 200) {
-				const newAccessToken = response.data.token;
-				localStorage.setItem('accessToken', response.data.token);
-				localStorage.setItem('refreshToken', response.data.refreshToken);
+				const newAccessToken = response.data.data.accessToken;
+				localStorage.setItem('accessToken', response.data.data.accessToken);
+				localStorage.setItem('refreshToken', response.data.data.refreshToken);
 				axios.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
 				// 진행중이던 요청 이어서하기
 				originRequest.headers.Authorization = `Bearer ${newAccessToken}`;
 				return axios(originRequest);
 			}
-			if (response.status === 404) {
+			if (response.status === 401) {
 				alert(MESSAGES.LOGIN.EXPIRED);
 				window.location.replace('/');
 			} else {
