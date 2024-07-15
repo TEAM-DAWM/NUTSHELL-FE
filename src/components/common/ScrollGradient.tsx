@@ -12,7 +12,7 @@ function ScrollGradient() {
 export default ScrollGradient;
 
 const ScrollGradientLayout = styled.div`
-	position: sticky;
+	position: absolute;
 	bottom: 0;
 	z-index: 1;
 	display: flex;
