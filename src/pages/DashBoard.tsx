@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 
-import DateCorrectionModal from '@/components/common/datePicker/DateCorrectionModal';
 import DatePickerCustom from '@/components/common/datePicker/DatePickerCustom';
 import DashboardTask from '@/components/DashboardPage/DashboardTask';
 import TaskSummary from '@/components/DashboardPage/TaskSummary';
