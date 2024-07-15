@@ -18,6 +18,7 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 	const [endDate, setEndDate] = useState<Date | null>();
 	const [isClicked, setIsClicked] = useState(false);
 
+	setStartDate(today);
 	const handleClick = () => {
 		setIsClicked((prev) => !prev);
 	};
