@@ -6,6 +6,7 @@ import DatePickerCustom from '../common/datePicker/DatePickerCustom';
 
 import Icons from '@/assets/svg/index';
 import formatDatetoString from '@/utils/formatDatetoString';
+import PastDateBtn from './pastDateBtnStyle';
 
 interface DateAreaProps {
 	isHover: boolean;
@@ -53,12 +54,12 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 					</DatePickerWrapper>
 				</DatePickerContainer>
 				<PastDateWrapper>
-					<PastWeekBtn isHover={isHover} isPressed={isPressed} onClick={handleClickPastWeek}>
+					<PastDateBtn isHover={isHover} isPressed={isPressed} onClick={handleClickPastWeek}>
 						지난 1주일
-					</PastWeekBtn>
-					<PastMonthBtn isHover={isHover} isPressed={isPressed} onClick={handleClickPastMonth}>
+					</PastDateBtn>
+					<PastDateBtn isHover={isHover} isPressed={isPressed} onClick={handleClickPastMonth}>
 						지난 1달
-					</PastMonthBtn>
+					</PastDateBtn>
 				</PastDateWrapper>
 			</DateAreaLayout>
 		</DatePickerCustomLayout>
@@ -148,76 +149,6 @@ const PastDateWrapper = styled.span`
 	align-items: center;
 	width: 14.3rem;
 	height: 2.6rem;
-`;
-
-const PastWeekBtn = styled.button<{ isHover: boolean; isPressed: boolean }>`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 7.4rem;
-	height: 2.6rem;
-	padding: 0.3rem 1.2rem;
-
-	color: ${({ theme }) => theme.fontTheme.CAPTION_02};
-
-	background-color: ${({ theme }) => theme.palette.Grey.White};
-	${({ theme }) => theme.palette.Grey.Black};
-	border: 1px solid;
-	border-color: ${({ theme }) => theme.palette.Grey.Grey3};
-	border-radius: 8px;
-	${({ isHover, theme }) =>
-		isHover &&
-		css`
-			&:hover {
-				color: ${theme.textButton.WHITE.HOVER.TEXT};
-
-				background-color: ${theme.textButton.WHITE.HOVER.BG};
-			}
-		`}
-	${({ isPressed, theme }) =>
-		isPressed &&
-		css`
-			&:active {
-				color: ${theme.textButton.WHITE.PRESSED.TEXT};
-
-				background-color: ${theme.textButton.WHITE.PRESSED.BG};
-			}
-		`}
-`;
-
-const PastMonthBtn = styled.button<{ isHover: boolean; isPressed: boolean }>`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 6.3rem;
-	height: 2.6rem;
-	padding: 0.3rem 1.2rem;
-
-	color: ${({ theme }) => theme.fontTheme.CAPTION_02};
-
-	background-color: ${({ theme }) => theme.palette.Grey.White};
-	${({ theme }) => theme.palette.Grey.Black};
-	border: 1px solid;
-	border-color: ${({ theme }) => theme.palette.Grey.Grey3};
-	border-radius: 8px;
-	${({ isHover, theme }) =>
-		isHover &&
-		css`
-			&:hover {
-				color: ${theme.textButton.WHITE.HOVER.TEXT};
-
-				background-color: ${theme.textButton.WHITE.HOVER.BG};
-			}
-		`}
-	${({ isPressed, theme }) =>
-		isPressed &&
-		css`
-			&:active {
-				color: ${theme.textButton.WHITE.PRESSED.TEXT};
-
-				background-color: ${theme.textButton.WHITE.PRESSED.BG};
-			}
-		`}
 `;
 
 const DatePickerWrapper = styled.div`
