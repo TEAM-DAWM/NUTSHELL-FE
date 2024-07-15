@@ -172,7 +172,15 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 				select={addEventWhenDragged}
 			/>
 			{isModalOpen && (
-				<Modal isOpen={isModalOpen} sizeType={{ type: 'short' }} top={top} left={left} onClose={closeModal} />
+				// 🚨 임시 taskID ... 데이터 형식 확정 후 수정할 것 🚨
+				<Modal
+					isOpen={isModalOpen}
+					sizeType={{ type: 'short' }}
+					top={top}
+					left={left}
+					onClose={closeModal}
+					taskId={5}
+				/>
 			)}
 		</FullCalendarLayout>
 	);
