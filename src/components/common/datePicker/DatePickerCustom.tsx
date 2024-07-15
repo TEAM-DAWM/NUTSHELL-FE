@@ -22,7 +22,6 @@ function DatePickerCustom({ isOpen, onClose }: DatePickerCustomProps) {
 	const [endDate, setEndDate] = useState<Date | null>(null);
 	const startDateTextRef = useRef<HTMLInputElement>(null);
 	const endDateTextRef = useRef<HTMLInputElement>(null);
-	console.log(isOpen);
 
 	// 초기값 이주 전으로 설정
 	useEffect(() => {

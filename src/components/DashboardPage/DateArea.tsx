@@ -18,7 +18,6 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 	const [endDate, setEndDate] = useState<Date | null>();
 	const [isClicked, setIsClicked] = useState(false);
 
-	setStartDate(today);
 	const handleClick = () => {
 		setIsClicked((prev) => !prev);
 	};
@@ -36,6 +35,7 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 		const newEndDate = new Date(startDate);
 		newEndDate.setDate(startDate.getDate() - 13);
 		setEndDate(newEndDate);
+		setStartDate(today);
 	}, []);
 
 	return (
