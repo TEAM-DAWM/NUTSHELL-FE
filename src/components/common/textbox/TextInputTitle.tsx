@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { SizeType } from '@/types/textInputType';
 
 function TextInputTitle({ type }: SizeType) {
-	return <TextInputTitleLayout placeholder="제목 추가" type={type} />;
+	return <TextInputTitleLayout placeholder="제목 추가" type={type} maxLength={20} />;
 }
 const TextInputTitleLayout = styled.input<{ type: string }>`
 	${({ theme }) => theme.fontTheme.BODY_02};
