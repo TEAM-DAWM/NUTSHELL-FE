@@ -4,17 +4,18 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { DateSelectArg } from 'fullcalendar/index.js';
 import { useState, useRef, useEffect } from 'react';
+
+import Modal from '../modal/Modal';
 
 import RefreshBtn from '@/components/common/button/RefreshBtn';
 import DayHeaderContent from '@/components/common/fullCalendar/DayHeaderContent';
 import FullCalendarLayout from '@/components/common/fullCalendar/FullCalendarStyle';
 import { customDayCellContent, customSlotLabelContent } from '@/components/common/fullCalendar/fullCalendarUtils';
-import Modal from '../modal/Modal';
 import MODAL from '@/constants/modalLocation';
-
-import { DateSelectArg } from 'fullcalendar/index.js';
 import { TaskType } from '@/types/tasks/taskType';
+
 interface FullCalendarBoxProps {
 	size: 'small' | 'big';
 	selectDate?: Date | null;
