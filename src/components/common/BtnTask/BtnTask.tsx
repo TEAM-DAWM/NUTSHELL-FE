@@ -8,8 +8,8 @@ import IconHoverContainer from './IconHoverContainer';
 
 import Icons from '@/assets/svg/index';
 import BtnDate from '@/components/common/BtnDate/BtnDate';
-import { TaskType } from '@/types/tasks/taskType';
 import MODAL from '@/constants/modalLocation';
+import { TaskType } from '@/types/tasks/taskType';
 
 interface BtnTaskProps extends TaskType {
 	btnType: 'staging' | 'target' | 'delayed';
