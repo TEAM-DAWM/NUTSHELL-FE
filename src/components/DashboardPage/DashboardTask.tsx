@@ -5,12 +5,17 @@ import ScrollGradient from '@/components/common/ScrollGradient';
 import DASHBOARD_TASK_TYPE from '@/constants/dashboardTask';
 import TODAY from '@/constants/tasksToday';
 import { TaskType } from '@/types/tasks/taskType';
+import { useState } from 'react';
 
 interface DashboardTaskProps {
 	text: 'upcoming' | 'postponed' | 'inprogress';
 }
 
 function DashboardTask({ text }: DashboardTaskProps) {
+	const [selectedTarget, setSelectedTarget] = useState<TaskType | null>(null);
+	const handleSelectedTarget = (task: TaskType | null) => {
+		setSelectedTarget(task);
+	};
 	let taskStatus = '';
 	if (text === 'upcoming') {
 		taskStatus = DASHBOARD_TASK_TYPE.UPCOMING;
@@ -81,6 +86,8 @@ function DashboardTask({ text }: DashboardTaskProps) {
 						status={task.status}
 						deadLine={task.deadLine}
 						btnType="target"
+						selectedTarget={selectedTarget}
+						handleSelectedTarget={handleSelectedTarget}
 					/>
 				))}
 				<ScrollGradient />

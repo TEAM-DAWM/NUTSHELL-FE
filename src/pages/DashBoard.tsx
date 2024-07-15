@@ -36,8 +36,6 @@ function DashBoard() {
 					<TaskSummary key={info.name} text={info.text} data={info.data} unit={info.unit} />
 				))}
 			</TaskSummaryWrapper>
-			<DateCorrectionModal isDateOnly />
-			<DateCorrectionModal isDateOnly={false} />
 			<DatePickerCustom />
 		</DashBoardWrapper>
 	);
