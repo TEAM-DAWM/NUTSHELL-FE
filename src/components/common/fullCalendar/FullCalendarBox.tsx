@@ -4,7 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import RefreshBtn from '@/components/common/button/RefreshBtn';
 import DayHeaderContent from '@/components/common/fullCalendar/DayHeaderContent';
@@ -13,9 +13,10 @@ import { customDayCellContent, customSlotLabelContent } from '@/components/commo
 
 interface FullCalendarBoxProps {
 	size: 'small' | 'big';
+	selectDate?: Date | null;
 }
 
-function FullCalendarBox({ size }: FullCalendarBoxProps) {
+function FullCalendarBox({ size, selectDate }: FullCalendarBoxProps) {
 	const today = new Date().toDateString();
 	const [currentView, setCurrentView] = useState('timeGridWeek');
 
@@ -27,12 +28,21 @@ function FullCalendarBox({ size }: FullCalendarBoxProps) {
 		setCurrentView(dateInfo.view.type);
 	};
 
+	const calendarRef = useRef<FullCalendar>(null);
+	useEffect(() => {
+		if (selectDate && calendarRef.current) {
+			const calendarApi = calendarRef.current.getApi();
+			calendarApi.gotoDate(selectDate);
+		}
+	}, [selectDate]);
+
 	return (
 		<FullCalendarLayout size={size}>
 			<CustomButtonContainer>
 				<RefreshBtn isDisabled={false} />
 			</CustomButtonContainer>
 			<FullCalendar
+				ref={calendarRef}
 				initialView="timeGridWeek"
 				plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin]}
 				headerToolbar={{
