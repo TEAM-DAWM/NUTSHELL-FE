@@ -18,7 +18,7 @@ import { TaskType } from '@/types/tasks/taskType';
 interface FullCalendarBoxProps {
 	size: 'small' | 'big';
 	selectDate?: Date | null;
-	selectedTarget: TaskType | null;
+	selectedTarget?: TaskType | null;
 }
 
 function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxProps) {
