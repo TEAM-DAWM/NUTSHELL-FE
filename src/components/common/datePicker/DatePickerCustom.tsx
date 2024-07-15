@@ -22,6 +22,7 @@ function DatePickerCustom({ isOpen, onClose }: DatePickerCustomProps) {
 	const [endDate, setEndDate] = useState<Date | null>(null);
 	const startDateTextRef = useRef<HTMLInputElement>(null);
 	const endDateTextRef = useRef<HTMLInputElement>(null);
+	console.log(isOpen);
 
 	// 초기값 이주 전으로 설정
 	useEffect(() => {
@@ -86,7 +87,7 @@ function DatePickerCustom({ isOpen, onClose }: DatePickerCustomProps) {
 
 	return (
 		isOpen && (
-			<ModalBackdrop onClick={onClose}>
+			<>
 				<DatePicker
 					locale={ko}
 					selected={startDate}
@@ -109,7 +110,8 @@ function DatePickerCustom({ isOpen, onClose }: DatePickerCustomProps) {
 				>
 					<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed onClick={onClose} />
 				</DatePicker>
-			</ModalBackdrop>
+				<ModalBackdrop onClick={onClose}></ModalBackdrop>
+			</>
 		)
 	);
 }

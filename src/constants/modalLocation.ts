@@ -20,9 +20,6 @@ const MODAL = {
 			left: -20.2,
 		},
 	},
-	// 대시보드 뷰에 나오는 Date Picker Custom 모달
-	DATEPICKERCUSTOM_HEIGHT: 274,
-	DATEPICKERCUSTOM_WIDTH: 228,
 };
 
 export default MODAL;
