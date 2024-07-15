@@ -3,6 +3,7 @@ const MODAL = {
 
 	// // Task 버튼 누르면 나오는 Modal 모달
 	TASK_MODAL_HEIGHT: 362,
+	TASK_MODAL_WIDTH: 372,
 
 	// 날짜 & 시간 세팅하는 DateCorrectionModal 모달
 	DATE_CORRECTION: {
