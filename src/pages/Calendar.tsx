@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 
 import CategoryBox from '@/components/calendarPage/CategoryBox';
 import MiniCalendar from '@/components/calendarPage/miniCalendar/MiniCalendar';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
-import { useState } from 'react';
 
 function Calendar() {
 	const today = new Date();
@@ -21,7 +21,7 @@ function Calendar() {
 			</LeftSection>
 			<RightSection>
 				<FullCalendarBoxWapper>
-					<FullCalendarBox size="big" selectDate={selectDate}/>
+					<FullCalendarBox size="big" selectDate={selectDate} />
 				</FullCalendarBoxWapper>
 			</RightSection>
 		</CalendarLayout>
