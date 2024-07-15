@@ -17,8 +17,6 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 	const today = new Date();
 	const [startDate, setStartDate] = useState<Date | null>(null);
 	const [endDate, setEndDate] = useState<Date | null>(null);
-	// const [startDate, setStartDate] = useState(today);
-	// const [endDate, setEndDate] = useState<Date | null>(null);
 	const [isClicked, setIsClicked] = useState(false);
 
 	const handleClick = () => {
@@ -33,14 +31,6 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 		setEndDate(date);
 	};
 
-	// const handleStartDate = (date: Date | null) => {
-	// 	setStartDate(date || today);
-	// };
-
-	// const handleEndDate = (date: Date | null) => {
-	// 	setEndDate(date);
-	// };
-
 	const handleClickPastDate = (getPastDate: number) => {
 		const newStartDate = new Date(today);
 		newStartDate.setDate(today.getDate() - getPastDate);
@@ -51,20 +41,13 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 		handleEndDate(newEndDate);
 	};
 
-	// const handleClickPastDate = (getPastDate: number) => {
-	// 	const PastEndDate = new Date(startDate);
-	// 	PastEndDate.setDate(startDate.getDate() - getPastDate);
-	// 	handleEndDate(PastEndDate);
-	// };
-
 	const getPastDateWeek = 6;
 	const getPastDateMonth = 30;
 	useEffect(() => {
-		// 초기에는 endDate 기준으로 startDate 설정
 		const initialStartDate = new Date(today);
-		initialStartDate.setDate(today.getDate() - 14); // 2주 전
+		initialStartDate.setDate(today.getDate() - 13);
 		handleStartDate(initialStartDate);
-	}, []); // endDate가 변경될 때마다 초기값 설정
+	}, []);
 
 	return (
 		<DatePickerCustomLayout>
