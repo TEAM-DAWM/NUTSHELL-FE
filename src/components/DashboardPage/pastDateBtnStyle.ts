@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
-import { theme } from '@/styles/theme';
 import styled from '@emotion/styled';
+
+import { theme } from '@/styles/theme';
 
 const pastDateBtnCss = css`
 	display: flex;

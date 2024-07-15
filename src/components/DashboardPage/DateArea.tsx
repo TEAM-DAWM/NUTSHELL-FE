@@ -1,11 +1,9 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useState, useEffect } from 'react';
 
 import DatePickerCustom from '../common/datePicker/DatePickerCustom';
 
-import Icons from '@/assets/svg/index';
-import formatDatetoString from '@/utils/formatDatetoString';
+import DatePickerPlaceholder from './DatePickerPlaceholder';
 import PastDateBtn from './pastDateBtnStyle';
 
 interface DateAreaProps {
@@ -43,12 +41,7 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 		<DatePickerCustomLayout>
 			<DateAreaLayout>
 				<DatePickerContainer>
-					<PlaceholderWrapper isHover={isHover} isPressed={isPressed} onClick={handleClick}>
-						<StlyedCalendarIcon />
-						<DateText>{formatDatetoString(endDate)}</DateText>
-						<StyledArrowIcon />
-						<DateText>{formatDatetoString(startDate)}</DateText>
-					</PlaceholderWrapper>
+					<DatePickerPlaceholder isHover isPressed endDate={endDate} startDate={startDate} handleClick={handleClick} />
 					<DatePickerWrapper>
 						<DatePickerCustom isOpen={isClicked} onClose={handleClick} />
 					</DatePickerWrapper>
@@ -84,63 +77,6 @@ const DateAreaLayout = styled.div`
 const DatePickerContainer = styled.div`
 	position: relative;
 	display: flex;
-`;
-
-const PlaceholderWrapper = styled.div<{ isHover: boolean; isPressed: boolean }>`
-	display: flex;
-	align-items: center;
-	box-sizing: border-box;
-	height: 4rem;
-	padding: 0.4rem 1.2rem;
-
-	background-color: ${({ theme }) => theme.textButton.WHITE.DEFAULT.BG};
-	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
-	border-radius: 8px;
-	${({ theme }) => theme.fontTheme.BODY_02};
-
-	${({ isHover, theme }) =>
-		isHover &&
-		css`
-			&:hover {
-				color: ${theme.textButton.WHITE.HOVER.TEXT};
-
-				background-color: ${theme.textButton.WHITE.HOVER.BG};
-			}
-		`}
-	${({ isPressed, theme }) =>
-		isPressed &&
-		css`
-			&:active {
-				color: ${theme.textButton.WHITE.PRESSED.TEXT};
-
-				background-color: ${theme.textButton.WHITE.PRESSED.BG};
-			}
-		`}
-`;
-
-const DateText = styled.p`
-	padding: 0.5rem 1.6rem;
-
-	color: ${({ theme }) => theme.textButton.WHITE.DEFAULT.TEXT};
-	${({ theme }) => theme.fontTheme.BODY_02};
-`;
-
-const StlyedCalendarIcon = styled(Icons.Icn_calander)`
-	width: 2rem;
-	height: 2rem;
-
-	path {
-		stroke: ${({ theme }) => theme.palette.Grey.Grey5};
-	}
-`;
-
-const StyledArrowIcon = styled(Icons.Icn_arrow_narrow_right)`
-	width: 2.4rem;
-	height: 2.4rem;
-
-	path {
-		stroke: ${({ theme }) => theme.palette.Grey.Black};
-	}
 `;
 
 const PastDateWrapper = styled.span`

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import DashboardTask from '@/components/DashboardPage/DashboardTask';
 
-const DashboardTaskWrapper = () => {
+function DashboardTaskWrapper() {
 	return (
 		<DashBoardTaskWrapper>
 			<DashboardTask text="upcoming" />
@@ -10,7 +10,7 @@ const DashboardTaskWrapper = () => {
 			<DashboardTask text="inprogress" />
 		</DashBoardTaskWrapper>
 	);
-};
+}
 
 export default DashboardTaskWrapper;
 
