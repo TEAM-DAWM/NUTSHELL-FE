@@ -12,6 +12,8 @@ function Login() {
 			try {
 				const response = userLogin(code);
 				if ((await response).code === 'success') {
+					localStorage.setItem('accessToken', (await response).data.accessToken);
+					localStorage.setItem('refreshToken', (await response).data.refreshToken);
 					navigate('/today');
 				}
 			} catch (error) {
