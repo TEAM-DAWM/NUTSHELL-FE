@@ -81,6 +81,7 @@ const DateText = styled.p`
 
 const DayText = styled.p`
 	margin: 0.8rem 0.8rem 0;
+	padding-bottom: 0.1rem;
 
 	${({ theme }) => theme.fontTheme.LABEL_01};
 	color: ${({ theme }) => theme.palette.Grey.Grey6};
