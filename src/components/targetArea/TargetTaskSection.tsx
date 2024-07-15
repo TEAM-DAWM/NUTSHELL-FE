@@ -1,9 +1,8 @@
-import styled from '@emotion/styled';
-
 import BtnTask from '../common/BtnTask/BtnTask';
 import ScrollGradient from '../common/ScrollGradient';
 
 import { TaskType } from '@/types/tasks/taskType';
+import BtnTaskContainer from '../common/BtnTaskContainer';
 
 function TargetTaskSection() {
 	const dummyTaskList: TaskType[] = [
@@ -50,7 +49,7 @@ function TargetTaskSection() {
 	];
 
 	return (
-		<TaskContainer>
+		<BtnTaskContainer type="target">
 			{dummyTaskList.map((task) => (
 				<BtnTask
 					btnType="target"
@@ -63,26 +62,8 @@ function TargetTaskSection() {
 				/>
 			))}
 			<ScrollGradient />
-		</TaskContainer>
+		</BtnTaskContainer>
 	);
 }
-const TaskContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	width: 100%;
-	height: 64rem;
-	overflow: hidden;
-	overflow-y: scroll;
-
-	::-webkit-scrollbar {
-		width: 0.6rem;
-	}
-
-	::-webkit-scrollbar-thumb {
-		background-color: ${({ theme }) => theme.palette.Grey.Grey6};
-		border-radius: 3px;
-	}
-`;
 
 export default TargetTaskSection;

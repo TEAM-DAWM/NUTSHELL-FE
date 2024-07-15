@@ -4,6 +4,7 @@ import BtnTask from '@/components/common/BtnTask/BtnTask';
 import ScrollGradient from '@/components/common/ScrollGradient';
 import StagingAreaSetting from '@/components/common/StagingArea/StagingAreaSetting';
 import { TaskType } from '@/types/tasks/taskType';
+import BtnTaskContainer from '../BtnTaskContainer';
 
 function StagingAreaTaskContainer() {
 	const dummyTaskList: TaskType[] = [
@@ -132,7 +133,7 @@ function StagingAreaTaskContainer() {
 	return (
 		<StagingAreaTaskContainerLayout>
 			<StagingAreaSetting />
-			<BtnTaskContainer>
+			<BtnTaskContainer type="staging">
 				{dummyTaskList.map((task) => (
 					<BtnTask
 						key={task.id + task.name}
@@ -158,23 +159,4 @@ const StagingAreaTaskContainerLayout = styled.div`
 	gap: 1.3rem;
 	align-items: flex-start;
 	align-self: stretch;
-`;
-const BtnTaskContainer = styled.div`
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	width: 100%;
-	height: 56.7rem;
-	overflow: auto;
-	overflow-y: scroll;
-
-	::-webkit-scrollbar {
-		width: 0.6rem;
-	}
-
-	::-webkit-scrollbar-thumb {
-		background-color: ${({ theme }) => theme.palette.Grey.Grey6};
-		border-radius: 3px;
-	}
 `;
