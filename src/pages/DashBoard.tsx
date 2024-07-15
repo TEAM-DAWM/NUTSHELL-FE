@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import DashboardTask from '@/components/DashboardPage/DashboardTask';
+import DashboardTaskWrapper from '@/components/DashboardPage/DashboardTaskWrapper';
 import DateArea from '@/components/DashboardPage/DateArea';
 import TaskSummary from '@/components/DashboardPage/TaskSummary';
 import PERIOD from '@/constants/tasksPeriod';
@@ -40,11 +40,7 @@ function DashBoard() {
 				</DateText>
 				<DayText>{getNameOfDayKor(dayOfTheWeekKor)}</DayText>
 			</DateContainer>
-			<DashBoardTaskWrapper>
-				<DashboardTask text="upcoming" />
-				<DashboardTask text="postponed" />
-				<DashboardTask text="inprogress" />
-			</DashBoardTaskWrapper>
+			<DashboardTaskWrapper />
 			<DataWrapper>
 				<DateArea isHover isPressed />
 			</DataWrapper>
@@ -85,14 +81,6 @@ const DayText = styled.p`
 
 	${({ theme }) => theme.fontTheme.LABEL_01};
 	color: ${({ theme }) => theme.palette.Grey.Grey6};
-`;
-
-const DashBoardTaskWrapper = styled.div`
-	display: flex;
-	gap: 1rem;
-	align-items: center;
-	align-self: stretch;
-	padding-left: 0.7rem;
 `;
 
 const DataWrapper = styled.div`
