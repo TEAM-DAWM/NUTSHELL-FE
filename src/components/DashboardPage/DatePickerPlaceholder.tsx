@@ -16,9 +16,9 @@ function DatePickerPlaceholder({ isHover, isPressed, startDate, endDate, handleC
 	return (
 		<PlaceholderWrapper isHover={isHover} isPressed={isPressed} onClick={handleClick}>
 			<StlyedCalendarIcon />
-			<DateText>{formatDatetoString(endDate)}</DateText>
-			<StyledArrowIcon />
 			<DateText>{formatDatetoString(startDate)}</DateText>
+			<StyledArrowIcon />
+			<DateText>{formatDatetoString(endDate)}</DateText>
 		</PlaceholderWrapper>
 	);
 }

@@ -14,17 +14,25 @@ interface DateAreaProps {
 function DateArea({ isHover, isPressed }: DateAreaProps) {
 	const today = new Date();
 	const [startDate, setStartDate] = useState(today);
-	const [endDate, setEndDate] = useState<Date | null>();
+	const [endDate, setEndDate] = useState<Date | null>(null);
 	const [isClicked, setIsClicked] = useState(false);
 
 	const handleClick = () => {
 		setIsClicked((prev) => !prev);
 	};
 
+	const handleStartDate = (date: Date | null) => {
+		setStartDate(date || today);
+	};
+
+	const handleEndDate = (date: Date | null) => {
+		setEndDate(date);
+	};
+
 	const handleClickPastDate = (getPastDate: number) => {
 		const PastEndDate = new Date(startDate);
 		PastEndDate.setDate(startDate.getDate() - getPastDate);
-		setEndDate(PastEndDate);
+		handleEndDate(PastEndDate);
 	};
 
 	const getPastDateWeek = 6;
@@ -33,8 +41,8 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 	useEffect(() => {
 		const newEndDate = new Date(startDate);
 		newEndDate.setDate(startDate.getDate() - 13);
-		setEndDate(newEndDate);
-		setStartDate(today);
+		handleEndDate(newEndDate);
+		handleStartDate(today);
 	}, []);
 
 	return (
@@ -43,7 +51,14 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 				<DatePickerContainer>
 					<DatePickerPlaceholder isHover isPressed endDate={endDate} startDate={startDate} handleClick={handleClick} />
 					<DatePickerWrapper>
-						<DatePickerCustom isOpen={isClicked} onClose={handleClick} />
+						<DatePickerCustom
+							isOpen={isClicked}
+							onClose={handleClick}
+							endDate={endDate}
+							startDate={startDate}
+							handleStartDate={handleStartDate}
+							handleEndDate={handleEndDate}
+						/>
 					</DatePickerWrapper>
 				</DatePickerContainer>
 				<PastDateWrapper>
