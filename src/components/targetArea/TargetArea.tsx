@@ -1,14 +1,20 @@
 import styled from '@emotion/styled';
+import { Droppable } from 'react-beautiful-dnd';
 
 import TargetAreaDate from './TargetAreaDate';
 import TargetControlSection from './TargetControlSection';
 import TargetTaskSection from './TargetTaskSection';
+
 import { TaskType } from '@/types/tasks/taskType';
+
 interface TargetAreaProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
+	tasks: TaskType[];
 }
-function TargetArea({ handleSelectedTarget, selectedTarget }: TargetAreaProps) {
+function TargetArea(props: TargetAreaProps) {
+	const { handleSelectedTarget, selectedTarget, tasks } = props;
+
 	return (
 		<TargetAreaLayout>
 			{/* 날짜 */}
@@ -20,7 +26,18 @@ function TargetArea({ handleSelectedTarget, selectedTarget }: TargetAreaProps) {
 			<TargetControlSection />
 
 			{/* 태스크 목록 */}
-			<TargetTaskSection handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
+			<Droppable droppableId="target">
+				{(provided) => (
+					<div ref={provided.innerRef} {...provided.droppableProps}>
+						<TargetTaskSection
+							handleSelectedTarget={handleSelectedTarget}
+							selectedTarget={selectedTarget}
+							tasks={tasks}
+						/>
+						{provided.placeholder}
+					</div>
+				)}
+			</Droppable>
 		</TargetAreaLayout>
 	);
 }

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Draggable } from 'react-beautiful-dnd';
 
 import BtnTaskContainer from '../BtnTaskContainer';
 
@@ -10,38 +11,39 @@ import { TaskType } from '@/types/tasks/taskType';
 interface StagingAreaTaskContainerProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
+	tasks: TaskType[];
 }
-function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget }: StagingAreaTaskContainerProps) {
-	const dummyTaskList: TaskType[] = [
-		{
-			id: 3,
-			name: '김지원',
-			deadLine: {
-				date: '2024-06-30',
-				time: '12:30',
-			},
-			hasDescription: true,
-			status: '미완료',
-		},
-	];
+
+function StagingAreaTaskContainer(props: StagingAreaTaskContainerProps) {
+	const { handleSelectedTarget, selectedTarget, tasks } = props;
 
 	return (
 		<StagingAreaTaskContainerLayout>
 			<StagingAreaSetting />
 			<BtnTaskContainer type="staging">
-				{dummyTaskList.map((task) => (
-					<BtnTask
-						key={task.id + task.name}
-						iconType="stagingOrDelayed"
-						hasDescription={task.hasDescription}
-						id={task.id}
-						name={task.name}
-						status={task.status}
-						deadLine={task.deadLine}
-						selectedTarget={selectedTarget}
-						handleSelectedTarget={handleSelectedTarget}
-						preventDoubleClick={false}
-					/>
+				{tasks.map((task, index) => (
+					<Draggable key={task.id} draggableId={task.id.toString()} index={index}>
+						{(provided) => (
+							<div
+								ref={provided.innerRef}
+								{...provided.draggableProps}
+								{...provided.dragHandleProps}
+								style={{ userSelect: 'none', ...provided.draggableProps.style }}
+							>
+								<BtnTask
+									key={task.id + task.name}
+									iconType="stagingOrDelayed"
+									hasDescription={task.hasDescription}
+									id={task.id}
+									name={task.name}
+									status={task.status}
+									deadLine={task.deadLine}
+									selectedTarget={selectedTarget}
+									handleSelectedTarget={handleSelectedTarget}
+								/>
+							</div>
+						)}
+					</Draggable>
 				))}
 				<ScrollGradient />
 			</BtnTaskContainer>

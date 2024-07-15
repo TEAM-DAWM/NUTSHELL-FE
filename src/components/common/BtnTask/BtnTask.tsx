@@ -17,7 +17,7 @@ interface BtnTaskProps extends TaskType {
 	selectedTarget: TaskType | null;
 	iconType: 'stagingOrDelayed' | 'active';
 	btnStatus?: '진행중' | '미완료' | '완료' | '오늘로추가';
-	preventDoubleClick: boolean;
+	preventDoubleClick?: boolean;
 }
 
 interface BorderColorProps {
@@ -39,7 +39,7 @@ function BtnTask(props: BtnTaskProps) {
 		selectedTarget,
 		iconType,
 		btnStatus,
-		preventDoubleClick,
+		preventDoubleClick = false,
 	} = props;
 	const [isModalOpen, setModalOpen] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
