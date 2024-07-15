@@ -50,7 +50,7 @@ const StatusTodoBtnLayout = styled.div<{ isPressed: boolean }>`
 	justify-content: center;
 	width: fit-content;
 	height: 2.4rem;
-	padding: ${({ isPressed }) => (isPressed ? '0' : '0.4rem;')};
+	padding: 0.4rem;
 
 	border: 1px solid ${({ theme }) => theme.palette.Grey.White};
 	border-radius: 12px;

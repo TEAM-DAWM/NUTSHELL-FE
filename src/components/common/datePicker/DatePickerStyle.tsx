@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 const CalendarStyle = styled.div`
+	z-index: 5;
 	display: flex;
 	flex-direction: column;
 	flex-shrink: 0;
