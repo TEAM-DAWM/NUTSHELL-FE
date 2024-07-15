@@ -7,8 +7,8 @@ import { TaskType } from '@/types/tasks/taskType';
 import BtnTaskContainer from '../BtnTaskContainer';
 
 interface StagingAreaTaskContainerProps {
-	handleSelectedTarget: (id: number | null) => void;
-	selectedTarget: number | null;
+	handleSelectedTarget: (task: TaskType | null) => void;
+	selectedTarget: TaskType | null;
 }
 function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget }: StagingAreaTaskContainerProps) {
 	const dummyTaskList: TaskType[] = [

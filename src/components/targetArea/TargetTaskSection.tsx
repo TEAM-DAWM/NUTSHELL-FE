@@ -5,8 +5,8 @@ import { TaskType } from '@/types/tasks/taskType';
 import BtnTaskContainer from '../common/BtnTaskContainer';
 
 interface TargetTaskSectionProps {
-	handleSelectedTarget: (id: number | null) => void;
-	selectedTarget: number | null;
+	handleSelectedTarget: (task: TaskType | null) => void;
+	selectedTarget: TaskType | null;
 }
 function TargetTaskSection({ handleSelectedTarget, selectedTarget }: TargetTaskSectionProps) {
 	const dummyTaskList: TaskType[] = [

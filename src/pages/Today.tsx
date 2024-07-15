@@ -4,11 +4,12 @@ import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
 import StagingArea from '@/components/common/StagingArea/StagingArea';
 import TargetArea from '@/components/targetArea/TargetArea';
 import { useState } from 'react';
+import { TaskType } from '@/types/tasks/taskType';
 
 function Today() {
-	const [selectedTarget, setSelectedTarget] = useState<number | null>(null);
-	const handleSelectedTarget = (id: number | null) => {
-		setSelectedTarget(id);
+	const [selectedTarget, setSelectedTarget] = useState<TaskType | null>(null);
+	const handleSelectedTarget = (task: TaskType | null) => {
+		setSelectedTarget(task);
 	};
 	return (
 		<>

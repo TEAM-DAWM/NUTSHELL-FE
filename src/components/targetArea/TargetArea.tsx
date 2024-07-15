@@ -3,9 +3,10 @@ import styled from '@emotion/styled';
 import TargetAreaDate from './TargetAreaDate';
 import TargetControlSection from './TargetControlSection';
 import TargetTaskSection from './TargetTaskSection';
+import { TaskType } from '@/types/tasks/taskType';
 interface TargetAreaProps {
-	handleSelectedTarget: (id: number | null) => void;
-	selectedTarget: number | null;
+	handleSelectedTarget: (task: TaskType | null) => void;
+	selectedTarget: TaskType | null;
 }
 function TargetArea({ handleSelectedTarget, selectedTarget }: TargetAreaProps) {
 	return (

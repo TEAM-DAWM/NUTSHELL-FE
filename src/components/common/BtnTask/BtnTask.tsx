@@ -13,8 +13,8 @@ import MODAL from '@/constants/modalLocation';
 
 interface BtnTaskProps extends TaskType {
 	btnType: 'staging' | 'target' | 'delayed';
-	handleSelectedTarget: (id: number | null) => void;
-	selectedTarget: number | null;
+	handleSelectedTarget: (task: TaskType | null) => void;
+	selectedTarget: TaskType | null;
 }
 
 interface BorderColorProps {
@@ -52,8 +52,18 @@ function BtnTask(props: BtnTaskProps) {
 
 	/** 보더 색상 */
 	const handleClick = () => {
-		if (selectedTarget === id) handleSelectedTarget(null);
-		else handleSelectedTarget(id);
+		if (selectedTarget?.id === id) {
+			handleSelectedTarget(null);
+		} else {
+			const currentData: TaskType = {
+				id,
+				name,
+				deadLine,
+				hasDescription,
+				status,
+			};
+			handleSelectedTarget(currentData);
+		}
 	};
 
 	/** 모달 닫기 */
@@ -64,7 +74,7 @@ function BtnTask(props: BtnTaskProps) {
 	return (
 		<ModalLayout>
 			<BtnTaskLayout
-				isClicked={selectedTarget === id}
+				isClicked={selectedTarget?.id === id}
 				isHovered={isHovered}
 				btnType={btnType}
 				onDoubleClick={handleDoubleClick}

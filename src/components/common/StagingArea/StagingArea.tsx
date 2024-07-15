@@ -3,9 +3,10 @@ import styled from '@emotion/styled';
 import StagingAreaTaskContainer from './StagingAreaTaskContainer';
 
 import TextInputStaging from '@/components/common/textbox/TextInputStaging';
+import { TaskType } from '@/types/tasks/taskType';
 interface StagingAreaProps {
-	handleSelectedTarget: (id: number | null) => void;
-	selectedTarget: number | null;
+	handleSelectedTarget: (task: TaskType | null) => void;
+	selectedTarget: TaskType | null;
 }
 function StagingArea({ handleSelectedTarget, selectedTarget }: StagingAreaProps) {
 	return (
