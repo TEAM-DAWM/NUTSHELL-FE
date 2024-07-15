@@ -74,7 +74,7 @@ const DateContainer = styled.div`
 	padding: 2.8rem 2.1rem 2.2rem;
 `;
 
-const DateText = styled.p`
+const DateText = styled.h1`
 	${({ theme }) => theme.fontTheme.HEADLINE_01}
 	color : ${({ theme }) => theme.palette.Grey.Black}
 `;
