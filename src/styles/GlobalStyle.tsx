@@ -154,6 +154,10 @@ const style = css`
 		--fc-highlight-color: #f0f5ff;
 		--fc-event-border-color: #ffff;
 	}
+
+	button {
+		cursor: pointer;
+	}
 `;
 
 function GlobalStyle() {
