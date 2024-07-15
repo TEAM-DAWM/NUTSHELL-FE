@@ -10,6 +10,7 @@ import CalendarStyle from './DatePickerStyle';
 
 import formatDatetoString from '@/utils/formatDatetoString';
 import { blurRef } from '@/utils/refStatus';
+import ModalBackdrop from '../modal/ModalBackdrop';
 
 interface DatePickerCustomProps {
 	isOpen: boolean;
@@ -85,28 +86,30 @@ function DatePickerCustom({ isOpen, onClose }: DatePickerCustomProps) {
 
 	return (
 		isOpen && (
-			<DatePicker
-				locale={ko}
-				selected={startDate}
-				onChange={onChange}
-				startDate={startDate as Date | undefined}
-				endDate={endDate as Date | undefined}
-				selectsRange
-				inline
-				calendarContainer={CalendarStyle}
-				renderCustomHeader={(props) => (
-					<CustomHeader
-						{...props}
-						startDate={startDate}
-						endDate={endDate}
-						onChange={onDateChange}
-						startDateTextRef={startDateTextRef}
-						endDateTextRef={endDateTextRef}
-					/>
-				)}
-			>
-				<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed onClick={onClose} />
-			</DatePicker>
+			<ModalBackdrop onClick={onClose}>
+				<DatePicker
+					locale={ko}
+					selected={startDate}
+					onChange={onChange}
+					startDate={startDate as Date | undefined}
+					endDate={endDate as Date | undefined}
+					selectsRange
+					inline
+					calendarContainer={CalendarStyle}
+					renderCustomHeader={(props) => (
+						<CustomHeader
+							{...props}
+							startDate={startDate}
+							endDate={endDate}
+							onChange={onDateChange}
+							startDateTextRef={startDateTextRef}
+							endDateTextRef={endDateTextRef}
+						/>
+					)}
+				>
+					<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed onClick={onClose} />
+				</DatePicker>
+			</ModalBackdrop>
 		)
 	);
 }

@@ -223,5 +223,5 @@ const DatePickerWrapper = styled.div`
 	position: absolute;
 	bottom: 4.6rem;
 	left: 0;
-	z-index: 3;
+	z-index: 4;
 `;
