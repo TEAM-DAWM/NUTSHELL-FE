@@ -5,10 +5,9 @@ import userLogin from '@/apis/login/loginAxios';
 
 function Login() {
 	const googleSocialLogin = useGoogleLogin({
-		scope: 'email profile',
 		onSuccess: async ({ code }) => {
 			try {
-				const response = await userLogin(code);
+				const response = userLogin(code);
 				console.log(response);
 			} catch (error) {
 				console.error(error);
@@ -18,6 +17,7 @@ function Login() {
 			console.error(errorResponse);
 		},
 		flow: 'auth-code',
+		scope: 'email profile',
 	});
 
 	return <GoogleBtn onClick={googleSocialLogin}>Google Button</GoogleBtn>;

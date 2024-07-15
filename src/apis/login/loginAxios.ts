@@ -5,7 +5,9 @@ const AUTH_URL = {
 };
 
 const userLogin = async (code: string) => {
-	const response = await instance.post(AUTH_URL.LOGIN, code);
+	const response = await instance.post(AUTH_URL.LOGIN, null, {
+		params: { code },
+	});
 	return response;
 };
 

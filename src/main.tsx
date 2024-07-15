@@ -16,7 +16,6 @@ const CLIENT_ID = import.meta.env.VITE_GOOGLE_LOGIN_CLIENT_ID;
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<GoogleOAuthProvider clientId={CLIENT_ID}>
-		
 		<React.StrictMode>
 			<QueryClientProvider client={queryClient}>
 				<GlobalStyle />
