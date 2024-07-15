@@ -16,6 +16,7 @@ import MODAL from '@/constants/modalLocation';
 interface FullCalendarBoxProps {
 	size: 'small' | 'big';
 	selectDate?: Date | null;
+	selectedTarget: number | null;
 }
 
 function FullCalendarBox({ size, selectDate }: FullCalendarBoxProps) {
@@ -100,7 +101,7 @@ function FullCalendarBox({ size, selectDate }: FullCalendarBoxProps) {
 						allDay: true,
 						classNames: 'task',
 					},
-					{ title: 'Meeting', start: '2024-07-11T10:00:00', end: '2024-07-11T12:00:00', classNames: 'schedule' },
+					{ title: 'Meeting', start: '2024-07-15T10:00:00', end: '2024-07-11T12:00:00', classNames: 'schedule' },
 					{ title: 'Lunch', start: '2024-07-12T12:00:00', end: '2024-07-12T12:45:00', classNames: 'schedule' },
 					{ title: 'Lunch', start: '2024-07-11T12:00:00', end: '2024-07-11T12:30:00', classNames: 'schedule' },
 					{
