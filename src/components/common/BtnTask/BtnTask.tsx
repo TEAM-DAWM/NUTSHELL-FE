@@ -94,7 +94,7 @@ function BtnTask(props: BtnTaskProps) {
 				</BtnTaskContainer>
 				<IconHoverContainer btnType={btnType} status={status} />
 			</BtnTaskLayout>
-			<Modal isOpen={isModalOpen} sizeType={{ type: 'short' }} top={top} left={left} onClose={closeModal} />
+			<Modal isOpen={isModalOpen} sizeType={{ type: 'short' }} top={top} left={left} onClose={closeModal} taskId={id} />
 		</ModalLayout>
 	);
 }
