@@ -24,8 +24,8 @@ function TargetTaskSection({ handleSelectedTarget, selectedTarget }: TargetTaskS
 			id: 1,
 			name: '넛수레',
 			deadLine: {
-				date: '2024-06-30',
-				time: '12:30',
+				date: '2024-08-29',
+				time: '10:30',
 			},
 			hasDescription: true,
 			status: '지연',
