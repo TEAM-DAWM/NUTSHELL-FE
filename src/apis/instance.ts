@@ -61,7 +61,7 @@ privateInstance.interceptors.response.use(
 			// 리프레시 토큰 요청이 성공할 때
 			if (response.status === 200) {
 				const newAccessToken = response.data.data.accessToken;
-				localStorage.setItem('accessToken', response.data.data.accessToken);
+				localStorage.setItem('accessToken', newAccessToken);
 				localStorage.setItem('refreshToken', response.data.data.refreshToken);
 				axios.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
 				// 진행중이던 요청 이어서하기

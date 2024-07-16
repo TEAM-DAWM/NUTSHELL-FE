@@ -10,10 +10,10 @@ function Login() {
 	const googleSocialLogin = useGoogleLogin({
 		onSuccess: async ({ code }) => {
 			try {
-				const response = userLogin(code);
-				if ((await response).code === 'success') {
-					localStorage.setItem('accessToken', (await response).data.accessToken);
-					localStorage.setItem('refreshToken', (await response).data.refreshToken);
+				const response = await userLogin(code);
+				if (response.code === 'success') {
+					localStorage.setItem('accessToken', response.data.accessToken);
+					localStorage.setItem('refreshToken', response.data.refreshToken);
 					navigate('/today');
 				}
 			} catch (error) {
