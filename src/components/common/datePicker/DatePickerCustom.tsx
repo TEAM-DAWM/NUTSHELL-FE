@@ -1,40 +1,36 @@
 import { ko } from 'date-fns/locale';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import TextBtn from '../button/textBtn/TextBtn';
+import ModalBackdrop from '../modal/ModalBackdrop';
 
 import CustomHeader from './CustomHeader';
 import CalendarStyle from './DatePickerStyle';
 
 import formatDatetoString from '@/utils/formatDatetoString';
 import { blurRef } from '@/utils/refStatus';
-import ModalBackdrop from '../modal/ModalBackdrop';
 
 interface DatePickerCustomProps {
 	isOpen: boolean;
 	onClose: () => void;
+	startDate: Date | null;
+	endDate: Date | null;
+	handleStartDate: (date: Date | null) => void;
+	handleEndDate: (date: Date | null) => void;
 }
 
-function DatePickerCustom({ isOpen, onClose }: DatePickerCustomProps) {
-	const [startDate, setStartDate] = useState<Date | null>(new Date());
-	const [endDate, setEndDate] = useState<Date | null>(null);
+function DatePickerCustom({
+	isOpen,
+	onClose,
+	startDate,
+	endDate,
+	handleStartDate,
+	handleEndDate,
+}: DatePickerCustomProps) {
 	const startDateTextRef = useRef<HTMLInputElement>(null);
 	const endDateTextRef = useRef<HTMLInputElement>(null);
-
-	// 초기값 이주 전으로 설정
-	useEffect(() => {
-		if (startDate) {
-			const newEndDate = new Date(startDate);
-			newEndDate.setDate(startDate.getDate() - 13);
-			setEndDate(newEndDate);
-			if (endDateTextRef.current) {
-				const inputElement = endDateTextRef.current.querySelector('input');
-				if (inputElement) inputElement.placeholder = formatDatetoString(newEndDate);
-			}
-		}
-	}, []);
 
 	/** ref 안에 Input DOM 있는지 검사하고 있다면 반환, 없으면 false 반환 */
 	const inputElementOfRef = (ref: React.RefObject<HTMLInputElement>) => {
@@ -50,7 +46,7 @@ function DatePickerCustom({ isOpen, onClose }: DatePickerCustomProps) {
 	/** 캘린더에서 날짜 선택할 경우 변경 */
 	const onChange = (dates: [Date | null, Date | null]) => {
 		const [start, end] = dates;
-		setStartDate(start);
+		handleStartDate(start);
 		blurRef(startDateTextRef);
 		// 캘린더에서 선택한 시작시간 인풋에 반영
 		const startInputEle = inputElementOfRef(startDateTextRef);
@@ -69,7 +65,7 @@ function DatePickerCustom({ isOpen, onClose }: DatePickerCustomProps) {
 
 		// 캘린더에서 선택한 마감시간 인풋에 반영
 		if (endInputEle) endInputEle.value = formatDatetoString(end);
-		setEndDate(end);
+		handleEndDate(end);
 		blurRef(endDateTextRef);
 	};
 
@@ -77,10 +73,10 @@ function DatePickerCustom({ isOpen, onClose }: DatePickerCustomProps) {
 	const onDateChange = (date: Date, mode: 'start' | 'end') => {
 		if (mode === 'start') {
 			blurRef(startDateTextRef);
-			setStartDate(date);
+			handleStartDate(date);
 		} else {
 			blurRef(endDateTextRef);
-			setEndDate(date);
+			handleEndDate(date);
 		}
 	};
 
@@ -109,7 +105,7 @@ function DatePickerCustom({ isOpen, onClose }: DatePickerCustomProps) {
 				>
 					<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed onClick={onClose} />
 				</DatePicker>
-				<ModalBackdrop onClick={onClose}></ModalBackdrop>
+				<ModalBackdrop onClick={onClose} />
 			</>
 		)
 	);
