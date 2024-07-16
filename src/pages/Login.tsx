@@ -38,8 +38,8 @@ function Login() {
 						구글 계정으로 시작하기
 					</GoogleBtn>
 					<SignDescription>
-						가입하면 자동으로 <a href="https://www.naver.com/">개인정보보호정책</a>과{' '}
-						<a href="https://www.naver.com/">이용약관</a>에 동의한 것으로 간주됩니다.
+						가입하면 자동으로 <a href="https://github.com/TEAM-DAWM/NUTSHELL-FE/pull/146">개인정보보호정책</a>과{' '}
+						<a href="https://github.com/TEAM-DAWM/NUTSHELL-FE">이용약관</a>에 동의한 것으로 간주됩니다.
 					</SignDescription>
 				</LoginBtn>
 			</LeftSection>
