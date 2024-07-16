@@ -17,9 +17,11 @@ interface DateCorrectionModalProps {
 	isDateOnly?: boolean;
 	top?: number;
 	left?: number;
-	date: string;
+	date: string | null;
+	time: string | null;
 	onClick: () => void;
 	handleCurrentDate: (newDate: Date | null) => void;
+	handleCurrentTime: (newTime: string | null) => void;
 }
 
 function DateCorrectionModal({
@@ -27,14 +29,17 @@ function DateCorrectionModal({
 	top = 0,
 	left = 0,
 	date,
+	time,
 	onClick,
 	handleCurrentDate,
+	handleCurrentTime,
 }: DateCorrectionModalProps) {
-	const prevDate: Date = new Date(date);
+	const prevDate = date ? new Date(date) : null;
 	const [currentDate, setCurrentDate] = useState<Date | null>(null);
-
+	const [currentTime, setCurrentTime] = useState<string | null>(time);
 	const dateTextRef = useRef<HTMLInputElement>(null);
 	const timeTextRef = useRef<HTMLInputElement>(null);
+
 	const onChange = (date: Date | null) => {
 		setCurrentDate(date);
 		if (dateTextRef.current) {
@@ -43,11 +48,14 @@ function DateCorrectionModal({
 			blurRef(dateTextRef);
 		}
 	};
-
+	const onTimeChange = (time: string | null) => {
+		setCurrentTime(time);
+	};
 	/** 모달 확인, 닫기버튼 */
 	const onSave = () => {
 		console.log('save');
 		handleCurrentDate(currentDate);
+		handleCurrentTime(currentTime);
 		onClick();
 	};
 	return (
@@ -63,7 +71,7 @@ function DateCorrectionModal({
 				)}
 			>
 				<BottomBtnWrapper>
-					{!isDateOnly && <TextboxInput variant="time" dateTextRef={timeTextRef} />}
+					{!isDateOnly && <TextboxInput variant="time" dateTextRef={timeTextRef} onTimeChange={onTimeChange} />}
 					<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed onClick={onSave} />
 				</BottomBtnWrapper>
 			</DatePicker>

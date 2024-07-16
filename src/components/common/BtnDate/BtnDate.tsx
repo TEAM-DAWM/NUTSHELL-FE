@@ -13,8 +13,8 @@ import ModalBackdrop from '../modal/ModalBackdrop';
 import formatDatetoString from '@/utils/formatDatetoString';
 
 interface BtnDateProps {
-	date?: string;
-	time?: string;
+	date: string | null;
+	time: string | null;
 	size?: SizeType;
 	isDelayed?: boolean;
 	isDisabled?: boolean;
@@ -31,9 +31,12 @@ function BtnDate(props: BtnDateProps) {
 	const [isPressed, setIsPressed] = useState(false);
 	const [isClicked, setIsClicked] = useState(false);
 	const [currentDate, setCurrentDate] = useState(date ? new Date(date) : null);
-
+	const [currentTime, setCurrentTime] = useState(time ? time : null);
 	const handleCurrentDate = (newDate: Date | null) => {
 		setCurrentDate(newDate);
+	};
+	const handleCurrentTime = (newTime: string | null) => {
+		setCurrentTime(newTime);
 	};
 	const handleMouseDown = () => {
 		if (size.type !== 'short') setIsPressed(true);
@@ -70,7 +73,7 @@ function BtnDate(props: BtnDateProps) {
 				<LineIcon size={size.type} isDelayed={isDelayed} />
 				<BtnDateText
 					icon={<ClockIcon isDelayed={isDelayed} />}
-					text={time}
+					text={currentTime ? currentTime : ''}
 					isDefault={isDefaultTime}
 					size={size.type}
 				/>
@@ -82,8 +85,10 @@ function BtnDate(props: BtnDateProps) {
 						top={MODAL.DATE_CORRECTION.TASK_MODAL.top}
 						left={MODAL.DATE_CORRECTION.TASK_MODAL.left}
 						date={date}
+						time={time}
 						onClick={handleMouseUp}
 						handleCurrentDate={handleCurrentDate}
+						handleCurrentTime={handleCurrentTime}
 					/>
 					<ModalBackdrop onClick={handleMouseUp} />
 				</>

@@ -86,8 +86,8 @@ function BtnTask(props: BtnTaskProps) {
 						{name}
 					</BtnTaskTextWrapper>
 					<BtnDate
-						date={deadLine?.date}
-						time={deadLine?.time}
+						date={deadLine?.date || null}
+						time={deadLine?.time || null}
 						size={{ type: 'short' }}
 						isDelayed={btnType === 'delayed'}
 					/>
