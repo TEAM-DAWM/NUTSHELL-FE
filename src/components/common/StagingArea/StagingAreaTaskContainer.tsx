@@ -32,7 +32,7 @@ function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget }: Stag
 				{dummyTaskList.map((task) => (
 					<BtnTask
 						key={task.id + task.name}
-						btnType="staging"
+						iconType="stagingOrDelayed"
 						hasDescription={task.hasDescription}
 						id={task.id}
 						name={task.name}

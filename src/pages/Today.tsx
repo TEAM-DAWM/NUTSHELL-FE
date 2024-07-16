@@ -1,10 +1,6 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import StatusDoneBtn from '@/components/common/button/statusBtn/StatusDoneBtn';
-import StatusInProgressBtn from '@/components/common/button/statusBtn/StatusInProgressBtn';
-import StatusStagingBtn from '@/components/common/button/statusBtn/StatusStagingBtn';
-import StatusTodoBtn from '@/components/common/button/statusBtn/StatusTodoBtn';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
 import StagingArea from '@/components/common/StagingArea/StagingArea';
 import TargetArea from '@/components/targetArea/TargetArea';
@@ -16,19 +12,13 @@ function Today() {
 		setSelectedTarget(task);
 	};
 	return (
-		<>
-			<StatusDoneBtn />
-			<StatusInProgressBtn />
-			<StatusStagingBtn />
-			<StatusTodoBtn />
-			<TodayLayout>
-				<StagingArea handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
-				<TargetArea handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
-				<CalendarWrapper>
-					<FullCalendarBox size="small" selectedTarget={selectedTarget} />
-				</CalendarWrapper>
-			</TodayLayout>
-		</>
+		<TodayLayout>
+			<StagingArea handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
+			<TargetArea handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
+			<CalendarWrapper>
+				<FullCalendarBox size="small" selectedTarget={selectedTarget} />
+			</CalendarWrapper>
+		</TodayLayout>
 	);
 }
 
