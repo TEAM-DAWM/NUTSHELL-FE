@@ -7,8 +7,8 @@ import formatDatetoString from '@/utils/formatDatetoString';
 interface DatePickerPlaceholderProps {
 	isHover: boolean;
 	isPressed: boolean;
-	startDate: Date;
-	endDate: Date;
+	startDate: Date | null;
+	endDate: Date | null;
 	handleClick: () => void;
 }
 

@@ -16,7 +16,7 @@ interface DateAreaProps {
 function DateArea({ isHover, isPressed }: DateAreaProps) {
 	const today = new Date();
 	const [startDate, setStartDate] = useState<Date | null>(null);
-	const [endDate, setEndDate] = useState<Date | null>(null);
+	const [endDate, setEndDate] = useState<Date | null>(today);
 	const [isClicked, setIsClicked] = useState(false);
 
 	const handleClick = () => {
@@ -53,13 +53,7 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 		<DatePickerCustomLayout>
 			<DateAreaLayout>
 				<DatePickerContainer>
-					<DatePickerPlaceholder
-						isHover
-						isPressed
-						endDate={endDate || today}
-						startDate={startDate || today}
-						handleClick={handleClick}
-					/>
+					<DatePickerPlaceholder isHover isPressed endDate={endDate} startDate={startDate} handleClick={handleClick} />
 					<DatePickerWrapper>
 						<DatePickerCustom
 							isOpen={isClicked}
