@@ -81,6 +81,7 @@ function DashboardTask({ text }: DashboardTaskProps) {
 						status={task.status}
 						deadLine={task.deadLine}
 						btnType="target"
+						onDoubleClick={(e) => e.stopPropagation()} // 더블클릭 막기
 					/>
 				))}
 				<ScrollGradient />

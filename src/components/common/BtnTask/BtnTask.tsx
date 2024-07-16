@@ -13,6 +13,7 @@ import { TaskType } from '@/types/tasks/taskType';
 
 interface BtnTaskProps extends TaskType {
 	btnType: 'staging' | 'target' | 'delayed';
+	onDoubleClick?: (e: React.MouseEvent) => void;
 }
 
 interface BorderColorProps {
@@ -23,7 +24,7 @@ interface BorderColorProps {
 }
 
 function BtnTask(props: BtnTaskProps) {
-	const { btnType, name, deadLine, hasDescription, status } = props;
+	const { btnType, name, deadLine, hasDescription, status, onDoubleClick } = props;
 	const [isModalOpen, setModalOpen] = useState(false);
 	const [isClicked, setIsClicked] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
@@ -41,6 +42,10 @@ function BtnTask(props: BtnTaskProps) {
 
 	/** 모달 띄우기 */
 	const handleDoubleClick = (e: React.MouseEvent) => {
+		if (onDoubleClick) {
+			onDoubleClick(e);
+			return;
+		}
 		const rect = e.currentTarget.getBoundingClientRect();
 		const calculatedTop = rect.top;
 		const adjustedTop = Math.min(calculatedTop, MODAL.SCREEN_HEIGHT - MODAL.TASK_MODAL_HEIGHT);
