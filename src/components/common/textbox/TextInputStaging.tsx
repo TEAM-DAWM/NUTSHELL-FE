@@ -29,6 +29,9 @@ function TextInputStaging() {
 							<DateCorrectionModal
 								top={MODAL.DATE_CORRECTION.SET_DEADLINE.top}
 								left={MODAL.DATE_CORRECTION.SET_DEADLINE.left}
+								onClick={handleCloseModal}
+								time={null}
+								date={null}
 							/>
 							<ModalBackdrop onClick={handleCloseModal} />
 						</>

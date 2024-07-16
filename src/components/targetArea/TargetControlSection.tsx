@@ -30,7 +30,13 @@ function TargetControlSection() {
 				<ModalLayout>
 					<ArrangeBtn color="WHITE" mode="DEFAULT" size="small" type="calendar" onClick={handleArrangeBtnClick} />
 					{isModalOpen && (
-						<DateCorrectionModal top={MODAL.DATE_CORRECTION.TARGET.top} left={MODAL.DATE_CORRECTION.TARGET.left} />
+						<DateCorrectionModal
+							top={MODAL.DATE_CORRECTION.TARGET.top}
+							left={MODAL.DATE_CORRECTION.TARGET.left}
+							date={null}
+							time={null}
+							onClick={handleCloseModal}
+						/>
 					)}
 				</ModalLayout>
 			</TargetControlSectionLayout>

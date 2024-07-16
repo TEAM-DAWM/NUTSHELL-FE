@@ -20,8 +20,8 @@ interface DateCorrectionModalProps {
 	date: string | null;
 	time: string | null;
 	onClick: () => void;
-	handleCurrentDate: (newDate: Date) => void;
-	handleCurrentTime: (newTime: string) => void;
+	handleCurrentDate?: (newDate: Date) => void;
+	handleCurrentTime?: (newTime: string) => void;
 }
 
 function DateCorrectionModal({
@@ -53,8 +53,8 @@ function DateCorrectionModal({
 	};
 	/** 모달 확인, 닫기버튼 */
 	const onSave = () => {
-		if (currentDate) handleCurrentDate(currentDate);
-		if (currentTime) handleCurrentTime(currentTime);
+		if (handleCurrentDate && currentDate) handleCurrentDate(currentDate);
+		if (handleCurrentTime && currentTime) handleCurrentTime(currentTime);
 		onClick();
 	};
 	return (
