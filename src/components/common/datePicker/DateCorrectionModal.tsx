@@ -40,16 +40,16 @@ function DateCorrectionModal({
 	const dateTextRef = useRef<HTMLInputElement>(null);
 	const timeTextRef = useRef<HTMLInputElement>(null);
 
-	const onChange = (date: Date | null) => {
-		setCurrentDate(date);
+	const onChange = (newDate: Date | null) => {
+		setCurrentDate(newDate);
 		if (dateTextRef.current) {
 			const inputElement = dateTextRef.current.querySelector('input');
-			if (inputElement) inputElement.value = formatDatetoString(date);
+			if (inputElement) inputElement.value = formatDatetoString(newDate);
 			blurRef(dateTextRef);
 		}
 	};
-	const onTimeChange = (time: string | null) => {
-		setCurrentTime(time);
+	const onTimeChange = (newTime: string | null) => {
+		setCurrentTime(newTime);
 	};
 	/** 모달 확인, 닫기버튼 */
 	const onSave = () => {

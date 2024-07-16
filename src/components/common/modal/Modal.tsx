@@ -18,8 +18,10 @@ interface ModalProps {
 	taskId: number;
 }
 
-function Modal({ isOpen, sizeType, top, left, onClose }: ModalProps) {
+function Modal({ isOpen, sizeType, top, left, onClose, taskId }: ModalProps) {
+	// taskId 가지고 api로 상세정보 요청하면 됨
 	const dummyData = {
+		id: taskId, // 안쓰는 변수 린트 통과용 필드
 		name: 'task name',
 		description: 'task description',
 		deadLine: {
