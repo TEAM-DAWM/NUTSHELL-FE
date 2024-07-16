@@ -6,6 +6,8 @@ import DatePickerCustom from '../common/datePicker/DatePickerCustom';
 import DatePickerPlaceholder from './DatePickerPlaceholder';
 import PastDateBtn from './pastDateBtnStyle';
 
+import GETPASTDATE from '@/constants/getPastDate';
+
 interface DateAreaProps {
 	isHover: boolean;
 	isPressed: boolean;
@@ -44,9 +46,6 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 		handleEndDate(newEndDate);
 	};
 
-	const getPastDateWeek = 6;
-	const getPastDateMonth = 30;
-
 	return (
 		<DatePickerCustomLayout>
 			<DateAreaLayout>
@@ -68,7 +67,7 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 						isHover={isHover}
 						isPressed={isPressed}
 						onClick={() => {
-							handleClickPastDate(getPastDateWeek);
+							handleClickPastDate(GETPASTDATE.getPastDateWeek);
 						}}
 					>
 						지난 1주일
@@ -77,7 +76,7 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 						isHover={isHover}
 						isPressed={isPressed}
 						onClick={() => {
-							handleClickPastDate(getPastDateMonth);
+							handleClickPastDate(GETPASTDATE.getPastDateMonth);
 						}}
 					>
 						지난 1달
