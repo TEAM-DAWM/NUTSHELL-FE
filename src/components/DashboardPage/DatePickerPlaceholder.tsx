@@ -27,10 +27,12 @@ export default DatePickerPlaceholder;
 
 const PlaceholderWrapper = styled.div<{ isHover: boolean; isPressed: boolean }>`
 	display: flex;
+	gap: 1.2rem;
 	align-items: center;
 	box-sizing: border-box;
+	width: 37.5rem;
 	height: 4rem;
-	padding: 0.4rem 1.2rem;
+	padding: 0.3rem 1.1rem;
 
 	background-color: ${({ theme }) => theme.textButton.WHITE.DEFAULT.BG};
 	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
@@ -58,7 +60,10 @@ const PlaceholderWrapper = styled.div<{ isHover: boolean; isPressed: boolean }>`
 `;
 
 const DateText = styled.p`
-	padding: 0.5rem 1.6rem;
+	display: flex;
+	justify-content: center;
+	box-sizing: border-box;
+	width: 13.9rem;
 
 	color: ${({ theme }) => theme.textButton.WHITE.DEFAULT.TEXT};
 	${({ theme }) => theme.fontTheme.BODY_02};
