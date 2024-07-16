@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
-import formatDatetoString from '@/utils/formatDatetoString';
+import formatDatetoStrinKor from '@/utils/formatDatetoStringKor';
 
 interface DatePickerPlaceholderProps {
 	isHover: boolean;
@@ -16,9 +16,9 @@ function DatePickerPlaceholder({ isHover, isPressed, startDate, endDate, handleC
 	return (
 		<PlaceholderWrapper isHover={isHover} isPressed={isPressed} onClick={handleClick}>
 			<StlyedCalendarIcon />
-			<DateText>{formatDatetoString(startDate)}</DateText>
+			<DateText>{formatDatetoStrinKor(startDate)}</DateText>
 			<StyledArrowIcon />
-			<DateText>{formatDatetoString(endDate)}</DateText>
+			<DateText>{formatDatetoStrinKor(endDate)}</DateText>
 		</PlaceholderWrapper>
 	);
 }
