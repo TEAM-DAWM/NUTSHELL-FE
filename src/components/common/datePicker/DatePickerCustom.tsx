@@ -10,10 +10,15 @@ import CalendarStyle from './DatePickerStyle';
 
 import formatDatetoString from '@/utils/formatDatetoString';
 import { blurRef } from '@/utils/refStatus';
+import ModalBackdrop from '../modal/ModalBackdrop';
 
-function DatePickerCustom() {
-	const today = new Date();
-	const [startDate, setStartDate] = useState<Date | null>(today);
+interface DatePickerCustomProps {
+	isOpen: boolean;
+	onClose: () => void;
+}
+
+function DatePickerCustom({ isOpen, onClose }: DatePickerCustomProps) {
+	const [startDate, setStartDate] = useState<Date | null>(new Date());
 	const [endDate, setEndDate] = useState<Date | null>(null);
 	const startDateTextRef = useRef<HTMLInputElement>(null);
 	const endDateTextRef = useRef<HTMLInputElement>(null);
@@ -80,28 +85,33 @@ function DatePickerCustom() {
 	};
 
 	return (
-		<DatePicker
-			locale={ko}
-			selected={startDate}
-			onChange={onChange}
-			startDate={startDate as Date | undefined}
-			endDate={endDate as Date | undefined}
-			selectsRange
-			inline
-			calendarContainer={CalendarStyle}
-			renderCustomHeader={(props) => (
-				<CustomHeader
-					{...props}
-					startDate={startDate}
-					endDate={endDate}
-					onChange={onDateChange}
-					startDateTextRef={startDateTextRef}
-					endDateTextRef={endDateTextRef}
-				/>
-			)}
-		>
-			<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed />
-		</DatePicker>
+		isOpen && (
+			<>
+				<DatePicker
+					locale={ko}
+					selected={startDate}
+					onChange={onChange}
+					startDate={startDate as Date | undefined}
+					endDate={endDate as Date | undefined}
+					selectsRange
+					inline
+					calendarContainer={CalendarStyle}
+					renderCustomHeader={(props) => (
+						<CustomHeader
+							{...props}
+							startDate={startDate}
+							endDate={endDate}
+							onChange={onDateChange}
+							startDateTextRef={startDateTextRef}
+							endDateTextRef={endDateTextRef}
+						/>
+					)}
+				>
+					<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed onClick={onClose} />
+				</DatePicker>
+				<ModalBackdrop onClick={onClose}></ModalBackdrop>
+			</>
+		)
 	);
 }
 export default DatePickerCustom;

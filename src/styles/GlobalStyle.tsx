@@ -119,6 +119,8 @@ const style = css`
 	body {
 		font-family: ${fonts.Pretendard};
 		line-height: 1;
+
+		user-select: none;
 	}
 
 	ol,
@@ -151,6 +153,10 @@ const style = css`
 	:root {
 		--fc-highlight-color: #f0f5ff;
 		--fc-event-border-color: #ffff;
+	}
+
+	button {
+		cursor: pointer;
 	}
 `;
 

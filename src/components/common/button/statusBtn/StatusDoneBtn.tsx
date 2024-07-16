@@ -36,9 +36,8 @@ const StatusDoneBtnLayout = styled.div<{ isPressed: boolean }>`
 	justify-content: center;
 	width: fit-content;
 	height: 2.4rem;
-	padding: ${({ isPressed }) => (isPressed ? '0' : '0.4rem;')};
+	padding: 0.4rem;
 
-	background-color: ${({ isPressed, theme }) => isPressed && theme.palette.Primary};
 	border: 1px solid ${({ theme, isPressed }) => (isPressed ? theme.palette.Grey.White : theme.palette.Grey.Grey3)};
 	border-radius: 12px;
 
