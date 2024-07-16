@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import Icons from '@/assets/svg/index';
 import DashboardTaskWrapper from '@/components/DashboardPage/DashboardTaskWrapper';
 import DateArea from '@/components/DashboardPage/DateArea';
 import TaskSummary from '@/components/DashboardPage/TaskSummary';
@@ -14,18 +15,24 @@ function DashBoard() {
 			text: '완료한 할 일 갯수',
 			data: PERIOD.data.completeTasks,
 			unit: '개',
+			icon: Icons.Dashboard_Complete_Icon,
+			imagePath: 'src/assets/images/Dashboard_Complete.png',
 		},
 		{
 			name: 'postponed',
 			text: '평균 지연율',
 			data: PERIOD.data.avgDeferredRate,
 			unit: '%',
+			icon: Icons.Dashboard_Postpone_Icon,
+			imagePath: 'src/assets/images/Dashboard_Postpone.png',
 		},
 		{
 			name: 'inprogress',
 			text: '평균 진행중인 할 일 갯수',
 			data: PERIOD.data.avgInprogressTasks,
 			unit: '개',
+			icon: Icons.Dashboard_Progress_Icon,
+			imagePath: 'src/assets/images/Dashboard_Progress.png',
 		},
 	];
 	const today = new Date();
@@ -46,7 +53,14 @@ function DashBoard() {
 			</DataWrapper>
 			<TaskSummaryWrapper>
 				{SUMMARY_INFO.map((info) => (
-					<TaskSummary key={info.name} text={info.text} data={info.data} unit={info.unit} />
+					<TaskSummary
+						key={info.name}
+						text={info.text}
+						data={info.data}
+						unit={info.unit}
+						image={info.imagePath}
+						icon={info.icon}
+					/>
 				))}
 			</TaskSummaryWrapper>
 		</DashBoardLayout>
