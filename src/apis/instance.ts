@@ -9,7 +9,7 @@ const MESSAGES = {
 		SUCCESS: '로그인에 성공하였습니다.',
 		EXPIRED: '로그인이 만료되었습니다. 다시 시도해주세요.',
 	},
-	UNKNOWN_ERROR: '로그인이 만료되었습니다. 다시 시도해주세요.',
+	UNKNOWN_ERROR: '알수없는 오류가 발생했습니다. 다시 시도해주세요.',
 };
 
 // 토큰이 필요없는 api요청을 보내는 axios인스턴스
