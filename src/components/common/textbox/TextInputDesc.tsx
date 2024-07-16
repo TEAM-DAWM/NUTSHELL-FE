@@ -6,7 +6,7 @@ interface TextInputDescProps extends SizeType {
 	desc: string;
 }
 function TextInputDesc({ type, desc }: TextInputDescProps) {
-	return <TextInputDescLayout placeholder="설명 추가" type={type} value={desc} maxLength={120} />;
+	return <TextInputDescLayout placeholder="설명 추가" type={type} defaultValue={desc} maxLength={120} />;
 }
 
 const TextInputDescLayout = styled.textarea<{ type: string }>`

@@ -6,7 +6,7 @@ interface TextInputTitleProps extends SizeType {
 	name: string;
 }
 function TextInputTitle({ type, name }: TextInputTitleProps) {
-	return <TextInputTitleLayout placeholder="제목 추가" type={type} value={name} maxLength={20} />;
+	return <TextInputTitleLayout placeholder="제목 추가" type={type} defaultValue={name} maxLength={20} />;
 }
 const TextInputTitleLayout = styled.input<{ type: string }>`
 	${({ theme }) => theme.fontTheme.BODY_02};
