@@ -2,13 +2,10 @@ import { isAxiosError } from 'axios';
 
 import instance from '@/apis/instance';
 import { LoginResponse } from '@/apis/login/loginInterface';
+import MESSAGES from '@/apis/messages';
 
 const AUTH_URL = {
 	LOGIN: '/api/auth/login/google',
-};
-
-const MESSAGES = {
-	UNKNOWN_ERROR: '알수없는 오류가 발생했습니다. 다시 시도해주세요.',
 };
 
 const userLogin = async (code: string): Promise<LoginResponse> => {
