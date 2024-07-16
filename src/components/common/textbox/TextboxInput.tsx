@@ -15,8 +15,16 @@ interface TextboxInputProps {
 	onTimeChange?: (time: string | null) => void;
 	dateTextRef?: React.RefObject<HTMLInputElement>;
 	placeholder?: string;
+	currentTime?: string | null;
 }
-function TextboxInput({ variant, onDateChange, onTimeChange, dateTextRef, placeholder }: TextboxInputProps) {
+function TextboxInput({
+	variant,
+	onDateChange,
+	onTimeChange,
+	dateTextRef,
+	placeholder,
+	currentTime,
+}: TextboxInputProps) {
 	const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { value } = e.target;
 		const formattedInput = variant === 'time' ? dotFormatTime(value) : dotFormatDate(value);
@@ -50,6 +58,7 @@ function TextboxInput({ variant, onDateChange, onTimeChange, dateTextRef, placeh
 				maxLength={10}
 				variant={variant}
 				onChange={handleDateChange}
+				defaultValue={currentTime ?? undefined}
 			/>
 		</InputContainer>
 	);

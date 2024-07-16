@@ -70,7 +70,14 @@ function DateCorrectionModal({
 				)}
 			>
 				<BottomBtnWrapper>
-					{!isDateOnly && <TextboxInput variant="time" dateTextRef={timeTextRef} onTimeChange={onTimeChange} />}
+					{!isDateOnly && (
+						<TextboxInput
+							variant="time"
+							dateTextRef={timeTextRef}
+							onTimeChange={onTimeChange}
+							currentTime={currentTime}
+						/>
+					)}
 					<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed onClick={onSave} />
 				</BottomBtnWrapper>
 			</DatePicker>
