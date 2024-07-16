@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import DatePickerCustom from '../common/datePicker/DatePickerCustom';
 
@@ -15,7 +15,10 @@ interface DateAreaProps {
 
 function DateArea({ isHover, isPressed }: DateAreaProps) {
 	const today = new Date();
-	const [startDate, setStartDate] = useState<Date | null>(null);
+	const initialStartDate = new Date(today);
+	initialStartDate.setDate(today.getDate() - 13);
+
+	const [startDate, setStartDate] = useState<Date | null>(initialStartDate);
 	const [endDate, setEndDate] = useState<Date | null>(today);
 	const [isClicked, setIsClicked] = useState(false);
 
@@ -43,11 +46,6 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 
 	const getPastDateWeek = 6;
 	const getPastDateMonth = 30;
-	useEffect(() => {
-		const initialStartDate = new Date(today);
-		initialStartDate.setDate(today.getDate() - 13);
-		handleStartDate(initialStartDate);
-	}, []);
 
 	return (
 		<DatePickerCustomLayout>
@@ -101,7 +99,7 @@ const DateAreaLayout = styled.div`
 	gap: 1.2rem;
 	align-items: flex-end;
 	justify-content: flex-start;
-	width: 51.9rem;
+	width: fit-content;
 	margin: 1rem 0 0.7rem 1.4rem;
 `;
 
