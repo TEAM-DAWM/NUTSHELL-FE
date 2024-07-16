@@ -4,8 +4,9 @@ import { useState } from 'react';
 import BtnStagingDate from '../BtnDate/BtnStagingDate';
 import EnterBtn from '../button/EnterBtn';
 import DateCorrectionModal from '../datePicker/DateCorrectionModal';
-import MODAL from '@/constants/modalLocation';
 import ModalBackdrop from '../modal/ModalBackdrop';
+
+import MODAL from '@/constants/modalLocation';
 
 function TextInputStaging() {
 	const [isModalOpen, setIsModalOpen] = useState(false);

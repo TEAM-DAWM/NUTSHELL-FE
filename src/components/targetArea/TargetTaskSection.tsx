@@ -1,8 +1,8 @@
 import BtnTask from '../common/BtnTask/BtnTask';
+import BtnTaskContainer from '../common/BtnTaskContainer';
 import ScrollGradient from '../common/ScrollGradient';
 
 import { TaskType } from '@/types/tasks/taskType';
-import BtnTaskContainer from '../common/BtnTaskContainer';
 
 interface TargetTaskSectionProps {
 	handleSelectedTarget: (task: TaskType | null) => void;

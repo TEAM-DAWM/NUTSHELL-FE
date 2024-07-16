@@ -3,10 +3,10 @@ import { useState } from 'react';
 
 import ArrangeBtn from '../common/arrangeBtn/ArrangeBtn';
 import DateCorrectionModal from '../common/datePicker/DateCorrectionModal';
+import ModalBackdrop from '../common/modal/ModalBackdrop';
 
 import TextBtn from '@/components/common/button/textBtn/TextBtn';
 import MODAL from '@/constants/modalLocation';
-import ModalBackdrop from '../common/modal/ModalBackdrop';
 
 function TargetControlSection() {
 	const [isModalOpen, setIsModalOpen] = useState(false);

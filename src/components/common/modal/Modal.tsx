@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
 
+import ModalBackdrop from './ModalBackdrop';
+
 import BtnDate from '@/components/common/BtnDate/BtnDate';
 import OkayCancelBtn from '@/components/common/button/OkayCancelBtn';
 import ModalHeaderBtn from '@/components/common/modal/ModalHeaderBtn';
 import ModalTextInputTime from '@/components/common/modal/ModalTextInputTime';
 import TextInputBox from '@/components/common/modal/TextInputBox';
 import { SizeType } from '@/types/textInputType';
-import ModalBackdrop from './ModalBackdrop';
 
 interface ModalProps {
 	isOpen: boolean;
@@ -25,7 +26,7 @@ function Modal({ isOpen, sizeType, top, left, onClose }: ModalProps) {
 			date: '2024-06-30',
 			time: '12:30',
 		},
-		status: '진행 중', //수정
+		status: '진행 중', // 수정
 		timeBlock: {
 			id: 1,
 			startTime: '2024-07-08T12:30',

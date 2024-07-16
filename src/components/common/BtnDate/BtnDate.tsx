@@ -3,13 +3,13 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 
 import DateCorrectionModal from '../datePicker/DateCorrectionModal';
+import ModalBackdrop from '../modal/ModalBackdrop';
 
 import BtnDateText, { TextWrapper } from './BtnDateText';
 
 import Icons from '@/assets/svg/index';
-import { SizeType } from '@/types/textInputType';
 import MODAL from '@/constants/modalLocation';
-import ModalBackdrop from '../modal/ModalBackdrop';
+import { SizeType } from '@/types/textInputType';
 import formatDatetoString from '@/utils/formatDatetoString';
 
 interface BtnDateProps {

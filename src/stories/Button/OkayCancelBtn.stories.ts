@@ -1,6 +1,7 @@
-import OkayCancelBtn from '@/components/common/button/OkayCancelBtn';
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
+
+import OkayCancelBtn from '@/components/common/button/OkayCancelBtn';
 
 const meta = {
 	title: 'Button/OkayCancelBtn', // 스토리북에 올릴 component폴더 계층 구조,
