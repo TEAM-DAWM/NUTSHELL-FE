@@ -9,8 +9,8 @@ import MODAL from '@/constants/modalLocation';
 import formatDatetoString from '@/utils/formatDatetoString';
 
 interface TargetControlSectionProps {
-	onClickPrevDate: (day: number) => void;
-	onClickNextDate: (day: number) => void;
+	onClickPrevDate: () => void;
+	onClickNextDate: () => void;
 	onClickTodayDate: () => void;
 	onClickDatePicker: (target: Date) => void;
 	targetDate: Date;
