@@ -4,7 +4,6 @@ import { Draggable } from 'react-beautiful-dnd';
 import BtnTaskContainer from '../BtnTaskContainer';
 
 import BtnTask from '@/components/common/BtnTask/BtnTask';
-import ScrollGradient from '@/components/common/ScrollGradient';
 import StagingAreaSetting from '@/components/common/StagingArea/StagingAreaSetting';
 import { TaskType } from '@/types/tasks/taskType';
 
@@ -46,7 +45,6 @@ function StagingAreaTaskContainer(props: StagingAreaTaskContainerProps) {
 						)}
 					</Draggable>
 				))}
-				<ScrollGradient />
 			</BtnTaskContainer>
 		</StagingAreaTaskContainerLayout>
 	);

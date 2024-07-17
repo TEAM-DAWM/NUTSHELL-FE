@@ -8,7 +8,7 @@ const BtnTaskContainer = styled.div<{ type: string }>`
 	flex-direction: column;
 	gap: 1rem;
 	width: 31.8rem;
-	height: ${({ type }) => (type === 'staging' ? '56.7rem' : '64rem')};
+	height: ${({ type }) => (type === 'staging' ? '56rem' : '61rem')};
 	overflow: auto;
 	overflow-y: scroll;
 

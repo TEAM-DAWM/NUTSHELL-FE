@@ -2,7 +2,6 @@ import { Draggable } from 'react-beautiful-dnd';
 
 import BtnTask from '../common/BtnTask/BtnTask';
 import BtnTaskContainer from '../common/BtnTaskContainer';
-import ScrollGradient from '../common/ScrollGradient';
 
 import { TaskType } from '@/types/tasks/taskType';
 
@@ -40,7 +39,6 @@ function TargetTaskSection(props: TargetTaskSectionProps) {
 					)}
 				</Draggable>
 			))}
-			<ScrollGradient />
 		</BtnTaskContainer>
 	);
 }

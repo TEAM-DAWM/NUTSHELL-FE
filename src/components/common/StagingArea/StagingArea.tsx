@@ -26,6 +26,7 @@ function StagingArea(props: StagingAreaProps) {
 									selectedTarget={selectedTarget}
 									tasks={tasks}
 								/>
+								{provided.placeholder}
 							</div>
 						)}
 					</Droppable>
@@ -39,6 +40,7 @@ function StagingArea(props: StagingAreaProps) {
 export default StagingArea;
 
 const StagingAreaLayout = styled.div`
+	position: relative;
 	display: inline-flex;
 	gap: 0.8rem;
 	align-items: center;

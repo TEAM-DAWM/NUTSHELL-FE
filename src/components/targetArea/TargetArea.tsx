@@ -34,6 +34,7 @@ function TargetArea(props: TargetAreaProps) {
 							selectedTarget={selectedTarget}
 							tasks={tasks}
 						/>
+						{provided.placeholder}
 					</div>
 				)}
 			</Droppable>
