@@ -42,6 +42,11 @@ jobs:
           node-version: '20'
           cache: 'yarn'
 
+      - name: .env setting
+        run: |
+            echo "VITE_BASE_URL=${{ secrets.VITE_BASE_URL }}" >> .env
+            echo "VITE_GOOGLE_LOGIN_CLIENT_ID=${{ secrets.VITE_GOOGLE_LOGIN_CLIENT_ID }}" >> .env
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
