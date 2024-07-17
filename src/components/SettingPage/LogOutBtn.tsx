@@ -1,7 +1,23 @@
 import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
+
+import userLogout from '@/apis/logout/logoutAxios';
 
 function LogOutBtn() {
-	return <LogOutBox>로그아웃</LogOutBox>;
+	const navigator = useNavigate();
+
+	const handleLogoutButton = async () => {
+		try {
+			await userLogout();
+			localStorage.removeItem('accessToken');
+			localStorage.removeItem('refreshToken');
+			navigator('/');
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	return <LogOutBox onClick={handleLogoutButton}>로그아웃</LogOutBox>;
 }
 
 export default LogOutBtn;
