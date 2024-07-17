@@ -1,63 +1,44 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 
-import Images from '@/assets/images/index';
-import Icons from '@/assets/svg/index';
+import useGetTasksPeriod from '@/apis/dashboard/tasksPeriod/query';
+import DashboardDateContainer from '@/components/DashboardPage/DashboardDateContainer';
 import DashboardTaskWrapper from '@/components/DashboardPage/DashboardTaskWrapper';
 import DateArea from '@/components/DashboardPage/DateArea';
 import TaskSummary from '@/components/DashboardPage/TaskSummary';
-import PERIOD from '@/constants/tasksPeriod';
-import getNameOfDayKor from '@/utils/getNameOfDayKor';
-import getToday from '@/utils/getToday';
+import SUMMARY_INFO from '@/constants/dashboardSummaryInfo';
+import formatDatetoLocalDate from '@/utils/formatDatetoLocalDate';
 
 function DashBoard() {
-	const SUMMARY_INFO = [
-		{
-			name: 'complete',
-			text: '완료한 할 일 갯수',
-			data: PERIOD.data.completeTasks,
-			unit: '개',
-			icon: Icons.Dashboard_Complete,
-			imagePate: Images.DASHBOARD.upcoming,
-		},
-		{
-			name: 'postponed',
-			text: '평균 지연율',
-			data: PERIOD.data.avgDeferredRate,
-			unit: '%',
-			icon: Icons.DashboardPostpone,
-			imagePate: Images.DASHBOARD.postpone,
-		},
-		{
-			name: 'inprogress',
-			text: '평균 진행중인 할 일 갯수',
-			data: PERIOD.data.avgInprogressTasks,
-			unit: '개',
-			icon: Icons.DashboardProgress,
-			imagePate: Images.DASHBOARD.inprogress,
-		},
-	];
 	const today = new Date();
-	const dayOfTheWeekKor = today.getDay();
-	const { year, month, date } = getToday();
+	const initialStartDate = new Date(today);
+	initialStartDate.setDate(today.getDate() - 13);
+
+	const [startDate, setStartDate] = useState<Date | null>(initialStartDate);
+	const [endDate, setEndDate] = useState<Date | null>(today);
+	const formattedStartDate = formatDatetoLocalDate(startDate);
+	const formattedEndDate = formatDatetoLocalDate(endDate);
+
+	const { data } = useGetTasksPeriod({ formattedStartDate, formattedEndDate });
+
+	const handleDate = (newStartDate: Date, newEndDate: Date) => {
+		setStartDate(newStartDate);
+		setEndDate(newEndDate);
+	};
 
 	return (
 		<DashBoardLayout>
-			<DateContainer>
-				<DateText>
-					{year}년 {month}월 {date}일
-				</DateText>
-				<DayText>{getNameOfDayKor(dayOfTheWeekKor)}</DayText>
-			</DateContainer>
+			<DashboardDateContainer />
 			<DashboardTaskWrapper />
 			<DataWrapper>
-				<DateArea isHover isPressed />
+				<DateArea isHover isPressed handleDate={handleDate} />
 			</DataWrapper>
 			<TaskSummaryWrapper>
 				{SUMMARY_INFO.map((info) => (
 					<TaskSummary
 						key={info.name}
 						text={info.text}
-						data={info.data}
+						data={data.data[info.name]}
 						unit={info.unit}
 						icon={info.icon}
 						image={info.imagePate}
@@ -75,27 +56,6 @@ const DashBoardLayout = styled.div`
 	flex-direction: column;
 	width: 127.8rem;
 	height: 100vh;
-`;
-
-const DateContainer = styled.div`
-	display: flex;
-	align-items: end;
-	justify-content: flex-start;
-	width: 25.3rem;
-	padding: 2.8rem 2.1rem 2.2rem;
-`;
-
-const DateText = styled.h1`
-	${({ theme }) => theme.fontTheme.HEADLINE_01}
-	color : ${({ theme }) => theme.palette.Grey.Black}
-`;
-
-const DayText = styled.p`
-	margin: 0.8rem 0.8rem 0;
-	padding-bottom: 0.1rem;
-
-	${({ theme }) => theme.fontTheme.LABEL_01};
-	color: ${({ theme }) => theme.palette.Grey.Grey6};
 `;
 
 const DataWrapper = styled.div`
