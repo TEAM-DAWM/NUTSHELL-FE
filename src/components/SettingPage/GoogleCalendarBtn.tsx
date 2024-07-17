@@ -1,16 +1,33 @@
 import styled from '@emotion/styled';
+import { useGoogleLogin } from '@react-oauth/google';
 
+import userGoogleCalendar from '@/apis/calendarAccount/axios';
 import Images from '@/assets/images';
 import Icons from '@/assets/svg/index';
 
 function GoogleCalendarBtn() {
+	const handleCalendarLogin = useGoogleLogin({
+		onSuccess: async ({ code }) => {
+			try {
+				await userGoogleCalendar(code);
+			} catch (error) {
+				console.error(error);
+			}
+		},
+		onError: (errorResponse) => {
+			console.error(errorResponse);
+		},
+		flow: 'auth-code',
+		scope: 'https://www.googleapis.com/auth/calendar',
+	});
+
 	return (
 		<GoogleCalendarBtnLayout>
 			<CalendarBox>
 				<GoogleImg src={Images.googleCalendar} alt="구글 캘린더" />
 				<CalendarText>구글 캘린더</CalendarText>
 			</CalendarBox>
-			<IconBox />
+			<IconBox onClick={handleCalendarLogin} />
 		</GoogleCalendarBtnLayout>
 	);
 }
