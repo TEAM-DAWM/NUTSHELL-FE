@@ -103,7 +103,7 @@ function DatePickerCustom({
 						/>
 					)}
 				>
-					<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed onClick={onClose} />
+					<TextBtn text="확인" color="BLACK" size="small" mode="DEFAULT" isHover isPressed onClick={onClose} />
 				</DatePicker>
 				<ModalBackdrop onClick={onClose} />
 			</>
