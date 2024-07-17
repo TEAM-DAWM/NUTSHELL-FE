@@ -1,47 +1,28 @@
 import styled from '@emotion/styled';
-import { useState, FunctionComponent } from 'react';
+import { useState } from 'react';
 
-import Icons from '@/assets/svg/index';
 import BtnTask from '@/components/common/BtnTask/BtnTask';
 import ScrollGradient from '@/components/common/ScrollGradient';
-import DASHBOARD_TASK_TYPE from '@/constants/dashboardTask';
 import TODAY from '@/constants/tasksToday';
 import { TaskType } from '@/types/tasks/taskType';
 
-const settingImagesMap: Record<string, FunctionComponent<React.SVGProps<SVGSVGElement>>> = {
-	upcoming: Icons.Empty.EmptyTask,
-	postponed: Icons.Empty.EmptyPostpone,
-	inprogress: Icons.Empty.EmptyTask,
-};
 interface DashboardTaskProps {
 	text: 'upcoming' | 'postponed' | 'inprogress';
+	taskStatus: string;
+	emptyStatus: string;
+	emptyImg: string;
 }
-
-function DashboardTask({ text }: DashboardTaskProps) {
-	const ImageComponent = settingImagesMap[text];
+function DashboardTask({ text, taskStatus, emptyStatus, emptyImg }: DashboardTaskProps) {
 	const [selectedTarget, setSelectedTarget] = useState<TaskType | null>(null);
 	const handleSelectedTarget = (task: TaskType | null) => {
 		setSelectedTarget(task);
 	};
 
-	const EmptyImageWrapper = styled(ImageComponent)`
+	const EmptyImageWrapper = styled.div`
 		justify-content: center;
 		width: 19rem;
-		height: 19rem;
+		height: auto;
 	`;
-
-	let taskStatus = '';
-	let emptyStatus = '';
-	if (text === 'upcoming') {
-		taskStatus = DASHBOARD_TASK_TYPE.UPCOMING;
-		emptyStatus = DASHBOARD_TASK_TYPE.EMPTYTASK;
-	} else if (text === 'postponed') {
-		taskStatus = DASHBOARD_TASK_TYPE.POSTPONED;
-		emptyStatus = DASHBOARD_TASK_TYPE.EMPTYPOSTPONE;
-	} else if (text === 'inprogress') {
-		taskStatus = DASHBOARD_TASK_TYPE.INPROGRESS;
-		emptyStatus = DASHBOARD_TASK_TYPE.EMPTYTASK;
-	}
 
 	const dummyTaskList: TaskType[] = [
 		{
@@ -97,7 +78,9 @@ function DashboardTask({ text }: DashboardTaskProps) {
 			<ScrollArea>
 				{TODAY.data.tasks.length === 0 ? (
 					<EmptyWrapper>
-						<EmptyImageWrapper />
+						<EmptyImageWrapper>
+							<ImageComponent src={emptyImg} />
+						</EmptyImageWrapper>
 						<EmptyText text={text}>{emptyStatus}</EmptyText>
 					</EmptyWrapper>
 				) : (
@@ -123,7 +106,6 @@ function DashboardTask({ text }: DashboardTaskProps) {
 		</TaskLayout>
 	);
 }
-export default DashboardTask;
 
 const TaskLayout = styled.div`
 	display: flex;
@@ -219,3 +201,10 @@ const EmptyText = styled.p<{ text: string }>`
 	${({ theme }) => theme.fontTheme.CAPTION_01};
 	color: ${({ theme }) => theme.palette.Grey.Grey4};
 `;
+
+const ImageComponent = styled.img`
+	width: 100%;
+	height: 100%;
+`;
+
+export default DashboardTask;
