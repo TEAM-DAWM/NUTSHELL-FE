@@ -3,10 +3,10 @@ import { useState } from 'react';
 
 import ArrangeBtn from '../common/arrangeBtn/ArrangeBtn';
 import DateCorrectionModal from '../common/datePicker/DateCorrectionModal';
+import ModalBackdrop from '../common/modal/ModalBackdrop';
 
 import TextBtn from '@/components/common/button/textBtn/TextBtn';
 import MODAL from '@/constants/modalLocation';
-import ModalBackdrop from '../common/modal/ModalBackdrop';
 
 function TargetControlSection() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,7 +30,13 @@ function TargetControlSection() {
 				<ModalLayout>
 					<ArrangeBtn color="WHITE" mode="DEFAULT" size="small" type="calendar" onClick={handleArrangeBtnClick} />
 					{isModalOpen && (
-						<DateCorrectionModal top={MODAL.DATE_CORRECTION.TARGET.top} left={MODAL.DATE_CORRECTION.TARGET.left} />
+						<DateCorrectionModal
+							top={MODAL.DATE_CORRECTION.TARGET.top}
+							left={MODAL.DATE_CORRECTION.TARGET.left}
+							date={null}
+							time={null}
+							onClick={handleCloseModal}
+						/>
 					)}
 				</ModalLayout>
 			</TargetControlSectionLayout>

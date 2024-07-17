@@ -2,8 +2,11 @@ import styled from '@emotion/styled';
 
 import { SizeType } from '@/types/textInputType';
 
-function TextInputDesc({ type }: SizeType) {
-	return <TextInputDescLayout placeholder="설명 추가" type={type} maxLength={120} />;
+interface TextInputDescProps extends SizeType {
+	desc: string;
+}
+function TextInputDesc({ type, desc }: TextInputDescProps) {
+	return <TextInputDescLayout placeholder="설명 추가" type={type} defaultValue={desc} maxLength={120} />;
 }
 
 const TextInputDescLayout = styled.textarea<{ type: string }>`

@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
 
+import BtnTaskContainer from '../BtnTaskContainer';
+
 import BtnTask from '@/components/common/BtnTask/BtnTask';
 import ScrollGradient from '@/components/common/ScrollGradient';
 import StagingAreaSetting from '@/components/common/StagingArea/StagingAreaSetting';
 import { TaskType } from '@/types/tasks/taskType';
-import BtnTaskContainer from '../BtnTaskContainer';
 
 interface StagingAreaTaskContainerProps {
 	handleSelectedTarget: (task: TaskType | null) => void;

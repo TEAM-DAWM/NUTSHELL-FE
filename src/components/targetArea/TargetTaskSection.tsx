@@ -1,8 +1,8 @@
 import BtnTask from '../common/BtnTask/BtnTask';
+import BtnTaskContainer from '../common/BtnTaskContainer';
 import ScrollGradient from '../common/ScrollGradient';
 
 import { TaskType } from '@/types/tasks/taskType';
-import BtnTaskContainer from '../common/BtnTaskContainer';
 
 interface TargetTaskSectionProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
@@ -14,8 +14,8 @@ function TargetTaskSection({ handleSelectedTarget, selectedTarget }: TargetTaskS
 			id: 0,
 			name: '바보~',
 			deadLine: {
-				date: '2024-06-30',
-				time: '12:30',
+				date: null,
+				time: null,
 			},
 			hasDescription: false,
 			status: '진행중',
@@ -24,8 +24,8 @@ function TargetTaskSection({ handleSelectedTarget, selectedTarget }: TargetTaskS
 			id: 1,
 			name: '넛수레',
 			deadLine: {
-				date: '2024-06-30',
-				time: '12:30',
+				date: '2024-08-29',
+				time: '10:30',
 			},
 			hasDescription: true,
 			status: '지연',

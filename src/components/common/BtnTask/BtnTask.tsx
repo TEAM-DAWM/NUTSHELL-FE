@@ -86,15 +86,15 @@ function BtnTask(props: BtnTaskProps) {
 						{name}
 					</BtnTaskTextWrapper>
 					<BtnDate
-						date={deadLine?.date}
-						time={deadLine?.time}
+						date={deadLine?.date || null}
+						time={deadLine?.time || null}
 						size={{ type: 'short' }}
 						isDelayed={btnType === 'delayed'}
 					/>
 				</BtnTaskContainer>
 				<IconHoverContainer btnType={btnType} status={status} />
 			</BtnTaskLayout>
-			<Modal isOpen={isModalOpen} sizeType={{ type: 'short' }} top={top} left={left} onClose={closeModal} />
+			<Modal isOpen={isModalOpen} sizeType={{ type: 'short' }} top={top} left={left} onClose={closeModal} taskId={id} />
 		</ModalLayout>
 	);
 }

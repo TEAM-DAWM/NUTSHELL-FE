@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 
-import DeleteCancelBtn from '@/components/common/button/DeleteCancelBtn';
 import ModalBackdrop from './ModalBackdrop';
+
+import DeleteCancelBtn from '@/components/common/button/DeleteCancelBtn';
 
 interface ModalDeleteDetailProps {
 	top: number;

@@ -4,8 +4,9 @@ import { useState } from 'react';
 import BtnStagingDate from '../BtnDate/BtnStagingDate';
 import EnterBtn from '../button/EnterBtn';
 import DateCorrectionModal from '../datePicker/DateCorrectionModal';
-import MODAL from '@/constants/modalLocation';
 import ModalBackdrop from '../modal/ModalBackdrop';
+
+import MODAL from '@/constants/modalLocation';
 
 function TextInputStaging() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,6 +29,9 @@ function TextInputStaging() {
 							<DateCorrectionModal
 								top={MODAL.DATE_CORRECTION.SET_DEADLINE.top}
 								left={MODAL.DATE_CORRECTION.SET_DEADLINE.left}
+								onClick={handleCloseModal}
+								time={null}
+								date={null}
 							/>
 							<ModalBackdrop onClick={handleCloseModal} />
 						</>
