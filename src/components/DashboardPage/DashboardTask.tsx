@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 import useGetTasksToday from '@/apis/dashboard/tasksToday/query';
 import BtnTask from '@/components/common/BtnTask/BtnTask';
-import ScrollGradient from '@/components/common/ScrollGradient';
 import TODAY from '@/constants/tasksToday';
 import { TaskType } from '@/types/tasks/taskType';
 
@@ -65,7 +64,6 @@ function DashboardTask({ text, taskStatus, emptyStatus, emptyImg }: DashboardTas
 						</>
 					)
 				)}
-				<ScrollGradient />
 			</ScrollArea>
 		</TaskLayout>
 	);
