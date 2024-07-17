@@ -113,7 +113,8 @@ const TaskSummaryWrapper = styled.div`
 	gap: 1rem;
 	align-items: center;
 	align-self: stretch;
+	box-sizing: border-box;
 	width: 100%;
 	height: 21.4rem;
-	padding: 0 0 2.8rem 0.7rem;
+	padding: 0.4rem 0 2.8rem 0.7rem;
 `;
