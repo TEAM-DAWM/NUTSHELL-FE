@@ -40,6 +40,7 @@ function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget }: Stag
 						deadLine={task.deadLine}
 						selectedTarget={selectedTarget}
 						handleSelectedTarget={handleSelectedTarget}
+						preventDoubleClick={false}
 					/>
 				))}
 				<ScrollGradient />
