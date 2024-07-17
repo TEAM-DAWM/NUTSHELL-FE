@@ -3,6 +3,9 @@ import Arrow_up from '@/assets/svg/arrow-up.svg?react';
 import Icn_calander from '@/assets/svg/calendar-minus-01.svg?react';
 import ClockCheck from '@/assets/svg/clock-check.svg?react';
 import Icn_date_clock from '@/assets/svg/clock.svg?react';
+import Dashboard_Complete from '@/assets/svg/Dashboard_Complete_Icon.svg?react';
+import DashboardPostpone from '@/assets/svg/Dashboard_Postpone_Icon.svg?react';
+import DashboardProgress from '@/assets/svg/Dashboard_Progress_Icon.svg?react';
 import DeleteIcon from '@/assets/svg/Delete.svg?react';
 import DoneIcon from '@/assets/svg/DoneIcon.svg?react';
 import TimelineDelete from '@/assets/svg/ic_delete.svg?react';
@@ -76,6 +79,9 @@ const Icons = {
 	plus_circle,
 	Icn_selectbox_selected,
 	Icn_selectbox_Unselected,
+	Dashboard_Complete,
+	DashboardPostpone,
+	DashboardProgress,
 };
 
 export default Icons;
