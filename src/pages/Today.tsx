@@ -2,11 +2,14 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
+import useGetTasks from '@/apis/tasks/getTask/query';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
 import NavBar from '@/components/common/NavBar';
 import StagingArea from '@/components/common/StagingArea/StagingArea';
 import TargetArea from '@/components/targetArea/TargetArea';
+import { SortOrderType } from '@/types/sortOrderType';
 import { TaskType } from '@/types/tasks/taskType';
+import formatDatetoLocalDate from '@/utils/formatDatetoLocalDate';
 
 interface TaskState {
 	[key: string]: TaskType[];
@@ -47,8 +50,57 @@ const dummyTasks: TaskState = {
 function Today() {
 	const [tasks, setTasks] = useState<TaskState>(dummyTasks);
 	const [selectedTarget, setSelectedTarget] = useState<TaskType | null>(null);
+	const [activeButton, setActiveButton] = useState<'전체' | '지연'>('전체');
+	const [sortOrder, setSortOrder] = useState<SortOrderType>('recent');
+	const isTotal = activeButton === '전체';
+
+	// Task 목록 Get
+
+	/** StagingArea */
+	const { isFetched: isStagingFetched, data: stagingData } = useGetTasks({ isTotal, sortOrder });
+
+	console.log('stagingArea_taskList', stagingData);
+
+	/** isTotal 핸들링 함수 */
+	const handleTextBtnClick = (button: '전체' | '지연') => {
+		setActiveButton(button);
+	};
+
+	const handleSortOrder = (order: SortOrderType) => {
+		setSortOrder(order);
+	};
+
 	const handleSelectedTarget = (task: TaskType | null) => {
 		setSelectedTarget(task);
+	};
+
+	/** TargetArea */
+	const [selectedDate, setTargetDate] = useState(new Date());
+
+	const targetDate = formatDatetoLocalDate(selectedDate);
+
+	const { isFetched: isTargetFetched, data: targetData } = useGetTasks({ targetDate });
+
+	console.log('targetArea_taskList', stagingData);
+
+	const handlePrevBtn = () => {
+		const newDate = new Date(selectedDate);
+		newDate.setDate(newDate.getDate() - 1);
+		setTargetDate(newDate);
+	};
+
+	const handleNextBtn = () => {
+		const newDate = new Date(selectedDate);
+		newDate.setDate(newDate.getDate() + 1);
+		setTargetDate(newDate);
+	};
+
+	const handleTodayBtn = () => {
+		setTargetDate(new Date());
+	};
+
+	const handleChangeDate = (target: Date) => {
+		setTargetDate(target);
 	};
 
 	const handleDragEnd = (result: DropResult) => {
@@ -59,10 +111,10 @@ function Today() {
 
 		// TODO: api 연결 시에는 밑에 부분 지우고 api 호출 예정
 
-		// 같은 위치로 드래그
-		if (source.droppableId === destination.droppableId && source.index === destination.index) {
-			return;
-		}
+		// // 같은 위치로 드래그 -> 되면 안됨
+		// if (source.droppableId === destination.droppableId && source.index === destination.index) {
+		// 	return;
+		// }
 
 		// 다른 위치로 드래그
 		const sourceClone = Array.from(tasks[source.droppableId as keyof typeof tasks]);
@@ -93,16 +145,29 @@ function Today() {
 
 			<TodayLayout>
 				<DragDropContext onDragEnd={handleDragEnd}>
-					<StagingArea
-						handleSelectedTarget={handleSelectedTarget}
-						selectedTarget={selectedTarget}
-						tasks={tasks.staging}
-					/>
-					<TargetArea
-						handleSelectedTarget={handleSelectedTarget}
-						selectedTarget={selectedTarget}
-						tasks={tasks.target}
-					/>
+					{isStagingFetched && (
+						<StagingArea
+							handleSelectedTarget={handleSelectedTarget}
+							selectedTarget={selectedTarget}
+							tasks={stagingData.data.tasks}
+							handleSortOrder={handleSortOrder}
+							handleTextBtnClick={handleTextBtnClick}
+							activeButton={activeButton}
+							sortOrder={sortOrder}
+						/>
+					)}
+					{isTargetFetched && (
+						<TargetArea
+							handleSelectedTarget={handleSelectedTarget}
+							selectedTarget={selectedTarget}
+							tasks={targetData.data.tasks}
+							onClickPrevDate={handlePrevBtn}
+							onClickNextDate={handleNextBtn}
+							onClickTodayDate={handleTodayBtn}
+							onClickDatePicker={handleChangeDate}
+							targetDate={selectedDate}
+						/>
+					)}
 				</DragDropContext>
 				<CalendarWrapper>
 					<FullCalendarBox size="small" />

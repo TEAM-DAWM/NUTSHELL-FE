@@ -6,15 +6,8 @@ import TextBtn from '@/components/common/button/textBtn/TextBtn';
 import DateCorrectionModal from '@/components/common/datePicker/DateCorrectionModal';
 import ModalBackdrop from '@/components/common/modal/ModalBackdrop';
 import MODAL from '@/constants/modalLocation';
+import { TargetControlSectionProps } from '@/types/today/TargetControlSectionProps';
 import formatDatetoString from '@/utils/formatDatetoString';
-
-interface TargetControlSectionProps {
-	onClickPrevDate: () => void;
-	onClickNextDate: () => void;
-	onClickTodayDate: () => void;
-	onClickDatePicker: (target: Date) => void;
-	targetDate: Date;
-}
 
 function TargetControlSection({
 	onClickPrevDate,

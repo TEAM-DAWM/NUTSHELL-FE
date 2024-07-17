@@ -3,21 +3,31 @@ import { Droppable } from 'react-beautiful-dnd';
 
 import StagingAreaTaskContainer from './StagingAreaTaskContainer';
 
+import StagingAreaSetting from '@/components/common/StagingArea/StagingAreaSetting';
 import TextInputStaging from '@/components/common/textbox/TextInputStaging';
 import { TaskType } from '@/types/tasks/taskType';
+import { StagingAreaSettingProps } from '@/types/today/stagingAreaSettingProps';
 
-interface StagingAreaProps {
+interface StagingAreaProps extends StagingAreaSettingProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
 	tasks: TaskType[];
 }
+
 function StagingArea(props: StagingAreaProps) {
-	const { handleSelectedTarget, selectedTarget, tasks } = props;
+	const { handleSelectedTarget, selectedTarget, tasks, activeButton, sortOrder, handleTextBtnClick, handleSortOrder } =
+		props;
 	return (
 		<StagingAreaLayout>
 			<StagingAreaContainer>
 				<StagingAreaUpContainer>
 					<StagingAreaTitle>쏟아내기</StagingAreaTitle>
+					<StagingAreaSetting
+						handleTextBtnClick={handleTextBtnClick}
+						activeButton={activeButton}
+						sortOrder={sortOrder}
+						handleSortOrder={handleSortOrder}
+					/>
 					<Droppable droppableId="staging">
 						{(provided) => (
 							<div ref={provided.innerRef} {...provided.droppableProps}>
