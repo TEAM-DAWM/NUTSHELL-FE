@@ -34,13 +34,13 @@ function DashboardTask({ text }: DashboardTaskProps) {
 	let emptyStatus = '';
 	if (text === 'upcoming') {
 		taskStatus = DASHBOARD_TASK_TYPE.UPCOMING;
-		emptyStatus = '아직 할 일이 없어요';
+		emptyStatus = DASHBOARD_TASK_TYPE.EMPTYTASK;
 	} else if (text === 'postponed') {
 		taskStatus = DASHBOARD_TASK_TYPE.POSTPONED;
-		emptyStatus = '아직 지연된 할 일이 없어요';
+		emptyStatus = DASHBOARD_TASK_TYPE.EMPTYPOSTPONE;
 	} else if (text === 'inprogress') {
 		taskStatus = DASHBOARD_TASK_TYPE.INPROGRESS;
-		emptyStatus = '아직 할 일이 없어요';
+		emptyStatus = DASHBOARD_TASK_TYPE.EMPTYTASK;
 	}
 
 	const dummyTaskList: TaskType[] = [
