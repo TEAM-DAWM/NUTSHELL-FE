@@ -1,17 +1,19 @@
 import styled from '@emotion/styled';
 
-import sampleImg from '@/assets/images/sample.png';
-
 interface TaskSummaryProps {
 	text: string;
 	data: number;
 	unit: string;
+	icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+	image: string;
 }
 
-function TaskSummary({ text, data, unit }: TaskSummaryProps) {
+function TaskSummary({ text, data, unit, icon: Icon, image }: TaskSummaryProps) {
 	return (
-		<TaskSummaryLayout>
-			<ProfileImg src={sampleImg} alt="프로필" />
+		<TaskSummaryLayout image={image}>
+			<ProfileImg>
+				<Icon />
+			</ProfileImg>
 			<TextWrapper>
 				<SummaryText>{text}</SummaryText>
 				<NumberTaskBox>
@@ -25,26 +27,33 @@ function TaskSummary({ text, data, unit }: TaskSummaryProps) {
 
 export default TaskSummary;
 
-const TaskSummaryLayout = styled.div`
+const TaskSummaryLayout = styled.div<{ image: string }>`
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
 	align-items: flex-start;
-	align-self: flex-start;
+	align-self: stretch;
 	justify-content: center;
 	box-sizing: border-box;
 	width: 41.7rem;
-	height: 18.8rem;
+	height: 18.2rem;
 	padding-left: 2.8rem;
 
-	background-color: ${({ theme }) => theme.palette.Grey.Grey1};
+	background-color: ${({ theme }) => theme.palette.Blue.Blue5};
+	background-image: url(${(props) => props.image});
+	background-size: cover;
 	border-radius: 16px;
 `;
 
-const ProfileImg = styled.img`
-	width: 4.4rem;
-	height: 4.4rem;
+const ProfileImg = styled.div`
+	width: 2.8rem;
+	height: 2.8rem;
 	margin: 3rem 34.5rem 0 0;
+
+	svg {
+		width: 100%;
+		height: 100%;
+	}
 `;
 
 const TextWrapper = styled.div`
@@ -54,26 +63,28 @@ const TextWrapper = styled.div`
 	align-self: stretch;
 	width: 38.9rem;
 	height: 6.4rem;
-	margin-bottom: 3rem;
+	margin-bottom: 3.5rem;
 `;
 
 const SummaryText = styled.p`
 	${({ theme }) => theme.fontTheme.HEADLINE_03}
-	color: ${({ theme }) => theme.palette.Grey.Grey7}
+	color: ${({ theme }) => theme.palette.Grey.White}
 `;
 
 const NumberTaskBox = styled.div`
 	display: flex;
-	align-items: center;
+	align-items: flex-end;
 	justify-content: center;
 `;
 
 const Number = styled.p`
 	${({ theme }) => theme.fontTheme.TITLE_02};
-	color: ${({ theme }) => theme.palette.Grey.Grey8};
+	color: ${({ theme }) => theme.palette.Grey.White};
 `;
 
 const NumberText = styled.p`
+	margin-bottom: 0.4rem;
+
 	${({ theme }) => theme.fontTheme.HEADLINE_02};
-	color: ${({ theme }) => theme.palette.Grey.Grey7};
+	color: ${({ theme }) => theme.palette.Grey.White};
 `;
