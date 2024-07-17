@@ -1,63 +1,45 @@
+import { Draggable } from 'react-beautiful-dnd';
+
 import BtnTask from '../common/BtnTask/BtnTask';
 import BtnTaskContainer from '../common/BtnTaskContainer';
-import ScrollGradient from '../common/ScrollGradient';
 
 import { TaskType } from '@/types/tasks/taskType';
 
 interface TargetTaskSectionProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
+	tasks: TaskType[];
 }
-function TargetTaskSection({ handleSelectedTarget, selectedTarget }: TargetTaskSectionProps) {
-	const dummyTaskList: TaskType[] = [
-		{
-			id: 0,
-			name: '바보~',
-			deadLine: {
-				date: null,
-				time: null,
-			},
-			hasDescription: false,
-			status: '진행중',
-		},
-		{
-			id: 1,
-			name: '넛수레',
-			deadLine: {
-				date: '2024-08-29',
-				time: '10:30',
-			},
-			hasDescription: true,
-			status: '지연',
-		},
-		{
-			id: 2,
-			name: '콘하스',
-			deadLine: {
-				date: '2024-06-30',
-				time: '12:30',
-			},
-			hasDescription: true,
-			status: '완료',
-		},
-	];
+function TargetTaskSection(props: TargetTaskSectionProps) {
+	const { handleSelectedTarget, selectedTarget, tasks } = props;
 
 	return (
 		<BtnTaskContainer type="target">
-			{dummyTaskList.map((task) => (
-				<BtnTask
-					iconType="active"
-					key={task.id}
-					hasDescription={task.hasDescription}
-					name={task.name}
-					deadLine={task.deadLine}
-					status={task.status}
-					id={task.id}
-					handleSelectedTarget={handleSelectedTarget}
-					selectedTarget={selectedTarget}
-				/>
+			{tasks.map((task, index) => (
+				<Draggable key={task.id} draggableId={task.id.toString()} index={index}>
+					{(provided, snapshot) => (
+						<div
+							ref={provided.innerRef}
+							{...provided.draggableProps}
+							{...provided.dragHandleProps}
+							style={{ userSelect: 'none', ...provided.draggableProps.style }}
+						>
+							<BtnTask
+								iconType="active"
+								key={task.id}
+								hasDescription={task.hasDescription}
+								name={task.name}
+								deadLine={task.deadLine}
+								status={task.status}
+								id={task.id}
+								handleSelectedTarget={handleSelectedTarget}
+								selectedTarget={selectedTarget}
+								isDragging={snapshot.isDragging}
+							/>
+						</div>
+					)}
+				</Draggable>
 			))}
-			<ScrollGradient />
 		</BtnTaskContainer>
 	);
 }

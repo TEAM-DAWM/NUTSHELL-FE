@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
+import { Droppable } from 'react-beautiful-dnd';
 
 import TargetAreaDate from './TargetAreaDate';
 import TargetControlSection from './TargetControlSection';
@@ -10,8 +11,10 @@ import { TaskType } from '@/types/tasks/taskType';
 interface TargetAreaProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
+	tasks: TaskType[];
 }
-function TargetArea({ handleSelectedTarget, selectedTarget }: TargetAreaProps) {
+
+function TargetArea({ handleSelectedTarget, selectedTarget, tasks }: TargetAreaProps) {
 	const [targetDate, setTargetDate] = useState(new Date());
 
 	const handlePrevBtn = () => {
@@ -50,7 +53,18 @@ function TargetArea({ handleSelectedTarget, selectedTarget }: TargetAreaProps) {
 				targetDate={targetDate}
 			/>
 			{/* 태스크 목록 */}
-			<TargetTaskSection handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
+			<Droppable droppableId="target">
+				{(provided) => (
+					<div ref={provided.innerRef} {...provided.droppableProps}>
+						<TargetTaskSection
+							handleSelectedTarget={handleSelectedTarget}
+							selectedTarget={selectedTarget}
+							tasks={tasks}
+						/>
+						{provided.placeholder}
+					</div>
+				)}
+			</Droppable>
 		</TargetAreaLayout>
 	);
 }
@@ -59,6 +73,7 @@ const TargetAreaLayout = styled.section`
 	flex-direction: column;
 	flex-shrink: 0;
 	align-items: flex-start;
+	width: 31.8rem;
 	height: 74.8rem;
 	margin: 1rem;
 	padding: 0 0.1rem 0 0.7rem;

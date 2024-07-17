@@ -47,6 +47,8 @@ function TextInputStaging() {
 }
 
 const StagingLayout = styled.div`
+	position: absolute;
+	bottom: 2.8rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
