@@ -1,10 +1,12 @@
 import styled from '@emotion/styled';
 import { useGoogleLogin } from '@react-oauth/google';
+import { useNavigate } from 'react-router-dom';
 
 import userLogin from '@/apis/login/loginAxios';
 import Images from '@/assets/images';
 
 function GoogleLoginBtn() {
+	const navigate = useNavigate();
 	const googleSocialLogin = useGoogleLogin({
 		onSuccess: async ({ code }) => {
 			try {
@@ -12,6 +14,7 @@ function GoogleLoginBtn() {
 				if (response.code === 'success') {
 					localStorage.setItem('accessToken', response.data.access_token);
 					localStorage.setItem('refreshToken', response.data.refresh_token);
+					navigate('/today');
 				}
 			} catch (error) {
 				console.error(error);
