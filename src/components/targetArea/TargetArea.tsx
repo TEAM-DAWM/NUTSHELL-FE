@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 
 import TargetAreaDate from './TargetAreaDate';
@@ -12,19 +13,45 @@ interface TargetAreaProps {
 	selectedTarget: TaskType | null;
 	tasks: TaskType[];
 }
-function TargetArea(props: TargetAreaProps) {
-	const { handleSelectedTarget, selectedTarget, tasks } = props;
+
+function TargetArea({ handleSelectedTarget, selectedTarget, tasks }: TargetAreaProps) {
+	const [targetDate, setTargetDate] = useState(new Date());
+
+	const handlePrevBtn = () => {
+		const newDate = new Date(targetDate);
+		newDate.setDate(newDate.getDate() - 1);
+		setTargetDate(newDate);
+	};
+
+	const handleNextBtn = () => {
+		const newDate = new Date(targetDate);
+		newDate.setDate(newDate.getDate() + 1);
+		setTargetDate(newDate);
+	};
+
+	const handleTodayBtn = () => {
+		setTargetDate(new Date());
+	};
+
+	const handleChangeDate = (target: Date) => {
+		setTargetDate(target);
+	};
 
 	return (
 		<TargetAreaLayout>
 			{/* 날짜 */}
 			<DateWrapper>
-				<TargetAreaDate />
+				<TargetAreaDate targetDate={targetDate} />
 			</DateWrapper>
 
 			{/* 버튼 */}
-			<TargetControlSection />
-
+			<TargetControlSection
+				onClickPrevDate={handlePrevBtn}
+				onClickNextDate={handleNextBtn}
+				onClickTodayDate={handleTodayBtn}
+				onClickDatePicker={handleChangeDate}
+				targetDate={targetDate}
+			/>
 			{/* 태스크 목록 */}
 			<Droppable droppableId="target">
 				{(provided) => (
