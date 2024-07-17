@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 interface DeleteCancelBtnProps {
 	status: 'delete' | 'cancel';
-	onClick?: () => void;
+	onClick?: (e: React.MouseEvent) => void;
 }
 
 function DeleteCancelBtn({ status, onClick }: DeleteCancelBtnProps) {

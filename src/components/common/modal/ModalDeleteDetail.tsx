@@ -7,7 +7,7 @@ import DeleteCancelBtn from '@/components/common/button/DeleteCancelBtn';
 interface ModalDeleteDetailProps {
 	top: number;
 	left: number;
-	onClose: () => void;
+	onClose: (e: React.MouseEvent) => void;
 }
 
 function ModalDeleteDetail({ top, left, onClose }: ModalDeleteDetailProps) {
