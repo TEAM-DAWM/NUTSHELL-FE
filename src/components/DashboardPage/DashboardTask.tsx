@@ -24,7 +24,7 @@ function DashboardTask({ text, taskStatus, emptyStatus, emptyImg }: DashboardTas
 		height: auto;
 	`;
 
-	const { isFetched, data } = useGetTasksToday(text);
+	const { data } = useGetTasksToday(text);
 
 	return (
 		<TaskLayout>
@@ -37,7 +37,7 @@ function DashboardTask({ text, taskStatus, emptyStatus, emptyImg }: DashboardTas
 			</TextBox>
 
 			<ScrollArea>
-				{TODAY.data.tasks.length === 0 ? (
+				{data.data.tasks.length === 0 ? (
 					<EmptyWrapper>
 						<EmptyImageWrapper>
 							<ImageComponent src={emptyImg} />
@@ -45,24 +45,22 @@ function DashboardTask({ text, taskStatus, emptyStatus, emptyImg }: DashboardTas
 						<EmptyText text={text}>{emptyStatus}</EmptyText>
 					</EmptyWrapper>
 				) : (
-					isFetched && (
-						<>
-							{data.data.tasks.map((task: TaskType) => (
-								<BtnTask
-									key={task.id + task.name}
-									hasDescription={task.hasDescription}
-									id={task.id}
-									name={task.name}
-									status={task.status}
-									deadLine={task.deadLine}
-									selectedTarget={selectedTarget}
-									preventDoubleClick
-									handleSelectedTarget={handleSelectedTarget}
-									iconType="active"
-								/>
-							))}
-						</>
-					)
+					<>
+						{data.data.tasks.map((task: TaskType) => (
+							<BtnTask
+								key={task.id + task.name}
+								hasDescription={task.hasDescription}
+								id={task.id}
+								name={task.name}
+								status={task.status}
+								deadLine={task.deadLine}
+								selectedTarget={selectedTarget}
+								preventDoubleClick
+								handleSelectedTarget={handleSelectedTarget}
+								iconType="active"
+							/>
+						))}
+					</>
 				)}
 			</ScrollArea>
 		</TaskLayout>
