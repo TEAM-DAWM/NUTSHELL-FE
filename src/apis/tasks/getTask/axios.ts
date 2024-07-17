@@ -20,6 +20,7 @@ const getTasks = async ({ isTotal, sortOrder, targetDate }: GetTasksType) => {
 		} else {
 			throw new Error('An unexpected error occurred');
 		}
+		return null;
 	}
 };
 
