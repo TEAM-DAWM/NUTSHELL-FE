@@ -14,7 +14,7 @@ interface TargetAreaProps {
 	tasks: TaskType[];
 }
 
-function TargetArea({ handleSelectedTarget, selectedTarget, tasks }: TargetAreaProps) {
+function TargetArea({ handleSelectedTarget, selectedTarget }: TargetAreaProps) {
 	const [targetDate, setTargetDate] = useState(new Date());
 
 	const handlePrevBtn = () => {
@@ -59,7 +59,7 @@ function TargetArea({ handleSelectedTarget, selectedTarget, tasks }: TargetAreaP
 						<TargetTaskSection
 							handleSelectedTarget={handleSelectedTarget}
 							selectedTarget={selectedTarget}
-							tasks={tasks}
+							selectedDate={targetDate}
 						/>
 						{provided.placeholder}
 					</div>
