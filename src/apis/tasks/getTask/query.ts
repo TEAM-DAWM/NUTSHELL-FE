@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import getTasks from './axios';
+import { GetTasksResponse } from './GetTasksResponse';
 import { GetTasksType } from './GetTasksType';
 
 const placeholderData = {
@@ -29,7 +30,7 @@ const placeholderData = {
 };
 
 /** Task 리스트 조회 */
-const useGetTasks = ({ isTotal, sortOrder, targetDate }: GetTasksType) =>
+const useGetTasks = ({ isTotal, sortOrder, targetDate }: GetTasksType, placeholderData?: GetTasksResponse) =>
 	useQuery({
 		queryKey: ['today', isTotal, sortOrder, targetDate],
 		queryFn: () => getTasks({ isTotal, sortOrder, targetDate }),

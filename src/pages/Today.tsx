@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
+import { GetTasksResponse } from '@/apis/tasks/getTask/GetTasksResponse';
 import useGetTasks from '@/apis/tasks/getTask/query';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
 import NavBar from '@/components/common/NavBar';
@@ -55,9 +56,17 @@ function Today() {
 	const isTotal = activeButton === '전체';
 
 	// Task 목록 Get
+	const [previousStagingData, setPreviousStagingData] = useState<GetTasksResponse | undefined>(undefined);
+	const [previousTargetData, setPreviousTargetData] = useState<GetTasksResponse | undefined>(undefined);
 
 	/** StagingArea */
-	const { isFetched: isStagingFetched, data: stagingData } = useGetTasks({ isTotal, sortOrder });
+	const { isFetched: isStagingFetched, data: stagingData } = useGetTasks({ isTotal, sortOrder }, previousStagingData);
+
+	useEffect(() => {
+		if (isStagingFetched && stagingData) {
+			setPreviousStagingData(stagingData);
+		}
+	}, [isStagingFetched, stagingData]);
 
 	console.log('stagingArea_taskList', stagingData);
 
@@ -79,7 +88,13 @@ function Today() {
 
 	const targetDate = formatDatetoLocalDate(selectedDate);
 
-	const { isFetched: isTargetFetched, data: targetData } = useGetTasks({ targetDate });
+	const { isFetched: isTargetFetched, data: targetData } = useGetTasks({ targetDate }, previousTargetData);
+
+	useEffect(() => {
+		if (isTargetFetched && targetData) {
+			setPreviousTargetData(targetData);
+		}
+	}, [isTargetFetched, targetData]);
 
 	console.log('targetArea_taskList', stagingData);
 
