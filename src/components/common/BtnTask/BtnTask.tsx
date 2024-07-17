@@ -13,6 +13,8 @@ import { TaskType } from '@/types/tasks/taskType';
 
 interface BtnTaskProps extends TaskType {
 	btnType: 'staging' | 'target' | 'delayed';
+	handleSelectedTarget: (task: TaskType | null) => void;
+	selectedTarget: TaskType | null;
 }
 
 interface BorderColorProps {
@@ -23,9 +25,8 @@ interface BorderColorProps {
 }
 
 function BtnTask(props: BtnTaskProps) {
-	const { btnType, name, deadLine, hasDescription, status } = props;
+	const { id, btnType, name, deadLine, hasDescription, status, handleSelectedTarget, selectedTarget } = props;
 	const [isModalOpen, setModalOpen] = useState(false);
-	const [isClicked, setIsClicked] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
 
 	const [top, setTop] = useState(0);
@@ -51,7 +52,18 @@ function BtnTask(props: BtnTaskProps) {
 
 	/** 보더 색상 */
 	const handleClick = () => {
-		setIsClicked((prev) => !prev);
+		if (selectedTarget?.id === id) {
+			handleSelectedTarget(null);
+		} else {
+			const currentData: TaskType = {
+				id,
+				name,
+				deadLine,
+				hasDescription,
+				status,
+			};
+			handleSelectedTarget(currentData);
+		}
 	};
 
 	/** 모달 닫기 */
@@ -62,7 +74,7 @@ function BtnTask(props: BtnTaskProps) {
 	return (
 		<ModalLayout>
 			<BtnTaskLayout
-				isClicked={isClicked}
+				isClicked={selectedTarget?.id === id}
 				isHovered={isHovered}
 				btnType={btnType}
 				onDoubleClick={handleDoubleClick}

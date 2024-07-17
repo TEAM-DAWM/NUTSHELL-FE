@@ -4,7 +4,11 @@ import ScrollGradient from '../common/ScrollGradient';
 import { TaskType } from '@/types/tasks/taskType';
 import BtnTaskContainer from '../common/BtnTaskContainer';
 
-function TargetTaskSection() {
+interface TargetTaskSectionProps {
+	handleSelectedTarget: (task: TaskType | null) => void;
+	selectedTarget: TaskType | null;
+}
+function TargetTaskSection({ handleSelectedTarget, selectedTarget }: TargetTaskSectionProps) {
 	const dummyTaskList: TaskType[] = [
 		{
 			id: 0,
@@ -36,16 +40,6 @@ function TargetTaskSection() {
 			hasDescription: true,
 			status: '완료',
 		},
-		{
-			id: 3,
-			name: '김지원',
-			deadLine: {
-				date: '2024-06-30',
-				time: '12:30',
-			},
-			hasDescription: true,
-			status: '미완료',
-		},
 	];
 
 	return (
@@ -59,6 +53,8 @@ function TargetTaskSection() {
 					deadLine={task.deadLine}
 					status={task.status}
 					id={task.id}
+					handleSelectedTarget={handleSelectedTarget}
+					selectedTarget={selectedTarget}
 				/>
 			))}
 			<ScrollGradient />
