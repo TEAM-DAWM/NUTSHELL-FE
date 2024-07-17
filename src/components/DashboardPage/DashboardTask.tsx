@@ -1,28 +1,46 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useState, FunctionComponent } from 'react';
 
+import Icons from '@/assets/svg/index';
 import BtnTask from '@/components/common/BtnTask/BtnTask';
 import ScrollGradient from '@/components/common/ScrollGradient';
 import DASHBOARD_TASK_TYPE from '@/constants/dashboardTask';
 import TODAY from '@/constants/tasksToday';
 import { TaskType } from '@/types/tasks/taskType';
 
+const settingImagesMap: Record<string, FunctionComponent<React.SVGProps<SVGSVGElement>>> = {
+	upcoming: Icons.Empty.EmptyTask,
+	postponed: Icons.Empty.EmptyPostpone,
+	inprogress: Icons.Empty.EmptyTask,
+};
 interface DashboardTaskProps {
 	text: 'upcoming' | 'postponed' | 'inprogress';
 }
 
 function DashboardTask({ text }: DashboardTaskProps) {
+	const ImageComponent = settingImagesMap[text];
 	const [selectedTarget, setSelectedTarget] = useState<TaskType | null>(null);
 	const handleSelectedTarget = (task: TaskType | null) => {
 		setSelectedTarget(task);
 	};
+
+	const EmptyImageWrapper = styled(ImageComponent)`
+		justify-content: center;
+		width: 19rem;
+		height: 19rem;
+	`;
+
 	let taskStatus = '';
+	let emptyStatus = '';
 	if (text === 'upcoming') {
 		taskStatus = DASHBOARD_TASK_TYPE.UPCOMING;
+		emptyStatus = DASHBOARD_TASK_TYPE.EMPTYTASK;
 	} else if (text === 'postponed') {
 		taskStatus = DASHBOARD_TASK_TYPE.POSTPONED;
+		emptyStatus = DASHBOARD_TASK_TYPE.EMPTYPOSTPONE;
 	} else if (text === 'inprogress') {
 		taskStatus = DASHBOARD_TASK_TYPE.INPROGRESS;
+		emptyStatus = DASHBOARD_TASK_TYPE.EMPTYTASK;
 	}
 
 	const dummyTaskList: TaskType[] = [
@@ -77,21 +95,30 @@ function DashboardTask({ text }: DashboardTaskProps) {
 				</NumberTextBox>
 			</TextBox>
 			<ScrollArea>
-				{dummyTaskList.map((task) => (
-					<BtnTask
-						key={task.id + task.name}
-						hasDescription={task.hasDescription}
-						id={task.id}
-						name={task.name}
-						status={task.status}
-						deadLine={task.deadLine}
-						selectedTarget={selectedTarget}
-						preventDoubleClick
-						handleSelectedTarget={handleSelectedTarget}
-						iconType="active"
-					/>
-				))}
-				<ScrollGradient />
+				{TODAY.data.tasks.length === 0 ? (
+					<EmptyWrapper>
+						<EmptyImageWrapper />
+						<EmptyText text={text}>{emptyStatus}</EmptyText>
+					</EmptyWrapper>
+				) : (
+					<>
+						{dummyTaskList.map((task) => (
+							<BtnTask
+								key={task.id + task.name}
+								hasDescription={task.hasDescription}
+								id={task.id}
+								name={task.name}
+								status={task.status}
+								deadLine={task.deadLine}
+								selectedTarget={selectedTarget}
+								preventDoubleClick
+								handleSelectedTarget={handleSelectedTarget}
+								iconType="active"
+							/>
+						))}
+						<ScrollGradient />
+					</>
+				)}
 			</ScrollArea>
 		</TaskLayout>
 	);
@@ -155,6 +182,40 @@ const ScrollArea = styled.div`
 	box-sizing: border-box;
 	width: 41.7rem;
 	height: 33.9rem;
-	padding: 0 0.7rem;
-	overflow: scroll;
+	padding: 0 0 5rem;
+
+	/* overflow: auto; */
+	overflow-y: scroll;
+
+	::-webkit-scrollbar {
+		width: 0.6rem;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background-color: ${({ theme }) => theme.palette.Grey.Grey6};
+		visibility: hidden;
+		border-radius: 3px;
+	}
+
+	&:hover::-webkit-scrollbar-thumb {
+		visibility: visible;
+	}
+`;
+
+const EmptyWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+`;
+
+const EmptyText = styled.p<{ text: string }>`
+	display: flex;
+	justify-content: center;
+
+	${({ theme }) => theme.fontTheme.CAPTION_01};
+	color: ${({ theme }) => theme.palette.Grey.Grey4};
 `;
