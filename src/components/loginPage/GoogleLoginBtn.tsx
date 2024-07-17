@@ -12,8 +12,8 @@ function GoogleLoginBtn() {
 			try {
 				const response = await userLogin(code);
 				if (response.code === 'success') {
-					localStorage.setItem('accessToken', response.data.access_token);
-					localStorage.setItem('refreshToken', response.data.refresh_token);
+					localStorage.setItem('accessToken', response.data.accessToken);
+					localStorage.setItem('refreshToken', response.data.refreshToken);
 					navigate('/today');
 				}
 			} catch (error) {
