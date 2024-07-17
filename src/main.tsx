@@ -12,7 +12,14 @@ import '@/styles/font.css';
 
 const CLIENT_ID = import.meta.env.VITE_GOOGLE_LOGIN_CLIENT_ID;
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			staleTime: 1000 * 60,
+			gcTime: 1000 * 60,
+		},
+	},
+});
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<GoogleOAuthProvider clientId={CLIENT_ID}>
 		<QueryClientProvider client={queryClient}>
