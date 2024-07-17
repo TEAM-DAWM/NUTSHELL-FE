@@ -3,10 +3,19 @@ import styled from '@emotion/styled';
 
 interface DeleteCancelBtnProps {
 	status: 'delete' | 'cancel';
+	onClick?: (e: React.MouseEvent) => void;
 }
 
-function DeleteCancelBtn({ status }: DeleteCancelBtnProps) {
-	return <div>{status === 'delete' ? <DeleteBtn>삭제</DeleteBtn> : <CancelBtn>취소</CancelBtn>}</div>;
+function DeleteCancelBtn({ status, onClick }: DeleteCancelBtnProps) {
+	return (
+		<div>
+			{status === 'delete' ? (
+				<DeleteBtn onClick={onClick}>삭제</DeleteBtn>
+			) : (
+				<CancelBtn onClick={onClick}>취소</CancelBtn>
+			)}
+		</div>
+	);
 }
 
 export default DeleteCancelBtn;
