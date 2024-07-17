@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import userLogout from '@/apis/logout/logoutAxios';
 
 function LogOutBtn() {
-	const navigator = useNavigate();
+	const navigate = useNavigate();
 
 	const handleLogoutButton = async () => {
 		try {
 			await userLogout();
 			localStorage.removeItem('accessToken');
 			localStorage.removeItem('refreshToken');
-			navigator('/');
+			navigate('/');
 		} catch (error) {
 			console.error(error);
 		}
