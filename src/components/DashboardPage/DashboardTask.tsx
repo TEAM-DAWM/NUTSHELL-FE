@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 
 import BtnTask from '@/components/common/BtnTask/BtnTask';
 import ScrollGradient from '@/components/common/ScrollGradient';
 import DASHBOARD_TASK_TYPE from '@/constants/dashboardTask';
 import TODAY from '@/constants/tasksToday';
 import { TaskType } from '@/types/tasks/taskType';
-import { useState } from 'react';
 
 interface DashboardTaskProps {
 	text: 'upcoming' | 'postponed' | 'inprogress';
@@ -85,9 +85,9 @@ function DashboardTask({ text }: DashboardTaskProps) {
 						name={task.name}
 						status={task.status}
 						deadLine={task.deadLine}
-						btnType="target"
 						selectedTarget={selectedTarget}
 						handleSelectedTarget={handleSelectedTarget}
+						iconType="active"
 					/>
 				))}
 				<ScrollGradient />

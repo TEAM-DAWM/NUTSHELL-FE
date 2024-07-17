@@ -46,7 +46,7 @@ function TargetTaskSection({ handleSelectedTarget, selectedTarget }: TargetTaskS
 		<BtnTaskContainer type="target">
 			{dummyTaskList.map((task) => (
 				<BtnTask
-					btnType="target"
+					iconType="active"
 					key={task.id}
 					hasDescription={task.hasDescription}
 					name={task.name}
