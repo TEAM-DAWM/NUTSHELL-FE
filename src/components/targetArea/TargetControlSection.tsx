@@ -11,9 +11,10 @@ import MODAL from '@/constants/modalLocation';
 interface TargetControlSectionProps {
 	onClickPrevDate: (day: number) => void;
 	onClickNextDate: (day: number) => void;
+	onClickTodayDate: () => void;
 }
 
-function TargetControlSection({ onClickPrevDate, onClickNextDate }: TargetControlSectionProps) {
+function TargetControlSection({ onClickPrevDate, onClickNextDate, onClickTodayDate }: TargetControlSectionProps) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const handleArrangeBtnClick = () => {
@@ -28,7 +29,7 @@ function TargetControlSection({ onClickPrevDate, onClickNextDate }: TargetContro
 		<>
 			<TargetControlSectionLayout>
 				<BtnWrapper>
-					<TextBtn text="오늘" size="small" color="BLACK" mode="DEFAULT" isHover isPressed />
+					<TextBtn text="오늘" size="small" color="BLACK" mode="DEFAULT" isHover isPressed onClick={onClickTodayDate} />
 					<ArrangeBtn color="BLACK" mode="DEFAULT" size="small" type="left" onClick={onClickPrevDate} />
 					<ArrangeBtn color="BLACK" mode="DEFAULT" size="small" type="right" onClick={onClickNextDate} />
 				</BtnWrapper>

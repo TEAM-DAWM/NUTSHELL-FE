@@ -20,6 +20,10 @@ function TargetArea({ handleSelectedTarget, selectedTarget }: TargetAreaProps) {
 		setTargetDate(newDate);
 	};
 
+	const onClickTodayDate = () => {
+		setTargetDate(new Date());
+	};
+
 	return (
 		<TargetAreaLayout>
 			{/* 날짜 */}
@@ -31,6 +35,7 @@ function TargetArea({ handleSelectedTarget, selectedTarget }: TargetAreaProps) {
 			<TargetControlSection
 				onClickPrevDate={() => onClickChangeDate(-1)}
 				onClickNextDate={() => onClickChangeDate(1)}
+				onClickTodayDate={onClickTodayDate}
 			/>
 			{/* 태스크 목록 */}
 			<TargetTaskSection handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
