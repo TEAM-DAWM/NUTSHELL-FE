@@ -11,6 +11,7 @@ interface TaskSummaryProps {
 function TaskSummary({ text, data, unit, icon: Icon, image }: TaskSummaryProps) {
 	return (
 		<TaskSummaryLayout>
+			<ImageComponent src={image} />
 			<TextArea>
 				<ProfileImg>
 					<Icon />
@@ -23,9 +24,6 @@ function TaskSummary({ text, data, unit, icon: Icon, image }: TaskSummaryProps) 
 					</NumberTaskBox>
 				</TextWrapper>
 			</TextArea>
-			<ImageArea>
-				<ImageComponent src={image} />
-			</ImageArea>
 		</TaskSummaryLayout>
 	);
 }
@@ -33,22 +31,27 @@ function TaskSummary({ text, data, unit, icon: Icon, image }: TaskSummaryProps) 
 export default TaskSummary;
 
 const TaskSummaryLayout = styled.div`
-	display: flex;
+	position: relative;
+
 	width: 41.7rem;
 	height: 18.2rem;
+`;
 
-	background-color: ${({ theme }) => theme.palette.Blue.Blue5};
-	border-radius: 16px;
+const ImageComponent = styled.img`
+	position: absolute;
+	width: 100%;
+	height: 100%;
 `;
 
 const TextArea = styled.div`
+	position: absolute;
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
 	align-items: flex-start;
-	align-self: center;
-	width: 14.5rem;
+	width: 17.3rem;
 	height: 11.2rem;
+	margin-top: 3.5rem;
 	margin-left: 2.8rem;
 `;
 
@@ -92,12 +95,4 @@ const NumberText = styled.p`
 
 	${({ theme }) => theme.fontTheme.HEADLINE_02};
 	color: ${({ theme }) => theme.palette.Grey.White};
-`;
-
-const ImageArea = styled.div`
-	display: flex;
-`;
-const ImageComponent = styled.img`
-	width: 24.4rem;
-	height: 18.2rem;
 `;
