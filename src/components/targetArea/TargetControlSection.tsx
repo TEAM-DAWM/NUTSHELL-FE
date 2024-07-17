@@ -1,20 +1,28 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import ArrangeBtn from '../common/arrangeBtn/ArrangeBtn';
-import DateCorrectionModal from '../common/datePicker/DateCorrectionModal';
-import ModalBackdrop from '../common/modal/ModalBackdrop';
-
+import ArrangeBtn from '@/components/common/arrangeBtn/ArrangeBtn';
 import TextBtn from '@/components/common/button/textBtn/TextBtn';
+import DateCorrectionModal from '@/components/common/datePicker/DateCorrectionModal';
+import ModalBackdrop from '@/components/common/modal/ModalBackdrop';
 import MODAL from '@/constants/modalLocation';
+import formatDatetoString from '@/utils/formatDatetoString';
 
 interface TargetControlSectionProps {
 	onClickPrevDate: (day: number) => void;
 	onClickNextDate: (day: number) => void;
 	onClickTodayDate: () => void;
+	onClickDatePicker: (target: Date) => void;
+	targetDate: Date;
 }
 
-function TargetControlSection({ onClickPrevDate, onClickNextDate, onClickTodayDate }: TargetControlSectionProps) {
+function TargetControlSection({
+	onClickPrevDate,
+	onClickNextDate,
+	onClickTodayDate,
+	onClickDatePicker,
+	targetDate,
+}: TargetControlSectionProps) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const handleArrangeBtnClick = () => {
@@ -39,9 +47,11 @@ function TargetControlSection({ onClickPrevDate, onClickNextDate, onClickTodayDa
 						<DateCorrectionModal
 							top={MODAL.DATE_CORRECTION.TARGET.top}
 							left={MODAL.DATE_CORRECTION.TARGET.left}
-							date={null}
+							date={formatDatetoString(targetDate)}
 							time={null}
 							onClick={handleCloseModal}
+							isDateOnly
+							handleCurrentDate={onClickDatePicker}
 						/>
 					)}
 				</ModalLayout>

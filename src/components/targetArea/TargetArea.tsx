@@ -14,14 +14,14 @@ interface TargetAreaProps {
 function TargetArea({ handleSelectedTarget, selectedTarget }: TargetAreaProps) {
 	const [targetDate, setTargetDate] = useState(new Date());
 
-	const onClickChangeDate = (day: number) => {
+	const handlePressDateBtn = (day: number) => {
 		const newDate = new Date(targetDate);
 		newDate.setDate(newDate.getDate() + day);
 		setTargetDate(newDate);
 	};
 
-	const onClickTodayDate = () => {
-		setTargetDate(new Date());
+	const handleChangeDate = (target: Date) => {
+		setTargetDate(target);
 	};
 
 	return (
@@ -33,9 +33,11 @@ function TargetArea({ handleSelectedTarget, selectedTarget }: TargetAreaProps) {
 
 			{/* 버튼 */}
 			<TargetControlSection
-				onClickPrevDate={() => onClickChangeDate(-1)}
-				onClickNextDate={() => onClickChangeDate(1)}
-				onClickTodayDate={onClickTodayDate}
+				onClickPrevDate={() => handlePressDateBtn(-1)}
+				onClickNextDate={() => handlePressDateBtn(1)}
+				onClickTodayDate={() => handleChangeDate(new Date())}
+				onClickDatePicker={handleChangeDate}
+				targetDate={targetDate}
 			/>
 			{/* 태스크 목록 */}
 			<TargetTaskSection handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
