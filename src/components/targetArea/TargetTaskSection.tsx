@@ -1,17 +1,21 @@
 import BtnTask from '../common/BtnTask/BtnTask';
+import BtnTaskContainer from '../common/BtnTaskContainer';
 import ScrollGradient from '../common/ScrollGradient';
 
 import { TaskType } from '@/types/tasks/taskType';
-import BtnTaskContainer from '../common/BtnTaskContainer';
 
-function TargetTaskSection() {
+interface TargetTaskSectionProps {
+	handleSelectedTarget: (task: TaskType | null) => void;
+	selectedTarget: TaskType | null;
+}
+function TargetTaskSection({ handleSelectedTarget, selectedTarget }: TargetTaskSectionProps) {
 	const dummyTaskList: TaskType[] = [
 		{
 			id: 0,
 			name: '바보~',
 			deadLine: {
-				date: '2024-06-30',
-				time: '12:30',
+				date: null,
+				time: null,
 			},
 			hasDescription: false,
 			status: '진행중',
@@ -20,8 +24,8 @@ function TargetTaskSection() {
 			id: 1,
 			name: '넛수레',
 			deadLine: {
-				date: '2024-06-30',
-				time: '12:30',
+				date: '2024-08-29',
+				time: '10:30',
 			},
 			hasDescription: true,
 			status: '지연',
@@ -36,29 +40,21 @@ function TargetTaskSection() {
 			hasDescription: true,
 			status: '완료',
 		},
-		{
-			id: 3,
-			name: '김지원',
-			deadLine: {
-				date: '2024-06-30',
-				time: '12:30',
-			},
-			hasDescription: true,
-			status: '미완료',
-		},
 	];
 
 	return (
 		<BtnTaskContainer type="target">
 			{dummyTaskList.map((task) => (
 				<BtnTask
-					btnType="target"
+					iconType="active"
 					key={task.id}
 					hasDescription={task.hasDescription}
 					name={task.name}
 					deadLine={task.deadLine}
 					status={task.status}
 					id={task.id}
+					handleSelectedTarget={handleSelectedTarget}
+					selectedTarget={selectedTarget}
 				/>
 			))}
 			<ScrollGradient />

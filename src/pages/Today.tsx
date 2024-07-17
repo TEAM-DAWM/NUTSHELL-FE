@@ -1,23 +1,24 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
-import NavBar from '@/components/common/NavBar';
 import StagingArea from '@/components/common/StagingArea/StagingArea';
 import TargetArea from '@/components/targetArea/TargetArea';
+import { TaskType } from '@/types/tasks/taskType';
 
 function Today() {
+	const [selectedTarget, setSelectedTarget] = useState<TaskType | null>(null);
+	const handleSelectedTarget = (task: TaskType | null) => {
+		setSelectedTarget(task);
+	};
 	return (
-		<>
-			<NavBar />
-
-			<TodayLayout>
-				<StagingArea />
-				<TargetArea />
-				<CalendarWrapper>
-					<FullCalendarBox size="small" />
-				</CalendarWrapper>
-			</TodayLayout>
-		</>
+		<TodayLayout>
+			<StagingArea handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
+			<TargetArea handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
+			<CalendarWrapper>
+				<FullCalendarBox size="small" selectedTarget={selectedTarget} />
+			</CalendarWrapper>
+		</TodayLayout>
 	);
 }
 

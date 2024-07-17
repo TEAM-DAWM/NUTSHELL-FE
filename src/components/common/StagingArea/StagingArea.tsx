@@ -3,14 +3,18 @@ import styled from '@emotion/styled';
 import StagingAreaTaskContainer from './StagingAreaTaskContainer';
 
 import TextInputStaging from '@/components/common/textbox/TextInputStaging';
-
-function StagingArea() {
+import { TaskType } from '@/types/tasks/taskType';
+interface StagingAreaProps {
+	handleSelectedTarget: (task: TaskType | null) => void;
+	selectedTarget: TaskType | null;
+}
+function StagingArea({ handleSelectedTarget, selectedTarget }: StagingAreaProps) {
 	return (
 		<StagingAreaLayout>
 			<StagingAreaContainer>
 				<StagingAreaUpContainer>
 					<StagingAreaTitle>쏟아내기</StagingAreaTitle>
-					<StagingAreaTaskContainer />
+					<StagingAreaTaskContainer handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
 				</StagingAreaUpContainer>
 				<TextInputStaging />
 			</StagingAreaContainer>

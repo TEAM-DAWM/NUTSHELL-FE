@@ -3,8 +3,12 @@ import styled from '@emotion/styled';
 import TargetAreaDate from './TargetAreaDate';
 import TargetControlSection from './TargetControlSection';
 import TargetTaskSection from './TargetTaskSection';
-
-function TargetArea() {
+import { TaskType } from '@/types/tasks/taskType';
+interface TargetAreaProps {
+	handleSelectedTarget: (task: TaskType | null) => void;
+	selectedTarget: TaskType | null;
+}
+function TargetArea({ handleSelectedTarget, selectedTarget }: TargetAreaProps) {
 	return (
 		<TargetAreaLayout>
 			{/* 날짜 */}
@@ -16,7 +20,7 @@ function TargetArea() {
 			<TargetControlSection />
 
 			{/* 태스크 목록 */}
-			<TargetTaskSection />
+			<TargetTaskSection handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
 		</TargetAreaLayout>
 	);
 }

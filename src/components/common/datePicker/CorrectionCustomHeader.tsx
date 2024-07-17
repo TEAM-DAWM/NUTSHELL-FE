@@ -11,7 +11,7 @@ interface CustomHeaderProps {
 	increaseMonth: () => void;
 	prevMonthButtonDisabled: boolean;
 	nextMonthButtonDisabled: boolean;
-	onChange: (date: Date) => void;
+	onChange: (date: Date | null) => void;
 	dateTextRef: React.RefObject<HTMLInputElement>;
 }
 
@@ -30,7 +30,7 @@ function CorrectionCustomHeader({
 				<TextboxInput
 					variant="date"
 					placeholder={formatDatetoString(prevDate)}
-					onChange={onChange}
+					onDateChange={onChange}
 					dateTextRef={dateTextRef}
 				/>
 				<div className="react-datepicker__navigation-wrapper">

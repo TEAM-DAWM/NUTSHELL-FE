@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
 
+import ModalBackdrop from './ModalBackdrop';
+
 import BtnDate from '@/components/common/BtnDate/BtnDate';
 import OkayCancelBtn from '@/components/common/button/OkayCancelBtn';
 import ModalHeaderBtn from '@/components/common/modal/ModalHeaderBtn';
 import ModalTextInputTime from '@/components/common/modal/ModalTextInputTime';
 import TextInputBox from '@/components/common/modal/TextInputBox';
 import { SizeType } from '@/types/textInputType';
-import ModalBackdrop from './ModalBackdrop';
 
 interface ModalProps {
 	isOpen: boolean;
@@ -14,19 +15,36 @@ interface ModalProps {
 	top: number;
 	left: number;
 	onClose: () => void;
+	taskId: number;
 }
 
-function Modal({ isOpen, sizeType, top, left, onClose }: ModalProps) {
+function Modal({ isOpen, sizeType, top, left, onClose, taskId }: ModalProps) {
+	// taskId 가지고 api로 상세정보 요청하면 됨
+	const dummyData = {
+		id: taskId, // 안쓰는 변수 린트 통과용 필드
+		name: 'task name',
+		description: 'task description',
+		deadLine: {
+			date: '2024-06-30',
+			time: '12:30',
+		},
+		status: '진행 중', // 수정
+		timeBlock: {
+			id: 1,
+			startTime: '2024-07-08T12:30',
+			endTime: '2024-07-08T14:30',
+		},
+	};
 	return (
 		isOpen && (
 			<ModalBackdrop onClick={onClose}>
 				<ModalLayout type={sizeType.type} top={top} left={left} onClick={(e) => e.stopPropagation()}>
 					<ModalHeader>
-						<BtnDate />
+						<BtnDate date={dummyData.deadLine.date} time={dummyData.deadLine.time} />
 						<ModalHeaderBtn type={sizeType.type} />
 					</ModalHeader>
 					<ModalBody>
-						<TextInputBox type={sizeType.type} />
+						<TextInputBox type={sizeType.type} name={dummyData.name} desc={dummyData.description} />
 						{sizeType.type === 'long' && <ModalTextInputTime />}
 					</ModalBody>
 					<ModalFooter>

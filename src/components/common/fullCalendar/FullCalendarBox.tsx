@@ -4,21 +4,25 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { DateSelectArg } from 'fullcalendar/index.js';
 import { useState, useRef, useEffect } from 'react';
+
+import Modal from '../modal/Modal';
 
 import RefreshBtn from '@/components/common/button/RefreshBtn';
 import DayHeaderContent from '@/components/common/fullCalendar/DayHeaderContent';
 import FullCalendarLayout from '@/components/common/fullCalendar/FullCalendarStyle';
 import { customDayCellContent, customSlotLabelContent } from '@/components/common/fullCalendar/fullCalendarUtils';
-import Modal from '../modal/Modal';
 import MODAL from '@/constants/modalLocation';
+import { TaskType } from '@/types/tasks/taskType';
 
 interface FullCalendarBoxProps {
 	size: 'small' | 'big';
 	selectDate?: Date | null;
+	selectedTarget?: TaskType | null;
 }
 
-function FullCalendarBox({ size, selectDate }: FullCalendarBoxProps) {
+function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxProps) {
 	const today = new Date().toDateString();
 	const [currentView, setCurrentView] = useState('timeGridWeek');
 
@@ -57,6 +61,54 @@ function FullCalendarBox({ size, selectDate }: FullCalendarBoxProps) {
 		setModalOpen(false);
 	};
 
+	const calendarEvents = [
+		{ title: 'Meeting', start: '2024-07-16T10:00:00', end: '2024-07-06T12:00:00', classNames: 'tasks' },
+		{ title: 'Lunch', start: '2024-07-07T12:00:00', end: '2024-07-07T12:45:00', classNames: 'tasks' },
+		{ title: 'Lunch', start: '2024-07-08T12:00:00', end: '2024-07-08T12:30:00', classNames: 'tasks' },
+		{
+			title: 'All Day Event',
+			start: '2024-07-08T10:00:00',
+			end: '2024-07-08T12:00:00',
+			allDay: true,
+			classNames: 'task',
+		},
+		{ title: 'Meeting', start: '2024-07-15T10:00:00', end: '2024-07-11T12:00:00', classNames: 'schedule' },
+		{ title: 'Lunch', start: '2024-07-12T12:00:00', end: '2024-07-12T12:45:00', classNames: 'schedule' },
+		{ title: 'Lunch', start: '2024-07-11T12:00:00', end: '2024-07-11T12:30:00', classNames: 'schedule' },
+		{
+			title: 'All Day Event',
+			start: '2024-07-12T10:00:00',
+			end: '2024-07-12T12:00:00',
+			allDay: true,
+			classNames: 'schedule',
+		},
+	];
+
+	/** 드래그해서 이벤트 추가하기 */
+	const addEventWhenDragged = (selectInfo: DateSelectArg) => {
+		if (calendarRef.current && (selectedTarget?.id === 0 || selectedTarget)) {
+			const calendarApi = calendarRef.current.getApi();
+
+			// 기존에 같은 id 가진 이벤트가 캘린더에 있다면 삭제
+			const existingEvents = calendarApi.getEvents();
+			existingEvents.forEach((event) => {
+				if (event.id === selectedTarget.id.toString()) {
+					event.remove();
+				}
+			});
+
+			// 이벤트 추가
+			calendarApi.addEvent({
+				id: selectedTarget.id.toString(),
+				title: selectedTarget.name,
+				start: selectInfo.startStr,
+				end: selectInfo.endStr,
+				allDay: selectInfo.allDay,
+				// 구글캘린더 여부에 따라 수정하면 될듯?
+				classNames: 'new-event',
+			});
+		}
+	};
 	return (
 		<FullCalendarLayout size={size}>
 			<CustomButtonContainer>
@@ -89,28 +141,7 @@ function FullCalendarBox({ size, selectDate }: FullCalendarBoxProps) {
 				nowIndicator
 				dayMaxEvents
 				// netshell에서 할당한 이벤트 : tasks, 구글 캘린더에서 가져온 이벤트 : schedule
-				events={[
-					{ title: 'Meeting', start: '2024-07-06T10:00:00', end: '2024-07-06T12:00:00', classNames: 'tasks' },
-					{ title: 'Lunch', start: '2024-07-07T12:00:00', end: '2024-07-07T12:45:00', classNames: 'tasks' },
-					{ title: 'Lunch', start: '2024-07-08T12:00:00', end: '2024-07-08T12:30:00', classNames: 'tasks' },
-					{
-						title: 'All Day Event',
-						start: '2024-07-08T10:00:00',
-						end: '2024-07-08T12:00:00',
-						allDay: true,
-						classNames: 'task',
-					},
-					{ title: 'Meeting', start: '2024-07-11T10:00:00', end: '2024-07-11T12:00:00', classNames: 'schedule' },
-					{ title: 'Lunch', start: '2024-07-12T12:00:00', end: '2024-07-12T12:45:00', classNames: 'schedule' },
-					{ title: 'Lunch', start: '2024-07-11T12:00:00', end: '2024-07-11T12:30:00', classNames: 'schedule' },
-					{
-						title: 'All Day Event',
-						start: '2024-07-12T10:00:00',
-						end: '2024-07-12T12:00:00',
-						allDay: true,
-						classNames: 'schedule',
-					},
-				]}
+				events={calendarEvents}
 				buttonText={{
 					today: '오늘',
 					month: '월간',
@@ -138,9 +169,18 @@ function FullCalendarBox({ size, selectDate }: FullCalendarBoxProps) {
 				}}
 				droppable={true}
 				eventClick={handleEventClick}
+				select={addEventWhenDragged}
 			/>
 			{isModalOpen && (
-				<Modal isOpen={isModalOpen} sizeType={{ type: 'short' }} top={top} left={left} onClose={closeModal} />
+				// 🚨 임시 taskID ... 데이터 형식 확정 후 수정할 것 🚨
+				<Modal
+					isOpen={isModalOpen}
+					sizeType={{ type: 'short' }}
+					top={top}
+					left={left}
+					onClose={closeModal}
+					taskId={5}
+				/>
 			)}
 		</FullCalendarLayout>
 	);

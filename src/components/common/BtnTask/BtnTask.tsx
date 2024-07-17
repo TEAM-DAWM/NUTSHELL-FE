@@ -9,24 +9,28 @@ import IconHoverContainer from './IconHoverContainer';
 import Icons from '@/assets/svg/index';
 import BtnDate from '@/components/common/BtnDate/BtnDate';
 import MODAL from '@/constants/modalLocation';
+import { theme } from '@/styles/theme';
 import { TaskType } from '@/types/tasks/taskType';
 
 interface BtnTaskProps extends TaskType {
-	btnType: 'staging' | 'target' | 'delayed';
-	preventDoubleClick: boolean;
+	handleSelectedTarget: (task: TaskType | null) => void;
+	selectedTarget: TaskType | null;
+	iconType: 'stagingOrDelayed' | 'active';
+	btnStatus?: '진행중' | '미완료' | '완료' | '오늘로추가';
 }
 
 interface BorderColorProps {
 	isHovered: boolean;
 	isClicked: boolean;
 	theme: Theme;
-	btnType: string;
+	iconType: string;
+	status: string;
 }
 
 function BtnTask(props: BtnTaskProps) {
-	const { btnType, name, deadLine, hasDescription, status, preventDoubleClick } = props;
+	const { id, name, deadLine, hasDescription, status, handleSelectedTarget, selectedTarget, iconType, btnStatus } =
+		props;
 	const [isModalOpen, setModalOpen] = useState(false);
-	const [isClicked, setIsClicked] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
 
 	const [top, setTop] = useState(0);
@@ -56,7 +60,18 @@ function BtnTask(props: BtnTaskProps) {
 
 	/** 보더 색상 */
 	const handleClick = () => {
-		setIsClicked((prev) => !prev);
+		if (selectedTarget?.id === id) {
+			handleSelectedTarget(null);
+		} else {
+			const currentData: TaskType = {
+				id,
+				name,
+				deadLine,
+				hasDescription,
+				status,
+			};
+			handleSelectedTarget(currentData);
+		}
 	};
 
 	/** 모달 닫기 */
@@ -67,11 +82,13 @@ function BtnTask(props: BtnTaskProps) {
 	return (
 		<ModalLayout>
 			<BtnTaskLayout
-				isClicked={isClicked}
+				isClicked={selectedTarget?.id === id}
 				isHovered={isHovered}
-				btnType={btnType}
+				iconType={iconType}
 				onDoubleClick={handleDoubleClick}
 				onClick={handleClick}
+				theme={theme}
+				status={status}
 			>
 				<BtnTaskContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
 					<BtnTaskTextWrapper isDescription={hasDescription}>
@@ -79,28 +96,28 @@ function BtnTask(props: BtnTaskProps) {
 						{name}
 					</BtnTaskTextWrapper>
 					<BtnDate
-						date={deadLine?.date}
-						time={deadLine?.time}
+						date={deadLine?.date || null}
+						time={deadLine?.time || null}
 						size={{ type: 'short' }}
-						isDelayed={btnType === 'delayed'}
+						isDelayed={status === '지연'}
 					/>
 				</BtnTaskContainer>
-				<IconHoverContainer btnType={btnType} status={status} />
+				<IconHoverContainer iconType={iconType} btnStatus={btnStatus} status={status} />
 			</BtnTaskLayout>
-			<Modal isOpen={isModalOpen} sizeType={{ type: 'short' }} top={top} left={left} onClose={closeModal} />
+			<Modal isOpen={isModalOpen} sizeType={{ type: 'short' }} top={top} left={left} onClose={closeModal} taskId={id} />
 		</ModalLayout>
 	);
 }
 
 export default BtnTask;
 
-const getBorderColor = ({ isHovered, isClicked, theme, btnType }: BorderColorProps) => {
+const getBorderColor = ({ isHovered, isClicked, theme, status }: BorderColorProps) => {
 	const defaultColor = theme.palette.Grey.Grey1;
 	const hoverColor = theme.palette.Blue.Blue3;
 	const clickColor = theme.palette.Primary;
 	const orangeColor = theme.palette.Orange.Orange8;
 	let borderColor = defaultColor;
-	if (btnType === 'delayed') {
+	if (status === '지연') {
 		borderColor = orangeColor;
 	} else if (isClicked) {
 		borderColor = clickColor;
@@ -116,11 +133,7 @@ const ModalLayout = styled.div`
 	display: flex;
 `;
 
-const BtnTaskLayout = styled('div', { target: 'BtnTaskLayout' })<{
-	isClicked: boolean;
-	isHovered: boolean;
-	btnType: string;
-}>`
+const BtnTaskLayout = styled('div', { target: 'BtnTaskLayout' })`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

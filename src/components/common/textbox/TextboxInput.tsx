@@ -11,11 +11,20 @@ import { blurRef, focusRef, warnRef } from '@/utils/refStatus';
 
 interface TextboxInputProps {
 	variant: 'date' | 'time' | 'smallDate';
-	onChange?: (date: Date) => void;
+	onDateChange?: (date: Date | null) => void;
+	onTimeChange?: (time: string | null) => void;
 	dateTextRef?: React.RefObject<HTMLInputElement>;
 	placeholder?: string;
+	currentTime?: string | null;
 }
-function TextboxInput({ variant, onChange, dateTextRef, placeholder }: TextboxInputProps) {
+function TextboxInput({
+	variant,
+	onDateChange,
+	onTimeChange,
+	dateTextRef,
+	placeholder,
+	currentTime,
+}: TextboxInputProps) {
 	const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { value } = e.target;
 		const formattedInput = variant === 'time' ? dotFormatTime(value) : dotFormatDate(value);
@@ -26,16 +35,17 @@ function TextboxInput({ variant, onChange, dateTextRef, placeholder }: TextboxIn
 			if (!isValid && dateTextRef) {
 				// 유효하지 않음
 				warnRef(dateTextRef);
-				// 유효하지 않은 경우 인풋 삭제 필요?
+				// 유효하지 않은 경우 인풋 삭제
 				e.target.value = '';
-			} else if ((variant === 'date' || variant === 'smallDate') && onChange) {
+			} else if ((variant === 'date' || variant === 'smallDate') && onDateChange) {
 				// 유효하고 date 인 경우
 				const valueDate = new Date(formattedInput);
 				if (dateTextRef) blurRef(dateTextRef);
-				onChange(valueDate);
+				onDateChange(valueDate);
 			} else if (dateTextRef) {
 				// 유효하고 time 인 경우
 				blurRef(dateTextRef);
+				if (onTimeChange) onTimeChange(e.target.value);
 			}
 		}
 	};
@@ -48,6 +58,7 @@ function TextboxInput({ variant, onChange, dateTextRef, placeholder }: TextboxIn
 				maxLength={10}
 				variant={variant}
 				onChange={handleDateChange}
+				defaultValue={currentTime ?? undefined}
 			/>
 		</InputContainer>
 	);

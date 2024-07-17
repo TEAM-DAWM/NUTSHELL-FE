@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 
 import BtnTask from '@/components/common/BtnTask/BtnTask';
 import ScrollGradient from '@/components/common/ScrollGradient';
@@ -11,6 +12,10 @@ interface DashboardTaskProps {
 }
 
 function DashboardTask({ text }: DashboardTaskProps) {
+	const [selectedTarget, setSelectedTarget] = useState<TaskType | null>(null);
+	const handleSelectedTarget = (task: TaskType | null) => {
+		setSelectedTarget(task);
+	};
 	let taskStatus = '';
 	if (text === 'upcoming') {
 		taskStatus = DASHBOARD_TASK_TYPE.UPCOMING;
@@ -80,8 +85,9 @@ function DashboardTask({ text }: DashboardTaskProps) {
 						name={task.name}
 						status={task.status}
 						deadLine={task.deadLine}
-						btnType="target"
-						preventDoubleClick // 더블클릭 막기
+						selectedTarget={selectedTarget}
+						handleSelectedTarget={handleSelectedTarget}
+						iconType="active"
 					/>
 				))}
 				<ScrollGradient />

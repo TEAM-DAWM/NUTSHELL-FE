@@ -38,30 +38,34 @@ function CustomHeader({
 		diff = Math.ceil(diff / (1000 * 60 * 60 * 24)) + 1;
 	}
 	const stripTime = (date: Date) => new Date(date.setHours(0, 0, 0, 0));
-	const onStartChange = (date: Date) => {
-		const strippedEndDate = endDate ? stripTime(endDate) : null;
-		const strippedDate = stripTime(date);
+	const onStartChange = (date: Date | null) => {
+		if (date) {
+			const strippedEndDate = endDate ? stripTime(endDate) : null;
+			const strippedDate = stripTime(date);
 
-		if (strippedEndDate && strippedEndDate < strippedDate) {
-			warnRef(startDateTextRef);
-			if (startDateTextRef.current) {
-				Object.assign(startDateTextRef.current, { value: '' });
+			if (strippedEndDate && strippedEndDate < strippedDate) {
+				warnRef(startDateTextRef);
+				if (startDateTextRef.current) {
+					Object.assign(startDateTextRef.current, { value: '' });
+				}
+			} else {
+				onChange(date, 'start');
 			}
-		} else {
-			onChange(date, 'start');
 		}
 	};
-	const onEndChange = (date: Date) => {
-		const strippedStartDate = startDate ? stripTime(startDate) : null;
-		const strippedDate = stripTime(date);
+	const onEndChange = (date: Date | null) => {
+		if (date) {
+			const strippedStartDate = startDate ? stripTime(startDate) : null;
+			const strippedDate = stripTime(date);
 
-		if (strippedStartDate && strippedDate < strippedStartDate) {
-			warnRef(endDateTextRef);
-			if (endDateTextRef.current) {
-				Object.assign(endDateTextRef.current, { value: '' });
+			if (strippedStartDate && strippedDate < strippedStartDate) {
+				warnRef(endDateTextRef);
+				if (endDateTextRef.current) {
+					Object.assign(endDateTextRef.current, { value: '' });
+				}
+			} else {
+				onChange(date, 'end');
 			}
-		} else {
-			onChange(date, 'end');
 		}
 	};
 	return (
@@ -71,13 +75,13 @@ function CustomHeader({
 					<TextboxInput
 						variant="smallDate"
 						placeholder={formatDatetoString(startDate)}
-						onChange={onStartChange}
+						onDateChange={onStartChange}
 						dateTextRef={startDateTextRef}
 					/>
 					<TextboxInput
 						variant="smallDate"
 						placeholder={formatDatetoString(new Date())}
-						onChange={onEndChange}
+						onDateChange={onEndChange}
 						dateTextRef={endDateTextRef}
 					/>
 				</InfoWrapper>

@@ -17,23 +17,46 @@ interface DateCorrectionModalProps {
 	isDateOnly?: boolean;
 	top?: number;
 	left?: number;
+	date: string | null;
+	time: string | null;
+	onClick: () => void;
+	handleCurrentDate?: (newDate: Date) => void;
+	handleCurrentTime?: (newTime: string) => void;
 }
 
-function DateCorrectionModal({ isDateOnly = false, top = 0, left = 0 }: DateCorrectionModalProps) {
-	const prevDate: Date = new Date();
-	const [currentDate, setCurrentDate] = useState<Date | null>(null);
-
+function DateCorrectionModal({
+	isDateOnly = false,
+	top = 0,
+	left = 0,
+	date,
+	time,
+	onClick,
+	handleCurrentDate,
+	handleCurrentTime,
+}: DateCorrectionModalProps) {
+	const prevDate = date ? new Date(date) : null;
+	const [currentDate, setCurrentDate] = useState<Date | null>(prevDate);
+	const [currentTime, setCurrentTime] = useState<string | null>(time);
 	const dateTextRef = useRef<HTMLInputElement>(null);
 	const timeTextRef = useRef<HTMLInputElement>(null);
-	const onChange = (date: Date | null) => {
-		setCurrentDate(date);
+
+	const onChange = (newDate: Date | null) => {
+		setCurrentDate(newDate);
 		if (dateTextRef.current) {
 			const inputElement = dateTextRef.current.querySelector('input');
-			if (inputElement) inputElement.value = formatDatetoString(date);
+			if (inputElement) inputElement.value = formatDatetoString(newDate);
 			blurRef(dateTextRef);
 		}
 	};
-
+	const onTimeChange = (newTime: string | null) => {
+		setCurrentTime(newTime);
+	};
+	/** 모달 확인, 닫기버튼 */
+	const onSave = () => {
+		if (handleCurrentDate && currentDate) handleCurrentDate(currentDate);
+		if (handleCurrentTime && currentTime) handleCurrentTime(currentTime);
+		onClick();
+	};
 	return (
 		<DateCorrectionModalLayout top={top} left={left} onClick={(e) => e.stopPropagation()}>
 			<DatePicker
@@ -47,8 +70,15 @@ function DateCorrectionModal({ isDateOnly = false, top = 0, left = 0 }: DateCorr
 				)}
 			>
 				<BottomBtnWrapper>
-					{!isDateOnly && <TextboxInput variant="time" dateTextRef={timeTextRef} />}
-					<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed />
+					{!isDateOnly && (
+						<TextboxInput
+							variant="time"
+							dateTextRef={timeTextRef}
+							onTimeChange={onTimeChange}
+							currentTime={currentTime}
+						/>
+					)}
+					<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed onClick={onSave} />
 				</BottomBtnWrapper>
 			</DatePicker>
 		</DateCorrectionModalLayout>
