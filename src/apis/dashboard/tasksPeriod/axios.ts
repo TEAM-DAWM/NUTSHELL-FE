@@ -1,4 +1,4 @@
-import { TasksPeriodType } from './tasksPeriodType';
+import { TasksPeriodType } from './taskPeriodType';
 
 import { privateInstance } from '@/apis/instance';
 

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import getTasksPeriod from './axios';
-import { TasksPeriodType } from './tasksPeriodType';
+import { TasksPeriodType } from './taskPeriodType';
 
 const placeholderData = {
 	code: 'success',
