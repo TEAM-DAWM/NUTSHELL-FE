@@ -17,6 +17,7 @@ interface BtnTaskProps extends TaskType {
 	selectedTarget: TaskType | null;
 	iconType: 'stagingOrDelayed' | 'active';
 	btnStatus?: '진행중' | '미완료' | '완료' | '오늘로추가';
+	preventDoubleClick: boolean;
 }
 
 interface BorderColorProps {
@@ -28,8 +29,18 @@ interface BorderColorProps {
 }
 
 function BtnTask(props: BtnTaskProps) {
-	const { id, name, deadLine, hasDescription, status, handleSelectedTarget, selectedTarget, iconType, btnStatus } =
-		props;
+	const {
+		id,
+		name,
+		deadLine,
+		hasDescription,
+		status,
+		handleSelectedTarget,
+		selectedTarget,
+		iconType,
+		btnStatus,
+		preventDoubleClick,
+	} = props;
 	const [isModalOpen, setModalOpen] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
 
@@ -46,6 +57,10 @@ function BtnTask(props: BtnTaskProps) {
 
 	/** 모달 띄우기 */
 	const handleDoubleClick = (e: React.MouseEvent) => {
+		if (preventDoubleClick) {
+			e.preventDefault();
+			return;
+		}
 		const rect = e.currentTarget.getBoundingClientRect();
 		const calculatedTop = rect.top;
 		const adjustedTop = Math.min(calculatedTop, MODAL.SCREEN_HEIGHT - MODAL.TASK_MODAL_HEIGHT);
