@@ -1,20 +1,35 @@
 import styled from '@emotion/styled';
+import { Droppable } from 'react-beautiful-dnd';
 
 import StagingAreaTaskContainer from './StagingAreaTaskContainer';
 
 import TextInputStaging from '@/components/common/textbox/TextInputStaging';
 import { TaskType } from '@/types/tasks/taskType';
+
 interface StagingAreaProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
+	tasks: TaskType[];
 }
-function StagingArea({ handleSelectedTarget, selectedTarget }: StagingAreaProps) {
+function StagingArea(props: StagingAreaProps) {
+	const { handleSelectedTarget, selectedTarget, tasks } = props;
 	return (
 		<StagingAreaLayout>
 			<StagingAreaContainer>
 				<StagingAreaUpContainer>
 					<StagingAreaTitle>쏟아내기</StagingAreaTitle>
-					<StagingAreaTaskContainer handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
+					<Droppable droppableId="staging">
+						{(provided) => (
+							<div ref={provided.innerRef} {...provided.droppableProps}>
+								<StagingAreaTaskContainer
+									handleSelectedTarget={handleSelectedTarget}
+									selectedTarget={selectedTarget}
+									tasks={tasks}
+								/>
+								{provided.placeholder}
+							</div>
+						)}
+					</Droppable>
 				</StagingAreaUpContainer>
 				<TextInputStaging />
 			</StagingAreaContainer>
@@ -25,6 +40,7 @@ function StagingArea({ handleSelectedTarget, selectedTarget }: StagingAreaProps)
 export default StagingArea;
 
 const StagingAreaLayout = styled.div`
+	position: relative;
 	display: inline-flex;
 	gap: 0.8rem;
 	align-items: center;

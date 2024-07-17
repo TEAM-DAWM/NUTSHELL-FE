@@ -17,7 +17,8 @@ interface BtnTaskProps extends TaskType {
 	selectedTarget: TaskType | null;
 	iconType: 'stagingOrDelayed' | 'active';
 	btnStatus?: '진행중' | '미완료' | '완료' | '오늘로추가';
-	preventDoubleClick: boolean;
+	preventDoubleClick?: boolean;
+	isDragging?: boolean;
 }
 
 interface BorderColorProps {
@@ -26,6 +27,7 @@ interface BorderColorProps {
 	theme: Theme;
 	iconType: string;
 	status: string;
+	isDragging?: boolean;
 }
 
 function BtnTask(props: BtnTaskProps) {
@@ -39,7 +41,8 @@ function BtnTask(props: BtnTaskProps) {
 		selectedTarget,
 		iconType,
 		btnStatus,
-		preventDoubleClick,
+		preventDoubleClick = false,
+		isDragging = false,
 	} = props;
 	const [isModalOpen, setModalOpen] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
@@ -100,6 +103,7 @@ function BtnTask(props: BtnTaskProps) {
 				onClick={handleClick}
 				theme={theme}
 				status={status}
+				isDragging={isDragging}
 			>
 				<BtnTaskContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
 					<BtnTaskTextWrapper isDescription={hasDescription}>
@@ -122,12 +126,23 @@ function BtnTask(props: BtnTaskProps) {
 
 export default BtnTask;
 
-const getBorderColor = ({ isHovered, isClicked, theme, status }: BorderColorProps) => {
+const draggingStyle = (theme: Theme) => css`
+	background: ${theme.palette.Grey.White};
+	box-shadow: 0 16px 35px 0 rgb(72 87 120 / 25%);
+	border: 1px solid ${theme.palette.Blue.Blue7};
+	border-radius: 8px;
+`;
+
+const getBorderColor = ({ isHovered, isClicked, theme, status, isDragging }: BorderColorProps) => {
 	const defaultColor = theme.palette.Grey.Grey1;
 	const hoverColor = theme.palette.Blue.Blue3;
 	const clickColor = theme.palette.Primary;
 	const orangeColor = theme.palette.Orange.Orange8;
 	let borderColor = defaultColor;
+	if (isDragging && status !== '지연') {
+		return draggingStyle(theme);
+	}
+
 	if (status === '지연') {
 		borderColor = orangeColor;
 	} else if (isClicked) {
