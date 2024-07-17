@@ -1,3 +1,5 @@
+import postponeImg from './Empty_Postpone.png';
+import taskImg from './Empty_Task.png';
 import googleIcon from './googleIcon.png';
 import loginBg from './loginBg.png';
 import notFountBg from './notFoundBg.png';
@@ -12,6 +14,10 @@ const Images = {
 	smallLogo,
 	titleIcon,
 	googleIcon,
+	EMPTY: {
+		taskImg,
+		postponeImg,
+	},
 };
 
 export default Images;
