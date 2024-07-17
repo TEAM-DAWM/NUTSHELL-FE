@@ -1,16 +1,17 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
+import useGetTasksToday from '@/apis/dashboard/tasksToday/query';
 import BtnTask from '@/components/common/BtnTask/BtnTask';
 import ScrollGradient from '@/components/common/ScrollGradient';
 import TODAY from '@/constants/tasksToday';
 import { TaskType } from '@/types/tasks/taskType';
 
 interface DashboardTaskProps {
-	text: 'upcoming' | 'postponed' | 'inprogress';
 	taskStatus: string;
 	emptyStatus: string;
 	emptyImg: string;
+	text: 'upcoming' | 'deferred' | 'inprogress';
 }
 function DashboardTask({ text, taskStatus, emptyStatus, emptyImg }: DashboardTaskProps) {
 	const [selectedTarget, setSelectedTarget] = useState<TaskType | null>(null);
@@ -24,48 +25,8 @@ function DashboardTask({ text, taskStatus, emptyStatus, emptyImg }: DashboardTas
 		height: auto;
 	`;
 
-	const dummyTaskList: TaskType[] = [
-		{
-			id: 10,
-			name: '바보~',
-			deadLine: {
-				date: '2024-06-30',
-				time: '12:30',
-			},
-			hasDescription: false,
-			status: '진행중',
-		},
-		{
-			id: 11,
-			name: '넛수레',
-			deadLine: {
-				date: '2024-06-30',
-				time: '12:30',
-			},
-			hasDescription: true,
-			status: '지연',
-		},
-		{
-			id: 12,
-			name: '콘하스',
-			deadLine: {
-				date: '2024-06-30',
-				time: '12:30',
-			},
-			hasDescription: true,
-			status: '완료',
-		},
-		{
-			id: 13,
-			name: '김지원',
-			deadLine: {
-				date: '2024-06-30',
-				time: '12:30',
-			},
-			hasDescription: true,
-			status: '미완료',
-		},
-	];
+	const { isFetched, data } = useGetTasksToday(text);
+
 	return (
 		<TaskLayout>
 			<TextBox>
@@ -75,6 +36,7 @@ function DashboardTask({ text, taskStatus, emptyStatus, emptyImg }: DashboardTas
 					<NumberText>개</NumberText>
 				</NumberTextBox>
 			</TextBox>
+
 			<ScrollArea>
 				{TODAY.data.tasks.length === 0 ? (
 					<EmptyWrapper>
@@ -84,24 +46,28 @@ function DashboardTask({ text, taskStatus, emptyStatus, emptyImg }: DashboardTas
 						<EmptyText text={text}>{emptyStatus}</EmptyText>
 					</EmptyWrapper>
 				) : (
-					<>
-						{dummyTaskList.map((task) => (
-							<BtnTask
-								key={task.id + task.name}
-								hasDescription={task.hasDescription}
-								id={task.id}
-								name={task.name}
-								status={task.status}
-								deadLine={task.deadLine}
-								selectedTarget={selectedTarget}
-								preventDoubleClick
-								handleSelectedTarget={handleSelectedTarget}
-								iconType="active"
-							/>
-						))}
-						<ScrollGradient />
-					</>
+					isFetched && (
+						<>
+							{data.data.tasks.map((task: TaskType) => (
+								<BtnTask
+									key={task.id + task.name}
+									hasDescription={task.hasDescription}
+									id={task.id}
+									name={task.name}
+									status={task.status}
+									deadLine={task.deadLine}
+									selectedTarget={selectedTarget}
+									preventDoubleClick
+									handleSelectedTarget={handleSelectedTarget}
+									iconType="active"
+								/>
+							))}
+							<ScrollGradient />
+						</>
+					)
 				)}
+
+				<ScrollGradient />
 			</ScrollArea>
 		</TaskLayout>
 	);

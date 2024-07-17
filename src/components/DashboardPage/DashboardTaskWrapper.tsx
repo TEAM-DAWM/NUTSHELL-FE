@@ -14,7 +14,7 @@ function DashboardTaskWrapper() {
 				emptyImg={Images.EMPTY.taskImg}
 			/>
 			<DashboardTask
-				text="postponed"
+				text="deferred"
 				taskStatus={DASHBOARD_TASK_TYPE.POSTPONED}
 				emptyStatus={DASHBOARD_TASK_TYPE.EMPTYPOSTPONE}
 				emptyImg={Images.EMPTY.postponeImg}
