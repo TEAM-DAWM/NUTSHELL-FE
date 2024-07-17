@@ -1,48 +1,25 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
 
 import SortBtn from '../../button/SortBtn';
 
 import SORT_BY from '@/constants/sortType';
+import { SortOrderType } from '@/types/sortOrderType';
 
-function ModalArrange() {
-	const [activeSorByDateAdded, setActiveSorByDateAdded] = useState<string | null>(null);
-	const [activeSorByDeadLine, setActiveSorByDeadLine] = useState<string | null>(null);
-
-	const handleSortByDateAddedClick = (sortType: string) => {
-		setActiveSorByDateAdded((prev) => (prev === sortType ? null : sortType));
-	};
-
-	const handleSortByDeadLineClick = (sortType: string) => {
-		setActiveSorByDeadLine((prev) => (prev === sortType ? null : sortType));
-	};
-
+interface ModalArrangeProps {
+	sortOrder: SortOrderType;
+	handleSortOrder: (order: SortOrderType) => void;
+}
+function ModalArrange({ sortOrder, handleSortOrder }: ModalArrangeProps) {
 	return (
 		<ModalArrangeLayout onClick={(e) => e.stopPropagation()}>
 			<SortBy>
-				<SortBtn
-					text={SORT_BY.NEWEST}
-					isActive={activeSorByDateAdded === SORT_BY.NEWEST}
-					onClick={() => handleSortByDateAddedClick(SORT_BY.NEWEST)}
-				/>
-				<SortBtn
-					text={SORT_BY.OLDEST}
-					isActive={activeSorByDateAdded === SORT_BY.OLDEST}
-					onClick={() => handleSortByDateAddedClick('오래된 등록순')}
-				/>
+				<SortBtn text={SORT_BY.NEWEST} isActive={sortOrder === 'recent'} onClick={() => handleSortOrder('recent')} />
+				<SortBtn text={SORT_BY.OLDEST} isActive={sortOrder === 'old'} onClick={() => handleSortOrder('old')} />
 			</SortBy>
 			<ModalArrangeLine />
 			<SortBy>
-				<SortBtn
-					text={SORT_BY.CLOSEST}
-					isActive={activeSorByDeadLine === SORT_BY.CLOSEST}
-					onClick={() => handleSortByDeadLineClick(SORT_BY.CLOSEST)}
-				/>
-				<SortBtn
-					text={SORT_BY.FARTHEST}
-					isActive={activeSorByDeadLine === SORT_BY.FARTHEST}
-					onClick={() => handleSortByDeadLineClick(SORT_BY.FARTHEST)}
-				/>
+				<SortBtn text={SORT_BY.CLOSEST} isActive={sortOrder === 'near'} onClick={() => handleSortOrder('near')} />
+				<SortBtn text={SORT_BY.FARTHEST} isActive={sortOrder === 'far'} onClick={() => handleSortOrder('far')} />
 			</SortBy>
 		</ModalArrangeLayout>
 	);

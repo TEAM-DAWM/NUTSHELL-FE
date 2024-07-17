@@ -6,13 +6,16 @@ import TextBtn from '../button/textBtn/TextBtn';
 import ModalArrange from '../modal/ModalArrange/ModalArrange';
 import ModalBackdrop from '../modal/ModalBackdrop';
 
-function StagingAreaSetting() {
-	const [activeButton, setActiveButton] = useState<'전체' | '지연'>('전체');
-	const [isModalOpen, setIsModalOpen] = useState(false);
+import { SortOrderType } from '@/types/sortOrderType';
 
-	const handleTextBtnClick = (button: '전체' | '지연') => {
-		setActiveButton(button);
-	};
+interface StagingAreaSettingProps {
+	handleTextBtnClick: (button: '전체' | '지연') => void;
+	activeButton: '전체' | '지연';
+	sortOrder: SortOrderType;
+	handleSortOrder: (order: SortOrderType) => void;
+}
+function StagingAreaSetting({ handleTextBtnClick, activeButton, sortOrder, handleSortOrder }: StagingAreaSettingProps) {
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const handleArrangeBtnClick = () => {
 		setIsModalOpen((prev) => !prev);
@@ -46,7 +49,7 @@ function StagingAreaSetting() {
 			</TextBtnContainer>
 			<ArrangeContainer>
 				<ArrangeBtn type="set" mode="DEFAULT" color="WHITE" size="small" onClick={handleArrangeBtnClick} />
-				{isModalOpen && <ModalArrange />}
+				{isModalOpen && <ModalArrange sortOrder={sortOrder} handleSortOrder={handleSortOrder} />}
 			</ArrangeContainer>
 			{isModalOpen && <ModalBackdrop onClick={handleCloseModal} />}
 		</StagingAreaSettingLayout>
