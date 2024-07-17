@@ -86,6 +86,7 @@ function DashboardTask({ text }: DashboardTaskProps) {
 						status={task.status}
 						deadLine={task.deadLine}
 						selectedTarget={selectedTarget}
+						preventDoubleClick
 						handleSelectedTarget={handleSelectedTarget}
 						iconType="active"
 					/>
