@@ -8,7 +8,12 @@ import ModalBackdrop from '../common/modal/ModalBackdrop';
 import TextBtn from '@/components/common/button/textBtn/TextBtn';
 import MODAL from '@/constants/modalLocation';
 
-function TargetControlSection() {
+interface TargetControlSectionProps {
+	onClickPrevDate: (day: number) => void;
+	onClickNextDate: (day: number) => void;
+}
+
+function TargetControlSection({ onClickPrevDate, onClickNextDate }: TargetControlSectionProps) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const handleArrangeBtnClick = () => {
@@ -24,8 +29,8 @@ function TargetControlSection() {
 			<TargetControlSectionLayout>
 				<BtnWrapper>
 					<TextBtn text="오늘" size="small" color="BLACK" mode="DEFAULT" isHover isPressed />
-					<ArrangeBtn color="BLACK" mode="DEFAULT" size="small" type="left" />
-					<ArrangeBtn color="BLACK" mode="DEFAULT" size="small" type="right" />
+					<ArrangeBtn color="BLACK" mode="DEFAULT" size="small" type="left" onClick={onClickPrevDate} />
+					<ArrangeBtn color="BLACK" mode="DEFAULT" size="small" type="right" onClick={onClickNextDate} />
 				</BtnWrapper>
 				<ModalLayout>
 					<ArrangeBtn color="WHITE" mode="DEFAULT" size="small" type="calendar" onClick={handleArrangeBtnClick} />

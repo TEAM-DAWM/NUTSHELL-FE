@@ -1,15 +1,14 @@
 import styled from '@emotion/styled';
 
-import getToday from '@/utils/getToday';
+import formatDatetoStrinKor from '@/utils/formatDatetoStringKor';
 
 /** nnnn년 nn월 nn일 */
-function TargetAreaDate() {
-	const { year, month, date } = getToday();
-	return (
-		<DateText>
-			{year}년 {month}월 {date}일
-		</DateText>
-	);
+interface TargetAreaDateProps {
+	targetDate: Date;
+}
+function TargetAreaDate({ targetDate }: TargetAreaDateProps) {
+	const formatDate = formatDatetoStrinKor(targetDate);
+	return <DateText>{formatDate}</DateText>;
 }
 const DateText = styled.h2`
 	${({ theme }) => theme.fontTheme.HEADLINE_02};

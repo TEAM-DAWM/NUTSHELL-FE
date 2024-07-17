@@ -1,24 +1,37 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 
 import TargetAreaDate from './TargetAreaDate';
 import TargetControlSection from './TargetControlSection';
 import TargetTaskSection from './TargetTaskSection';
+
 import { TaskType } from '@/types/tasks/taskType';
+
 interface TargetAreaProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
 }
 function TargetArea({ handleSelectedTarget, selectedTarget }: TargetAreaProps) {
+	const [targetDate, setTargetDate] = useState(new Date());
+
+	const onClickChangeDate = (day: number) => {
+		const newDate = new Date(targetDate);
+		newDate.setDate(newDate.getDate() + day);
+		setTargetDate(newDate);
+	};
+
 	return (
 		<TargetAreaLayout>
 			{/* 날짜 */}
 			<DateWrapper>
-				<TargetAreaDate />
+				<TargetAreaDate targetDate={targetDate} />
 			</DateWrapper>
 
 			{/* 버튼 */}
-			<TargetControlSection />
-
+			<TargetControlSection
+				onClickPrevDate={() => onClickChangeDate(-1)}
+				onClickNextDate={() => onClickChangeDate(1)}
+			/>
 			{/* 태스크 목록 */}
 			<TargetTaskSection handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
 		</TargetAreaLayout>
