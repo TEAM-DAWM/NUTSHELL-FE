@@ -5,9 +5,9 @@ import DashboardTask from '@/components/DashboardPage/DashboardTask';
 function DashboardTaskWrapper() {
 	return (
 		<DashBoardTaskWrapper>
-			<DashboardTask text="upcoming" status="upcoming" />
-			<DashboardTask text="postponed" status="postpone" />
-			<DashboardTask text="inprogress" status="inprogress" />
+			<DashboardTask text="upcoming" />
+			<DashboardTask text="postponed" />
+			<DashboardTask text="inprogress" />
 		</DashBoardTaskWrapper>
 	);
 }

@@ -10,16 +10,15 @@ import { TaskType } from '@/types/tasks/taskType';
 
 const settingImagesMap: Record<string, FunctionComponent<React.SVGProps<SVGSVGElement>>> = {
 	upcoming: Icons.Empty.EmptyTask,
-	postpone: Icons.Empty.EmptyPostpone,
+	postponed: Icons.Empty.EmptyPostpone,
 	inprogress: Icons.Empty.EmptyTask,
 };
 interface DashboardTaskProps {
 	text: 'upcoming' | 'postponed' | 'inprogress';
-	status: 'upcoming' | 'postpone' | 'inprogress';
 }
 
-function DashboardTask({ text, status }: DashboardTaskProps) {
-	const ImageComponent = settingImagesMap[status];
+function DashboardTask({ text }: DashboardTaskProps) {
+	const ImageComponent = settingImagesMap[text];
 	const [selectedTarget, setSelectedTarget] = useState<TaskType | null>(null);
 	const handleSelectedTarget = (task: TaskType | null) => {
 		setSelectedTarget(task);
