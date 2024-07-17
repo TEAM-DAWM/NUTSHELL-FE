@@ -62,11 +62,9 @@ function DashboardTask({ text, taskStatus, emptyStatus, emptyImg }: DashboardTas
 									iconType="active"
 								/>
 							))}
-							<ScrollGradient />
 						</>
 					)
 				)}
-
 				<ScrollGradient />
 			</ScrollArea>
 		</TaskLayout>
