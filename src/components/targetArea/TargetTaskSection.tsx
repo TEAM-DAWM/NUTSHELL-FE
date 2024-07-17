@@ -17,7 +17,7 @@ function TargetTaskSection(props: TargetTaskSectionProps) {
 		<BtnTaskContainer type="target">
 			{tasks.map((task, index) => (
 				<Draggable key={task.id} draggableId={task.id.toString()} index={index}>
-					{(provided) => (
+					{(provided, snapshot) => (
 						<div
 							ref={provided.innerRef}
 							{...provided.draggableProps}
@@ -34,6 +34,7 @@ function TargetTaskSection(props: TargetTaskSectionProps) {
 								id={task.id}
 								handleSelectedTarget={handleSelectedTarget}
 								selectedTarget={selectedTarget}
+								isDragging={snapshot.isDragging}
 							/>
 						</div>
 					)}
