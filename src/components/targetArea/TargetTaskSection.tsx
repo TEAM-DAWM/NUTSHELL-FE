@@ -5,17 +5,17 @@ import BtnTaskContainer from '../common/BtnTaskContainer';
 
 import useGetTasks from '@/apis/tasks/getTask/query';
 import { TaskType } from '@/types/tasks/taskType';
+import formatDatetoLocalDate from '@/utils/formatDatetoLocalDate';
 
 interface TargetTaskSectionProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
-	tasks: TaskType[];
+	selectedDate: Date | null;
 }
 function TargetTaskSection(props: TargetTaskSectionProps) {
-	const { handleSelectedTarget, selectedTarget } = props;
-	const targetDate = '2024-07-17';
+	const { handleSelectedTarget, selectedTarget, selectedDate } = props;
+	const targetDate = formatDatetoLocalDate(selectedDate);
 	const { isFetched, data } = useGetTasks({ targetDate });
-	console.log(data);
 	return (
 		<BtnTaskContainer type="target">
 			{isFetched && (
