@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
 import StagingArea from '@/components/common/StagingArea/StagingArea';
 import TargetArea from '@/components/targetArea/TargetArea';
-import { useState } from 'react';
 import { TaskType } from '@/types/tasks/taskType';
 
 function Today() {
@@ -12,15 +12,13 @@ function Today() {
 		setSelectedTarget(task);
 	};
 	return (
-		<>
-			<TodayLayout>
-				<StagingArea handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
-				<TargetArea handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
-				<CalendarWrapper>
-					<FullCalendarBox size="small" selectedTarget={selectedTarget} />
-				</CalendarWrapper>
-			</TodayLayout>
-		</>
+		<TodayLayout>
+			<StagingArea handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
+			<TargetArea handleSelectedTarget={handleSelectedTarget} selectedTarget={selectedTarget} />
+			<CalendarWrapper>
+				<FullCalendarBox size="small" selectedTarget={selectedTarget} />
+			</CalendarWrapper>
+		</TodayLayout>
 	);
 }
 
