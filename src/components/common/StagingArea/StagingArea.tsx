@@ -4,6 +4,7 @@ import StagingAreaTaskContainer from './StagingAreaTaskContainer';
 
 import TextInputStaging from '@/components/common/textbox/TextInputStaging';
 import { TaskType } from '@/types/tasks/taskType';
+
 interface StagingAreaProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
