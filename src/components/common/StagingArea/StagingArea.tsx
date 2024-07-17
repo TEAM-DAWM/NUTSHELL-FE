@@ -44,6 +44,7 @@ const StagingAreaLayout = styled.div`
 	display: inline-flex;
 	gap: 0.8rem;
 	align-items: center;
+	width: 31.7rem;
 	height: 76.8rem;
 	padding: 0 0.1rem 0 0.7rem;
 
