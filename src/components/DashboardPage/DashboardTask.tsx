@@ -34,13 +34,13 @@ function DashboardTask({ text }: DashboardTaskProps) {
 	let emptyStatus = '';
 	if (text === 'upcoming') {
 		taskStatus = DASHBOARD_TASK_TYPE.UPCOMING;
-		emptyStatus = '아직 할 일이 없어요.';
+		emptyStatus = '아직 할 일이 없어요';
 	} else if (text === 'postponed') {
 		taskStatus = DASHBOARD_TASK_TYPE.POSTPONED;
-		emptyStatus = '아직 지연된 할 일이 없어요.';
+		emptyStatus = '아직 지연된 할 일이 없어요';
 	} else if (text === 'inprogress') {
 		taskStatus = DASHBOARD_TASK_TYPE.INPROGRESS;
-		emptyStatus = '아직 할 일이 없어요.';
+		emptyStatus = '아직 할 일이 없어요';
 	}
 
 	const dummyTaskList: TaskType[] = [
@@ -182,8 +182,24 @@ const ScrollArea = styled.div`
 	box-sizing: border-box;
 	width: 41.7rem;
 	height: 33.9rem;
-	padding: 0 0.7rem;
-	overflow: scroll;
+	padding: 0 0 5rem;
+
+	/* overflow: auto; */
+	overflow-y: scroll;
+
+	::-webkit-scrollbar {
+		width: 0.6rem;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background-color: ${({ theme }) => theme.palette.Grey.Grey6};
+		visibility: hidden;
+		border-radius: 3px;
+	}
+
+	&:hover::-webkit-scrollbar-thumb {
+		visibility: visible;
+	}
 `;
 
 const EmptyWrapper = styled.div`
@@ -192,9 +208,8 @@ const EmptyWrapper = styled.div`
 	gap: 0.4rem;
 	align-items: center;
 	justify-content: center;
-	width: 19rem;
-	height: 21.4rem;
-	margin: 2.8rem 11.35rem 9.8rem;
+	width: 100%;
+	height: 100%;
 `;
 
 const EmptyText = styled.p<{ text: string }>`
