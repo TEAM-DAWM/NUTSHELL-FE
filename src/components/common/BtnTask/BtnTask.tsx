@@ -13,7 +13,6 @@ import { TaskType } from '@/types/tasks/taskType';
 
 interface BtnTaskProps extends TaskType {
 	btnType: 'staging' | 'target' | 'delayed';
-	// onDoubleClick?: (e: React.MouseEvent) => void;
 	preventDoubleClick: boolean;
 }
 
