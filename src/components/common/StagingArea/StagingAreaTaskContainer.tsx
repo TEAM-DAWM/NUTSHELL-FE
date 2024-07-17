@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 
 import BtnTaskContainer from '../BtnTaskContainer';
+import EmptyContainer from '../EmptyContainer';
 import ScrollGradient from '../ScrollGradient';
 
 import useGetTasks from '@/apis/tasks/getTask/query';
@@ -23,7 +24,7 @@ function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget }: Stag
 	const isTotal = activeButton === '전체';
 
 	// Task 목록 Get
-	const { isFetched, data } = useGetTasks({ isTotal, sortOrder });
+	const { data } = useGetTasks({ isTotal, sortOrder });
 
 	/** isTotal 핸들링 함수 */
 	const handleTextBtnClick = (button: '전체' | '지연') => {
@@ -44,7 +45,9 @@ function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget }: Stag
 				handleSortOrder={handleSortOrder}
 			/>
 			<BtnTaskContainer type="staging">
-				{isFetched && (
+				{data.data.tasks.length === 0 ? (
+					<EmptyContainer />
+				) : (
 					<>
 						{data.data.tasks.map((task: TaskType, index: number) => (
 							<Draggable key={task.id} draggableId={task.id.toString()} index={index}>
