@@ -6,7 +6,7 @@ const getTasks = async ({ isTotal, sortOrder, targetDate }: GetTasksType) => {
 	const { data } = await privateInstance.get('/api/tasks', {
 		params: {
 			isTotal,
-			sortOrder,
+			order: sortOrder,
 			targetDate,
 		},
 	});
