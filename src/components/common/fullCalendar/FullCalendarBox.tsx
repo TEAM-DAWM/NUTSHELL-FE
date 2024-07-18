@@ -29,7 +29,8 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 	const today = new Date().toDateString();
 	const [currentView, setCurrentView] = useState('timeGridWeek');
 	const [range, setRange] = useState(7);
-	const [startDate, setStartDate] = useState<string>('');
+	const todayDate = new Date().toISOString().split('T')[0];
+	const [startDate, setStartDate] = useState<string>(todayDate);
 
 	const [isModalOpen, setModalOpen] = useState(false);
 
