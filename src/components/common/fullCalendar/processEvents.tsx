@@ -6,35 +6,28 @@ interface EventData {
 	end: string;
 	allDay?: boolean;
 	classNames: string;
+	extendedProps: {
+		taskId: number;
+		timeBlockId: number | null;
+	};
 }
 
-interface TasksEventData {
-	taskId: number;
-	timeBlockId: number;
-	title: string;
-	start: string;
-	end: string;
-	allDay?: boolean;
-	classNames: string;
-}
-
-const processEvents = (timeBlockData: TimeBlockData): { events: EventData[]; taskEvents: TasksEventData[] } => {
+const processEvents = (timeBlockData: TimeBlockData): EventData[] => {
 	const events: EventData[] = [];
-	const taskEvents: TasksEventData[] = [];
 
 	// tasks 데이터 처리
 	timeBlockData.tasks.forEach((task) => {
 		task.timeBlocks.forEach((timeBlock) => {
-			const taskEvent = {
-				taskId: task.id,
-				timeBlockId: timeBlock.id,
+			events.push({
 				title: task.name,
 				start: timeBlock.startTime,
 				end: timeBlock.endTime,
 				classNames: 'tasks',
-			};
-			events.push(taskEvent);
-			taskEvents.push(taskEvent);
+				extendedProps: {
+					taskId: task.id,
+					timeBlockId: timeBlock.id,
+				},
+			});
 		});
 	});
 
@@ -47,11 +40,15 @@ const processEvents = (timeBlockData: TimeBlockData): { events: EventData[]; tas
 				end: schedule.endTime,
 				allDay: schedule.allDay,
 				classNames: 'schedule',
+				extendedProps: {
+					taskId: -1, // 구글 캘린더 이벤트에는 taskId가 없으므로 -1로 설정
+					timeBlockId: null,
+				},
 			});
 		});
 	});
 
-	return { events, taskEvents };
+	return events;
 };
 
 export default processEvents;
