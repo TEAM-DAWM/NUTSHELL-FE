@@ -1,23 +1,28 @@
 import styled from '@emotion/styled';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import Images from '@/assets/images';
 import GoogleLoginBtn from '@/components/loginPage/GoogleLoginBtn';
 
 function Login() {
+	const LOGIN_CLIENT_ID = import.meta.env.VITE_GOOGLE_LOGIN_CLIENT_ID;
+
 	return (
-		<LoginLayout>
-			<LeftSection>
-				<LogoTitleImg src={Images.titleIcon} />
-				<LoginBtn>
-					<GoogleLoginBtn />
-					<SignDescription>
-						가입하면 자동으로 <a href="https://github.com/TEAM-DAWM/NUTSHELL-FE/pull/146">개인정보보호정책</a>과{' '}
-						<a href="https://github.com/TEAM-DAWM/NUTSHELL-FE">이용약관</a>에 동의한 것으로 간주됩니다.
-					</SignDescription>
-				</LoginBtn>
-			</LeftSection>
-			<LoginImg src={Images.BG.loginBg} />
-		</LoginLayout>
+		<GoogleOAuthProvider clientId={LOGIN_CLIENT_ID}>
+			<LoginLayout>
+				<LeftSection>
+					<LogoTitleImg src={Images.titleIcon} />
+					<LoginBtn>
+						<GoogleLoginBtn />
+						<SignDescription>
+							가입하면 자동으로 <a href="https://github.com/TEAM-DAWM/NUTSHELL-FE/pull/146">개인정보보호정책</a>과{' '}
+							<a href="https://github.com/TEAM-DAWM/NUTSHELL-FE">이용약관</a>에 동의한 것으로 간주됩니다.
+						</SignDescription>
+					</LoginBtn>
+				</LeftSection>
+				<LoginImg src={Images.BG.loginBg} />
+			</LoginLayout>
+		</GoogleOAuthProvider>
 	);
 }
 
