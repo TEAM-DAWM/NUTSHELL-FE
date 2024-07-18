@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { UserData } from '@/apis/user/userInfoType';
 
 interface ProfileAreaProps {
-	userData: UserData | undefined;
+	userData: UserData;
 }
 
 function ProfileArea({ userData }: ProfileAreaProps) {
@@ -11,12 +11,12 @@ function ProfileArea({ userData }: ProfileAreaProps) {
 		<ProfileAreaLayout>
 			<ProfileText>프로필</ProfileText>
 			<ProfileWrapper>
-				<ProfileImg src={userData?.image} alt="프로필" />
+				<ProfileImg src={userData.image} alt="프로필" />
 				<ProfileTextBox>
 					<LastName>
-						{userData?.familyName} {userData?.givenName}
+						{userData.familyName} {userData.givenName}
 					</LastName>
-					<EmailText>{userData?.email}</EmailText>
+					<EmailText>{userData.email}</EmailText>
 				</ProfileTextBox>
 			</ProfileWrapper>
 		</ProfileAreaLayout>

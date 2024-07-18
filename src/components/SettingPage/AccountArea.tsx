@@ -5,7 +5,7 @@ import AccountDeleteBtn from '@/components/SettingPage/AccountDeleteBtn';
 import GoogleCalendarBtn from '@/components/SettingPage/GoogleCalendarBtn';
 
 interface AccountAreaProps {
-	calendarAccount: GoogleCalendar[] | undefined;
+	calendarAccount: GoogleCalendar[];
 }
 
 function AccountArea({ calendarAccount }: AccountAreaProps) {

@@ -9,13 +9,16 @@ import ProfileArea from '@/components/SettingPage/ProfileArea';
 function Setting() {
 	const CALENDAR_CLIENT_ID = import.meta.env.VITE_GOOGLE_CALENDAR_CLIENT_ID;
 	const { data: userInfo } = useGetUserInfo();
+	if (!userInfo || !userInfo.data) {
+		return null;
+	}
 
 	return (
 		<GoogleOAuthProvider clientId={CALENDAR_CLIENT_ID}>
 			<SettingContainer>
 				<Wrapper>
-					<ProfileArea userData={userInfo?.data} />
-					<AccountArea calendarAccount={userInfo?.data.googleCalenders} />
+					<ProfileArea userData={userInfo.data} />
+					<AccountArea calendarAccount={userInfo.data.googleCalenders} />
 				</Wrapper>
 				<LogOutBtn />
 			</SettingContainer>
