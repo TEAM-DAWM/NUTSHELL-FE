@@ -18,8 +18,6 @@ import FullCalendarLayout from '@/components/common/fullCalendar/FullCalendarSty
 import { customDayCellContent, customSlotLabelContent } from '@/components/common/fullCalendar/fullCalendarUtils';
 import MODAL from '@/constants/modalLocation';
 import { TaskType } from '@/types/tasks/taskType';
-import getStartDayOfMonth from '@/utils/getStartDayOfMonth';
-import getStartDayOfWeek from '@/utils/getStartDayOfWeek';
 
 interface FullCalendarBoxProps {
 	size: 'small' | 'big';
@@ -31,6 +29,7 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 	const today = new Date().toDateString();
 	const [currentView, setCurrentView] = useState('timeGridWeek');
 	const [range, setRange] = useState(7);
+	const [startDate, setStartDate] = useState<string>('');
 
 	const [isModalOpen, setModalOpen] = useState(false);
 
@@ -41,7 +40,13 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 
 	const handleDatesSet = (dateInfo: DatesSetArg) => {
 		setCurrentView(dateInfo.view.type);
-		updateRange(dateInfo.view.type);
+		const currentViewType = dateInfo.view.type;
+		const newStartDate = new Date(dateInfo.start);
+		newStartDate.setDate(newStartDate.getDate() + 1);
+		const formattedStartDate = newStartDate.toISOString().split('T')[0];
+
+		setStartDate(formattedStartDate);
+		updateRange(currentViewType);
 	};
 
 	const updateRange = (viewType: string) => {
@@ -84,13 +89,6 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 	const closeModal = () => {
 		setModalOpen(false);
 	};
-
-	const day = new Date();
-
-	const startDate = getStartDayOfWeek(day);
-
-	console.log('today', today);
-	console.log('month', getStartDayOfMonth(day));
 
 	// Get timeblock
 	const { data: timeBlockData } = useGetTimeBlock({ startDate, range });
