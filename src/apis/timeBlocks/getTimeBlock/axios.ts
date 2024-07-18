@@ -10,6 +10,7 @@ const getTimeBlock = async ({ startDate, range, categories }: GetTimeBlokType) =
 			categories,
 		},
 	});
+	console.log('startDate, range', startDate, range);
 	return response;
 };
 

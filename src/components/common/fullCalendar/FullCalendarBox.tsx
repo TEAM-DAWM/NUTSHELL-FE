@@ -18,6 +18,7 @@ import FullCalendarLayout from '@/components/common/fullCalendar/FullCalendarSty
 import { customDayCellContent, customSlotLabelContent } from '@/components/common/fullCalendar/fullCalendarUtils';
 import MODAL from '@/constants/modalLocation';
 import { TaskType } from '@/types/tasks/taskType';
+import getStartDayOfMonth from '@/utils/getStartDayOfMonth';
 import getStartDayOfWeek from '@/utils/getStartDayOfWeek';
 
 interface FullCalendarBoxProps {
@@ -87,6 +88,9 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 	const day = new Date();
 
 	const startDate = getStartDayOfWeek(day);
+
+	console.log('today', today);
+	console.log('month', getStartDayOfMonth(day));
 
 	// Get timeblock
 	const { data: timeBlockData } = useGetTimeBlock({ startDate, range });
