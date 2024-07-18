@@ -8,7 +8,6 @@ const taskDescription = async ({ taskId, targetDate }: TaskDescriptionType) => {
 			targetDate,
 		},
 	});
-	console.log(data);
 	return data;
 };
 

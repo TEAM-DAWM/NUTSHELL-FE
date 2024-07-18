@@ -25,9 +25,10 @@ interface FullCalendarBoxProps {
 	size: 'small' | 'big';
 	selectDate?: Date | null;
 	selectedTarget?: TaskType | null;
+	targetDate: string | null;
 }
 
-function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxProps) {
+function FullCalendarBox({ size, selectDate, selectedTarget, targetDate }: FullCalendarBoxProps) {
 	const today = new Date().toDateString();
 	const todayDate = new Date().toISOString().split('T')[0];
 	const [currentView, setCurrentView] = useState('timeGridWeek');
@@ -224,7 +225,12 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 					top={top}
 					left={left}
 					onClose={closeModal}
+<<<<<<< HEAD
 					taskId={5} // 예시 taskId, 실제 데이터로 교체 필요
+=======
+					taskId={5}
+					targetDate={targetDate}
+>>>>>>> 0ec9b61 (feat: time block 모달 상세 구현)
 				/>
 			)}
 		</FullCalendarLayout>
