@@ -1,11 +1,9 @@
 import styled from '@emotion/styled';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import useGetTasks from '@/apis/tasks/getTask/query';
-import updateTaskStatus from '@/apis/tasks/updateTaskStatus/axios';
-import { UpdateTaskStatusType } from '@/apis/tasks/updateTaskStatus/UpdateTaskStatusType';
+import useUpdateTaskStatus from '@/apis/tasks/updateTaskStatus/query';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
 import NavBar from '@/components/common/NavBar';
 import StagingArea from '@/components/common/StagingArea/StagingArea';
@@ -18,12 +16,14 @@ function Today() {
 	const [selectedTarget, setSelectedTarget] = useState<TaskType | null>(null);
 	const [activeButton, setActiveButton] = useState<'전체' | '지연'>('전체');
 	const [sortOrder, setSortOrder] = useState<SortOrderType>('recent');
-	const isTotal = activeButton === '전체';
 	const [selectedDate, setTargetDate] = useState(new Date());
+	const isTotal = activeButton === '전체';
+	const targetDate = formatDatetoLocalDate(selectedDate);
 
 	// Task 목록 Get
-	/** StagingArea */
 	const { data: stagingData } = useGetTasks({ isTotal, sortOrder });
+	const { data: targetData } = useGetTasks({ targetDate });
+	const { mutate, queryClient } = useUpdateTaskStatus();
 
 	/** isTotal 핸들링 함수 */
 	const handleTextBtnClick = (button: '전체' | '지연') => {
@@ -57,18 +57,6 @@ function Today() {
 	const handleChangeDate = (target: Date) => {
 		setTargetDate(target);
 	};
-
-	const targetDate = formatDatetoLocalDate(selectedDate);
-
-	/** TargetArea */
-	const { data: targetData } = useGetTasks({ targetDate });
-
-	const queryClient = useQueryClient();
-
-	const { mutate } = useMutation({
-		mutationFn: (updateData: UpdateTaskStatusType) => updateTaskStatus(updateData),
-		onSuccess: () => queryClient.invalidateQueries({ queryKey: ['today'] }),
-	});
 
 	const handleDragEnd = (result: DropResult) => {
 		const { source, destination } = result;
