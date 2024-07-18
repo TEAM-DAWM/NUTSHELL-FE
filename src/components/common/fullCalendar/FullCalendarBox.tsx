@@ -9,6 +9,9 @@ import { useState, useRef, useEffect } from 'react';
 
 import Modal from '../modal/Modal';
 
+import processEvents from './processEvents';
+
+import useGetTimeBlock from '@/apis/timeBlocks/getTimeBlock/query';
 import RefreshBtn from '@/components/common/button/RefreshBtn';
 import DayHeaderContent from '@/components/common/fullCalendar/DayHeaderContent';
 import FullCalendarLayout from '@/components/common/fullCalendar/FullCalendarStyle';
@@ -25,15 +28,42 @@ interface FullCalendarBoxProps {
 function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxProps) {
 	const today = new Date().toDateString();
 	const [currentView, setCurrentView] = useState('timeGridWeek');
+	const [range, setRange] = useState(7);
+	const todayDate = new Date().toISOString().split('T')[0];
+	const [startDate, setStartDate] = useState<string>(todayDate);
 
 	const [isModalOpen, setModalOpen] = useState(false);
 
 	const handleViewChange = (view: ViewMountArg) => {
 		setCurrentView(view.view.type);
+		updateRange(view.view.type);
 	};
 
 	const handleDatesSet = (dateInfo: DatesSetArg) => {
 		setCurrentView(dateInfo.view.type);
+		const currentViewType = dateInfo.view.type;
+		const newStartDate = new Date(dateInfo.start);
+		newStartDate.setDate(newStartDate.getDate() + 1);
+		const formattedStartDate = newStartDate.toISOString().split('T')[0];
+
+		setStartDate(formattedStartDate);
+		updateRange(currentViewType);
+	};
+
+	const updateRange = (viewType: string) => {
+		switch (viewType) {
+			case 'dayGridMonth':
+				setRange(30);
+				break;
+			case 'timeGridWeek':
+				setRange(7);
+				break;
+			case 'timeGridDay':
+				setRange(1);
+				break;
+			default:
+				setRange(7);
+		}
 	};
 
 	const calendarRef = useRef<FullCalendar>(null);
@@ -61,28 +91,11 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 		setModalOpen(false);
 	};
 
-	const calendarEvents = [
-		{ title: 'Meeting', start: '2024-07-16T10:00:00', end: '2024-07-06T12:00:00', classNames: 'tasks' },
-		{ title: 'Lunch', start: '2024-07-07T12:00:00', end: '2024-07-07T12:45:00', classNames: 'tasks' },
-		{ title: 'Lunch', start: '2024-07-08T12:00:00', end: '2024-07-08T12:30:00', classNames: 'tasks' },
-		{
-			title: 'All Day Event',
-			start: '2024-07-08T10:00:00',
-			end: '2024-07-08T12:00:00',
-			allDay: true,
-			classNames: 'task',
-		},
-		{ title: 'Meeting', start: '2024-07-15T10:00:00', end: '2024-07-11T12:00:00', classNames: 'schedule' },
-		{ title: 'Lunch', start: '2024-07-12T12:00:00', end: '2024-07-12T12:45:00', classNames: 'schedule' },
-		{ title: 'Lunch', start: '2024-07-11T12:00:00', end: '2024-07-11T12:30:00', classNames: 'schedule' },
-		{
-			title: 'All Day Event',
-			start: '2024-07-12T10:00:00',
-			end: '2024-07-12T12:00:00',
-			allDay: true,
-			classNames: 'schedule',
-		},
-	];
+	// Get timeblock
+	const { data: timeBlockData } = useGetTimeBlock({ startDate, range });
+	console.log('timeBlockData.data.data', timeBlockData?.data.data);
+
+	const calendarEvents = timeBlockData ? processEvents(timeBlockData.data.data) : [];
 
 	/** 드래그해서 이벤트 추가하기 */
 	const addEventWhenDragged = (selectInfo: DateSelectArg) => {
@@ -104,8 +117,7 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 				start: selectInfo.startStr,
 				end: selectInfo.endStr,
 				allDay: selectInfo.allDay,
-				// 구글캘린더 여부에 따라 수정하면 될듯?
-				classNames: 'new-event',
+				classNames: 'tasks',
 			});
 		}
 	};
