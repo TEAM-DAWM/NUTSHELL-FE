@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import Images from '@/assets/images/index';
 import Icons from '@/assets/svg/index';
 import DashboardTaskWrapper from '@/components/DashboardPage/DashboardTaskWrapper';
 import DateArea from '@/components/DashboardPage/DateArea';
@@ -16,7 +17,7 @@ function DashBoard() {
 			data: PERIOD.data.completeTasks,
 			unit: '개',
 			icon: Icons.Dashboard_Complete,
-			imagePate: 'src/assets/images/Dashboard_Complete.png',
+			imagePate: Images.DASHBOARD.upcoming,
 		},
 		{
 			name: 'postponed',
@@ -24,7 +25,7 @@ function DashBoard() {
 			data: PERIOD.data.avgDeferredRate,
 			unit: '%',
 			icon: Icons.DashboardPostpone,
-			imagePate: 'src/assets/images/Dashboard_Postpone.png',
+			imagePate: Images.DASHBOARD.postpone,
 		},
 		{
 			name: 'inprogress',
@@ -32,7 +33,7 @@ function DashBoard() {
 			data: PERIOD.data.avgInprogressTasks,
 			unit: '개',
 			icon: Icons.DashboardProgress,
-			imagePate: 'src/assets/images/Dashboard_Progress.png',
+			imagePate: Images.DASHBOARD.inprogress,
 		},
 	];
 	const today = new Date();
@@ -112,7 +113,8 @@ const TaskSummaryWrapper = styled.div`
 	gap: 1rem;
 	align-items: center;
 	align-self: stretch;
+	box-sizing: border-box;
 	width: 100%;
 	height: 21.4rem;
-	padding: 0 0 2.8rem 0.7rem;
+	padding: 0.4rem 0 2.8rem 0.7rem;
 `;
