@@ -4,12 +4,12 @@ import getCalendarCategory from '@/apis/categoryList/axios';
 import { CategoryResponse } from '@/apis/categoryList/categoryResponse';
 
 const useGetCategory = () => {
-	const { data, isFetched } = useQuery<CategoryResponse[]>({
+	const { data, isLoading } = useQuery<CategoryResponse[]>({
 		queryKey: ['category'],
 		queryFn: () => getCalendarCategory(),
 	});
 
-	return { data, isFetched };
+	return { data, isLoading };
 };
 
 export default useGetCategory;

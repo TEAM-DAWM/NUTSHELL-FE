@@ -6,6 +6,7 @@ import useGetCategory from '@/apis/categoryList/query';
 import CategoryBox from '@/components/calendarPage/CategoryBox';
 import MiniCalendar from '@/components/calendarPage/miniCalendar/MiniCalendar';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
+import LoadingSpinner from '@/components/common/spinner/Spinner';
 
 function Calendar() {
 	const today = new Date();
@@ -14,15 +15,16 @@ function Calendar() {
 	const onClickDate = (date: Date | null) => {
 		setSelectDate(date);
 	};
-	const { data, isFetched } = useGetCategory();
-	console.log(data);
+	const { data, isLoading } = useGetCategory();
+	if (isLoading) {
+		return <LoadingSpinner />;
+	}
 
 	return (
 		<CalendarLayout>
 			<LeftSection>
 				<MiniCalendar selectDate={selectDate} onClickDate={onClickDate} />
-				{isFetched &&
-					data &&
+				{data &&
 					data.map((category: CategoryResponse) => (
 						<CategoryBox key={category.email} email={category.email} categoryList={category.categories} />
 					))}
