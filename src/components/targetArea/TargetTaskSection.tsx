@@ -5,28 +5,25 @@ import BtnTask from '../common/BtnTask/BtnTask';
 import BtnTaskContainer from '../common/BtnTaskContainer';
 import EmptyContainer from '../common/EmptyContainer';
 
-import useGetTasks from '@/apis/tasks/getTask/query';
 import { TaskType } from '@/types/tasks/taskType';
-import formatDatetoLocalDate from '@/utils/formatDatetoLocalDate';
 
 interface TargetTaskSectionProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
-	selectedDate: Date | null;
+	tasks: TaskType[];
 }
 function TargetTaskSection(props: TargetTaskSectionProps) {
-	const { handleSelectedTarget, selectedTarget, selectedDate } = props;
-	const targetDate = formatDatetoLocalDate(selectedDate);
-	const { data } = useGetTasks({ targetDate });
+	const { handleSelectedTarget, selectedTarget, tasks } = props;
+
 	return (
 		<BtnTaskContainer type="target">
-			{data.data.tasks.length === 0 ? (
+			{tasks.length === 0 ? (
 				<EmptyLayout>
 					<EmptyContainer />
 				</EmptyLayout>
 			) : (
 				<>
-					{data.data.tasks.map((task: TaskType, index: number) => (
+					{tasks.map((task: TaskType, index: number) => (
 						<Draggable key={task.id} draggableId={task.id.toString()} index={index}>
 							{(provided, snapshot) => (
 								<div

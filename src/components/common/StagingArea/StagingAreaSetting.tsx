@@ -6,14 +6,8 @@ import TextBtn from '../button/textBtn/TextBtn';
 import ModalArrange from '../modal/ModalArrange/ModalArrange';
 import ModalBackdrop from '../modal/ModalBackdrop';
 
-import { SortOrderType } from '@/types/sortOrderType';
+import { StagingAreaSettingProps } from '@/types/today/stagingAreaSettingProps';
 
-interface StagingAreaSettingProps {
-	handleTextBtnClick: (button: '전체' | '지연') => void;
-	activeButton: '전체' | '지연';
-	sortOrder: SortOrderType;
-	handleSortOrder: (order: SortOrderType) => void;
-}
 function StagingAreaSetting({ handleTextBtnClick, activeButton, sortOrder, handleSortOrder }: StagingAreaSettingProps) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 

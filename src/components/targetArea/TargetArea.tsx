@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 
 import TargetAreaDate from './TargetAreaDate';
@@ -7,36 +6,24 @@ import TargetControlSection from './TargetControlSection';
 import TargetTaskSection from './TargetTaskSection';
 
 import { TaskType } from '@/types/tasks/taskType';
+import { TargetControlSectionProps } from '@/types/today/TargetControlSectionProps';
 
-interface TargetAreaProps {
+interface TargetAreaProps extends TargetControlSectionProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
 	tasks: TaskType[];
 }
 
-function TargetArea({ handleSelectedTarget, selectedTarget }: TargetAreaProps) {
-	const [targetDate, setTargetDate] = useState(new Date());
-
-	const handlePrevBtn = () => {
-		const newDate = new Date(targetDate);
-		newDate.setDate(newDate.getDate() - 1);
-		setTargetDate(newDate);
-	};
-
-	const handleNextBtn = () => {
-		const newDate = new Date(targetDate);
-		newDate.setDate(newDate.getDate() + 1);
-		setTargetDate(newDate);
-	};
-
-	const handleTodayBtn = () => {
-		setTargetDate(new Date());
-	};
-
-	const handleChangeDate = (target: Date) => {
-		setTargetDate(target);
-	};
-
+function TargetArea({
+	handleSelectedTarget,
+	selectedTarget,
+	tasks,
+	onClickPrevDate,
+	onClickNextDate,
+	onClickTodayDate,
+	onClickDatePicker,
+	targetDate,
+}: TargetAreaProps) {
 	return (
 		<TargetAreaLayout>
 			{/* 날짜 */}
@@ -46,10 +33,10 @@ function TargetArea({ handleSelectedTarget, selectedTarget }: TargetAreaProps) {
 
 			{/* 버튼 */}
 			<TargetControlSection
-				onClickPrevDate={handlePrevBtn}
-				onClickNextDate={handleNextBtn}
-				onClickTodayDate={handleTodayBtn}
-				onClickDatePicker={handleChangeDate}
+				onClickPrevDate={onClickPrevDate}
+				onClickNextDate={onClickNextDate}
+				onClickTodayDate={onClickTodayDate}
+				onClickDatePicker={onClickDatePicker}
 				targetDate={targetDate}
 			/>
 			{/* 태스크 목록 */}
@@ -59,7 +46,7 @@ function TargetArea({ handleSelectedTarget, selectedTarget }: TargetAreaProps) {
 						<TargetTaskSection
 							handleSelectedTarget={handleSelectedTarget}
 							selectedTarget={selectedTarget}
-							selectedDate={targetDate}
+							tasks={tasks}
 						/>
 						{provided.placeholder}
 					</div>
