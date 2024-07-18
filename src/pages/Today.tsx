@@ -23,7 +23,9 @@ function Today() {
 	// Task 목록 Get
 	const { data: stagingData, isError: isStagingError } = useGetTasks({ isTotal, sortOrder });
 	const { data: targetData, isError: isTargetError } = useGetTasks({ targetDate });
-	const { mutate } = useUpdateTaskStatus();
+	const { mutate, queryClient } = useUpdateTaskStatus();
+
+	console.log('targetData', targetData);
 
 	/** isTotal 핸들링 함수 */
 	const handleTextBtnClick = (button: '전체' | '지연') => {
@@ -72,6 +74,19 @@ function Today() {
 		// 드래그된 항목을 sourceTasks에서 제거하고 destinationTasks에 추가
 		const [movedTask] = sourceTasks.splice(source.index, 1);
 		destinationTasks.splice(destination.index, 0, movedTask);
+
+		// 상태 업데이트
+		if (source.droppableId === 'target') {
+			queryClient.setQueryData(['tasks'], {
+				target: { ...targetData, data: { ...targetData.data, tasks: sourceTasks } },
+				staging: { ...stagingData, data: { ...stagingData.data, tasks: destinationTasks } },
+			});
+		} else {
+			queryClient.setQueryData(['tasks'], {
+				target: { ...targetData, data: { ...targetData.data, tasks: destinationTasks } },
+				staging: { ...stagingData, data: { ...stagingData.data, tasks: sourceTasks } },
+			});
+		}
 
 		// API 호출
 		if (destination.droppableId === 'target') {

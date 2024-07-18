@@ -7,7 +7,7 @@ const usePostTimeBlock = () => {
 	const queryClient = useQueryClient();
 
 	const mutation = useMutation({
-		mutationFn: ({ taskId, startDate, endDate }: PostTimeBlokType) => CreateTimeBlock({ taskId, startDate, endDate }),
+		mutationFn: ({ taskId, startTime, endTime }: PostTimeBlokType) => CreateTimeBlock({ taskId, startTime, endTime }),
 		onSuccess: () => queryClient.invalidateQueries({ queryKey: ['timeblock'] }),
 	});
 
