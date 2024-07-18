@@ -12,12 +12,13 @@ function MainLayout() {
 	);
 }
 const MainLayOutContainer = styled.div`
-	box-sizing: border-box;
+	position: relative;
 	width: 136.6rem;
 	height: 76.8rem;
 	padding-left: 7.2rem;
 
-	border: 1px solid ${({ theme }) => theme.palette.Orange.Orange5};
+	background-color: ${({ theme }) => theme.palette.Grey.White};
+	border-radius: 8px;
 `;
 
 export default MainLayout;

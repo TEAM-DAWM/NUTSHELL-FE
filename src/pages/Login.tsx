@@ -27,10 +27,14 @@ function Login() {
 }
 
 const LoginLayout = styled.div`
+	position: relative;
 	display: flex;
 	justify-content: space-between;
-	width: 100vw;
-	height: 100vh;
+	width: 136.6rem;
+	height: 76.8rem;
+
+	background-color: ${({ theme }) => theme.palette.Grey.White};
+	border-radius: 8px;
 `;
 
 const LeftSection = styled.section`
@@ -46,6 +50,8 @@ const LeftSection = styled.section`
 const LoginImg = styled.img`
 	width: 50%;
 	height: 100%;
+
+	border-radius: 0 8px 8px 0;
 `;
 
 const LogoTitleImg = styled.img`

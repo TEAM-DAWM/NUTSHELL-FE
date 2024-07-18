@@ -1,7 +1,12 @@
+import BackGroundLayout from './components/common/BackGroundLayout';
 import Router from './router/Router';
 
 function App() {
-	return <Router />;
+	return (
+		<BackGroundLayout>
+			<Router />
+		</BackGroundLayout>
+	);
 }
 
 export default App;
