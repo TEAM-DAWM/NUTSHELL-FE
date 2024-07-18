@@ -78,7 +78,7 @@ function DateCorrectionModal({
 							currentTime={currentTime}
 						/>
 					)}
-					<TextBtn text="닫기" color="BLACK" size="small" mode="DEFAULT" isHover isPressed onClick={onSave} />
+					<TextBtn text="확인" color="BLACK" size="small" mode="DEFAULT" isHover isPressed onClick={onSave} />
 				</BottomBtnWrapper>
 			</DatePicker>
 		</DateCorrectionModalLayout>
