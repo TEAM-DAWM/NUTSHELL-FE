@@ -5,11 +5,12 @@ import Icons from '@/assets/svg/index';
 
 interface EnterBtnProps {
 	isDisabled?: boolean;
+	onClick?: () => void;
 }
 
-function EnterBtn({ isDisabled = false }: EnterBtnProps) {
+function EnterBtn({ isDisabled = false, onClick }: EnterBtnProps) {
 	return (
-		<EnterBtnLayout isDisabled={isDisabled} disabled={isDisabled}>
+		<EnterBtnLayout isDisabled={isDisabled} disabled={isDisabled} onClick={onClick}>
 			<StyledIcon />
 		</EnterBtnLayout>
 	);
