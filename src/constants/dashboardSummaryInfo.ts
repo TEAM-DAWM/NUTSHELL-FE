@@ -1,3 +1,4 @@
+import Images from '@/assets/images/index';
 import Icons from '@/assets/svg/index';
 
 const SUMMARY_INFO = [
@@ -7,7 +8,7 @@ const SUMMARY_INFO = [
 		data: 0,
 		unit: '개',
 		icon: Icons.Dashboard_Complete,
-		imagePate: 'src/assets/images/Dashboard_Complete.png',
+		imagePate: Images.DASHBOARD.upcoming,
 	},
 	{
 		name: 'avgDeferredRate',
@@ -15,7 +16,7 @@ const SUMMARY_INFO = [
 		data: 0,
 		unit: '%',
 		icon: Icons.DashboardPostpone,
-		imagePate: 'src/assets/images/Dashboard_Postpone.png',
+		imagePate: Images.DASHBOARD.postpone,
 	},
 	{
 		name: 'avgInprogressTasks',
@@ -23,7 +24,7 @@ const SUMMARY_INFO = [
 		data: 0,
 		unit: '개',
 		icon: Icons.DashboardProgress,
-		imagePate: 'src/assets/images/Dashboard_Progress.png',
+		imagePate: Images.DASHBOARD.inprogress,
 	},
 ];
 
