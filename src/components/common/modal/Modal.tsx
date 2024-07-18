@@ -16,8 +16,8 @@ interface ModalProps {
 	top: number;
 	left: number;
 	onClose: () => void;
-	taskId: number;
-	timeBlockId: number;
+	taskId?: number;
+	timeBlockId?: number;
 }
 
 function Modal({ isOpen, sizeType, top, left, onClose, taskId, timeBlockId }: ModalProps) {
@@ -41,7 +41,12 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, timeBlockId }: Mo
 
 	const handleDelete = () => {
 		console.log('taskId, timeBlockId', taskId, timeBlockId);
-		mutate({ taskId, timeBlockId });
+
+		if (taskId && timeBlockId) {
+			mutate({ taskId, timeBlockId });
+		} else {
+			console.error('taskId 또는 timeBlockId가 존재하지 않습니다.');
+		}
 
 		onClose();
 	};
