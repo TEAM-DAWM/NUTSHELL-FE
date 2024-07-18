@@ -1,9 +1,9 @@
-import axios from 'axios';
-
 import { UpdateTaskStatusType } from './UpdateTaskStatusType';
 
+import { privateInstance } from '@/apis/instance';
+
 const updateTaskStatus = async ({ taskId, targetDate, status }: UpdateTaskStatusType) => {
-	await axios.patch(`/api/tasks/${taskId}`, {
+	await privateInstance.patch(`/api/tasks/${taskId}/status`, {
 		targetDate,
 		status,
 	});
