@@ -22,9 +22,8 @@ interface ModalProps {
 	timeBlockId?: number;
 	targetDate?: string | null;
 }
-
 function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate, timeBlockId }: ModalProps) {
-	const { data } = useTaskDescription({
+	const { data, isFetched } = useTaskDescription({
 		taskId,
 		targetDate, // : formatDatetoLocalDate(targetDate)//
 		isOpen,
@@ -59,26 +58,24 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate, timeB
 
 		onClose();
 	};
-
+	if (!isOpen || !isFetched) return null;
 	return (
-		isOpen && (
-			<ModalBackdrop onClick={onClose}>
-				<ModalLayout type={sizeType.type} top={top} left={left} onClick={(e) => e.stopPropagation()}>
-					<ModalHeader>
-						<BtnDate date={data.data.deadLine.date} time={data.data.deadLine.time} />
-						<ModalHeaderBtn type={sizeType.type} onDelete={handleDelete} />
-					</ModalHeader>
-					<ModalBody>
-						<TextInputBox type={sizeType.type} name={data.data.name} desc={data.data.description} />
-						{sizeType.type === 'long' && <ModalTextInputTime />}
-					</ModalBody>
-					<ModalFooter>
-						<OkayCancelBtn type="cancel" onClick={onClose} />
-						<OkayCancelBtn type="okay" onClick={onClose} />
-					</ModalFooter>
-				</ModalLayout>
-			</ModalBackdrop>
-		)
+		<ModalBackdrop onClick={onClose}>
+			<ModalLayout type={sizeType.type} top={top} left={left} onClick={(e) => e.stopPropagation()}>
+				<ModalHeader>
+					<BtnDate date={data.data.deadLine.date} time={data.data.deadLine.time} />
+					<ModalHeaderBtn type={sizeType.type} onDelete={handleDelete} />
+				</ModalHeader>
+				<ModalBody>
+					<TextInputBox type={sizeType.type} name={data.data.name} desc={data.data.description} />
+					{sizeType.type === 'long' && <ModalTextInputTime />}
+				</ModalBody>
+				<ModalFooter>
+					<OkayCancelBtn type="cancel" onClick={onClose} />
+					<OkayCancelBtn type="okay" onClick={onClose} />
+				</ModalFooter>
+			</ModalLayout>
+		</ModalBackdrop>
 	);
 }
 
