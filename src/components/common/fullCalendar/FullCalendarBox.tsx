@@ -12,6 +12,7 @@ import Modal from '../modal/Modal';
 import processEvents from './processEvents';
 
 import useGetTimeBlock from '@/apis/timeBlocks/getTimeBlock/query';
+import usePostTimeBlock from '@/apis/timeBlocks/postTimeBlock/query';
 import RefreshBtn from '@/components/common/button/RefreshBtn';
 import DayHeaderContent from '@/components/common/fullCalendar/DayHeaderContent';
 import FullCalendarLayout from '@/components/common/fullCalendar/FullCalendarStyle';
@@ -95,6 +96,8 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 	const { data: timeBlockData } = useGetTimeBlock({ startDate, range });
 	console.log('timeBlockData.data.data', timeBlockData?.data.data);
 
+	const { mutate } = usePostTimeBlock();
+
 	const calendarEvents = timeBlockData ? processEvents(timeBlockData.data.data) : [];
 
 	/** 드래그해서 이벤트 추가하기 */
@@ -119,6 +122,19 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 				allDay: selectInfo.allDay,
 				classNames: 'tasks',
 			});
+
+			// console.log('selectedTarget.name,', selectedTarget.name);
+
+			const removeTimezone = (str: string) => str.replace(/:\d{2}[+-]\d{2}:\d{2}$/, '');
+
+			const startStr = removeTimezone(selectInfo.startStr);
+			const endStr = removeTimezone(selectInfo.endStr);
+
+			// console.log('selectedTarget.id.toString(),', selectedTarget.id.toString());
+			// console.log('startStr:', startStr);
+			// console.log('endStr:', endStr);
+
+			mutate({ taskId: selectedTarget.id, startTime: startStr, endTime: endStr });
 		}
 	};
 	return (

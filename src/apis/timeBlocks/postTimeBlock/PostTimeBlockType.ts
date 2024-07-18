@@ -1,5 +1,5 @@
 export interface PostTimeBlokType {
 	taskId: number;
-	startDate: string;
-	endDate: string;
+	startTime: string;
+	endTime: string;
 }
