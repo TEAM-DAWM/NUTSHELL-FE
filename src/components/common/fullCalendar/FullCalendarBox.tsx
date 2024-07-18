@@ -11,36 +11,53 @@ import Modal from '../modal/Modal';
 
 import processEvents from './processEvents';
 
-import { TimeBlockData } from '@/apis/timeBlocks/getTimeBlock/GetTimeBlock';
+import useGetTimeBlock from '@/apis/timeBlocks/getTimeBlock/query';
+import usePostTimeBlock from '@/apis/timeBlocks/postTimeBlock/query';
 import RefreshBtn from '@/components/common/button/RefreshBtn';
 import DayHeaderContent from '@/components/common/fullCalendar/DayHeaderContent';
 import FullCalendarLayout from '@/components/common/fullCalendar/FullCalendarStyle';
 import { customDayCellContent, customSlotLabelContent } from '@/components/common/fullCalendar/fullCalendarUtils';
 import MODAL from '@/constants/modalLocation';
 import { TaskType } from '@/types/tasks/taskType';
+import getStartDayOfWeek from '@/utils/getStartDayOfWeek';
 
 interface FullCalendarBoxProps {
 	size: 'small' | 'big';
 	selectDate?: Date | null;
 	selectedTarget?: TaskType | null;
-	timeBlockData: TimeBlockData;
 }
 
-function FullCalendarBox({ size, selectDate, selectedTarget, timeBlockData }: FullCalendarBoxProps) {
-	console.log('timeBlockData.tasks', timeBlockData?.tasks);
-	console.log('timeBlockData.googles', timeBlockData?.googles);
-
+function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxProps) {
 	const today = new Date().toDateString();
 	const [currentView, setCurrentView] = useState('timeGridWeek');
+	const [range, setRange] = useState(7);
 
 	const [isModalOpen, setModalOpen] = useState(false);
 
 	const handleViewChange = (view: ViewMountArg) => {
 		setCurrentView(view.view.type);
+		updateRange(view.view.type);
 	};
 
 	const handleDatesSet = (dateInfo: DatesSetArg) => {
 		setCurrentView(dateInfo.view.type);
+		updateRange(dateInfo.view.type);
+	};
+
+	const updateRange = (viewType: string) => {
+		switch (viewType) {
+			case 'dayGridMonth':
+				setRange(30);
+				break;
+			case 'timeGridWeek':
+				setRange(7);
+				break;
+			case 'timeGridDay':
+				setRange(1);
+				break;
+			default:
+				setRange(7);
+		}
 	};
 
 	const calendarRef = useRef<FullCalendar>(null);
@@ -68,30 +85,15 @@ function FullCalendarBox({ size, selectDate, selectedTarget, timeBlockData }: Fu
 		setModalOpen(false);
 	};
 
-	// const calendarEvents = [
-	// 	{ title: 'Meeting', start: '2024-07-16T10:00:00', end: '2024-07-06T12:00:00', classNames: 'tasks' },
-	// 	{ title: 'Lunch', start: '2024-07-07T12:00:00', end: '2024-07-07T12:45:00', classNames: 'tasks' },
-	// 	{ title: 'Lunch', start: '2024-07-08T12:00:00', end: '2024-07-08T12:30:00', classNames: 'tasks' },
-	// 	{
-	// 		title: 'All Day Event',
-	// 		start: '2024-07-08T10:00:00',
-	// 		end: '2024-07-08T12:00:00',
-	// 		allDay: true,
-	// 		classNames: 'task',
-	// 	},
-	// 	{ title: 'Meeting', start: '2024-07-15T10:00:00', end: '2024-07-11T12:00:00', classNames: 'schedule' },
-	// 	{ title: 'Lunch', start: '2024-07-12T12:00:00', end: '2024-07-12T12:45:00', classNames: 'schedule' },
-	// 	{ title: 'Lunch', start: '2024-07-11T12:00:00', end: '2024-07-11T12:30:00', classNames: 'schedule' },
-	// 	{
-	// 		title: 'All Day Event',
-	// 		start: '2024-07-12T10:00:00',
-	// 		end: '2024-07-12T12:00:00',
-	// 		allDay: true,
-	// 		classNames: 'schedule',
-	// 	},
-	// ];
+	const day = new Date();
 
-	const calendarEvents = timeBlockData ? processEvents(timeBlockData) : [];
+	const startDate = getStartDayOfWeek(day);
+
+	// Get timeblock
+	const { data: timeBlockData } = useGetTimeBlock({ startDate, range });
+	console.log('timeBlockData.data.data', timeBlockData?.data.data);
+
+	const calendarEvents = timeBlockData ? processEvents(timeBlockData.data.data) : [];
 
 	/** 드래그해서 이벤트 추가하기 */
 	const addEventWhenDragged = (selectInfo: DateSelectArg) => {
@@ -106,9 +108,6 @@ function FullCalendarBox({ size, selectDate, selectedTarget, timeBlockData }: Fu
 				}
 			});
 
-			// console.log('selectedTarget', selectedTarget);
-			// console.log('selectInfo', selectInfo);
-
 			// 이벤트 추가
 			calendarApi.addEvent({
 				id: selectedTarget.id.toString(),
@@ -116,8 +115,7 @@ function FullCalendarBox({ size, selectDate, selectedTarget, timeBlockData }: Fu
 				start: selectInfo.startStr,
 				end: selectInfo.endStr,
 				allDay: selectInfo.allDay,
-				// 구글캘린더 여부에 따라 수정하면 될듯?
-				classNames: 'new-event',
+				classNames: 'tasks',
 			});
 		}
 	};
