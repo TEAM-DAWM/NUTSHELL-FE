@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
-import { GetTasksResponse } from '@/apis/tasks/getTask/GetTasksResponse';
 import useGetTasks from '@/apis/tasks/getTask/query';
 import updateTaskStatus from '@/apis/tasks/updateTaskStatus/axios';
 import { UpdateTaskStatusType } from '@/apis/tasks/updateTaskStatus/UpdateTaskStatusType';
@@ -15,33 +14,15 @@ import { SortOrderType } from '@/types/sortOrderType';
 import { TaskType } from '@/types/tasks/taskType';
 import formatDatetoLocalDate from '@/utils/formatDatetoLocalDate';
 
-interface TaskState {
-	[key: string]: TaskType[];
-	staging: TaskType[];
-	target: TaskType[];
-}
-
 function Today() {
-	const [tasks, setTasks] = useState<TaskState>({ staging: [], target: [] });
 	const [selectedTarget, setSelectedTarget] = useState<TaskType | null>(null);
 	const [activeButton, setActiveButton] = useState<'전체' | '지연'>('전체');
 	const [sortOrder, setSortOrder] = useState<SortOrderType>('recent');
 	const isTotal = activeButton === '전체';
 
 	// Task 목록 Get
-	const [previousStagingData, setPreviousStagingData] = useState<GetTasksResponse | undefined>(undefined);
-	const [previousTargetData, setPreviousTargetData] = useState<GetTasksResponse | undefined>(undefined);
-
 	/** StagingArea */
-	const { isFetched: isStagingFetched, data: stagingData } = useGetTasks({ isTotal, sortOrder }, previousStagingData);
-
-	useEffect(() => {
-		if (isStagingFetched && stagingData) {
-			setPreviousStagingData(stagingData);
-		}
-	}, [isStagingFetched, stagingData]);
-
-	console.log('stagingArea_taskList', stagingData);
+	const { isFetched: isStagingFetched, data: stagingData } = useGetTasks({ isTotal, sortOrder });
 
 	/** isTotal 핸들링 함수 */
 	const handleTextBtnClick = (button: '전체' | '지연') => {
@@ -61,15 +42,7 @@ function Today() {
 
 	const targetDate = formatDatetoLocalDate(selectedDate);
 
-	const { isFetched: isTargetFetched, data: targetData } = useGetTasks({ targetDate }, previousTargetData);
-
-	useEffect(() => {
-		if (isTargetFetched && targetData) {
-			setPreviousTargetData(targetData);
-		}
-	}, [isTargetFetched, targetData]);
-
-	console.log('targetArea_taskList', stagingData);
+	const { isFetched: isTargetFetched, data: targetData } = useGetTasks({ targetDate });
 
 	const handlePrevBtn = () => {
 		const newDate = new Date(selectedDate);
@@ -114,12 +87,12 @@ function Today() {
 
 		// 상태 업데이트
 		if (source.droppableId === 'target') {
-			setTasks({
+			queryClient.setQueryData(['tasks'], {
 				target: { ...targetData, data: { ...targetData.data, tasks: sourceTasks } },
 				staging: { ...stagingData, data: { ...stagingData.data, tasks: destinationTasks } },
 			});
 		} else {
-			setTasks({
+			queryClient.setQueryData(['tasks'], {
 				target: { ...targetData, data: { ...targetData.data, tasks: destinationTasks } },
 				staging: { ...stagingData, data: { ...stagingData.data, tasks: sourceTasks } },
 			});
