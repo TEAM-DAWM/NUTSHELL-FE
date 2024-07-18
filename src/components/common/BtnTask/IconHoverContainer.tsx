@@ -12,11 +12,12 @@ import StatusTodoBtn from '@/components/common/button/statusBtn/StatusTodoBtn';
 
 type Props = {
 	iconType: 'stagingOrDelayed' | 'active';
-	btnStatus?: '진행중' | '미완료' | '완료' | '오늘로추가';
+	btnStatus?: string;
 	status?: string;
+	taskId: number;
 };
 
-function IconHoverContainer({ iconType, btnStatus, status }: Props) {
+function IconHoverContainer({ iconType, btnStatus, status, taskId }: Props) {
 	const [iconHovered, setIconHovered] = useState(false);
 	const [iconClicked, setIconClicked] = useState(false);
 	const handleIconMouseEnter = () => {
@@ -42,7 +43,7 @@ function IconHoverContainer({ iconType, btnStatus, status }: Props) {
 		if (status === '지연') {
 			// 여기서 리턴하면 안됨. 이 경우엔 무조건 iconType === 'stagingOrDelayed' 이므로 호버 시 StatusStagingBtn가 떠야함
 			if (iconHovered) {
-				return <StatusStagingBtn />;
+				return <StatusStagingBtn taskId={taskId} />;
 			}
 			return <StagingIconHoverIndicator />;
 		}
@@ -52,7 +53,7 @@ function IconHoverContainer({ iconType, btnStatus, status }: Props) {
 		}
 
 		if (iconType === 'stagingOrDelayed') {
-			return <StatusStagingBtn />;
+			return <StatusStagingBtn taskId={taskId} />;
 		}
 
 		if (iconType === 'active') {
