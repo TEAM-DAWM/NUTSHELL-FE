@@ -22,18 +22,15 @@ function NotFound() {
 }
 
 const NotFoundBgImg = styled.img`
-	position: absolute;
+	position: relative;
+	display: flex;
+	width: 136.6rem;
+	height: 76.8rem;
 
-	/* 이후 고정값으로 배경 보여줘야 할 경우 주석 풀어서 쓰세요 */
-
-	/* width: 136.6rem; */
-
-	/* height: 76.8rem; */
-	width: 100%;
-	height: 100%;
-
+	background-color: ${({ theme }) => theme.palette.Grey.White};
 	background-repeat: no-repeat;
 	background-size: contain;
+	border-radius: 8px;
 `;
 const SmallLogoImg = styled.img`
 	width: 4.3rem;
@@ -56,8 +53,8 @@ const ContentWrapper = styled.div`
 `;
 const ContentContainer = styled.div`
 	position: absolute;
-	top: 25rem;
-	left: 27.5rem;
+	top: 38rem;
+	left: 36rem;
 	z-index: 1;
 	display: flex;
 	flex-direction: column;
