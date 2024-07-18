@@ -1,9 +1,12 @@
 import styled from '@emotion/styled';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import { GetTasksResponse } from '@/apis/tasks/getTask/GetTasksResponse';
 import useGetTasks from '@/apis/tasks/getTask/query';
+import updateTaskStatus from '@/apis/tasks/updateTaskStatus/axios';
+import { UpdateTaskStatusType } from '@/apis/tasks/updateTaskStatus/UpdateTaskStatusType';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
 import NavBar from '@/components/common/NavBar';
 import StagingArea from '@/components/common/StagingArea/StagingArea';
@@ -18,38 +21,8 @@ interface TaskState {
 	target: TaskType[];
 }
 
-const dummyTasks: TaskState = {
-	staging: [
-		{
-			id: 0,
-			name: '바보~',
-			deadLine: { date: '2024-06-30', time: '12:30' },
-			hasDescription: false,
-			status: '진행중',
-		},
-		{ id: 1, name: '넛수레', deadLine: { date: '2024-06-30', time: '12:30' }, hasDescription: true, status: '지연' },
-		{ id: 2, name: '콘하스', deadLine: { date: '2024-06-30', time: '12:30' }, hasDescription: true, status: '완료' },
-		{
-			id: 3,
-			name: '김지원',
-			deadLine: { date: '2024-06-30', time: '12:30' },
-			hasDescription: true,
-			status: '미완료',
-		},
-	],
-	target: [
-		{
-			id: 4,
-			name: '먀먀',
-			deadLine: { date: '2024-06-30', time: '12:30' },
-			hasDescription: true,
-			status: '미완료',
-		},
-	],
-};
-
 function Today() {
-	const [tasks, setTasks] = useState<TaskState>(dummyTasks);
+	const [tasks, setTasks] = useState<TaskState>({ staging: [], target: [] });
 	const [selectedTarget, setSelectedTarget] = useState<TaskType | null>(null);
 	const [activeButton, setActiveButton] = useState<'전체' | '지연'>('전체');
 	const [sortOrder, setSortOrder] = useState<SortOrderType>('recent');
@@ -118,40 +91,54 @@ function Today() {
 		setTargetDate(target);
 	};
 
+	const queryClient = useQueryClient();
+	const { mutate } = useMutation({
+		mutationFn: (updateData: UpdateTaskStatusType) => updateTaskStatus(updateData),
+		onSuccess: () => queryClient.invalidateQueries({ queryKey: ['today'] }),
+	});
+
 	const handleDragEnd = (result: DropResult) => {
 		const { source, destination } = result;
 
 		// 드래그가 끝난 위치가 없으면 리턴
 		if (!destination) return;
 
-		// TODO: api 연결 시에는 밑에 부분 지우고 api 호출 예정
+		// sourceTasks와 destinationTasks를 배열로 변환
+		const sourceTasks = source.droppableId === 'target' ? [...targetData.data.tasks] : [...stagingData.data.tasks];
+		const destinationTasks =
+			destination.droppableId === 'target' ? [...targetData.data.tasks] : [...stagingData.data.tasks];
 
-		// // 같은 위치로 드래그 -> 되면 안됨
-		// if (source.droppableId === destination.droppableId && source.index === destination.index) {
-		// 	return;
-		// }
+		// 드래그된 항목을 sourceTasks에서 제거하고 destinationTasks에 추가
+		const [movedTask] = sourceTasks.splice(source.index, 1);
+		destinationTasks.splice(destination.index, 0, movedTask);
 
-		// 다른 위치로 드래그
-		const sourceClone = Array.from(tasks[source.droppableId as keyof typeof tasks]);
-		const destClone =
-			source.droppableId === destination.droppableId
-				? sourceClone
-				: Array.from(tasks[destination.droppableId as keyof typeof tasks]);
-
-		const [removed] = sourceClone.splice(source.index, 1);
-
-		destClone.splice(destination.index, 0, removed);
-
-		const newTasks: TaskState = {
-			...tasks,
-			[source.droppableId]: sourceClone,
-		};
-
-		if (source.droppableId !== destination.droppableId) {
-			newTasks[destination.droppableId] = destClone;
+		// 상태 업데이트
+		if (source.droppableId === 'target') {
+			setTasks({
+				target: { ...targetData, data: { ...targetData.data, tasks: sourceTasks } },
+				staging: { ...stagingData, data: { ...stagingData.data, tasks: destinationTasks } },
+			});
+		} else {
+			setTasks({
+				target: { ...targetData, data: { ...targetData.data, tasks: destinationTasks } },
+				staging: { ...stagingData, data: { ...stagingData.data, tasks: sourceTasks } },
+			});
 		}
 
-		setTasks(newTasks);
+		// API 호출
+		if (destination.droppableId === 'target') {
+			mutate({
+				taskId: movedTask.id,
+				targetDate,
+				status: '미완료',
+			});
+		} else if (destination.droppableId === 'staging') {
+			mutate({
+				taskId: movedTask.id,
+				targetDate: null,
+				status: null,
+			});
+		}
 	};
 
 	return (
