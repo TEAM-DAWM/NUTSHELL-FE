@@ -9,48 +9,19 @@ interface CategoryBoxProps {
 }
 
 function CategoryBox({ email, categoryList }: CategoryBoxProps) {
-	if (!email || !categoryList) return null;
 	return (
-		<CategoryBoxLayout>
-			<HeaderSection>
-				<TitleBox>카테고리</TitleBox>
-				<EmailBox>
-					<EmailText>{email}</EmailText>
-				</EmailBox>
-			</HeaderSection>
+		<>
+			<EmailBox>
+				<EmailText>{email}</EmailText>
+			</EmailBox>
 			<CategoryList>
 				{categoryList.map((category) => (
 					<CategoryCheckBox key={category.id} category={category.name} />
 				))}
 			</CategoryList>
-		</CategoryBoxLayout>
+		</>
 	);
 }
-
-const CategoryBoxLayout = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 1.2rem;
-	width: 31.7rem;
-	height: 100%;
-	min-height: 46.1rem;
-	max-height: 49.3rem;
-
-	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
-	border-radius: 12px;
-`;
-
-const HeaderSection = styled.section`
-	width: 100%;
-	height: 9.8rem;
-`;
-
-const TitleBox = styled.h2`
-	box-sizing: border-box;
-	height: 6.6rem;
-	padding: 2rem 0.8rem 1.8rem 2.8rem;
-	${({ theme }) => theme.fontTheme.HEADLINE_02};
-`;
 
 const EmailBox = styled.div`
 	box-sizing: border-box;
