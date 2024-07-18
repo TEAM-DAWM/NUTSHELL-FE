@@ -1,19 +1,22 @@
 import styled from '@emotion/styled';
 
-import sampleImg from '@/assets/images/sample.png';
-import USERS from '@/constants/users';
+import { UserData } from '@/apis/user/userInfoType';
 
-function ProfileArea() {
+interface ProfileAreaProps {
+	userData: UserData | undefined;
+}
+
+function ProfileArea({ userData }: ProfileAreaProps) {
 	return (
 		<ProfileAreaLayout>
 			<ProfileText>프로필</ProfileText>
 			<ProfileWrapper>
-				<ProfileImg src={sampleImg} alt="프로필" />
+				<ProfileImg src={userData?.image} alt="프로필" />
 				<ProfileTextBox>
 					<LastName>
-						{USERS.data.familyName} {USERS.data.givenName}
+						{userData?.familyName} {userData?.givenName}
 					</LastName>
-					<EmailText>{USERS.data.email}</EmailText>
+					<EmailText>{userData?.email}</EmailText>
 				</ProfileTextBox>
 			</ProfileWrapper>
 		</ProfileAreaLayout>

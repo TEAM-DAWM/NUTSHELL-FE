@@ -3,7 +3,7 @@ interface GoogleCalendar {
 	email: string;
 }
 
-interface UserData {
+export interface UserData {
 	givenName: string;
 	familyName: string;
 	image: string;
