@@ -4,6 +4,7 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import useGetTasks from '@/apis/tasks/getTask/query';
 import useUpdateTaskStatus from '@/apis/tasks/updateTaskStatus/query';
+import BtnTaskContainer from '@/components/common/BtnTaskContainer';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
 import StagingArea from '@/components/common/StagingArea/StagingArea';
 import TargetArea from '@/components/targetArea/TargetArea';
@@ -20,8 +21,8 @@ function Today() {
 	const targetDate = formatDatetoLocalDate(selectedDate);
 
 	// Task 목록 Get
-	const { data: stagingData } = useGetTasks({ isTotal, sortOrder });
-	const { data: targetData } = useGetTasks({ targetDate });
+	const { data: stagingData, isError: isStagingError } = useGetTasks({ isTotal, sortOrder });
+	const { data: targetData, isError: isTargetError } = useGetTasks({ targetDate });
 	const { mutate } = useUpdateTaskStatus();
 
 	/** isTotal 핸들링 함수 */
@@ -91,26 +92,34 @@ function Today() {
 	return (
 		<TodayLayout>
 			<DragDropContext onDragEnd={handleDragEnd}>
-				<StagingArea
-					handleSelectedTarget={handleSelectedTarget}
-					selectedTarget={selectedTarget}
-					tasks={stagingData.data.tasks}
-					handleSortOrder={handleSortOrder}
-					handleTextBtnClick={handleTextBtnClick}
-					activeButton={activeButton}
-					sortOrder={sortOrder}
-				/>
+				{isStagingError ? (
+					<BtnTaskContainer type="staging" />
+				) : (
+					<StagingArea
+						handleSelectedTarget={handleSelectedTarget}
+						selectedTarget={selectedTarget}
+						tasks={stagingData.data.tasks}
+						handleSortOrder={handleSortOrder}
+						handleTextBtnClick={handleTextBtnClick}
+						activeButton={activeButton}
+						sortOrder={sortOrder}
+					/>
+				)}
 
-				<TargetArea
-					handleSelectedTarget={handleSelectedTarget}
-					selectedTarget={selectedTarget}
-					tasks={targetData.data.tasks}
-					onClickPrevDate={handlePrevBtn}
-					onClickNextDate={handleNextBtn}
-					onClickTodayDate={handleTodayBtn}
-					onClickDatePicker={handleChangeDate}
-					targetDate={selectedDate}
-				/>
+				{isTargetError ? (
+					<BtnTaskContainer type="target" />
+				) : (
+					<TargetArea
+						handleSelectedTarget={handleSelectedTarget}
+						selectedTarget={selectedTarget}
+						tasks={targetData.data.tasks}
+						onClickPrevDate={handlePrevBtn}
+						onClickNextDate={handleNextBtn}
+						onClickTodayDate={handleTodayBtn}
+						onClickDatePicker={handleChangeDate}
+						targetDate={selectedDate}
+					/>
+				)}
 			</DragDropContext>
 			<CalendarWrapper>
 				<FullCalendarBox size="small" selectedTarget={selectedTarget} />
