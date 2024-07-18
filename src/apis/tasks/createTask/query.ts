@@ -11,7 +11,7 @@ const useCreateTask = () => {
 		onSuccess: () => queryClient.invalidateQueries({ queryKey: ['today'] }),
 	});
 
-	return { mutate: mutation.mutate, queryClient };
+	return { mutate: mutation.mutate };
 };
 
 export default useCreateTask;
