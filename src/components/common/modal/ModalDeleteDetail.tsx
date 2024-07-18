@@ -8,14 +8,15 @@ interface ModalDeleteDetailProps {
 	top: number;
 	left: number;
 	onClose: (e: React.MouseEvent) => void;
+	onDelete?: () => void;
 }
 
-function ModalDeleteDetail({ top, left, onClose }: ModalDeleteDetailProps) {
+function ModalDeleteDetail({ top, left, onClose, onDelete }: ModalDeleteDetailProps) {
 	return (
 		<ModalBackdrop onClick={onClose}>
 			<ModalDeleteDetailLayout top={top} left={left} onClick={(e) => e.stopPropagation()}>
 				<DeleteCancelBtn status="cancel" onClick={onClose} />
-				<DeleteCancelBtn status="delete" />
+				<DeleteCancelBtn status="delete" onClick={onDelete} />
 			</ModalDeleteDetailLayout>
 		</ModalBackdrop>
 	);

@@ -1,18 +1,16 @@
 import styled from '@emotion/styled';
 import { useGoogleLogin } from '@react-oauth/google';
 
-import userGoogleCalendar from '@/apis/calendarAccount/axios';
+import useAccountAdd from '@/apis/calendar/addCalendar/query';
 import Images from '@/assets/images';
 import Icons from '@/assets/svg/index';
 
 function GoogleCalendarBtn() {
+	const { mutate } = useAccountAdd();
+
 	const handleCalendarLogin = useGoogleLogin({
 		onSuccess: async ({ code }) => {
-			try {
-				await userGoogleCalendar(code);
-			} catch (error) {
-				console.error(error);
-			}
+			mutate(code);
 		},
 		onError: (errorResponse) => {
 			console.error(errorResponse);

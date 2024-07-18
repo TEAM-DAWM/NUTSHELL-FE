@@ -17,7 +17,7 @@ function AccountArea({ calendarAccount }: AccountAreaProps) {
 				{calendarAccount?.map((account) => (
 					<InputBox key={account.id}>
 						<EmailWrapper>{account.email}</EmailWrapper>
-						<AccountDeleteBtn />
+						<AccountDeleteBtn accountId={account.id} />
 					</InputBox>
 				))}
 			</AccountWrapper>
