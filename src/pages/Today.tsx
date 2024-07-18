@@ -19,10 +19,11 @@ function Today() {
 	const [activeButton, setActiveButton] = useState<'전체' | '지연'>('전체');
 	const [sortOrder, setSortOrder] = useState<SortOrderType>('recent');
 	const isTotal = activeButton === '전체';
+	const [selectedDate, setTargetDate] = useState(new Date());
 
 	// Task 목록 Get
 	/** StagingArea */
-	const { isFetched: isStagingFetched, data: stagingData } = useGetTasks({ isTotal, sortOrder });
+	const { data: stagingData } = useGetTasks({ isTotal, sortOrder });
 
 	/** isTotal 핸들링 함수 */
 	const handleTextBtnClick = (button: '전체' | '지연') => {
@@ -36,13 +37,6 @@ function Today() {
 	const handleSelectedTarget = (task: TaskType | null) => {
 		setSelectedTarget(task);
 	};
-
-	/** TargetArea */
-	const [selectedDate, setTargetDate] = useState(new Date());
-
-	const targetDate = formatDatetoLocalDate(selectedDate);
-
-	const { isFetched: isTargetFetched, data: targetData } = useGetTasks({ targetDate });
 
 	const handlePrevBtn = () => {
 		const newDate = new Date(selectedDate);
@@ -64,7 +58,13 @@ function Today() {
 		setTargetDate(target);
 	};
 
+	const targetDate = formatDatetoLocalDate(selectedDate);
+
+	/** TargetArea */
+	const { data: targetData } = useGetTasks({ targetDate });
+
 	const queryClient = useQueryClient();
+
 	const { mutate } = useMutation({
 		mutationFn: (updateData: UpdateTaskStatusType) => updateTaskStatus(updateData),
 		onSuccess: () => queryClient.invalidateQueries({ queryKey: ['today'] }),
@@ -120,29 +120,26 @@ function Today() {
 
 			<TodayLayout>
 				<DragDropContext onDragEnd={handleDragEnd}>
-					{isStagingFetched && (
-						<StagingArea
-							handleSelectedTarget={handleSelectedTarget}
-							selectedTarget={selectedTarget}
-							tasks={stagingData.data.tasks}
-							handleSortOrder={handleSortOrder}
-							handleTextBtnClick={handleTextBtnClick}
-							activeButton={activeButton}
-							sortOrder={sortOrder}
-						/>
-					)}
-					{isTargetFetched && (
-						<TargetArea
-							handleSelectedTarget={handleSelectedTarget}
-							selectedTarget={selectedTarget}
-							tasks={targetData.data.tasks}
-							onClickPrevDate={handlePrevBtn}
-							onClickNextDate={handleNextBtn}
-							onClickTodayDate={handleTodayBtn}
-							onClickDatePicker={handleChangeDate}
-							targetDate={selectedDate}
-						/>
-					)}
+					<StagingArea
+						handleSelectedTarget={handleSelectedTarget}
+						selectedTarget={selectedTarget}
+						tasks={stagingData.data.tasks}
+						handleSortOrder={handleSortOrder}
+						handleTextBtnClick={handleTextBtnClick}
+						activeButton={activeButton}
+						sortOrder={sortOrder}
+					/>
+
+					<TargetArea
+						handleSelectedTarget={handleSelectedTarget}
+						selectedTarget={selectedTarget}
+						tasks={targetData.data.tasks}
+						onClickPrevDate={handlePrevBtn}
+						onClickNextDate={handleNextBtn}
+						onClickTodayDate={handleTodayBtn}
+						onClickDatePicker={handleChangeDate}
+						targetDate={selectedDate}
+					/>
 				</DragDropContext>
 				<CalendarWrapper>
 					<FullCalendarBox size="small" />
