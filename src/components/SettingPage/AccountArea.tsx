@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { GoogleCalendar } from '@/apis/user/userInfoType';
 import AccountDeleteBtn from '@/components/SettingPage/AccountDeleteBtn';
 import GoogleCalendarBtn from '@/components/SettingPage/GoogleCalendarBtn';
-import USERS from '@/constants/users';
 
 interface AccountAreaProps {
 	calendarAccount: GoogleCalendar[] | undefined;
@@ -15,10 +14,6 @@ function AccountArea({ calendarAccount }: AccountAreaProps) {
 			<AccountText>연동된 계정</AccountText>
 			<AccountWrapper>
 				<GoogleCalendarBtn />
-				<InputBox>
-					<EmailWrapper>{USERS.data.email}</EmailWrapper>
-					<AccountDeleteBtn />
-				</InputBox>
 				{calendarAccount?.map((account) => (
 					<InputBox key={account.id}>
 						<EmailWrapper>{account.email}</EmailWrapper>
