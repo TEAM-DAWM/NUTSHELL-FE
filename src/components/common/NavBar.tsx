@@ -33,7 +33,7 @@ function NavBar() {
 	);
 }
 const NavBarLayout = styled.div`
-	position: fixed;
+	position: absolute;
 	left: 0;
 	z-index: 2;
 	display: flex;
@@ -41,10 +41,11 @@ const NavBarLayout = styled.div`
 	gap: 12rem;
 	align-items: center;
 	width: 7.2rem;
-	height: 100vh;
+	height: 76.8rem;
 
 	background-color: ${({ theme }) => theme.palette.Grey.White};
 	border-right: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
+	border-radius: 8px 0 0 8px;
 `;
 const ProfileImg = styled.img`
 	width: 4.4rem;
