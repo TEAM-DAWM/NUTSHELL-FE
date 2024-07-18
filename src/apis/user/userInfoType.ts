@@ -1,4 +1,4 @@
-interface GoogleCalendar {
+export interface GoogleCalendar {
 	id: number;
 	email: string;
 }

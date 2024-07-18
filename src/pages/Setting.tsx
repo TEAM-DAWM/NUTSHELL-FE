@@ -15,7 +15,7 @@ function Setting() {
 			<SettingContainer>
 				<Wrapper>
 					<ProfileArea userData={userInfo?.data} />
-					<AccountArea />
+					<AccountArea calendarAccount={userInfo?.data.googleCalenders} />
 				</Wrapper>
 				<LogOutBtn />
 			</SettingContainer>
