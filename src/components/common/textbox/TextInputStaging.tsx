@@ -20,6 +20,7 @@ function TextInputStaging() {
 	const [time, setTime] = useState<string | null>(null);
 	const nameRef = useRef<HTMLTextAreaElement>(null);
 	const handleArrangeBtnClick = () => {
+		setDate(new Date());
 		setIsModalOpen((prev) => !prev);
 	};
 	const handleDate = (newDate: Date) => {
