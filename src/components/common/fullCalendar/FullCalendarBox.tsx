@@ -12,7 +12,6 @@ import Modal from '../modal/Modal';
 import processEvents from './processEvents';
 
 import useGetTimeBlock from '@/apis/timeBlocks/getTimeBlock/query';
-import usePostTimeBlock from '@/apis/timeBlocks/postTimeBlock/query';
 import RefreshBtn from '@/components/common/button/RefreshBtn';
 import DayHeaderContent from '@/components/common/fullCalendar/DayHeaderContent';
 import FullCalendarLayout from '@/components/common/fullCalendar/FullCalendarStyle';
