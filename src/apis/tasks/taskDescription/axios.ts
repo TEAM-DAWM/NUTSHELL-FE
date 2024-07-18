@@ -1,11 +1,14 @@
-import { TaskDescriptionType } from './taskDescriptionType';
+import { TaskDescriptionType } from './TaskDescriptionType';
 
 import { privateInstance } from '@/apis/instance';
 
 const taskDescription = async ({ taskId, targetDate }: TaskDescriptionType) => {
-	await privateInstance.get(`/api/tasks/${taskId}`, {
-		targetDate,
+	const { data } = await privateInstance.get(`/api/tasks/${taskId}`, {
+		params: {
+			targetDate,
+		},
 	});
+	return data;
 };
 
 export default taskDescription;

@@ -5,8 +5,10 @@ import TargetAreaDate from './TargetAreaDate';
 import TargetControlSection from './TargetControlSection';
 import TargetTaskSection from './TargetTaskSection';
 
+// import useTaskDescription from '@/apis/tasks/taskDescription/query';
 import { TaskType } from '@/types/tasks/taskType';
 import { TargetControlSectionProps } from '@/types/today/TargetControlSectionProps';
+// import formatDatetoLocalDate from '@/utils/formatDatetoLocalDate';
 
 interface TargetAreaProps extends TargetControlSectionProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
@@ -24,6 +26,7 @@ function TargetArea({
 	onClickDatePicker,
 	targetDate,
 }: TargetAreaProps) {
+	// const { data } = useTaskDescription({ taskId: selectedTarget.id, targetDate: formatDatetoLocalDate(targetDate) });
 	return (
 		<TargetAreaLayout>
 			{/* 날짜 */}
@@ -47,6 +50,7 @@ function TargetArea({
 							handleSelectedTarget={handleSelectedTarget}
 							selectedTarget={selectedTarget}
 							tasks={tasks}
+							targetDate={targetDate}
 						/>
 						{provided.placeholder}
 					</div>

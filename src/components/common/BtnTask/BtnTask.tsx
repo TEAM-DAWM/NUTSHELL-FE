@@ -2,12 +2,11 @@ import { css, Theme } from '@emotion/react';
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
 
-import Modal from '../modal/Modal';
-
 import IconHoverContainer from './IconHoverContainer';
 
 import Icons from '@/assets/svg/index';
 import BtnDate from '@/components/common/BtnDate/BtnDate';
+import Modal from '@/components/common/modal/Modal';
 import MODAL from '@/constants/modalLocation';
 import { theme } from '@/styles/theme';
 import { TaskType } from '@/types/tasks/taskType';
@@ -127,7 +126,15 @@ function BtnTask(props: BtnTaskProps) {
 					targetDate={targetDate}
 				/>
 			</BtnTaskLayout>
-			<Modal isOpen={isModalOpen} sizeType={{ type: 'short' }} top={top} left={left} onClose={closeModal} taskId={id} />
+			<Modal
+				isOpen={isModalOpen}
+				sizeType={{ type: 'short' }}
+				top={top}
+				left={left}
+				onClose={closeModal}
+				taskId={id}
+				targetDate={targetDate}
+			/>
 		</ModalLayout>
 	);
 }
