@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { CategoryResponse } from '@/apis/categoryList/categoryResponse';
 import useGetCategory from '@/apis/categoryList/query';
+import Images from '@/assets/images';
 import CategoryBox from '@/components/calendarPage/CategoryBox';
 import MiniCalendar from '@/components/calendarPage/miniCalendar/MiniCalendar';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
@@ -31,7 +32,9 @@ function Calendar() {
 							<CategoryBox key={category.email} email={category.email} categoryList={category.categories} />
 						))
 					) : (
-						<EmptyView />
+						<EmptyView>
+							<EmptyImg src={Images.EMPTY.categoryImg} />
+						</EmptyView>
 					)}
 				</CategoryBoxLayout>
 			</LeftSection>
@@ -97,7 +100,15 @@ const TitleBox = styled.h2`
 `;
 
 const EmptyView = styled.div`
+	display: flex;
+	justify-content: center;
 	width: 100%;
 	height: 100%;
+`;
+
+const EmptyImg = styled.img`
+	width: 19rem;
+	height: 21.4rem;
+	margin-top: 6rem;
 `;
 export default Calendar;
