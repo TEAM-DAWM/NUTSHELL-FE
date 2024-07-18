@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
+import { CategoryResponse } from '@/apis/categoryList/categoryResponse';
+import useGetCategory from '@/apis/categoryList/query';
 import CategoryBox from '@/components/calendarPage/CategoryBox';
 import MiniCalendar from '@/components/calendarPage/miniCalendar/MiniCalendar';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
@@ -12,12 +14,18 @@ function Calendar() {
 	const onClickDate = (date: Date | null) => {
 		setSelectDate(date);
 	};
+	const { data, isFetched } = useGetCategory();
+	console.log(data);
 
 	return (
 		<CalendarLayout>
 			<LeftSection>
 				<MiniCalendar selectDate={selectDate} onClickDate={onClickDate} />
-				<CategoryBox email="hongildong@gmail.com" categoryList={['내 할 일', '공부', '운동']} />
+				{isFetched &&
+					data &&
+					data.map((category: CategoryResponse) => (
+						<CategoryBox key={category.email} email={category.email} categoryList={category.categories} />
+					))}
 			</LeftSection>
 			<RightSection>
 				<FullCalendarBoxWapper>

@@ -1,13 +1,15 @@
 import styled from '@emotion/styled';
 
+import { CategoryType } from '@/apis/categoryList/categoryResponse';
 import CategoryCheckBox from '@/components/calendarPage/CategoryCheckBox';
 
 interface CategoryBoxProps {
 	email: string;
-	categoryList: string[];
+	categoryList: CategoryType[];
 }
 
 function CategoryBox({ email, categoryList }: CategoryBoxProps) {
+	if (!email || !categoryList) return null;
 	return (
 		<CategoryBoxLayout>
 			<HeaderSection>
@@ -18,7 +20,7 @@ function CategoryBox({ email, categoryList }: CategoryBoxProps) {
 			</HeaderSection>
 			<CategoryList>
 				{categoryList.map((category) => (
-					<CategoryCheckBox key={category} category={category} />
+					<CategoryCheckBox key={category.id} category={category.name} />
 				))}
 			</CategoryList>
 		</CategoryBoxLayout>
