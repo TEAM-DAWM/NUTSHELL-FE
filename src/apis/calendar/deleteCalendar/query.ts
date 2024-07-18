@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import deleteAccount from '@/apis/calendar/deleteCalendar/axios';
 
+/** 구글 캘린더 계정 삭제 react-query */
 const useEventsDelete = () => {
 	const queryClient = useQueryClient();
 
