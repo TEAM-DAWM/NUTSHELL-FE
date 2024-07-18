@@ -1,9 +1,13 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
+import { CategoryResponse } from '@/apis/categoryList/categoryResponse';
+import useGetCategory from '@/apis/categoryList/query';
+import Images from '@/assets/images';
 import CategoryBox from '@/components/calendarPage/CategoryBox';
 import MiniCalendar from '@/components/calendarPage/miniCalendar/MiniCalendar';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
+import LoadingSpinner from '@/components/common/spinner/Spinner';
 
 function Calendar() {
 	const today = new Date();
@@ -12,12 +16,27 @@ function Calendar() {
 	const onClickDate = (date: Date | null) => {
 		setSelectDate(date);
 	};
+	const { data, isLoading } = useGetCategory();
+	if (isLoading) {
+		return <LoadingSpinner />;
+	}
 
 	return (
 		<CalendarLayout>
 			<LeftSection>
 				<MiniCalendar selectDate={selectDate} onClickDate={onClickDate} />
-				<CategoryBox email="hongildong@gmail.com" categoryList={['내 할 일', '공부', '운동']} />
+				<CategoryBoxLayout>
+					<TitleBox>카테고리</TitleBox>
+					{data && data.length > 0 ? (
+						data.map((category: CategoryResponse) => (
+							<CategoryBox key={category.email} email={category.email} categoryList={category.categories} />
+						))
+					) : (
+						<EmptyView>
+							<EmptyImg src={Images.EMPTY.categoryImg} />
+						</EmptyView>
+					)}
+				</CategoryBoxLayout>
 			</LeftSection>
 			<RightSection>
 				<FullCalendarBoxWapper>
@@ -58,5 +77,38 @@ const FullCalendarBoxWapper = styled.div`
 
 	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 12px;
+`;
+
+const CategoryBoxLayout = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 1.2rem;
+	width: 31.7rem;
+	height: 100%;
+	min-height: 46.1rem;
+	max-height: 49.3rem;
+
+	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
+	border-radius: 12px;
+`;
+
+const TitleBox = styled.h2`
+	box-sizing: border-box;
+	height: 6.6rem;
+	padding: 2rem 0.8rem 1.8rem 2.8rem;
+	${({ theme }) => theme.fontTheme.HEADLINE_02};
+`;
+
+const EmptyView = styled.div`
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+`;
+
+const EmptyImg = styled.img`
+	width: 19rem;
+	height: 21.4rem;
+	margin-top: 6rem;
 `;
 export default Calendar;
