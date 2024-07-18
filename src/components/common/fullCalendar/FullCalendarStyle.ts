@@ -14,7 +14,7 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 
 	/* 이벤트 박스 */
 	.fc-event-main {
-		display: flex;
+		display: inline-block;
 		align-items: center;
 		width: 100%;
 		height: 100%;
@@ -26,6 +26,15 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		border: none;
 		border-radius: 4px;
 		${({ theme }) => theme.fontTheme.CAPTION_03};
+	}
+
+	/** 넘어가는 텍스트 처리 */
+	.fc-event-title {
+		flex-shrink: 1;
+		overflow: hidden;
+
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 
 	.fc-event-main .tasks {
