@@ -11,11 +11,12 @@ import GETPASTDATE from '@/constants/getPastDate';
 interface DateAreaProps {
 	isHover: boolean;
 	isPressed: boolean;
+	handleDate: (newStartDate: Date, newEndDate: Date) => void;
 }
 
 // startDate : 시작 날짜 ; endDate : 마감 날짜
 
-function DateArea({ isHover, isPressed }: DateAreaProps) {
+function DateArea({ isHover, isPressed, handleDate }: DateAreaProps) {
 	const today = new Date();
 	const initialStartDate = new Date(today);
 	initialStartDate.setDate(today.getDate() - 13);
@@ -26,6 +27,7 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 
 	const handleClick = () => {
 		setIsClicked((prev) => !prev);
+		if (startDate && endDate) handleDate(startDate, endDate);
 	};
 
 	const handleStartDate = (date: Date | null) => {
@@ -44,6 +46,8 @@ function DateArea({ isHover, isPressed }: DateAreaProps) {
 		const newEndDate = new Date(today);
 		newEndDate.setDate(today.getDate());
 		handleEndDate(newEndDate);
+
+		handleDate(newStartDate, newEndDate);
 	};
 
 	return (

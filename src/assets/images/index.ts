@@ -1,3 +1,6 @@
+import inprogress from './Dashboard_Inprogress.png';
+import postpone from './Dashboard_Postpone.png';
+import upcoming from './Dashboard_Upcoming.png';
 import postponeImg from './Empty_Postpone.png';
 import taskImg from './Empty_Task.png';
 import googleCalendar from './google_calendar.png';
@@ -20,6 +23,11 @@ const Images = {
 		postponeImg,
 	},
 	googleCalendar,
+	DASHBOARD: {
+		inprogress,
+		postpone,
+		upcoming,
+	},
 };
 
 export default Images;

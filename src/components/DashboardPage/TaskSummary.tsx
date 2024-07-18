@@ -10,45 +10,54 @@ interface TaskSummaryProps {
 
 function TaskSummary({ text, data, unit, icon: Icon, image }: TaskSummaryProps) {
 	return (
-		<TaskSummaryLayout image={image}>
-			<ProfileImg>
-				<Icon />
-			</ProfileImg>
-			<TextWrapper>
-				<SummaryText>{text}</SummaryText>
-				<NumberTaskBox>
-					<Number>{data}</Number>
-					<NumberText>{unit}</NumberText>
-				</NumberTaskBox>
-			</TextWrapper>
+		<TaskSummaryLayout>
+			<ImageComponent src={image} />
+			<TextArea>
+				<ProfileImg>
+					<Icon />
+				</ProfileImg>
+				<TextWrapper>
+					<SummaryText>{text}</SummaryText>
+					<NumberTaskBox>
+						<Number>{data}</Number>
+						<NumberText>{unit}</NumberText>
+					</NumberTaskBox>
+				</TextWrapper>
+			</TextArea>
 		</TaskSummaryLayout>
 	);
 }
 
 export default TaskSummary;
 
-const TaskSummaryLayout = styled.div<{ image: string }>`
+const TaskSummaryLayout = styled.div`
+	position: relative;
+
+	width: 41.7rem;
+	height: 18.2rem;
+`;
+
+const ImageComponent = styled.img`
+	position: absolute;
+	width: 100%;
+	height: 100%;
+`;
+
+const TextArea = styled.div`
+	position: absolute;
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
 	align-items: flex-start;
-	align-self: stretch;
-	justify-content: center;
-	box-sizing: border-box;
-	width: 41.7rem;
-	height: 18.2rem;
-	padding-left: 2.8rem;
-
-	background-color: ${({ theme }) => theme.palette.Blue.Blue5};
-	background-image: url(${(props) => props.image});
-	background-size: cover;
-	border-radius: 16px;
+	width: 17.3rem;
+	height: 11.2rem;
+	margin-top: 3.5rem;
+	margin-left: 2.8rem;
 `;
 
 const ProfileImg = styled.div`
 	width: 2.8rem;
 	height: 2.8rem;
-	margin: 3rem 34.5rem 0 0;
 
 	svg {
 		width: 100%;
@@ -60,15 +69,14 @@ const TextWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	align-self: stretch;
-	width: 38.9rem;
+	justify-content: flex-start;
+	width: 100%;
 	height: 6.4rem;
-	margin-bottom: 3.5rem;
 `;
 
 const SummaryText = styled.p`
-	${({ theme }) => theme.fontTheme.HEADLINE_03}
-	color: ${({ theme }) => theme.palette.Grey.White}
+	${({ theme }) => theme.fontTheme.HEADLINE_03};
+	color: ${({ theme }) => theme.palette.Grey.White};
 `;
 
 const NumberTaskBox = styled.div`
