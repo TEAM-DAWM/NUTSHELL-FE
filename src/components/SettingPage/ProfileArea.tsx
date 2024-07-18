@@ -50,6 +50,8 @@ const ProfileWrapper = styled.div`
 const ProfileImg = styled.img`
 	width: 6.6rem;
 	height: 6.6rem;
+
+	border-radius: 50%;
 `;
 const ProfileTextBox = styled.div`
 	display: flex;

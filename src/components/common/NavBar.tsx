@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import NavBarIcon from './NavBarIcon';
 
-import sampleImg from '@/assets/images/sample.png';
+import useGetUserInfo from '@/apis/user/query';
+import LoadingSpinner from '@/components/common/spinner/Spinner';
 import { PAGE_ROUTE, PageRouteValues } from '@/constants/pages';
 
 function NavBar() {
@@ -11,9 +12,13 @@ function NavBar() {
 	const moveToPage = (type: string) => {
 		navigate(`/${type}`);
 	};
+	const { data: userInfo, isLoading } = useGetUserInfo();
+	if (isLoading) {
+		return <LoadingSpinner />;
+	}
 	return (
 		<NavBarLayout>
-			<ProfileImg src={sampleImg} alt="프로필" />
+			<ProfileImg src={userInfo?.data.image} alt="프로필" />
 			<IconContainer>
 				{Object.entries(PAGE_ROUTE).map(([type, path]) => (
 					<NavBarIcon
