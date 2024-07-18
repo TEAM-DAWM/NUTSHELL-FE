@@ -38,6 +38,7 @@ function TargetTaskSection(props: TargetTaskSectionProps) {
 										hasDescription={task.hasDescription}
 										name={task.name}
 										deadLine={task.deadLine}
+										btnStatus={task.status}
 										status={task.status}
 										id={task.id}
 										handleSelectedTarget={handleSelectedTarget}

@@ -5,7 +5,6 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import useGetTasks from '@/apis/tasks/getTask/query';
 import useUpdateTaskStatus from '@/apis/tasks/updateTaskStatus/query';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
-import NavBar from '@/components/common/NavBar';
 import StagingArea from '@/components/common/StagingArea/StagingArea';
 import TargetArea from '@/components/targetArea/TargetArea';
 import { SortOrderType } from '@/types/sortOrderType';
@@ -103,37 +102,33 @@ function Today() {
 	};
 
 	return (
-		<>
-			<NavBar />
+		<TodayLayout>
+			<DragDropContext onDragEnd={handleDragEnd}>
+				<StagingArea
+					handleSelectedTarget={handleSelectedTarget}
+					selectedTarget={selectedTarget}
+					tasks={stagingData.data.tasks}
+					handleSortOrder={handleSortOrder}
+					handleTextBtnClick={handleTextBtnClick}
+					activeButton={activeButton}
+					sortOrder={sortOrder}
+				/>
 
-			<TodayLayout>
-				<DragDropContext onDragEnd={handleDragEnd}>
-					<StagingArea
-						handleSelectedTarget={handleSelectedTarget}
-						selectedTarget={selectedTarget}
-						tasks={stagingData.data.tasks}
-						handleSortOrder={handleSortOrder}
-						handleTextBtnClick={handleTextBtnClick}
-						activeButton={activeButton}
-						sortOrder={sortOrder}
-					/>
-
-					<TargetArea
-						handleSelectedTarget={handleSelectedTarget}
-						selectedTarget={selectedTarget}
-						tasks={targetData.data.tasks}
-						onClickPrevDate={handlePrevBtn}
-						onClickNextDate={handleNextBtn}
-						onClickTodayDate={handleTodayBtn}
-						onClickDatePicker={handleChangeDate}
-						targetDate={selectedDate}
-					/>
-				</DragDropContext>
-				<CalendarWrapper>
-					<FullCalendarBox size="small" selectedTarget={selectedTarget} />
-				</CalendarWrapper>
-			</TodayLayout>
-		</>
+				<TargetArea
+					handleSelectedTarget={handleSelectedTarget}
+					selectedTarget={selectedTarget}
+					tasks={targetData.data.tasks}
+					onClickPrevDate={handlePrevBtn}
+					onClickNextDate={handleNextBtn}
+					onClickTodayDate={handleTodayBtn}
+					onClickDatePicker={handleChangeDate}
+					targetDate={selectedDate}
+				/>
+			</DragDropContext>
+			<CalendarWrapper>
+				<FullCalendarBox size="small" selectedTarget={selectedTarget} />
+			</CalendarWrapper>
+		</TodayLayout>
 	);
 }
 

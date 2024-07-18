@@ -16,7 +16,7 @@ interface BtnTaskProps extends TaskType {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
 	iconType: 'stagingOrDelayed' | 'active';
-	btnStatus?: '진행중' | '미완료' | '완료' | '오늘로추가';
+	btnStatus?: string;
 	preventDoubleClick?: boolean;
 	isDragging?: boolean;
 }
@@ -117,7 +117,7 @@ function BtnTask(props: BtnTaskProps) {
 						isDelayed={status === '지연'}
 					/>
 				</BtnTaskContainer>
-				<IconHoverContainer iconType={iconType} btnStatus={btnStatus} status={status} />
+				<IconHoverContainer iconType={iconType} btnStatus={btnStatus} status={status} taskId={id} />
 			</BtnTaskLayout>
 			<Modal isOpen={isModalOpen} sizeType={{ type: 'short' }} top={top} left={left} onClose={closeModal} taskId={id} />
 		</ModalLayout>

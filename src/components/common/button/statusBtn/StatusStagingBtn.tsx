@@ -1,15 +1,22 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
+import useDeleteTask from '@/apis/tasks/deleteTask/query';
 import SettingCheckBtn from '@/components/common/button/settingBtn/SettingCheckBtn';
 import SettingDeleteBtn from '@/components/common/button/settingBtn/SettingDeleteBtn';
 
-function StatusStagingBtn() {
+interface StatusStagingBtnProps {
+	taskId: number;
+}
+function StatusStagingBtn({ taskId }: StatusStagingBtnProps) {
 	const [isDeletePressed, setIsDeletePressed] = useState(false);
 	const [isCheckingPressed, setIsCheckingPressed] = useState(false);
+	const { mutate } = useDeleteTask();
 
 	const handleSettingCheckClick = () => {
 		setIsDeletePressed((prev) => !prev);
+		// 태스크 삭제
+		mutate(taskId);
 	};
 
 	const handleCheckingClick = () => {
