@@ -4,12 +4,12 @@ import getUserInfo from '@/apis/user/axios';
 import { UserInfoResponse } from '@/apis/user/userInfoType';
 
 const useGetUserInfo = () => {
-	const { data } = useQuery<UserInfoResponse, Error>({
+	const { data, isLoading } = useQuery<UserInfoResponse, Error>({
 		queryKey: ['user'],
 		queryFn: () => getUserInfo(),
 	});
 
-	return { data };
+	return { data, isLoading };
 };
 
 export default useGetUserInfo;
