@@ -4,10 +4,14 @@ import SettingCheckBtn from '@/components/common/button/settingBtn/SettingCheckB
 import ModalDeleteBtn from '@/components/common/modal/ModalDeleteBtn';
 import { SizeType } from '@/types/textInputType';
 
-function ModalHeaderBtn({ type }: SizeType) {
+interface ModalHeaderBtnProps extends SizeType {
+	onDelete: () => void;
+}
+
+function ModalHeaderBtn({ type, onDelete }: ModalHeaderBtnProps) {
 	return (
 		<ModalHeaderBtnLayout>
-			<ModalDeleteBtn />
+			<ModalDeleteBtn onDelete={onDelete} />
 			{type === 'long' && <SettingCheckBtn type="progress" size="big" isHover isPressed={false} isActive />}
 			<SettingCheckBtn type="complete" size="big" isHover isPressed={false} isActive />
 		</ModalHeaderBtnLayout>

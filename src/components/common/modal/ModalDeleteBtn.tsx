@@ -4,7 +4,11 @@ import { useState } from 'react';
 import SettingDeleteBtn from '@/components/common/button/settingBtn/SettingDeleteBtn';
 import ModalDeleteDetail from '@/components/common/modal/ModalDeleteDetail';
 
-function ModalDeleteBtn() {
+interface ModalDeleteBtnProps {
+	onDelete: (e: React.MouseEvent) => void;
+}
+
+function ModalDeleteBtn({ onDelete }: ModalDeleteBtnProps) {
 	const [isClicked, setIsClicked] = useState(false);
 
 	const [top, setTop] = useState(0);
@@ -22,7 +26,7 @@ function ModalDeleteBtn() {
 			<SettingDeleteBtn size="big" isHover isPressed={false} isActive onClick={handleBtnClick} />
 			{isClicked && (
 				<ModalDeleteDetailWapper>
-					<ModalDeleteDetail top={top} left={left} onClose={handleBtnClick} />
+					<ModalDeleteDetail top={top} left={left} onClose={handleBtnClick} onDelete={onDelete} />
 				</ModalDeleteDetailWapper>
 			)}
 		</ModalDeleteBtnLayout>
