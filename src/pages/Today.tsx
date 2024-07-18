@@ -4,6 +4,7 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import useGetTasks from '@/apis/tasks/getTask/query';
 import useUpdateTaskStatus from '@/apis/tasks/updateTaskStatus/query';
+import useGetTimeBlock from '@/apis/timeBlocks/getTimeBlock/query';
 import BtnTaskContainer from '@/components/common/BtnTaskContainer';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
 import StagingArea from '@/components/common/StagingArea/StagingArea';
@@ -89,6 +90,12 @@ function Today() {
 		}
 	};
 
+	// getTimeBlock({ startDate: '2024-07-18', range: 7 });
+
+	// Get timeblock
+	const { data: timeBlockData } = useGetTimeBlock({ startDate: '2024-07-18', range: 7 });
+	// console.log('timeBlockData', timeBlockData?.data.data);
+
 	return (
 		<TodayLayout>
 			<DragDropContext onDragEnd={handleDragEnd}>
@@ -122,7 +129,7 @@ function Today() {
 				)}
 			</DragDropContext>
 			<CalendarWrapper>
-				<FullCalendarBox size="small" selectedTarget={selectedTarget} />
+				<FullCalendarBox size="small" selectedTarget={selectedTarget} timeBlockData={timeBlockData?.data.data} />
 			</CalendarWrapper>
 		</TodayLayout>
 	);

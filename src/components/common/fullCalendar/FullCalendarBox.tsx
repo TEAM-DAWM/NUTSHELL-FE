@@ -9,6 +9,9 @@ import { useState, useRef, useEffect } from 'react';
 
 import Modal from '../modal/Modal';
 
+import processEvents from './processEvents';
+
+import { TimeBlockData } from '@/apis/timeBlocks/getTimeBlock/GetTimeBlock';
 import RefreshBtn from '@/components/common/button/RefreshBtn';
 import DayHeaderContent from '@/components/common/fullCalendar/DayHeaderContent';
 import FullCalendarLayout from '@/components/common/fullCalendar/FullCalendarStyle';
@@ -20,9 +23,13 @@ interface FullCalendarBoxProps {
 	size: 'small' | 'big';
 	selectDate?: Date | null;
 	selectedTarget?: TaskType | null;
+	timeBlockData: TimeBlockData;
 }
 
-function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxProps) {
+function FullCalendarBox({ size, selectDate, selectedTarget, timeBlockData }: FullCalendarBoxProps) {
+	console.log('timeBlockData.tasks', timeBlockData?.tasks);
+	console.log('timeBlockData.googles', timeBlockData?.googles);
+
 	const today = new Date().toDateString();
 	const [currentView, setCurrentView] = useState('timeGridWeek');
 
@@ -61,28 +68,30 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 		setModalOpen(false);
 	};
 
-	const calendarEvents = [
-		{ title: 'Meeting', start: '2024-07-16T10:00:00', end: '2024-07-06T12:00:00', classNames: 'tasks' },
-		{ title: 'Lunch', start: '2024-07-07T12:00:00', end: '2024-07-07T12:45:00', classNames: 'tasks' },
-		{ title: 'Lunch', start: '2024-07-08T12:00:00', end: '2024-07-08T12:30:00', classNames: 'tasks' },
-		{
-			title: 'All Day Event',
-			start: '2024-07-08T10:00:00',
-			end: '2024-07-08T12:00:00',
-			allDay: true,
-			classNames: 'task',
-		},
-		{ title: 'Meeting', start: '2024-07-15T10:00:00', end: '2024-07-11T12:00:00', classNames: 'schedule' },
-		{ title: 'Lunch', start: '2024-07-12T12:00:00', end: '2024-07-12T12:45:00', classNames: 'schedule' },
-		{ title: 'Lunch', start: '2024-07-11T12:00:00', end: '2024-07-11T12:30:00', classNames: 'schedule' },
-		{
-			title: 'All Day Event',
-			start: '2024-07-12T10:00:00',
-			end: '2024-07-12T12:00:00',
-			allDay: true,
-			classNames: 'schedule',
-		},
-	];
+	// const calendarEvents = [
+	// 	{ title: 'Meeting', start: '2024-07-16T10:00:00', end: '2024-07-06T12:00:00', classNames: 'tasks' },
+	// 	{ title: 'Lunch', start: '2024-07-07T12:00:00', end: '2024-07-07T12:45:00', classNames: 'tasks' },
+	// 	{ title: 'Lunch', start: '2024-07-08T12:00:00', end: '2024-07-08T12:30:00', classNames: 'tasks' },
+	// 	{
+	// 		title: 'All Day Event',
+	// 		start: '2024-07-08T10:00:00',
+	// 		end: '2024-07-08T12:00:00',
+	// 		allDay: true,
+	// 		classNames: 'task',
+	// 	},
+	// 	{ title: 'Meeting', start: '2024-07-15T10:00:00', end: '2024-07-11T12:00:00', classNames: 'schedule' },
+	// 	{ title: 'Lunch', start: '2024-07-12T12:00:00', end: '2024-07-12T12:45:00', classNames: 'schedule' },
+	// 	{ title: 'Lunch', start: '2024-07-11T12:00:00', end: '2024-07-11T12:30:00', classNames: 'schedule' },
+	// 	{
+	// 		title: 'All Day Event',
+	// 		start: '2024-07-12T10:00:00',
+	// 		end: '2024-07-12T12:00:00',
+	// 		allDay: true,
+	// 		classNames: 'schedule',
+	// 	},
+	// ];
+
+	const calendarEvents = timeBlockData ? processEvents(timeBlockData) : [];
 
 	/** 드래그해서 이벤트 추가하기 */
 	const addEventWhenDragged = (selectInfo: DateSelectArg) => {
@@ -96,6 +105,9 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 					event.remove();
 				}
 			});
+
+			// console.log('selectedTarget', selectedTarget);
+			// console.log('selectInfo', selectInfo);
 
 			// 이벤트 추가
 			calendarApi.addEvent({

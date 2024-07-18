@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
+import useGetTimeBlock from '@/apis/timeBlocks/getTimeBlock/query';
 import CategoryBox from '@/components/calendarPage/CategoryBox';
 import MiniCalendar from '@/components/calendarPage/miniCalendar/MiniCalendar';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
@@ -13,6 +14,10 @@ function Calendar() {
 		setSelectDate(date);
 	};
 
+	// Get timeblock
+	const { data: timeBlockData } = useGetTimeBlock({ startDate: '2024-07-18', range: 7 });
+	// console.log('timeBlockData', timeBlockData?.data.data);
+
 	return (
 		<CalendarLayout>
 			<LeftSection>
@@ -21,7 +26,7 @@ function Calendar() {
 			</LeftSection>
 			<RightSection>
 				<FullCalendarBoxWapper>
-					<FullCalendarBox size="big" selectDate={selectDate} />
+					<FullCalendarBox size="big" selectDate={selectDate} timeBlockData={timeBlockData?.data.data} />
 				</FullCalendarBoxWapper>
 			</RightSection>
 		</CalendarLayout>
