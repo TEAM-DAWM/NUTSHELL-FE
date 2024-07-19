@@ -47,6 +47,7 @@ function TargetTaskSection(props: TargetTaskSectionProps) {
 										isDragging={snapshot.isDragging}
 										targetDate={targetDate}
 										dashBoardInprogress={false}
+										modalSize={{ type: 'long' }}
 									/>
 								</div>
 							)}

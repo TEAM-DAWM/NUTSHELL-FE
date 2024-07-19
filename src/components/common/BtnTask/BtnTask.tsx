@@ -11,6 +11,7 @@ import BtnDate from '@/components/common/BtnDate/BtnDate';
 import MODAL from '@/constants/modalLocation';
 import { theme } from '@/styles/theme';
 import { TaskType } from '@/types/tasks/taskType';
+import { SizeType } from '@/types/textInputType';
 import { BtnTaskLocationType } from '@/types/today/BtnTaskLocationType';
 
 interface BtnTaskProps extends TaskType {
@@ -21,7 +22,8 @@ interface BtnTaskProps extends TaskType {
 	btnStatus?: string;
 	preventDoubleClick?: boolean;
 	isDragging?: boolean;
-	targetDate: string | null;
+	targetDate?: string | null;
+	modalSize: SizeType;
 }
 
 interface BorderColorProps {
@@ -47,6 +49,7 @@ function BtnTask(props: BtnTaskProps) {
 		preventDoubleClick = false,
 		isDragging = false,
 		targetDate = null,
+		modalSize = { type: 'short' },
 	} = props;
 	const [isModalOpen, setModalOpen] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
@@ -131,7 +134,7 @@ function BtnTask(props: BtnTaskProps) {
 			</BtnTaskLayout>
 			<Modal
 				isOpen={isModalOpen}
-				sizeType={{ type: 'short' }}
+				sizeType={modalSize}
 				top={top}
 				left={left}
 				onClose={closeModal}
