@@ -3,12 +3,21 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import PatchTimeBlock from './axios';
 import { PatchTimeBlokType } from './PatchTimeBlockType';
 
+import { useToast } from '@/components/toast/ToastContext';
+
 const usePatchTimeBlock = () => {
 	const queryClient = useQueryClient();
+	const { addToast } = useToast();
 
 	const mutation = useMutation({
-		mutationFn: ({ taskId, timeBlockId, startTime, endTime }: PatchTimeBlokType) =>
-			PatchTimeBlock({ taskId, timeBlockId, startTime, endTime }),
+		mutationFn: async ({ taskId, timeBlockId, startTime, endTime }: PatchTimeBlokType) => {
+			const response = await PatchTimeBlock({ taskId, timeBlockId, startTime, endTime });
+			if (response && response.code === 'conflict') {
+				addToast(response.message);
+				throw new Error('conflict');
+			}
+			return response;
+		},
 		onSuccess: () => queryClient.invalidateQueries({ queryKey: ['timeblock'] }),
 	});
 
