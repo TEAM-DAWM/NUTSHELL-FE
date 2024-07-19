@@ -31,13 +31,15 @@ function TextInputStaging() {
 	/** 태스크 쏟아내기 전송 */
 	const onSubmit = () => {
 		const formattedDate = date ? formatDatetoLocalDate(date) : null;
-		mutate({
-			name: taskName,
-			deadLine: {
-				date: formattedDate,
-				time,
-			},
-		});
+		if (taskName && taskName !== '') {
+			mutate({
+				name: taskName,
+				deadLine: {
+					date: formattedDate,
+					time,
+				},
+			});
+		}
 		setDate(null);
 		setTime(null);
 		if (nameRef.current) nameRef.current.value = '';
