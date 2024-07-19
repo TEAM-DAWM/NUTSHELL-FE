@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import React, { useState } from 'react';
+
+import useIconHoverUtil from './useIconHoverUtil';
 
 import Icons from '@/assets/svg/index';
 import StatusStagingBtn from '@/components/common/button/statusBtn/StatusStagingBtn';
@@ -8,37 +9,17 @@ import StatusStagingBtn from '@/components/common/button/statusBtn/StatusStaging
 type Props = {
 	status?: string;
 	taskId: number;
-	// targetDate?: string | null;
+	targetDate: string | null;
 };
 
-function StagingIconHoverContainer({ status, taskId }: Props) {
-	const [iconHovered, setIconHovered] = useState(false);
-	const [iconClicked, setIconClicked] = useState(false);
-
-	const handleIconMouseEnter = () => {
-		setIconHovered(true);
-	};
-	const handleIconMouseLeave = () => {
-		setIconHovered(false);
-	};
-	const stopPropagation = (e: React.MouseEvent) => {
-		e.stopPropagation();
-	};
-
-	const handleIconClick = (e: React.MouseEvent) => {
-		if (iconClicked) {
-			setIconClicked(false);
-		} else {
-			setIconClicked(true);
-		}
-		stopPropagation(e);
-	};
+function StagingIconHoverContainer({ status, taskId, targetDate }: Props) {
+	const { iconHovered, iconClicked, handleIconClick, handleIconMouseEnter, handleIconMouseLeave } = useIconHoverUtil();
 
 	const renderStatusButton = () => {
 		if (status === '지연') {
 			// 여기서 리턴하면 안됨. 이 경우엔 무조건 iconType === 'stagingOrDelayed' 이므로 호버 시 StatusStagingBtn가 떠야함
 			if (iconHovered) {
-				return <StatusStagingBtn taskId={taskId} />;
+				return <StatusStagingBtn taskId={taskId} targetDate={targetDate} />;
 			}
 			return <StagingIconHoverIndicator />;
 		}
@@ -47,7 +28,7 @@ function StagingIconHoverContainer({ status, taskId }: Props) {
 			return <IconHoverIndicator />;
 		}
 
-		return <StatusStagingBtn taskId={taskId} />;
+		return <StatusStagingBtn taskId={taskId} targetDate={targetDate} />;
 	};
 
 	return (

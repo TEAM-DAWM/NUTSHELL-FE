@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { FunctionComponent, SVGProps } from 'react';
 
+import useUpdateTaskStatus from '@/apis/tasks/updateTaskStatus/query';
 import Icons from '@/assets/svg/index';
 import { SettingLayout, smallIcon, bigIcon } from '@/components/common/button/settingBtn/settingBtnStyle';
 
@@ -18,20 +19,50 @@ interface SettingCheckBtnProps {
 	isHover: boolean;
 	isPressed: boolean;
 	isActive: boolean;
+	taskId?: number;
+	targetDate: string | null;
 }
 
-function SettingCheckBtn({ size, type, onClick, isHover, isPressed, isActive }: SettingCheckBtnProps) {
+function SettingCheckBtn({
+	size,
+	type,
+	onClick,
+	isHover,
+	isPressed,
+	isActive,
+	taskId,
+	targetDate,
+}: SettingCheckBtnProps) {
 	const IconComponent = settingIconMap[type];
-
+	const { mutate: updateStatusMutate } = useUpdateTaskStatus();
 	const StyledSettingCheckIcon = styled(IconComponent)<{ size: string }>`
 		${({ size }) => (size === 'small' ? smallIcon : bigIcon)};
 	`;
+	const handleClick = () => {
+		if (onClick) onClick();
 
+		// 태스크 상태변경 하는 경우
+		if (taskId) {
+			console.log('tpye');
+			let statusType;
+			switch (type) {
+				case 'complete':
+					statusType = '완료';
+					break;
+				case 'progress':
+					statusType = '진행 중';
+					break;
+				default:
+					statusType = '완료';
+			}
+			updateStatusMutate({ taskId, targetDate, status: statusType });
+		}
+	};
 	return (
 		<SettingLayout
 			size={size}
 			isFill={false}
-			onClick={onClick}
+			onClick={handleClick}
 			isHover={isHover}
 			isPressed={isPressed}
 			isActive={isActive}

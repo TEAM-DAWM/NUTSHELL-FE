@@ -5,7 +5,11 @@ import { useState } from 'react';
 import SettingCheckBtn from '@/components/common/button/settingBtn/SettingCheckBtn';
 import TextBtn from '@/components/common/button/textBtn/TextBtn';
 
-function StatusDoneBtn() {
+interface StatusDoneBtnProps {
+	taskId: number;
+	targetDate: string | null;
+}
+function StatusDoneBtn({ taskId, targetDate }: StatusDoneBtnProps) {
 	const [isPressed, setIsPressed] = useState(false);
 
 	const handleSettingCheckClick = () => {
@@ -22,6 +26,8 @@ function StatusDoneBtn() {
 				isPressed={isPressed}
 				isActive={false}
 				onClick={handleSettingCheckClick}
+				targetDate={targetDate}
+				taskId={taskId}
 			/>
 		</StatusDoneBtnLayout>
 	);

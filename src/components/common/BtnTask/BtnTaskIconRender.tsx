@@ -10,38 +10,28 @@ type BtnTaskIconRenderProps = {
 	btnStatus?: string;
 	status?: string;
 	taskId: number;
-	// targetDate?: string | null;
+	targetDate: string | null;
 };
-/** 태스크 status 변경 */
-// const changeTaskStatus = (updateTaskStatus: string) => {
-//     const updateTargetData: UpdateTaskStatusType = {
-//         taskId,
-//         targetDate,
-//         status: updateTaskStatus,
-//     };
-//     updateTaskStatueMutate(updateTargetData);
-// };
+
 function BtnTaskIconRender({
 	location,
 	dashBoardInprogress,
 	btnStatus,
 	status,
 	taskId,
-	// targetDate,
+	targetDate,
 }: BtnTaskIconRenderProps) {
 	switch (location) {
 		case 'staging':
-			// targetDate={targetDate}
-			return <StagingIconHoverContainer status={status} taskId={taskId} />;
+			return <StagingIconHoverContainer status={status} taskId={taskId} targetDate={targetDate} />;
 		case 'target':
-			// taskId={taskId} targetDate={targetDate}
-			return <TargetIconHoverContainer btnStatus={btnStatus} />;
+			return <TargetIconHoverContainer btnStatus={btnStatus} taskId={taskId} targetDate={targetDate} />;
 		case 'dashboard':
 			return (
 				<DashboardIconHoverContainer
 					dashBoardInprogress={dashBoardInprogress}
-					// taskId={taskId}
-					// targetDate={targetDate}
+					taskId={taskId}
+					targetDate={targetDate}
 				/>
 			);
 

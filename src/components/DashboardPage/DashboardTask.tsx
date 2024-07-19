@@ -4,6 +4,7 @@ import { useState } from 'react';
 import useGetTasksToday from '@/apis/dashboard/tasksToday/query';
 import BtnTask from '@/components/common/BtnTask/BtnTask';
 import { TaskType } from '@/types/tasks/taskType';
+import formatDatetoLocalDate from '@/utils/formatDatetoLocalDate';
 
 interface DashboardTaskProps {
 	taskStatus: string;
@@ -60,6 +61,7 @@ function DashboardTask({ text, taskStatus, emptyStatus, emptyImg }: DashboardTas
 										preventDoubleClick
 										handleSelectedTarget={handleSelectedTarget}
 										dashBoardInprogress={text === 'inprogress'}
+										targetDate={formatDatetoLocalDate(new Date())}
 									/>
 								))}
 							</>

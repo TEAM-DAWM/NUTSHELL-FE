@@ -1,11 +1,20 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
+import useUpdateTaskStatus from '@/apis/tasks/updateTaskStatus/query';
 import Icons from '@/assets/svg/index';
 
-function TodayPlusBtn() {
+interface TodayPlusBtnProps {
+	taskId: number;
+	targetDate: string | null;
+}
+function TodayPlusBtn({ taskId, targetDate }: TodayPlusBtnProps) {
+	const { mutate: updateStateMutate } = useUpdateTaskStatus();
+	const handleClick = () => {
+		updateStateMutate({ taskId, targetDate, status: '미완료' });
+	};
 	return (
-		<TodayPlusBtnLayout>
+		<TodayPlusBtnLayout onClick={handleClick}>
 			<StyledPlusArrow />
 			<Text>오늘로 추가</Text>
 		</TodayPlusBtnLayout>

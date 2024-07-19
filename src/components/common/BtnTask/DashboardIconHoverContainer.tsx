@@ -1,51 +1,31 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import React, { useState } from 'react';
 
 import StatusInProgressBtn from '../button/statusBtn/StatusInProgressBtn';
 import TodayPlusBtn from '../button/TodayPlusBtn';
+
+import useIconHoverUtil from './useIconHoverUtil';
 
 import Icons from '@/assets/svg/index';
 
 type Props = {
 	dashBoardInprogress: boolean;
-	// taskId: number;
-	// targetDate?: string | null;
+	taskId: number;
+	targetDate: string | null;
 };
 
-function DashboardIconHoverContainer({ dashBoardInprogress }: Props) {
-	const [iconHovered, setIconHovered] = useState(false);
-	const [iconClicked, setIconClicked] = useState(false);
-
-	const handleIconMouseEnter = () => {
-		setIconHovered(true);
-	};
-	const handleIconMouseLeave = () => {
-		setIconHovered(false);
-	};
-	const stopPropagation = (e: React.MouseEvent) => {
-		e.stopPropagation();
-	};
-
-	const handleIconClick = (e: React.MouseEvent) => {
-		if (iconClicked) {
-			setIconClicked(false);
-		} else {
-			setIconClicked(true);
-		}
-		stopPropagation(e);
-	};
-
+function DashboardIconHoverContainer({ dashBoardInprogress, taskId, targetDate }: Props) {
+	const { iconHovered, iconClicked, handleIconClick, handleIconMouseEnter, handleIconMouseLeave } = useIconHoverUtil();
 	const renderStatusButton = () => {
 		if (!iconHovered && !iconClicked) {
 			return <IconHoverIndicator />;
 		}
 
 		if (dashBoardInprogress) {
-			return <StatusInProgressBtn />;
+			return <StatusInProgressBtn taskId={taskId} targetDate={targetDate} />;
 		}
 
-		return <TodayPlusBtn />;
+		return <TodayPlusBtn targetDate={targetDate} taskId={taskId} />;
 	};
 
 	return (

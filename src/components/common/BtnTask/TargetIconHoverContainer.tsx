@@ -1,9 +1,10 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import React, { useState } from 'react';
 
 import SettingCheckBtn from '../button/settingBtn/SettingCheckBtn';
 import TodayPlusBtn from '../button/TodayPlusBtn';
+
+import useIconHoverUtil from './useIconHoverUtil';
 
 import Icons from '@/assets/svg/index';
 import StatusDoneBtn from '@/components/common/button/statusBtn/StatusDoneBtn';
@@ -12,32 +13,12 @@ import StatusTodoBtn from '@/components/common/button/statusBtn/StatusTodoBtn';
 
 type Props = {
 	btnStatus?: string;
-	// taskId: number;
-	// targetDate?: string | null;
+	taskId: number;
+	targetDate: string | null;
 };
 
-function TargetIconHoverContainer({ btnStatus }: Props) {
-	const [iconHovered, setIconHovered] = useState(false);
-	const [iconClicked, setIconClicked] = useState(false);
-
-	const handleIconMouseEnter = () => {
-		setIconHovered(true);
-	};
-	const handleIconMouseLeave = () => {
-		setIconHovered(false);
-	};
-	const stopPropagation = (e: React.MouseEvent) => {
-		e.stopPropagation();
-	};
-
-	const handleIconClick = (e: React.MouseEvent) => {
-		if (iconClicked) {
-			setIconClicked(false);
-		} else {
-			setIconClicked(true);
-		}
-		stopPropagation(e);
-	};
+function TargetIconHoverContainer({ btnStatus, taskId, targetDate }: Props) {
+	const { iconHovered, iconClicked, handleIconClick, handleIconMouseEnter, handleIconMouseLeave } = useIconHoverUtil();
 
 	const renderStatusButton = () => {
 		switch (btnStatus) {
@@ -50,11 +31,12 @@ function TargetIconHoverContainer({ btnStatus }: Props) {
 							isHover={iconHovered}
 							isPressed={iconClicked}
 							isActive={iconClicked}
-							onClick={() => {}}
+							taskId={taskId}
+							targetDate={targetDate}
 						/>
 					);
 				}
-				return <StatusDoneBtn />;
+				return <StatusDoneBtn taskId={taskId} targetDate={targetDate} />;
 
 			case '진행 중':
 				if (!iconHovered && !iconClicked) {
@@ -65,20 +47,21 @@ function TargetIconHoverContainer({ btnStatus }: Props) {
 							isHover={iconHovered}
 							isPressed={iconClicked}
 							isActive={iconClicked}
-							onClick={() => {}}
+							taskId={taskId}
+							targetDate={targetDate}
 						/>
 					);
 				}
-				return <StatusInProgressBtn />;
+				return <StatusInProgressBtn targetDate={targetDate} taskId={taskId} />;
 
 			case '미완료':
 				if (!iconHovered && !iconClicked) {
 					return <IconHoverIndicator />;
 				}
-				return <StatusTodoBtn />;
+				return <StatusTodoBtn taskId={taskId} targetDate={targetDate} />;
 
 			default:
-				return <TodayPlusBtn />;
+				return <TodayPlusBtn taskId={taskId} targetDate={targetDate} />;
 		}
 	};
 

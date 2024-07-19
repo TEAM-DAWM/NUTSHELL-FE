@@ -3,7 +3,11 @@ import { useState } from 'react';
 
 import SettingCheckBtn from '@/components/common/button/settingBtn/SettingCheckBtn';
 
-function StatusTodoBtn() {
+interface StatusTodoBtnProps {
+	taskId: number;
+	targetDate: string | null;
+}
+function StatusTodoBtn({ taskId, targetDate }: StatusTodoBtnProps) {
 	const [isSettingPressed, setIsSettingPressed] = useState(false);
 	const [isCheckingPressed, setIsCheckingPressed] = useState(false);
 
@@ -25,6 +29,8 @@ function StatusTodoBtn() {
 					isPressed={isSettingPressed}
 					isActive={false}
 					onClick={handleSettingCheckClick}
+					taskId={taskId}
+					targetDate={targetDate}
 				/>
 			)}
 			{!isSettingPressed && (
@@ -35,6 +41,8 @@ function StatusTodoBtn() {
 					isPressed={isCheckingPressed}
 					isActive={false}
 					onClick={handleCheckingClick}
+					taskId={taskId}
+					targetDate={targetDate}
 				/>
 			)}
 		</StatusTodoBtnLayout>
