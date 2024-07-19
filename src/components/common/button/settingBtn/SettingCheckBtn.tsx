@@ -20,7 +20,7 @@ interface SettingCheckBtnProps {
 	isPressed: boolean;
 	isActive: boolean;
 	taskId?: number;
-	targetDate?: string;
+	targetDate?: string | null;
 }
 
 function SettingCheckBtn({

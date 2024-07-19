@@ -23,7 +23,6 @@ function ModalHeaderBtn({ type, onDelete, taskId, targetDate }: ModalHeaderBtnPr
 				isHover
 				isPressed={false}
 				isActive
-				targetDate={null}
 				taskId={taskId}
 				targetDate={targetDate}
 			/>

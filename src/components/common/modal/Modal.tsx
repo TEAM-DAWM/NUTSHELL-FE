@@ -102,12 +102,12 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate, locat
 	};
 
 	const handleAddTimeBlock = () => {
-		if (taskId) {
+		if (taskId && startTime && endTime) {
 			const formattedStartTime = `${targetDate}T${startTime}`;
 			const formattedEndTime = `${targetDate}T${endTime}`;
 			createMutate({ taskId, startTime: formattedStartTime, endTime: formattedEndTime });
 		} else {
-			console.error('taskId가 존재하지 않습니다.');
+			console.error('taskId, startTime, endTime가 모두 존재하지 않습니다.');
 		}
 
 		onEdit();
