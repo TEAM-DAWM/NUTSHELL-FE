@@ -19,7 +19,7 @@ interface BtnTaskProps extends TaskType {
 	btnStatus?: string;
 	preventDoubleClick?: boolean;
 	isDragging?: boolean;
-	targetDate: string;
+	targetDate?: string | null;
 }
 
 interface BorderColorProps {

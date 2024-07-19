@@ -17,7 +17,7 @@ type Props = {
 	btnStatus?: string;
 	status?: string;
 	taskId: number;
-	targetDate: string;
+	targetDate?: string | null;
 };
 
 function IconHoverContainer({ iconType, btnStatus, status, taskId, targetDate }: Props) {
