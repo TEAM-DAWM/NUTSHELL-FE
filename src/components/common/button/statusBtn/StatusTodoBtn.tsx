@@ -6,8 +6,9 @@ import SettingCheckBtn from '@/components/common/button/settingBtn/SettingCheckB
 interface StatusTodoBtnProps {
 	taskId: number;
 	targetDate: string | null;
+	handleIconMouseLeave: () => void;
 }
-function StatusTodoBtn({ taskId, targetDate }: StatusTodoBtnProps) {
+function StatusTodoBtn({ taskId, targetDate, handleIconMouseLeave }: StatusTodoBtnProps) {
 	const [isSettingPressed, setIsSettingPressed] = useState(false);
 	const [isCheckingPressed, setIsCheckingPressed] = useState(false);
 
@@ -31,6 +32,7 @@ function StatusTodoBtn({ taskId, targetDate }: StatusTodoBtnProps) {
 					onClick={handleSettingCheckClick}
 					taskId={taskId}
 					targetDate={targetDate}
+					handleIconMouseLeave={handleIconMouseLeave}
 				/>
 			)}
 			{!isSettingPressed && (
@@ -43,6 +45,7 @@ function StatusTodoBtn({ taskId, targetDate }: StatusTodoBtnProps) {
 					onClick={handleCheckingClick}
 					taskId={taskId}
 					targetDate={targetDate}
+					handleIconMouseLeave={handleIconMouseLeave}
 				/>
 			)}
 		</StatusTodoBtnLayout>

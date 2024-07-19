@@ -21,6 +21,7 @@ interface SettingCheckBtnProps {
 	isActive: boolean;
 	taskId?: number;
 	targetDate?: string | null;
+	handleIconMouseLeave?: () => void;
 }
 
 function SettingCheckBtn({
@@ -32,9 +33,10 @@ function SettingCheckBtn({
 	isActive,
 	taskId,
 	targetDate,
+	handleIconMouseLeave,
 }: SettingCheckBtnProps) {
 	const IconComponent = settingIconMap[type];
-	const { mutate: updateStatusMutate } = useUpdateTaskStatus();
+	const { mutate: updateStatusMutate } = useUpdateTaskStatus(handleIconMouseLeave || null);
 	const StyledSettingCheckIcon = styled(IconComponent)<{ size: string }>`
 		${({ size }) => (size === 'small' ? smallIcon : bigIcon)};
 	`;

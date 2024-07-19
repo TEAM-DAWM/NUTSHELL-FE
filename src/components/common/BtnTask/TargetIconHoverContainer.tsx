@@ -36,7 +36,7 @@ function TargetIconHoverContainer({ btnStatus, taskId, targetDate }: Props) {
 						/>
 					);
 				}
-				return <StatusDoneBtn taskId={taskId} targetDate={targetDate} />;
+				return <StatusDoneBtn taskId={taskId} targetDate={targetDate} handleIconMouseLeave={handleIconMouseLeave} />;
 
 			case '진행 중':
 				if (!iconHovered) {
@@ -52,13 +52,15 @@ function TargetIconHoverContainer({ btnStatus, taskId, targetDate }: Props) {
 						/>
 					);
 				}
-				return <StatusInProgressBtn targetDate={targetDate} taskId={taskId} />;
+				return (
+					<StatusInProgressBtn targetDate={targetDate} taskId={taskId} handleIconMouseLeave={handleIconMouseLeave} />
+				);
 
 			case '미완료':
 				if (!iconHovered) {
 					return <IconHoverIndicator />;
 				}
-				return <StatusTodoBtn taskId={taskId} targetDate={targetDate} />;
+				return <StatusTodoBtn taskId={taskId} targetDate={targetDate} handleIconMouseLeave={handleIconMouseLeave} />;
 
 			default:
 				return <TodayPlusBtn taskId={taskId} targetDate={targetDate} />;

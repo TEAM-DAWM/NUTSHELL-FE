@@ -9,7 +9,7 @@ interface TodayPlusBtnProps {
 	targetDate: string | null;
 }
 function TodayPlusBtn({ taskId, targetDate }: TodayPlusBtnProps) {
-	const { mutate: updateStateMutate } = useUpdateTaskStatus();
+	const { mutate: updateStateMutate } = useUpdateTaskStatus(null);
 	const handleClick = () => {
 		updateStateMutate({ taskId, targetDate, status: '미완료' });
 	};
