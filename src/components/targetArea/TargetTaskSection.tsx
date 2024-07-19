@@ -11,9 +11,10 @@ interface TargetTaskSectionProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
 	tasks: TaskType[];
+	targetDate: string;
 }
 function TargetTaskSection(props: TargetTaskSectionProps) {
-	const { handleSelectedTarget, selectedTarget, tasks } = props;
+	const { handleSelectedTarget, selectedTarget, tasks, targetDate } = props;
 
 	return (
 		<BtnTaskContainer type="target">
@@ -44,6 +45,7 @@ function TargetTaskSection(props: TargetTaskSectionProps) {
 										handleSelectedTarget={handleSelectedTarget}
 										selectedTarget={selectedTarget}
 										isDragging={snapshot.isDragging}
+										targetDate={targetDate}
 									/>
 								</div>
 							)}

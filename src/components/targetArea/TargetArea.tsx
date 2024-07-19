@@ -47,6 +47,7 @@ function TargetArea({
 							handleSelectedTarget={handleSelectedTarget}
 							selectedTarget={selectedTarget}
 							tasks={tasks}
+							targetDate={targetDate}
 						/>
 						{provided.placeholder}
 					</div>

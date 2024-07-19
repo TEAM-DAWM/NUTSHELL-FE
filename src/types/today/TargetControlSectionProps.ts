@@ -3,5 +3,5 @@ export interface TargetControlSectionProps {
 	onClickNextDate: () => void;
 	onClickTodayDate: () => void;
 	onClickDatePicker: (target: Date) => void;
-	targetDate: Date;
+	targetDate: string;
 }
