@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 import ModalBackdrop from './ModalBackdrop';
 
@@ -26,8 +26,8 @@ interface ModalProps {
 function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null, timeBlockId }: ModalProps) {
 	const [taskName, setTaskName] = useState('');
 	const [desc, setDesc] = useState('');
-	const [taskDate, setTaskDate] = useState('');
-	const [taskTime, setTaskTime] = useState('');
+	const [deadLineDate, setDeadLineDate] = useState('');
+	const [deadLineTime, setDeadLineTime] = useState('');
 
 	const { data, isFetched } = useTaskDescription({
 		taskId,
@@ -35,17 +35,29 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null
 		isOpen,
 	});
 
-	if (isFetched) {
-		setTaskName(data.data.name);
-		setDesc(data.data.description);
-		setTaskDate(data.data.deadLine.date);
-		setTaskTime(data.data.deadLine.time);
-	}
-	const handleTaskDescription = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setTaskName(e.target.value);
-		setDesc(e.target.value);
-		setTaskDate(e.target.value);
-		setTaskTime(e.target.value);
+	useEffect(() => {
+		if (isFetched && data) {
+			setTaskName(data.data.name);
+			setDesc(data.data.description);
+			setDeadLineDate(data.data.deadLine.date);
+			setDeadLineTime(data.data.deadLine.time);
+		}
+	}, [isFetched, data]);
+
+	const handleTaskNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+		setTaskName(event.target.value);
+	};
+
+	const handleDescChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+		setDesc(event.target.value);
+	};
+
+	const handleTaskDateChange = (newDate: string) => {
+		setDeadLineDate(newDate);
+	};
+
+	const handleTaskTimeChange = (newTime: string) => {
+		setDeadLineTime(newTime);
 	};
 
 	const { mutate: deleteMutate } = useDeleteTimeBlock();
@@ -70,9 +82,9 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null
 			taskId,
 			name: taskName,
 			description: desc,
-			deadLine: { date: taskDate, time: taskTime },
+			deadLine: { date: deadLineDate, time: deadLineTime },
 		});
-		console.log(taskDate, taskName);
+		console.log(taskName, desc, deadLineDate, deadLineTime);
 
 		onClose();
 	};
@@ -82,11 +94,22 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null
 		<ModalBackdrop onClick={onClose}>
 			<ModalLayout type={sizeType.type} top={top} left={left} onClick={(e) => e.stopPropagation()}>
 				<ModalHeader>
-					<BtnDate date={taskDate} time={taskTime} />
+					<BtnDate
+						date={deadLineDate}
+						time={deadLineTime}
+						handleDate={handleTaskDateChange}
+						handleTime={handleTaskTimeChange}
+					/>
 					<ModalHeaderBtn type={sizeType.type} onDelete={handleDelete} />
 				</ModalHeader>
 				<ModalBody>
-					<TextInputBox type={sizeType.type} name={taskName} desc={desc} />
+					<TextInputBox
+						type={sizeType.type}
+						name={taskName}
+						desc={desc}
+						onTitleChange={handleTaskNameChange}
+						onDescChange={handleDescChange}
+					/>
 					{sizeType.type === 'long' && <ModalTextInputTime />}
 				</ModalBody>
 				<ModalFooter>
