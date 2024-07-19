@@ -8,6 +8,7 @@ import BtnTaskContainer from '@/components/common/BtnTaskContainer';
 import FullCalendarBox from '@/components/common/fullCalendar/FullCalendarBox';
 import StagingArea from '@/components/common/StagingArea/StagingArea';
 import TargetArea from '@/components/targetArea/TargetArea';
+import { AreaType } from '@/types/area/areaType';
 import { SortOrderType } from '@/types/sortOrderType';
 import { TaskType } from '@/types/tasks/taskType';
 import formatDatetoLocalDate from '@/utils/formatDatetoLocalDate';
@@ -19,6 +20,7 @@ function Today() {
 	const [selectedDate, setTargetDate] = useState(new Date());
 	const isTotal = activeButton === '전체';
 	const targetDate = formatDatetoLocalDate(selectedDate);
+	const [selectedArea, setSelectedArea] = useState<AreaType>(null);
 
 	// Task 목록 Get
 	const { data: stagingData, isError: isStagingError } = useGetTasks({ isTotal, sortOrder });
@@ -34,8 +36,9 @@ function Today() {
 		setSortOrder(order);
 	};
 
-	const handleSelectedTarget = (task: TaskType | null) => {
+	const handleSelectedTarget = (task: TaskType | null, area: AreaType) => {
 		setSelectedTarget(task);
+		setSelectedArea(area);
 	};
 
 	const handlePrevBtn = () => {
@@ -109,7 +112,7 @@ function Today() {
 					<BtnTaskContainer type="staging" />
 				) : (
 					<StagingArea
-						handleSelectedTarget={handleSelectedTarget}
+						handleSelectedTarget={(task) => handleSelectedTarget(task, 'staging')}
 						selectedTarget={selectedTarget}
 						tasks={stagingData.data.tasks}
 						handleSortOrder={handleSortOrder}
@@ -124,7 +127,7 @@ function Today() {
 					<BtnTaskContainer type="target" />
 				) : (
 					<TargetArea
-						handleSelectedTarget={handleSelectedTarget}
+						handleSelectedTarget={(task) => handleSelectedTarget(task, 'target')}
 						selectedTarget={selectedTarget}
 						tasks={targetData.data.tasks}
 						onClickPrevDate={handlePrevBtn}
@@ -136,7 +139,11 @@ function Today() {
 				)}
 			</DragDropContext>
 			<CalendarWrapper>
-				<FullCalendarBox size="small" selectedTarget={selectedTarget} selectDate={selectedDate} />
+				<FullCalendarBox
+					size="small"
+					selectedTarget={selectedArea === 'target' ? selectedTarget : null}
+					selectDate={selectedDate}
+				/>
 			</CalendarWrapper>
 		</TodayLayout>
 	);
