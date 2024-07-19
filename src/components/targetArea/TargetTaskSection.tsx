@@ -47,7 +47,6 @@ function TargetTaskSection(props: TargetTaskSectionProps) {
 										isDragging={snapshot.isDragging}
 										targetDate={targetDate}
 										dashBoardInprogress={false}
-										targetDate={targetDate}
 									/>
 								</div>
 							)}

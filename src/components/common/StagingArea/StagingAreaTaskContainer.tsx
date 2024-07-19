@@ -15,7 +15,12 @@ interface StagingAreaTaskContainerProps {
 	targetDate: string;
 }
 
-function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget, tasks }: StagingAreaTaskContainerProps) {
+function StagingAreaTaskContainer({
+	handleSelectedTarget,
+	selectedTarget,
+	tasks,
+	targetDate,
+}: StagingAreaTaskContainerProps) {
 	return (
 		<StagingAreaTaskContainerLayout>
 			<BtnTaskContainer type="staging">
@@ -43,6 +48,7 @@ function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget, tasks 
 											handleSelectedTarget={handleSelectedTarget}
 											selectedTarget={selectedTarget}
 											isDragging={snapshot.isDragging}
+											targetDate={targetDate}
 										/>
 									</div>
 								)}
