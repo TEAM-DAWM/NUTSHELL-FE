@@ -41,6 +41,7 @@ function StatusInProgressBtn({ taskId, targetDate, handleIconMouseLeave }: Statu
 				isActive={false}
 				taskId={taskId}
 				targetDate={targetDate}
+				handleIconMouseLeave={handleIconMouseLeave}
 				onClick={handleSettingCheckClick}
 			/>
 		</StatusInProgressBtnLayout>
