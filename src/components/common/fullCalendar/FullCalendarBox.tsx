@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
-import { ViewMountArg, DatesSetArg, EventClickArg } from '@fullcalendar/core';
+import { ViewMountArg, DatesSetArg, EventClickArg, EventDropArg } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import { DateSelectArg } from 'fullcalendar/index.js';
+import { DateSelectArg, EventResizeDoneArg } from 'fullcalendar/index.js';
 import { useState, useRef, useEffect } from 'react';
 
 import Modal from '../modal/Modal';
@@ -13,6 +13,7 @@ import processEvents from './processEvents';
 
 import useGetTimeBlock from '@/apis/timeBlocks/getTimeBlock/query';
 import usePostTimeBlock from '@/apis/timeBlocks/postTimeBlock/query';
+import useUpdateTimeBlock from '@/apis/timeBlocks/updateTimeBlock/query';
 import RefreshBtn from '@/components/common/button/RefreshBtn';
 import DayHeaderContent from '@/components/common/fullCalendar/DayHeaderContent';
 import FullCalendarLayout from '@/components/common/fullCalendar/FullCalendarStyle';
@@ -28,14 +29,28 @@ interface FullCalendarBoxProps {
 
 function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxProps) {
 	const today = new Date().toDateString();
+	const todayDate = new Date().toISOString().split('T')[0];
 	const [currentView, setCurrentView] = useState('timeGridWeek');
 	const [range, setRange] = useState(7);
-	const todayDate = new Date().toISOString().split('T')[0];
 	const [startDate, setStartDate] = useState<string>(todayDate);
-
 	const [isModalOpen, setModalOpen] = useState(false);
-	const [modalTaskId, setModalTaskId] = useState<number | null>(null);
-	const [modalTimeBlockId, setModalTimeBlockId] = useState<number | null>(null);
+	const [top, setTop] = useState(0);
+	const [left, setLeft] = useState(0);
+
+	const calendarRef = useRef<FullCalendar>(null);
+
+	const { data: timeBlockData } = useGetTimeBlock({ startDate, range });
+	const { mutate: createMutate } = usePostTimeBlock();
+	const { mutate: updateMutate } = useUpdateTimeBlock();
+
+	const calendarEvents = timeBlockData ? processEvents(timeBlockData.data.data) : [];
+
+	useEffect(() => {
+		if (selectDate && calendarRef.current) {
+			const calendarApi = calendarRef.current.getApi();
+			calendarApi.gotoDate(selectDate);
+		}
+	}, [selectDate]);
 
 	const handleViewChange = (view: ViewMountArg) => {
 		setCurrentView(view.view.type);
@@ -43,12 +58,12 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 	};
 
 	const handleDatesSet = (dateInfo: DatesSetArg) => {
-		setCurrentView(dateInfo.view.type);
 		const currentViewType = dateInfo.view.type;
 		const newStartDate = new Date(dateInfo.start);
 		newStartDate.setDate(newStartDate.getDate() + 1);
 		const formattedStartDate = newStartDate.toISOString().split('T')[0];
 
+		setCurrentView(dateInfo.view.type);
 		setStartDate(formattedStartDate);
 		updateRange(currentViewType);
 	};
@@ -69,62 +84,23 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 		}
 	};
 
-	const calendarRef = useRef<FullCalendar>(null);
-	useEffect(() => {
-		if (selectDate && calendarRef.current) {
-			const calendarApi = calendarRef.current.getApi();
-			calendarApi.gotoDate(selectDate);
-		}
-	}, [selectDate]);
-
-	const [top, setTop] = useState(0);
-	const [left, setLeft] = useState(0);
-
 	const handleEventClick = (info: EventClickArg) => {
 		const rect = info.el.getBoundingClientRect();
 		const calculatedTop = rect.top;
 		const adjustedTop = Math.min(calculatedTop, MODAL.SCREEN_HEIGHT - MODAL.TASK_MODAL_HEIGHT);
 		setTop(adjustedTop);
 		setLeft(rect.left - MODAL.TASK_MODAL_WIDTH + 40);
-
-		// eslint-disable-next-line no-underscore-dangle
-		const clickedEvent = info.event._def.extendedProps;
-
-		if (clickedEvent) {
-			setModalTaskId(clickedEvent.taskId);
-			setModalTimeBlockId(clickedEvent.timeBlockId);
-			setModalOpen(true);
-		}
+		setModalOpen(true);
 	};
 
-	/** 모달 닫기 */
 	const closeModal = () => {
 		setModalOpen(false);
-		setModalTaskId(null);
-		setModalTimeBlockId(null);
 	};
 
-	// Get timeblock
-	const { data: timeBlockData } = useGetTimeBlock({ startDate, range });
-	console.log(timeBlockData?.data.data);
-
-	const { mutate } = usePostTimeBlock();
-
-	const { events, taskEvents } = timeBlockData
-		? processEvents(timeBlockData.data.data)
-		: { events: [], taskEvents: [] };
-
-	// TODO: 캘린더 모달 상세조회 부분 구현 시 해당 부분 참고
-	console.log('taskEvents', taskEvents);
-
-	const calendarEvents = timeBlockData ? events : [];
-
-	/** 드래그해서 이벤트 추가하기 */
 	const addEventWhenDragged = (selectInfo: DateSelectArg) => {
 		if (calendarRef.current && (selectedTarget?.id === 0 || selectedTarget)) {
 			const calendarApi = calendarRef.current.getApi();
 
-			// 기존에 같은 id 가진 이벤트가 캘린더에 있다면 삭제
 			const existingEvents = calendarApi.getEvents();
 			existingEvents.forEach((event) => {
 				if (event.id === selectedTarget.id.toString()) {
@@ -132,7 +108,6 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 				}
 			});
 
-			// 이벤트 추가
 			calendarApi.addEvent({
 				id: selectedTarget.id.toString(),
 				title: selectedTarget.name,
@@ -140,6 +115,10 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 				end: selectInfo.endStr,
 				allDay: selectInfo.allDay,
 				classNames: 'tasks',
+				extendedProps: {
+					taskId: selectedTarget.id,
+					timeBlockId: null,
+				},
 			});
 
 			const removeTimezone = (str: string) => str.replace(/:\d{2}[+-]\d{2}:\d{2}$/, '');
@@ -147,7 +126,31 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 			const startStr = removeTimezone(selectInfo.startStr);
 			const endStr = removeTimezone(selectInfo.endStr);
 
-			mutate({ taskId: selectedTarget.id, startTime: startStr, endTime: endStr });
+			createMutate({ taskId: selectedTarget.id, startTime: startStr, endTime: endStr });
+		}
+	};
+
+	const updateEvent = (info: EventDropArg | EventResizeDoneArg) => {
+		const { event } = info;
+		const { taskId, timeBlockId } = event.extendedProps;
+		const removeTimezone = (str: string) => str.replace(/:\d{2}[+-]\d{2}:\d{2}$/, '');
+
+		const startStr = removeTimezone(event.startStr);
+		const endStr = removeTimezone(event.endStr);
+
+		if (taskId && taskId !== -1) {
+			updateMutate({ taskId, timeBlockId, startTime: startStr, endTime: endStr });
+		}
+	};
+
+	const handleSelect = (selectInfo: DateSelectArg) => {
+		if (calendarRef.current) {
+			const calendarApi = calendarRef.current.getApi();
+			calendarApi.unselect();
+		}
+
+		if (selectedTarget) {
+			addEventWhenDragged(selectInfo);
 		}
 	};
 
@@ -182,7 +185,6 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 				selectable
 				nowIndicator
 				dayMaxEvents
-				// netshell에서 할당한 이벤트 : tasks, 구글 캘린더에서 가져온 이벤트 : schedule
 				events={calendarEvents}
 				buttonText={{
 					today: '오늘',
@@ -209,19 +211,20 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 					minute: '2-digit',
 					hour12: false,
 				}}
-				droppable={true}
+				droppable
 				eventClick={handleEventClick}
-				select={addEventWhenDragged}
+				select={handleSelect} // 선택된 날짜가 변경될 때마다 호출
+				eventDrop={updateEvent} // 기존 이벤트 드래그 수정 핸들러
+				eventResize={updateEvent} // 기존 이벤트 리사이즈 수정 핸들러
 			/>
-			{isModalOpen && modalTaskId !== null && modalTimeBlockId !== null && (
+			{isModalOpen && (
 				<Modal
 					isOpen={isModalOpen}
 					sizeType={{ type: 'short' }}
 					top={top}
 					left={left}
 					onClose={closeModal}
-					taskId={modalTaskId}
-					timeBlockId={modalTimeBlockId}
+					taskId={5} // 예시 taskId, 실제 데이터로 교체 필요
 				/>
 			)}
 		</FullCalendarLayout>
