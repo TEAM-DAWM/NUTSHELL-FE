@@ -30,24 +30,18 @@ function DateArea({ isHover, isPressed, handleDate }: DateAreaProps) {
 		if (startDate && endDate) handleDate(startDate, endDate);
 	};
 
-	const handleStartDate = (date: Date | null) => {
-		setStartDate(date);
-	};
-
-	const handleEndDate = (date: Date | null) => {
-		setEndDate(date);
+	// 날짜가 확정되면 부모 컴포넌트에 전달하는 함수
+	const handleConfirmDates = (newStartDate: Date | null, newEndDate: Date | null) => {
+		setStartDate(newStartDate);
+		setEndDate(newEndDate);
+		if (newStartDate && newEndDate) handleDate(newStartDate, newEndDate);
+		setIsClicked(false);
 	};
 
 	const handleClickPastDate = (getPastDate: number) => {
 		const newStartDate = new Date(today);
 		newStartDate.setDate(today.getDate() - getPastDate);
-		handleStartDate(newStartDate);
-
-		const newEndDate = new Date(today);
-		newEndDate.setDate(today.getDate());
-		handleEndDate(newEndDate);
-
-		handleDate(newStartDate, newEndDate);
+		handleConfirmDates(newStartDate, today); // 날짜 확정
 	};
 
 	return (
@@ -58,11 +52,12 @@ function DateArea({ isHover, isPressed, handleDate }: DateAreaProps) {
 					<DatePickerWrapper>
 						<DatePickerCustom
 							isOpen={isClicked}
-							onClose={handleClick}
+							onClose={() => {
+								setIsClicked(false);
+							}}
 							endDate={endDate}
 							startDate={startDate}
-							handleStartDate={handleStartDate}
-							handleEndDate={handleEndDate}
+							handleConfirmDates={handleConfirmDates}
 						/>
 					</DatePickerWrapper>
 				</DatePickerContainer>
