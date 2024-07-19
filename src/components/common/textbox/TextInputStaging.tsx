@@ -11,7 +11,6 @@ import formatDatetoString from '@/utils/formatDatetoString';
 
 function TextInputStaging() {
 	const [taskName, setTaskName] = useState('');
-	const { mutate } = useCreateTask();
 	const [date, setDate] = useState<Date | null>(null);
 	const [time, setTime] = useState<string | null>(null);
 	const nameRef = useRef<HTMLTextAreaElement>(null);
@@ -32,6 +31,15 @@ function TextInputStaging() {
 		setTaskName(e.target.value);
 	};
 
+	const clearTask = () => {
+		setTaskName('');
+		if (nameRef.current) nameRef.current.value = '';
+		setDate(null);
+		setTime(null);
+	};
+
+	const { mutate } = useCreateTask(clearTask);
+
 	/** 태스크 쏟아내기 전송 */
 	const onSubmit = () => {
 		const formattedDate = date ? formatDatetoLocalDate(date) : null;
@@ -44,15 +52,11 @@ function TextInputStaging() {
 				},
 			});
 		}
-		setDate(null);
-		setTime(null);
-		if (nameRef.current) nameRef.current.value = '';
-		setTaskName('');
 	};
 
 	/** 엔터키로 쏟아내기 전송 */
 	const handleEnterPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-		if (e.key === 'Enter') {
+		if (e.key === 'Enter' && e.nativeEvent.isComposing === false) {
 			e.preventDefault();
 			onSubmit();
 		}
