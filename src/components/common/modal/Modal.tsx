@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 
 import ModalBackdrop from './ModalBackdrop';
 
-import useDeleteTask from '@/apis/tasks/deleteTask/query';
+import usePatchTaskDescription from '@/apis/tasks/editTask/query';
 import useTaskDescription from '@/apis/tasks/taskDescription/query';
+import useDeleteTimeBlock from '@/apis/timeBlocks/deleteTimeBlock/query';
 import BtnDate from '@/components/common/BtnDate/BtnDate';
 import OkayCancelBtn from '@/components/common/button/OkayCancelBtn';
 import ModalHeaderBtn from '@/components/common/modal/ModalHeaderBtn';
@@ -21,23 +23,56 @@ interface ModalProps {
 	taskId: number;
 	targetDate?: string | null;
 }
-function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null }: ModalProps) {
+function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null, timeBlockId }: ModalProps) {
+	const [taskName, setTaskName] = useState('');
+	const [desc, setDesc] = useState('');
+	const [taskDate, setTaskDate] = useState('');
+	const [taskTime, setTaskTime] = useState('');
+
 	const { data, isFetched } = useTaskDescription({
 		taskId,
 		targetDate: formatDatetoLocalDate(targetDate),
 		isOpen,
 	});
 
-	const { mutate } = useDeleteTask();
+	if (isFetched) {
+		setTaskName(data.data.name);
+		setDesc(data.data.description);
+		setTaskDate(data.data.deadLine.date);
+		setTaskTime(data.data.deadLine.time);
+	}
+	const handleTaskDescription = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setTaskName(e.target.value);
+		setDesc(e.target.value);
+		setTaskDate(e.target.value);
+		setTaskTime(e.target.value);
+	};
+
+	const { mutate: deleteMutate } = useDeleteTimeBlock();
+	const { mutate: editMutate } = usePatchTaskDescription();
+
+	// editMutate({ name, description, deadLine: { date, time } });
 
 	const handleDelete = () => {
 		console.log('taskId', taskId);
 
-		if (taskId) {
-			mutate(taskId);
+		if (taskId && timeBlockId) {
+			deleteMutate({ taskId, timeBlockId });
 		} else {
 			console.error('taskId가 존재하지 않습니다.');
 		}
+
+		onClose();
+	};
+
+	const onEdit = () => {
+		editMutate({
+			taskId,
+			name: taskName,
+			description: desc,
+			deadLine: { date: taskDate, time: taskTime },
+		});
+		console.log(taskDate, taskName);
 
 		onClose();
 	};
@@ -47,16 +82,16 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null
 		<ModalBackdrop onClick={onClose}>
 			<ModalLayout type={sizeType.type} top={top} left={left} onClick={(e) => e.stopPropagation()}>
 				<ModalHeader>
-					<BtnDate date={data.data.deadLine.date} time={data.data.deadLine.time} />
+					<BtnDate date={taskDate} time={taskTime} />
 					<ModalHeaderBtn type={sizeType.type} onDelete={handleDelete} />
 				</ModalHeader>
 				<ModalBody>
-					<TextInputBox type={sizeType.type} name={data.data.name} desc={data.data.description} />
+					<TextInputBox type={sizeType.type} name={taskName} desc={desc} />
 					{sizeType.type === 'long' && <ModalTextInputTime />}
 				</ModalBody>
 				<ModalFooter>
 					<OkayCancelBtn type="cancel" onClick={onClose} />
-					<OkayCancelBtn type="okay" onClick={onClose} />
+					<OkayCancelBtn type="okay" onClick={onEdit} />
 				</ModalFooter>
 			</ModalLayout>
 		</ModalBackdrop>

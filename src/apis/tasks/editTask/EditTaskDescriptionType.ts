@@ -3,7 +3,7 @@ export interface EditTaskDescriptionType {
 	name?: string;
 	description?: string;
 	deadLine: {
-		date: string | null;
-		time: string | null;
+		date?: string | null;
+		time?: string | null;
 	};
 }
