@@ -12,15 +12,9 @@ interface StagingAreaTaskContainerProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
 	tasks: TaskType[];
-	targetDate: string;
 }
 
-function StagingAreaTaskContainer({
-	handleSelectedTarget,
-	selectedTarget,
-	tasks,
-	targetDate,
-}: StagingAreaTaskContainerProps) {
+function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget, tasks }: StagingAreaTaskContainerProps) {
 	return (
 		<StagingAreaTaskContainerLayout>
 			<BtnTaskContainer type="staging">
