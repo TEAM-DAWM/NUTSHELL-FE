@@ -1,17 +1,41 @@
 import styled from '@emotion/styled';
+import { ChangeEvent, useState, useEffect } from 'react';
 
 import Icons from '@/assets/svg/index';
 import TextInputTime from '@/components/common/textbox/TextInputTime';
+import timeRange from '@/utils/timeRange';
 
-function ModalTextInputTime() {
+interface ModalTextInputTimeProps {
+	startTime: string;
+	endTime: string;
+	handleStartTimeChange: (event: ChangeEvent<HTMLInputElement>) => void;
+	handleEndTimeChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
+function ModalTextInputTime({
+	startTime,
+	endTime,
+	handleStartTimeChange,
+	handleEndTimeChange,
+}: ModalTextInputTimeProps) {
+	const [totalTime, setTotalTime] = useState('');
+
+	useEffect(() => {
+		if (startTime && endTime) {
+			setTotalTime(timeRange(startTime, endTime));
+		} else {
+			setTotalTime('');
+		}
+	}, [startTime, endTime]);
+
 	return (
 		<ModalTextInputTimeLayout>
 			<TextInputTimeBox>
 				<TmpIcon />
-				<TextInputTime time="start" />
-				<TextInputTime time="end" />
+				<TextInputTime time="start" userInput={startTime} onChange={handleStartTimeChange} />
+				<TextInputTime time="end" userInput={endTime} onChange={handleEndTimeChange} />
 			</TextInputTimeBox>
-			<TextInputTime time="total" />
+			<TextInputTime time="total" userInput={totalTime} />
 		</ModalTextInputTimeLayout>
 	);
 }
