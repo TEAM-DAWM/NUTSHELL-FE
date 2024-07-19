@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import ModalBackdrop from './ModalBackdrop';
 
+import useDeleteTimeBlock from '@/apis/timeBlocks/deleteTimeBlock/query';
 import BtnDate from '@/components/common/BtnDate/BtnDate';
 import OkayCancelBtn from '@/components/common/button/OkayCancelBtn';
 import ModalHeaderBtn from '@/components/common/modal/ModalHeaderBtn';
@@ -15,13 +16,13 @@ interface ModalProps {
 	top: number;
 	left: number;
 	onClose: () => void;
-	taskId: number;
+	taskId?: number;
+	timeBlockId?: number;
 }
 
-function Modal({ isOpen, sizeType, top, left, onClose, taskId }: ModalProps) {
-	// taskId 가지고 api로 상세정보 요청하면 됨
+function Modal({ isOpen, sizeType, top, left, onClose, taskId, timeBlockId }: ModalProps) {
 	const dummyData = {
-		id: taskId, // 안쓰는 변수 린트 통과용 필드
+		id: taskId,
 		name: 'task name',
 		description: 'task description',
 		deadLine: {
@@ -35,13 +36,28 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId }: ModalProps) {
 			endTime: '2024-07-08T14:30',
 		},
 	};
+
+	const { mutate } = useDeleteTimeBlock();
+
+	const handleDelete = () => {
+		console.log('taskId, timeBlockId', taskId, timeBlockId);
+
+		if (taskId && timeBlockId) {
+			mutate({ taskId, timeBlockId });
+		} else {
+			console.error('taskId 또는 timeBlockId가 존재하지 않습니다.');
+		}
+
+		onClose();
+	};
+
 	return (
 		isOpen && (
 			<ModalBackdrop onClick={onClose}>
 				<ModalLayout type={sizeType.type} top={top} left={left} onClick={(e) => e.stopPropagation()}>
 					<ModalHeader>
 						<BtnDate date={dummyData.deadLine.date} time={dummyData.deadLine.time} />
-						<ModalHeaderBtn type={sizeType.type} />
+						<ModalHeaderBtn type={sizeType.type} onDelete={handleDelete} />
 					</ModalHeader>
 					<ModalBody>
 						<TextInputBox type={sizeType.type} name={dummyData.name} desc={dummyData.description} />

@@ -8,7 +8,7 @@ interface ModalDeleteDetailProps {
 	top: number;
 	left: number;
 	onClose: (e: React.MouseEvent) => void;
-	onDelete?: () => void;
+	onDelete: (e: React.MouseEvent) => void;
 }
 
 function ModalDeleteDetail({ top, left, onClose, onDelete }: ModalDeleteDetailProps) {

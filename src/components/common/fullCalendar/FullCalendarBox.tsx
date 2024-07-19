@@ -34,6 +34,8 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 	const [startDate, setStartDate] = useState<string>(todayDate);
 
 	const [isModalOpen, setModalOpen] = useState(false);
+	const [modalTaskId, setModalTaskId] = useState<number | null>(null);
+	const [modalTimeBlockId, setModalTimeBlockId] = useState<number | null>(null);
 
 	const handleViewChange = (view: ViewMountArg) => {
 		setCurrentView(view.view.type);
@@ -84,21 +86,38 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 		const adjustedTop = Math.min(calculatedTop, MODAL.SCREEN_HEIGHT - MODAL.TASK_MODAL_HEIGHT);
 		setTop(adjustedTop);
 		setLeft(rect.left - MODAL.TASK_MODAL_WIDTH + 40);
-		setModalOpen(true);
+
+		// eslint-disable-next-line no-underscore-dangle
+		const clickedEvent = info.event._def.extendedProps;
+
+		if (clickedEvent) {
+			setModalTaskId(clickedEvent.taskId);
+			setModalTimeBlockId(clickedEvent.timeBlockId);
+			setModalOpen(true);
+		}
 	};
 
 	/** 모달 닫기 */
 	const closeModal = () => {
 		setModalOpen(false);
+		setModalTaskId(null);
+		setModalTimeBlockId(null);
 	};
 
 	// Get timeblock
 	const { data: timeBlockData } = useGetTimeBlock({ startDate, range });
-	console.log('timeBlockData.data.data', timeBlockData?.data.data);
+	console.log(timeBlockData?.data.data);
 
 	const { mutate } = usePostTimeBlock();
 
-	const calendarEvents = timeBlockData ? processEvents(timeBlockData.data.data) : [];
+	const { events, taskEvents } = timeBlockData
+		? processEvents(timeBlockData.data.data)
+		: { events: [], taskEvents: [] };
+
+	// TODO: 캘린더 모달 상세조회 부분 구현 시 해당 부분 참고
+	console.log('taskEvents', taskEvents);
+
+	const calendarEvents = timeBlockData ? events : [];
 
 	/** 드래그해서 이벤트 추가하기 */
 	const addEventWhenDragged = (selectInfo: DateSelectArg) => {
@@ -123,20 +142,15 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 				classNames: 'tasks',
 			});
 
-			// console.log('selectedTarget.name,', selectedTarget.name);
-
 			const removeTimezone = (str: string) => str.replace(/:\d{2}[+-]\d{2}:\d{2}$/, '');
 
 			const startStr = removeTimezone(selectInfo.startStr);
 			const endStr = removeTimezone(selectInfo.endStr);
 
-			// console.log('selectedTarget.id.toString(),', selectedTarget.id.toString());
-			// console.log('startStr:', startStr);
-			// console.log('endStr:', endStr);
-
 			mutate({ taskId: selectedTarget.id, startTime: startStr, endTime: endStr });
 		}
 	};
+
 	return (
 		<FullCalendarLayout size={size}>
 			<CustomButtonContainer>
@@ -199,15 +213,15 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 				eventClick={handleEventClick}
 				select={addEventWhenDragged}
 			/>
-			{isModalOpen && (
-				// 🚨 임시 taskID ... 데이터 형식 확정 후 수정할 것 🚨
+			{isModalOpen && modalTaskId !== null && modalTimeBlockId !== null && (
 				<Modal
 					isOpen={isModalOpen}
 					sizeType={{ type: 'short' }}
 					top={top}
 					left={left}
 					onClose={closeModal}
-					taskId={5}
+					taskId={modalTaskId}
+					timeBlockId={modalTimeBlockId}
 				/>
 			)}
 		</FullCalendarLayout>
