@@ -169,7 +169,7 @@ const BtnDateLayout = styled.div<{
 	box-sizing: border-box;
 	width: fit-content;
 	min-width: 1.8rem;
-	height: ${({ size }) => (size === 'long' ? '2.2rem' : '2rem')};
+	height: ${({ size }) => (size === 'long' ? '3.2rem' : '2rem')};
 	padding: ${({ size }) => (size === 'long' ? '0.5rem 1rem' : '0rem 1rem')};
 	${({ size }) =>
 		size !== 'short' &&

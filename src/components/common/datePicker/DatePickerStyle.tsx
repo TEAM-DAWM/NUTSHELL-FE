@@ -7,9 +7,9 @@ const CalendarStyle = styled.div`
 	flex-shrink: 0;
 	align-items: center;
 	width: 22.8rem;
-	height: fit-content;
+	height: 27rem;
 	padding: 1.6rem 0;
-	overflow: hidden;
+	overflow: auto;
 
 	box-shadow: 0 3px 7px 0 rgb(0 0 0 / 38%);
 	border: 0;
@@ -119,6 +119,22 @@ const CalendarStyle = styled.div`
 	}
 
 	/* stylelint-enable selector-class-pattern */
+
+	::-webkit-scrollbar {
+		width: 0.6rem;
+	}
+
+	::-webkit-scrollbar-thumb {
+		width: 0.6rem;
+
+		background-color: ${({ theme }) => theme.palette.Grey.Grey6};
+		visibility: hidden;
+		border-radius: 3px;
+	}
+
+	&:hover::-webkit-scrollbar-thumb {
+		visibility: visible;
+	}
 `;
 
 export default CalendarStyle;
