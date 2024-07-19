@@ -25,10 +25,10 @@ interface FullCalendarBoxProps {
 	size: 'small' | 'big';
 	selectDate?: Date | null;
 	selectedTarget?: TaskType | null;
-	targetDate: Date | null;
+	targetDate?: Date | null;
 }
 
-function FullCalendarBox({ size, selectDate, selectedTarget, targetDate }: FullCalendarBoxProps) {
+function FullCalendarBox({ size, selectDate, selectedTarget, targetDate = null }: FullCalendarBoxProps) {
 	const today = new Date().toDateString();
 	const todayDate = new Date().toISOString().split('T')[0];
 	const [currentView, setCurrentView] = useState('timeGridWeek');
@@ -98,22 +98,6 @@ function FullCalendarBox({ size, selectDate, selectedTarget, targetDate }: FullC
 		setModalOpen(false);
 	};
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 75c073b (fix: 삽질)
-	// Get timeblock
-	const { data: timeBlockData } = useGetTimeBlock({ startDate, range });
-	console.log('timeBlockData.data.data', timeBlockData?.data.data);
-
-	const { mutate } = usePostTimeBlock();
-
-	const calendarEvents = timeBlockData ? processEvents(timeBlockData.data.data) : [];
-
-	/** 드래그해서 이벤트 추가하기 */
->>>>>>> 6f9f435 (feat: staging area 모달 api 연결)
 	const addEventWhenDragged = (selectInfo: DateSelectArg) => {
 		if (calendarRef.current && (selectedTarget?.id === 0 || selectedTarget)) {
 			const calendarApi = calendarRef.current.getApi();
@@ -241,12 +225,8 @@ function FullCalendarBox({ size, selectDate, selectedTarget, targetDate }: FullC
 					top={top}
 					left={left}
 					onClose={closeModal}
-<<<<<<< HEAD
-					taskId={5} // 예시 taskId, 실제 데이터로 교체 필요
-=======
 					taskId={5}
-					targetDate={targetDate}
->>>>>>> 0ec9b61 (feat: time block 모달 상세 구현)
+					targetDate={targetDate?.toString()}
 				/>
 			)}
 		</FullCalendarLayout>

@@ -4,11 +4,12 @@ import formatDatetoStrinKor from '@/utils/formatDatetoStringKor';
 
 /** nnnn년 nn월 nn일 */
 interface TargetAreaDateProps {
-	targetDate: Date;
+	targetDate: string;
 }
 
 function TargetAreaDate({ targetDate }: TargetAreaDateProps) {
-	const formatDate = formatDatetoStrinKor(targetDate);
+	const dateTypeDate = new Date(targetDate);
+	const formatDate = formatDatetoStrinKor(dateTypeDate);
 	return <DateText>{formatDate}</DateText>;
 }
 

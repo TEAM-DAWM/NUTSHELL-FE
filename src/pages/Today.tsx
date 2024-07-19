@@ -131,7 +131,7 @@ function Today() {
 						onClickNextDate={handleNextBtn}
 						onClickTodayDate={handleTodayBtn}
 						onClickDatePicker={handleChangeDate}
-						targetDate={selectedDate}
+						targetDate={selectedDate.toString()}
 					/>
 				)}
 			</DragDropContext>

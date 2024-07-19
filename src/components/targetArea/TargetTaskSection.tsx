@@ -11,7 +11,7 @@ interface TargetTaskSectionProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
 	tasks: TaskType[];
-	targetDate: Date;
+	targetDate: string;
 }
 function TargetTaskSection(props: TargetTaskSectionProps) {
 	const { handleSelectedTarget, selectedTarget, tasks, targetDate } = props;

@@ -43,7 +43,7 @@ function BtnTask(props: BtnTaskProps) {
 		btnStatus,
 		preventDoubleClick = false,
 		isDragging = false,
-		targetDate,
+		targetDate = null,
 	} = props;
 	const [isModalOpen, setModalOpen] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);

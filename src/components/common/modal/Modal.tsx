@@ -10,7 +10,7 @@ import ModalHeaderBtn from '@/components/common/modal/ModalHeaderBtn';
 import ModalTextInputTime from '@/components/common/modal/ModalTextInputTime';
 import TextInputBox from '@/components/common/modal/TextInputBox';
 import { SizeType } from '@/types/textInputType';
-// import formatDatetoLocalDate from '@/utils/formatDatetoLocalDate';
+import formatDatetoLocalDate from '@/utils/formatDatetoLocalDate';
 
 interface ModalProps {
 	isOpen: boolean;
@@ -22,13 +22,13 @@ interface ModalProps {
 	timeBlockId?: number;
 	targetDate?: string | null;
 }
-function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate, timeBlockId }: ModalProps) {
+function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null, timeBlockId }: ModalProps) {
 	const { data, isFetched } = useTaskDescription({
 		taskId,
-		targetDate, // : formatDatetoLocalDate(targetDate)//
+		targetDate: formatDatetoLocalDate(targetDate),
 		isOpen,
 	});
-	console.log(data);
+	console.log('data', data);
 	// const dummyData = {
 	// 	id: taskId,
 	// 	name: 'task name',
