@@ -11,8 +11,6 @@ const useTaskDescription = ({ taskId, targetDate, isOpen }: TaskDescriptionType)
 		enabled: isOpen,
 	});
 
-	console.log('상세설명조회 taskId, targetDate', taskId, targetDate);
-
 	return data;
 };
 export default useTaskDescription;

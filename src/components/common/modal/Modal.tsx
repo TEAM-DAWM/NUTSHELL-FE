@@ -28,22 +28,6 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null
 		targetDate: formatDatetoLocalDate(targetDate),
 		isOpen,
 	});
-	console.log('data', data);
-	// const dummyData = {
-	// 	id: taskId,
-	// 	name: 'task name',
-	// 	description: 'task description',
-	// 	deadLine: {
-	// 		date: '2024-06-30',
-	// 		time: '12:30',
-	// 	},
-	// 	status: '진행 중', // 수정
-	// 	timeBlock: {
-	// 		id: 1,
-	// 		startTime: '2024-07-08T12:30',
-	// 		endTime: '2024-07-08T14:30',
-	// 	},
-	// };
 
 	const { mutate } = useDeleteTimeBlock();
 
