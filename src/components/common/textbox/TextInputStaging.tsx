@@ -4,16 +4,12 @@ import { useRef, useState } from 'react';
 import BtnDate from '../BtnDate/BtnDate';
 import BtnStagingDate from '../BtnDate/BtnStagingDate';
 import EnterBtn from '../button/EnterBtn';
-import DateCorrectionModal from '../datePicker/DateCorrectionModal';
-import ModalBackdrop from '../modal/ModalBackdrop';
 
 import useCreateTask from '@/apis/tasks/createTask/query';
-import MODAL from '@/constants/modalLocation';
 import formatDatetoLocalDate from '@/utils/formatDatetoLocalDate';
 import formatDatetoString from '@/utils/formatDatetoString';
 
 function TextInputStaging() {
-	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [taskName, setTaskName] = useState('');
 	const { mutate } = useCreateTask();
 	const [date, setDate] = useState<Date | null>(null);
@@ -21,16 +17,12 @@ function TextInputStaging() {
 	const nameRef = useRef<HTMLTextAreaElement>(null);
 	const handleArrangeBtnClick = () => {
 		setDate(new Date());
-		setIsModalOpen((prev) => !prev);
 	};
 	const handleDate = (newDate: Date) => {
 		setDate(newDate);
 	};
 	const handleTime = (newTime: string) => {
 		setTime(newTime);
-	};
-	const handleCloseModal = () => {
-		setIsModalOpen(false);
 	};
 	const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setTaskName(e.target.value);
@@ -63,27 +55,12 @@ function TextInputStaging() {
 			/>
 			<BtnWrapper>
 				<SetDeadLineContainer>
-					{isModalOpen && (
-						<>
-							<DateCorrectionModal
-								top={MODAL.DATE_CORRECTION.SET_DEADLINE.top}
-								left={MODAL.DATE_CORRECTION.SET_DEADLINE.left}
-								onClick={handleCloseModal}
-								time={time}
-								date={formatDatetoString(date)}
-								handleCurrentDate={handleDate}
-								handleCurrentTime={handleTime}
-							/>
-							<ModalBackdrop onClick={handleCloseModal} />
-						</>
-					)}
 					{time || date ? (
-						<BtnDate date={formatDatetoString(date)} time={time} />
+						<BtnDate date={formatDatetoString(date)} time={time} handleDate={handleDate} handleTime={handleTime} />
 					) : (
 						<BtnStagingDate onClick={handleArrangeBtnClick} />
 					)}
 				</SetDeadLineContainer>
-				{isModalOpen && <ModalBackdrop onClick={handleCloseModal} />}
 
 				<EnterBtn onClick={onSubmit} />
 			</BtnWrapper>
