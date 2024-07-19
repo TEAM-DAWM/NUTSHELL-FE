@@ -110,6 +110,8 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate, locat
 			console.error('taskId가 존재하지 않습니다.');
 		}
 
+		onEdit();
+
 		onClose();
 	};
 
