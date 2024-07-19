@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 
 import ModalBackdrop from './ModalBackdrop';
 
+import useDeleteTask from '@/apis/tasks/deleteTask/query';
 import useTaskDescription from '@/apis/tasks/taskDescription/query';
-import useDeleteTimeBlock from '@/apis/timeBlocks/deleteTimeBlock/query';
 import BtnDate from '@/components/common/BtnDate/BtnDate';
 import OkayCancelBtn from '@/components/common/button/OkayCancelBtn';
 import ModalHeaderBtn from '@/components/common/modal/ModalHeaderBtn';
@@ -19,29 +19,29 @@ interface ModalProps {
 	left: number;
 	onClose: () => void;
 	taskId: number;
-	timeBlockId?: number;
 	targetDate?: string | null;
 }
-function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null, timeBlockId }: ModalProps) {
+function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null }: ModalProps) {
 	const { data, isFetched } = useTaskDescription({
 		taskId,
 		targetDate: formatDatetoLocalDate(targetDate),
 		isOpen,
 	});
 
-	const { mutate } = useDeleteTimeBlock();
+	const { mutate } = useDeleteTask();
 
 	const handleDelete = () => {
-		console.log('taskId, timeBlockId', taskId, timeBlockId);
+		console.log('taskId', taskId);
 
-		if (taskId && timeBlockId) {
-			mutate({ taskId, timeBlockId });
+		if (taskId) {
+			mutate(taskId);
 		} else {
-			console.error('taskId 또는 timeBlockId가 존재하지 않습니다.');
+			console.error('taskId가 존재하지 않습니다.');
 		}
 
 		onClose();
 	};
+
 	if (!isOpen || !isFetched) return null;
 	return (
 		<ModalBackdrop onClick={onClose}>
