@@ -3,9 +3,9 @@ import { ChangeEvent, useEffect, useState } from 'react';
 
 import ModalBackdrop from './ModalBackdrop';
 
+import useDeleteTask from '@/apis/tasks/deleteTask/query';
 import usePatchTaskDescription from '@/apis/tasks/editTask/query';
 import useTaskDescription from '@/apis/tasks/taskDescription/query';
-import useDeleteTimeBlock from '@/apis/timeBlocks/deleteTimeBlock/query';
 import BtnDate from '@/components/common/BtnDate/BtnDate';
 import OkayCancelBtn from '@/components/common/button/OkayCancelBtn';
 import ModalHeaderBtn from '@/components/common/modal/ModalHeaderBtn';
@@ -23,7 +23,7 @@ interface ModalProps {
 	taskId: number;
 	targetDate?: string | null;
 }
-function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null, timeBlockId }: ModalProps) {
+function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null }: ModalProps) {
 	const [taskName, setTaskName] = useState('');
 	const [desc, setDesc] = useState('');
 	const [deadLineDate, setDeadLineDate] = useState('');
@@ -60,7 +60,7 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null
 		setDeadLineTime(newTime);
 	};
 
-	const { mutate: deleteMutate } = useDeleteTimeBlock();
+	const { mutate: deleteMutate } = useDeleteTask();
 	const { mutate: editMutate } = usePatchTaskDescription();
 
 	// editMutate({ name, description, deadLine: { date, time } });
@@ -68,8 +68,8 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null
 	const handleDelete = () => {
 		console.log('taskId', taskId);
 
-		if (taskId && timeBlockId) {
-			deleteMutate({ taskId, timeBlockId });
+		if (taskId) {
+			deleteMutate(taskId);
 		} else {
 			console.error('taskId가 존재하지 않습니다.');
 		}
