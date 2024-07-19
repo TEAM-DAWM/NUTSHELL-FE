@@ -25,8 +25,6 @@ function Today() {
 	const { data: targetData, isError: isTargetError } = useGetTasks({ targetDate });
 	const { mutate, queryClient } = useUpdateTaskStatus();
 
-	console.log('targetData', targetData);
-
 	/** isTotal 핸들링 함수 */
 	const handleTextBtnClick = (button: '전체' | '지연') => {
 		setActiveButton(button);
