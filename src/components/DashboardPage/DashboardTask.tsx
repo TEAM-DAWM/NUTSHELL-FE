@@ -49,6 +49,7 @@ function DashboardTask({ text, taskStatus, emptyStatus, emptyImg }: DashboardTas
 							<>
 								{data.data.tasks.map((task: TaskType) => (
 									<BtnTask
+										location="dashboard"
 										key={task.id + task.name}
 										hasDescription={task.hasDescription}
 										id={task.id}

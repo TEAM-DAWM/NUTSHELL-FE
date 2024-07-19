@@ -33,6 +33,7 @@ function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget, tasks 
 										style={{ userSelect: 'none', ...provided.draggableProps.style }}
 									>
 										<BtnTask
+											location="staging"
 											iconType="stagingOrDelayed"
 											key={task.id}
 											hasDescription={task.hasDescription}

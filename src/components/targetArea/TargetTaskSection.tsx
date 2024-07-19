@@ -34,6 +34,7 @@ function TargetTaskSection(props: TargetTaskSectionProps) {
 									style={{ userSelect: 'none', ...provided.draggableProps.style }}
 								>
 									<BtnTask
+										location="target"
 										iconType="active"
 										key={task.id}
 										hasDescription={task.hasDescription}

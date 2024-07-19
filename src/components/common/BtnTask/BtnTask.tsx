@@ -2,16 +2,19 @@ import { css, Theme } from '@emotion/react';
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
 
-import IconHoverContainer from './IconHoverContainer';
+import Modal from '../modal/Modal';
+
+import BtnTaskIconRender from './BtnTaskIconRender';
 
 import Icons from '@/assets/svg/index';
 import BtnDate from '@/components/common/BtnDate/BtnDate';
-import Modal from '@/components/common/modal/Modal';
 import MODAL from '@/constants/modalLocation';
 import { theme } from '@/styles/theme';
 import { TaskType } from '@/types/tasks/taskType';
+import { BtnTaskLocationType } from '@/types/today/BtnTaskLocationType';
 
 interface BtnTaskProps extends TaskType {
+	location: BtnTaskLocationType;
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
 	iconType: 'stagingOrDelayed' | 'active';
@@ -37,6 +40,7 @@ function BtnTask(props: BtnTaskProps) {
 		deadLine,
 		hasDescription,
 		status,
+		location,
 		handleSelectedTarget,
 		selectedTarget,
 		iconType,
@@ -118,7 +122,8 @@ function BtnTask(props: BtnTaskProps) {
 						isDelayed={status === '지연'}
 					/>
 				</BtnTaskContainer>
-				<IconHoverContainer
+				<BtnTaskIconRender
+					location={location}
 					iconType={iconType}
 					btnStatus={btnStatus}
 					status={status}
