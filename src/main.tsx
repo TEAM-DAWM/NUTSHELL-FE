@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import ReactDOM from 'react-dom/client';
 
 import App from '@/App.tsx';
+import { ToastProvider } from '@/components/toast/ToastContext';
 import GlobalStyle from '@/styles/GlobalStyle.tsx';
 import { theme } from '@/styles/theme.ts';
 
@@ -21,7 +22,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 	<QueryClientProvider client={queryClient}>
 		<GlobalStyle />
 		<ThemeProvider theme={theme}>
-			<App />
+			<ToastProvider>
+				<App />
+			</ToastProvider>
 		</ThemeProvider>
 		<ReactQueryDevtools initialIsOpen={false} buttonPosition="bottom-left" position="left" />
 	</QueryClientProvider>
