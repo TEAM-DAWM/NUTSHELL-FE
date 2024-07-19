@@ -19,6 +19,7 @@ interface BtnTaskProps extends TaskType {
 	btnStatus?: string;
 	preventDoubleClick?: boolean;
 	isDragging?: boolean;
+	targetDate: string;
 }
 
 interface BorderColorProps {
@@ -43,6 +44,7 @@ function BtnTask(props: BtnTaskProps) {
 		btnStatus,
 		preventDoubleClick = false,
 		isDragging = false,
+		targetDate,
 	} = props;
 	const [isModalOpen, setModalOpen] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
@@ -117,7 +119,13 @@ function BtnTask(props: BtnTaskProps) {
 						isDelayed={status === '지연'}
 					/>
 				</BtnTaskContainer>
-				<IconHoverContainer iconType={iconType} btnStatus={btnStatus} status={status} taskId={id} />
+				<IconHoverContainer
+					iconType={iconType}
+					btnStatus={btnStatus}
+					status={status}
+					taskId={id}
+					targetDate={targetDate}
+				/>
 			</BtnTaskLayout>
 			<Modal isOpen={isModalOpen} sizeType={{ type: 'short' }} top={top} left={left} onClose={closeModal} taskId={id} />
 		</ModalLayout>
