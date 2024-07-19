@@ -155,6 +155,11 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		border-radius: 8px 8px 0 0;
 	}
 
+	/* 오늘 배경색 없애기 */
+	.fc .fc-day-today {
+		background: none;
+	}
+
 	/* 주말 색 다르게 */
 	.fc .fc-day-sun,
 	.fc .fc-day-sat {
@@ -205,11 +210,6 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 		color: ${({ theme }) => theme.palette.Grey.Grey6};
 
 		border: none;
-	}
-
-	/* 오늘 배경색 없애기 */
-	.fc .fc-day-today {
-		background: none;
 	}
 
 	.fc-timegrid-event {
