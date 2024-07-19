@@ -6,16 +6,26 @@ import { SizeType } from '@/types/textInputType';
 
 interface ModalHeaderBtnProps extends SizeType {
 	onDelete: () => void;
+	taskId?: number;
+	targetDate: string;
 }
 
-function ModalHeaderBtn({ type, onDelete }: ModalHeaderBtnProps) {
+function ModalHeaderBtn({ type, onDelete, taskId, targetDate }: ModalHeaderBtnProps) {
 	return (
 		<ModalHeaderBtnLayout>
 			<ModalDeleteBtn onDelete={onDelete} />
 			{type === 'long' && (
 				<SettingCheckBtn type="progress" size="big" isHover isPressed={false} isActive targetDate={null} />
 			)}
-			<SettingCheckBtn type="complete" size="big" isHover isPressed={false} isActive targetDate={null} />
+			<SettingCheckBtn
+				type="complete"
+				size="big"
+				isHover
+				isPressed={false}
+				isActive
+				taskId={taskId}
+				targetDate={targetDate}
+			/>
 		</ModalHeaderBtnLayout>
 	);
 }

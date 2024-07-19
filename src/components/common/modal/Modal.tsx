@@ -13,6 +13,7 @@ import ModalHeaderBtn from '@/components/common/modal/ModalHeaderBtn';
 import ModalTextInputTime from '@/components/common/modal/ModalTextInputTime';
 import TextInputBox from '@/components/common/modal/TextInputBox';
 import { SizeType } from '@/types/textInputType';
+import { BtnTaskLocationType } from '@/types/today/BtnTaskLocationType';
 import dotFormatTime from '@/utils/dotFormatTime';
 import formatDatetoLocalDate from '@/utils/formatDatetoLocalDate';
 
@@ -23,9 +24,10 @@ interface ModalProps {
 	left: number;
 	onClose: () => void;
 	taskId: number;
-	targetDate?: string | null;
+	targetDate: string;
+	location: BtnTaskLocationType;
 }
-function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null }: ModalProps) {
+function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate, location }: ModalProps) {
 	const [taskName, setTaskName] = useState('');
 	const [desc, setDesc] = useState('');
 	const [deadLineDate, setDeadLineDate] = useState('');
@@ -33,7 +35,7 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null
 
 	const { data, isFetched } = useTaskDescription({
 		taskId,
-		targetDate: formatDatetoLocalDate(targetDate),
+		targetDate: location !== 'staging' ? formatDatetoLocalDate(targetDate) : null,
 		isOpen,
 	});
 
@@ -100,13 +102,15 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null
 	};
 
 	const handleAddTimeBlock = () => {
-		if (taskId) {
+		if (taskId && startTime && endTime) {
 			const formattedStartTime = `${targetDate}T${startTime}`;
 			const formattedEndTime = `${targetDate}T${endTime}`;
 			createMutate({ taskId, startTime: formattedStartTime, endTime: formattedEndTime });
 		} else {
-			console.error('taskId가 존재하지 않습니다.');
+			console.error('taskId, startTime, endTime가 모두 존재하지 않습니다.');
 		}
+
+		onEdit();
 
 		onClose();
 	};
@@ -134,7 +138,7 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null
 						handleDate={handleTaskDateChange}
 						handleTime={handleTaskTimeChange}
 					/>
-					<ModalHeaderBtn type={sizeType.type} onDelete={handleDelete} />
+					<ModalHeaderBtn type={sizeType.type} onDelete={handleDelete} taskId={taskId} targetDate={targetDate} />
 				</ModalHeader>
 				<ModalBody>
 					<TextInputBox
