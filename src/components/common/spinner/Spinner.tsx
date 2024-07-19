@@ -23,11 +23,12 @@ const SpinnerContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	height: 100%;
+	margin-top: -0.8rem;
 `;
 
 const Spinner = styled.div`
-	width: 3rem;
-	height: 3rem;
+	width: 2.6rem;
+	height: 2.6rem;
 
 	border: 4px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-top: 4px solid ${({ theme }) => theme.palette.Primary};
