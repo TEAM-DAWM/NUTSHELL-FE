@@ -15,8 +15,23 @@ function Login() {
 					<LoginBtn>
 						<GoogleLoginBtn />
 						<SignDescription>
-							가입하면 자동으로 <a href="https://github.com/TEAM-DAWM/NUTSHELL-FE/pull/146">개인정보보호정책</a>과{' '}
-							<a href="https://github.com/TEAM-DAWM/NUTSHELL-FE">이용약관</a>에 동의한 것으로 간주됩니다.
+							가입하면 자동으로{' '}
+							<a
+								href="https://topaz-work-262.notion.site/aa83c69d45144f1182f9f54f1fae8c38"
+								target="_blank"
+								rel="noreferrer"
+							>
+								개인정보보호정책
+							</a>
+							과{' '}
+							<a
+								href="https://topaz-work-262.notion.site/aa83c69d45144f1182f9f54f1fae8c38"
+								target="_blank"
+								rel="noreferrer"
+							>
+								이용약관
+							</a>
+							에 동의한 것으로 간주됩니다.
 						</SignDescription>
 					</LoginBtn>
 				</LeftSection>

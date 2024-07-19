@@ -383,15 +383,19 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 	}
 
 	/* 스크롤 커스텀 */
+
 	.fc-scrollgrid-liquid::-webkit-scrollbar {
 		width: 0.6rem;
 	}
 
 	.fc-scrollgrid-liquid::-webkit-scrollbar-thumb {
-		width: 0.6rem;
-
 		background-color: ${({ theme }) => theme.palette.Grey.Grey6};
+		visibility: hidden;
 		border-radius: 3px;
+	}
+
+	.fc-scrollgrid-liquid:hover::-webkit-scrollbar-thumb {
+		visibility: visible;
 	}
 
 	/* stylelint-disable selector-class-pattern */

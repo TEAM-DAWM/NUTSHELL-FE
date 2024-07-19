@@ -60,6 +60,10 @@ const CategoryList = styled.section`
 		background-color: ${({ theme }) => theme.palette.Grey.Grey6};
 		border-radius: 3px;
 	}
+
+	&:hover::-webkit-scrollbar-thumb {
+		visibility: visible;
+	}
 `;
 
 export default CategoryBox;
