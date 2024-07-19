@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
+import useUpdateTaskStatus from '@/apis/tasks/updateTaskStatus/query';
 import SettingCheckBtn from '@/components/common/button/settingBtn/SettingCheckBtn';
 import TextBtn from '@/components/common/button/textBtn/TextBtn';
 
@@ -11,14 +12,26 @@ interface StatusDoneBtnProps {
 }
 function StatusDoneBtn({ taskId, targetDate }: StatusDoneBtnProps) {
 	const [isPressed, setIsPressed] = useState(false);
-
+	const { mutate: updateStatusMutate } = useUpdateTaskStatus();
 	const handleSettingCheckClick = () => {
 		setIsPressed((prev) => !prev);
 	};
 
 	return (
 		<StatusDoneBtnLayout isPressed={isPressed}>
-			{!isPressed && <TextBtn size="small" text="취소" color="WHITE" mode="LIGHT" isHover isPressed />}
+			{!isPressed && (
+				<TextBtn
+					size="small"
+					text="취소"
+					color="WHITE"
+					mode="LIGHT"
+					isHover
+					isPressed
+					onClick={() => {
+						updateStatusMutate({ taskId, targetDate, status: '미완료' });
+					}}
+				/>
+			)}
 			<SettingCheckBtn
 				size="small"
 				type="progress"

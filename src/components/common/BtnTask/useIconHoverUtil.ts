@@ -10,17 +10,9 @@ const useIconHoverUtil = () => {
 	const handleIconMouseLeave = () => {
 		setIconHovered(false);
 	};
-	const stopPropagation = (e: React.MouseEvent) => {
-		e.stopPropagation();
-	};
-
 	const handleIconClick = (e: React.MouseEvent) => {
-		if (iconClicked) {
-			setIconClicked(false);
-		} else {
-			setIconClicked(true);
-		}
-		stopPropagation(e);
+		setIconClicked(!iconClicked);
+		e.stopPropagation();
 	};
 	return { iconHovered, iconClicked, handleIconMouseEnter, handleIconMouseLeave, handleIconClick };
 };

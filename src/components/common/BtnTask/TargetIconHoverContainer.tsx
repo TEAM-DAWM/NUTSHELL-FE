@@ -23,13 +23,13 @@ function TargetIconHoverContainer({ btnStatus, taskId, targetDate }: Props) {
 	const renderStatusButton = () => {
 		switch (btnStatus) {
 			case '완료':
-				if (!iconHovered && !iconClicked) {
+				if (!iconHovered) {
 					return (
 						<SettingCheckBtn
 							size="small"
 							type="complete"
 							isHover={iconHovered}
-							isPressed={iconClicked}
+							isPressed
 							isActive={iconClicked}
 							taskId={taskId}
 							targetDate={targetDate}
@@ -39,13 +39,13 @@ function TargetIconHoverContainer({ btnStatus, taskId, targetDate }: Props) {
 				return <StatusDoneBtn taskId={taskId} targetDate={targetDate} />;
 
 			case '진행 중':
-				if (!iconHovered && !iconClicked) {
+				if (!iconHovered) {
 					return (
 						<SettingCheckBtn
 							size="small"
 							type="progress"
 							isHover={iconHovered}
-							isPressed={iconClicked}
+							isPressed
 							isActive={iconClicked}
 							taskId={taskId}
 							targetDate={targetDate}
@@ -55,7 +55,7 @@ function TargetIconHoverContainer({ btnStatus, taskId, targetDate }: Props) {
 				return <StatusInProgressBtn targetDate={targetDate} taskId={taskId} />;
 
 			case '미완료':
-				if (!iconHovered && !iconClicked) {
+				if (!iconHovered) {
 					return <IconHoverIndicator />;
 				}
 				return <StatusTodoBtn taskId={taskId} targetDate={targetDate} />;
