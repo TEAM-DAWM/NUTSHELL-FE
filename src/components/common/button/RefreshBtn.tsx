@@ -1,15 +1,26 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
+import useSyncGoogleTimeBlock from '@/apis/timeBlocks/googleTimeBlock/query';
 import Icons from '@/assets/svg/index';
+import LoadingSpinner from '@/components/common/spinner/Spinner';
 
 interface RefreshProps {
 	isDisabled: boolean;
 }
 
 function RefreshBtn({ isDisabled }: RefreshProps) {
+	const { mutate: refreshGoogle, isPending } = useSyncGoogleTimeBlock();
+
+	if (isPending) {
+		return <LoadingSpinner />;
+	}
+
+	const handleSyncBtn = () => {
+		refreshGoogle();
+	};
 	return (
-		<RefreshBtnLayout isDisabled={isDisabled} disabled={isDisabled}>
+		<RefreshBtnLayout isDisabled={isDisabled} disabled={isDisabled} onClick={handleSyncBtn}>
 			<StyledRefreshIcon />
 			<Text>동기화</Text>
 		</RefreshBtnLayout>
