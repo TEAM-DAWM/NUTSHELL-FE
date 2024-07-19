@@ -75,6 +75,7 @@ const TaskLayout = styled.div`
 	box-sizing: border-box;
 	width: 41.7rem;
 	height: 41rem;
+	padding: 0 0 0 6px;
 
 	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 12px;
@@ -121,8 +122,7 @@ const ScrollArea = styled.div`
 	flex-direction: column;
 	gap: 0.8rem;
 	align-items: stretch;
-	box-sizing: border-box;
-	width: 41.7rem;
+	width: 100%;
 	height: 33.9rem;
 	padding: 0 0 5rem;
 
