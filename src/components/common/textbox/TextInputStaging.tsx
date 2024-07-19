@@ -44,11 +44,11 @@ function TextInputStaging() {
 					time,
 				},
 			});
-			setTaskName('');
-			if (nameRef.current) nameRef.current.value = '';
-			setDate(null);
-			setTime(null);
 		}
+		setTaskName('');
+		if (nameRef.current) nameRef.current.value = '';
+		setDate(null);
+		setTime(null);
 	};
 
 	/** 엔터키로 쏟아내기 전송 */

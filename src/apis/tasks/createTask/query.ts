@@ -8,9 +8,7 @@ const useCreateTask = () => {
 
 	const mutation = useMutation({
 		mutationFn: ({ name, deadLine }: CreateTaskType) => createTask({ name, deadLine }),
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ['today'] });
-		},
+		onSuccess: () => queryClient.invalidateQueries({ queryKey: ['today'] }),
 	});
 
 	return { mutate: mutation.mutate };
