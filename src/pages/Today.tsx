@@ -136,7 +136,7 @@ function Today() {
 				)}
 			</DragDropContext>
 			<CalendarWrapper>
-				<FullCalendarBox size="small" selectedTarget={selectedTarget} targetDate={selectedDate} />
+				<FullCalendarBox size="small" selectedTarget={selectedTarget} />
 			</CalendarWrapper>
 		</TodayLayout>
 	);
