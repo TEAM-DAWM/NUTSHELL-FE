@@ -15,7 +15,6 @@ import TextInputBox from '@/components/common/modal/TextInputBox';
 import { SizeType } from '@/types/textInputType';
 import { BtnTaskLocationType } from '@/types/today/BtnTaskLocationType';
 import dotFormatTime from '@/utils/dotFormatTime';
-import formatDatetoLocalDate from '@/utils/formatDatetoLocalDate';
 
 interface ModalProps {
 	isOpen: boolean;
@@ -35,7 +34,7 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate, locat
 
 	const { data, isFetched } = useTaskDescription({
 		taskId,
-		targetDate: location !== 'staging' ? formatDatetoLocalDate(targetDate) : null,
+		targetDate: location !== 'staging' ? targetDate : null,
 		isOpen,
 	});
 
@@ -107,7 +106,7 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate, locat
 			const formattedEndTime = `${targetDate}T${endTime}`;
 			createMutate({ taskId, startTime: formattedStartTime, endTime: formattedEndTime });
 		} else {
-			console.error('taskId, startTime, endTime가 모두 존재하지 않습니다.');
+			console.log('taskId, startTime, endTime가 모두 존재하지 않습니다.');
 		}
 
 		onEdit();
@@ -122,7 +121,6 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate, locat
 			description: desc,
 			deadLine: { date: deadLineDate, time: deadLineTime },
 		});
-		console.log(taskName, desc, deadLineDate, deadLineTime);
 
 		onClose();
 	};
