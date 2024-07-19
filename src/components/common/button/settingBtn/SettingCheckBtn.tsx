@@ -43,7 +43,6 @@ function SettingCheckBtn({
 
 		// 태스크 상태변경 하는 경우
 		if (taskId) {
-			console.log('tpye');
 			let statusType;
 			switch (type) {
 				case 'complete':
