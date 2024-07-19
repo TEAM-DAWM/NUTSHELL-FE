@@ -99,8 +99,11 @@ function FullCalendarBox({ size, selectDate, selectedTarget, targetDate }: FullC
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 75c073b (fix: 삽질)
 	// Get timeblock
 	const { data: timeBlockData } = useGetTimeBlock({ startDate, range });
 	console.log('timeBlockData.data.data', timeBlockData?.data.data);
@@ -108,37 +111,6 @@ function FullCalendarBox({ size, selectDate, selectedTarget, targetDate }: FullC
 	const { mutate } = usePostTimeBlock();
 
 	const calendarEvents = timeBlockData ? processEvents(timeBlockData.data.data) : [];
-=======
-	const calendarEvents = [
-		{ title: 'Meeting', start: '2024-07-16T10:00:00', end: '2024-07-06T12:00:00', classNames: 'tasks' },
-		{ title: 'Lunch', start: '2024-07-07T12:00:00', end: '2024-07-07T12:45:00', classNames: 'tasks' },
-		{ title: 'Lunch', start: '2024-07-08T12:00:00', end: '2024-07-08T12:30:00', classNames: 'tasks' },
-		{
-			title: 'All Day Event',
-			start: '2024-07-08T10:00:00',
-			end: '2024-07-08T12:00:00',
-			allDay: true,
-			classNames: 'task',
-		},
-		{ title: 'Meeting', start: '2024-07-15T10:00:00', end: '2024-07-11T12:00:00', classNames: 'schedule' },
-		{ title: 'Lunch', start: '2024-07-12T12:00:00', end: '2024-07-12T12:45:00', classNames: 'schedule' },
-		{ title: 'Lunch', start: '2024-07-11T12:00:00', end: '2024-07-11T12:30:00', classNames: 'schedule' },
-		{
-			title: 'All Day Event',
-			start: '2024-07-12T10:00:00',
-			end: '2024-07-12T12:00:00',
-			allDay: true,
-			classNames: 'schedule',
-		},
-		{
-			title: '안녕',
-			start: '2024-07-19T10:00:00',
-			end: '2024-07-19T12:00:00',
-			allDay: false,
-			classNames: 'schedule',
-		},
-	];
->>>>>>> 0ed8365 (feat: staging area 모달 api 연결)
 
 	/** 드래그해서 이벤트 추가하기 */
 >>>>>>> 6f9f435 (feat: staging area 모달 api 연결)
