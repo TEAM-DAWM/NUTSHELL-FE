@@ -82,11 +82,9 @@ function BtnDate(props: BtnDateProps) {
 			{isClicked && (
 				<>
 					<DateCorrectionModal
-						top={
-							handleDate && handleTime ? MODAL.DATE_CORRECTION.SET_DEADLINE.top : MODAL.DATE_CORRECTION.TASK_MODAL.top
-						}
+						top={size.type !== 'long' ? MODAL.DATE_CORRECTION.SET_DEADLINE.top : MODAL.DATE_CORRECTION.TASK_MODAL.top}
 						left={
-							handleDate && handleTime ? MODAL.DATE_CORRECTION.SET_DEADLINE.left : MODAL.DATE_CORRECTION.TASK_MODAL.left
+							size.type !== 'long' ? MODAL.DATE_CORRECTION.SET_DEADLINE.left : MODAL.DATE_CORRECTION.TASK_MODAL.left
 						}
 						date={date}
 						time={time}
