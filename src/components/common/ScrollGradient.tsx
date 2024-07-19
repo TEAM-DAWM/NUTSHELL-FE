@@ -21,8 +21,6 @@ const ScrollGradientLayout = styled.div`
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-
-	background-color: transparent;
 `;
 
 const ScrollGradientTop = styled.div`
