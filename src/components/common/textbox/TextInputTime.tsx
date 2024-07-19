@@ -1,17 +1,28 @@
 import styled from '@emotion/styled';
+import { ChangeEvent } from 'react';
 
 import Icons from '@/assets/svg/index';
 
 interface TextInputTimeProps {
 	time: 'start' | 'end' | 'total';
+	userInput?: string;
+	onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function TextInputTime({ time }: TextInputTimeProps) {
+function TextInputTime({ time, userInput, onChange }: TextInputTimeProps) {
 	const isTotalTime = time === 'total';
 	return (
 		<InputTimeLayout time={time}>
 			{time === 'end' && <ArrowIcon />}
-			<InputTimeStyle type="text" time={time} maxLength={isTotalTime ? 2 : 10} />
+			<InputTimeStyle
+				type="text"
+				time={time}
+				maxLength={isTotalTime ? 2 : 10}
+				placeholder="00:00"
+				value={userInput}
+				onChange={onChange}
+				readOnly={isTotalTime}
+			/>
 			{isTotalTime && <MinuteTxt>분</MinuteTxt>}
 		</InputTimeLayout>
 	);

@@ -15,15 +15,19 @@ function TextInputStaging() {
 	const [date, setDate] = useState<Date | null>(null);
 	const [time, setTime] = useState<string | null>(null);
 	const nameRef = useRef<HTMLTextAreaElement>(null);
+
 	const handleArrangeBtnClick = () => {
 		setDate(new Date());
 	};
+
 	const handleDate = (newDate: string) => {
 		setDate(new Date(newDate));
 	};
+
 	const handleTime = (newTime: string) => {
 		setTime(newTime);
 	};
+
 	const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setTaskName(e.target.value);
 	};
