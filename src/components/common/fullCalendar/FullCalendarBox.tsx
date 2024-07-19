@@ -166,6 +166,7 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 			addEventWhenDragged(selectInfo);
 		}
 	};
+	const isSelectable = !!selectedTarget;
 
 	const { mutate } = useDeleteTimeBlock();
 
@@ -209,7 +210,7 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 				}}
 				slotDuration="00:30:00"
 				editable
-				selectable
+				selectable={isSelectable}
 				nowIndicator
 				dayMaxEvents
 				events={calendarEvents}
