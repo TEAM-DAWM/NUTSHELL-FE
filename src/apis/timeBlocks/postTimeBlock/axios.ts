@@ -1,17 +1,29 @@
+import { isAxiosError } from 'axios';
+
 import { PostTimeBlokType } from './PostTimeBlockType';
 
 import { privateInstance } from '@/apis/instance';
+import MESSAGES from '@/apis/messages';
+import { TimeBlockResponse } from '@/apis/timeBlocks/postTimeBlock/timeblockType';
 
-const CreateTimeBlock = async ({ taskId, startTime, endTime }: PostTimeBlokType) => {
+const CreateTimeBlock = async ({
+	taskId,
+	startTime,
+	endTime,
+}: PostTimeBlokType): Promise<TimeBlockResponse | undefined> => {
 	try {
-		await privateInstance.post(`/api/tasks/${taskId}/time-blocks`, {
+		const response = await privateInstance.post(`/api/tasks/${taskId}/time-blocks`, {
 			startTime,
 			endTime,
 		});
+		return {
+			code: response.data.code,
+			data: response.data.data,
+			message: response.data.message,
+		};
 	} catch (error) {
-		console.error('Error creating time block:', error);
-	} finally {
-		console.log('taskId, startDate, endDate', taskId, startTime, endTime);
+		if (isAxiosError(error)) throw error;
+		else throw new Error(MESSAGES.UNKNOWN_ERROR);
 	}
 };
 
