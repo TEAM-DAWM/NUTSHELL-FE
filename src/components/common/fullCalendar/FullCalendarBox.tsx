@@ -36,6 +36,8 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 	const [isModalOpen, setModalOpen] = useState(false);
 	const [top, setTop] = useState(0);
 	const [left, setLeft] = useState(0);
+	const [modalTaskId, setModalTaskId] = useState<number | null>(null);
+	const [modalTimeBlockId, setModalTimeBlockId] = useState<number | null>(null);
 
 	const calendarRef = useRef<FullCalendar>(null);
 
@@ -90,11 +92,20 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 		const adjustedTop = Math.min(calculatedTop, MODAL.SCREEN_HEIGHT - MODAL.TASK_MODAL_HEIGHT);
 		setTop(adjustedTop);
 		setLeft(rect.left - MODAL.TASK_MODAL_WIDTH + 40);
-		setModalOpen(true);
+
+		const clickedEvent = info.event.extendedProps;
+
+		if (clickedEvent) {
+			setModalTaskId(clickedEvent.taskId);
+			setModalTimeBlockId(clickedEvent.timeBlockId);
+			setModalOpen(true);
+		}
 	};
 
 	const closeModal = () => {
 		setModalOpen(false);
+		setModalTaskId(null);
+		setModalTimeBlockId(null);
 	};
 
 	const addEventWhenDragged = (selectInfo: DateSelectArg) => {
@@ -217,14 +228,15 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 				eventDrop={updateEvent} // 기존 이벤트 드래그 수정 핸들러
 				eventResize={updateEvent} // 기존 이벤트 리사이즈 수정 핸들러
 			/>
-			{isModalOpen && (
+			{isModalOpen && modalTaskId !== null && modalTimeBlockId !== null && (
 				<Modal
 					isOpen={isModalOpen}
 					sizeType={{ type: 'short' }}
 					top={top}
 					left={left}
 					onClose={closeModal}
-					taskId={5} // 예시 taskId, 실제 데이터로 교체 필요
+					taskId={modalTaskId}
+					timeBlockId={modalTimeBlockId}
 				/>
 			)}
 		</FullCalendarLayout>
