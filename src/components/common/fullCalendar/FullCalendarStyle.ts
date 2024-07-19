@@ -383,7 +383,8 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 	}
 
 	/* 스크롤 커스텀 */
-	.fc-scrollgrid-liquid::-webkit-scrollbar {
+
+	/* .fc-scrollgrid-liquid::-webkit-scrollbar {
 		width: 0.6rem;
 	}
 
@@ -392,6 +393,20 @@ const FullCalendarLayout = styled.div<{ size: string }>`
 
 		background-color: ${({ theme }) => theme.palette.Grey.Grey6};
 		border-radius: 3px;
+	} */
+
+	::-webkit-scrollbar {
+		width: 0.6rem;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background-color: ${({ theme }) => theme.palette.Grey.Grey6};
+		visibility: hidden;
+		border-radius: 3px;
+	}
+
+	&:hover::-webkit-scrollbar-thumb {
+		visibility: visible;
 	}
 
 	/* stylelint-disable selector-class-pattern */
