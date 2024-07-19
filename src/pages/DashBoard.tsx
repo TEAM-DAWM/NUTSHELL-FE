@@ -55,7 +55,7 @@ const DashBoardLayout = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 127.8rem;
-	height: 100vh;
+	height: 100%;
 `;
 
 const DataWrapper = styled.div`
