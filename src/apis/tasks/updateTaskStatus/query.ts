@@ -3,14 +3,18 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import updateTaskStatus from './axios';
 import { UpdateTaskStatusType } from './UpdateTaskStatusType';
 
-const useUpdateTaskStatus = () => {
+const useUpdateTaskStatus = (handleIconMouseLeave: (() => void) | null) => {
 	const queryClient = useQueryClient();
 
 	const mutation = useMutation({
 		mutationFn: (updateData: UpdateTaskStatusType) => updateTaskStatus(updateData),
 		onSuccess: (data, updateData) => {
-			console.log('useUpdateTaskStatus data', data);
-			queryClient.invalidateQueries({ queryKey: ['today'] });
+			console.log(data);
+			queryClient.invalidateQueries({ queryKey: ['today'] }).then(() => {
+				if (handleIconMouseLeave) {
+					handleIconMouseLeave();
+				}
+			});
 			if (updateData.status === '미완료') {
 				queryClient.invalidateQueries({ queryKey: ['dashboard'] });
 			}
