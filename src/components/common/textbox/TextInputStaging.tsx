@@ -46,6 +46,14 @@ function TextInputStaging() {
 		setTaskName('');
 	};
 
+	/** 엔터키로 쏟아내기 전송 */
+	const handleEnterPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+		if (e.key === 'Enter') {
+			e.preventDefault();
+			onSubmit();
+		}
+	};
+
 	return (
 		<StagingLayout>
 			<TextArea
@@ -54,6 +62,7 @@ function TextInputStaging() {
 				value={taskName}
 				onChange={onChange}
 				ref={nameRef}
+				onKeyDown={handleEnterPress}
 			/>
 			<BtnWrapper>
 				<SetDeadLineContainer>
