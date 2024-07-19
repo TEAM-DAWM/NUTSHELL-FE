@@ -5,6 +5,9 @@ const MODAL = {
 	TASK_MODAL_HEIGHT: 362,
 	TASK_MODAL_WIDTH: 372,
 
+	TASK_DELETE_HEIGHT: 74,
+	TASK_DELETE_WIDTH: 136,
+
 	// 날짜 & 시간 세팅하는 DateCorrectionModal 모달
 	DATE_CORRECTION: {
 		SET_DEADLINE: {
