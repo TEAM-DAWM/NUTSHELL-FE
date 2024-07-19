@@ -61,5 +61,9 @@ function TargetTaskSection(props: TargetTaskSectionProps) {
 export default TargetTaskSection;
 
 const EmptyLayout = styled.div`
-	margin: 14.85rem 0 27.95rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 90%;
 `;
