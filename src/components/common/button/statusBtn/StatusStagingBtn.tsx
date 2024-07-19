@@ -7,8 +7,9 @@ import SettingDeleteBtn from '@/components/common/button/settingBtn/SettingDelet
 
 interface StatusStagingBtnProps {
 	taskId: number;
+	changeTaskStatus: (updateTaskStatus: string) => void;
 }
-function StatusStagingBtn({ taskId }: StatusStagingBtnProps) {
+function StatusStagingBtn({ taskId, changeTaskStatus }: StatusStagingBtnProps) {
 	const [isDeletePressed, setIsDeletePressed] = useState(false);
 	const [isCheckingPressed, setIsCheckingPressed] = useState(false);
 	const { mutate } = useDeleteTask();
@@ -21,6 +22,7 @@ function StatusStagingBtn({ taskId }: StatusStagingBtnProps) {
 
 	const handleCheckingClick = () => {
 		setIsCheckingPressed((prev) => !prev);
+		changeTaskStatus('완료');
 	};
 
 	return (

@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 
 import TodayPlusBtn from '../button/TodayPlusBtn';
 
+import useUpdateTaskStatus from '@/apis/tasks/updateTaskStatus/query';
+import { UpdateTaskStatusType } from '@/apis/tasks/updateTaskStatus/UpdateTaskStatusType';
 import Icons from '@/assets/svg/index';
 import StatusDoneBtn from '@/components/common/button/statusBtn/StatusDoneBtn';
 import StatusInProgressBtn from '@/components/common/button/statusBtn/StatusInProgressBtn';
@@ -15,11 +17,14 @@ type Props = {
 	btnStatus?: string;
 	status?: string;
 	taskId: number;
+	targetDate?: string | null;
 };
 
-function IconHoverContainer({ iconType, btnStatus, status, taskId }: Props) {
+function IconHoverContainer({ iconType, btnStatus, status, taskId, targetDate }: Props) {
 	const [iconHovered, setIconHovered] = useState(false);
 	const [iconClicked, setIconClicked] = useState(false);
+	const { mutate: updateTaskStatueMutate } = useUpdateTaskStatus();
+
 	const handleIconMouseEnter = () => {
 		setIconHovered(true);
 	};
@@ -39,11 +44,21 @@ function IconHoverContainer({ iconType, btnStatus, status, taskId }: Props) {
 		stopPropagation(e);
 	};
 
+	/** 태스크 status 변경 */
+	const changeTaskStatus = (updateTaskStatus: string) => {
+		const updateTargetData: UpdateTaskStatusType = {
+			taskId,
+			targetDate,
+			status: updateTaskStatus,
+		};
+		updateTaskStatueMutate(updateTargetData);
+	};
+
 	const renderStatusButton = () => {
 		if (status === '지연') {
 			// 여기서 리턴하면 안됨. 이 경우엔 무조건 iconType === 'stagingOrDelayed' 이므로 호버 시 StatusStagingBtn가 떠야함
 			if (iconHovered) {
-				return <StatusStagingBtn taskId={taskId} />;
+				return <StatusStagingBtn changeTaskStatus={changeTaskStatus} taskId={taskId} />;
 			}
 			return <StagingIconHoverIndicator />;
 		}
@@ -53,7 +68,7 @@ function IconHoverContainer({ iconType, btnStatus, status, taskId }: Props) {
 		}
 
 		if (iconType === 'stagingOrDelayed') {
-			return <StatusStagingBtn taskId={taskId} />;
+			return <StatusStagingBtn changeTaskStatus={changeTaskStatus} taskId={taskId} />;
 		}
 
 		if (iconType === 'active') {

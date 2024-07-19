@@ -116,6 +116,7 @@ function Today() {
 						handleTextBtnClick={handleTextBtnClick}
 						activeButton={activeButton}
 						sortOrder={sortOrder}
+						targetDate={targetDate}
 					/>
 				)}
 
