@@ -17,7 +17,7 @@ interface BtnDateProps {
 	size?: SizeType;
 	isDelayed?: boolean;
 	isDisabled?: boolean;
-	handleDate?: (newDate: Date) => void;
+	handleDate?: (newDate: string) => void;
 	handleTime?: (newTime: string) => void;
 }
 // date, time 각각 Date|null, String|null 로 관리
@@ -40,14 +40,17 @@ function BtnDate(props: BtnDateProps) {
 	const handleMouseDown = () => {
 		if (size.type !== 'short') setIsPressed(true);
 	};
+
 	const handleMouseUp = () => {
 		if (size.type !== 'short') {
 			setIsPressed(false);
 			setIsClicked((prev) => !prev);
 		}
 	};
+
 	const isDefaultDate = date === null;
 	const isDefaultTime = time === null;
+
 	return (
 		<ModalLayout>
 			<BtnDateLayout
@@ -88,7 +91,7 @@ function BtnDate(props: BtnDateProps) {
 						date={date}
 						time={time}
 						onClick={handleMouseUp}
-						handleCurrentDate={handleDate}
+						handleCurrentDate={(newDate: Date) => handleDate?.(newDate.toISOString())}
 						handleCurrentTime={handleTime}
 					/>
 					<ModalBackdrop onClick={handleMouseUp} />

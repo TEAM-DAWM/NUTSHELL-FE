@@ -1,12 +1,16 @@
 import styled from '@emotion/styled';
+import { ChangeEvent } from 'react';
 
 import { SizeType } from '@/types/textInputType';
 
 interface TextInputDescProps extends SizeType {
 	desc: string;
+	onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
 }
-function TextInputDesc({ type, desc }: TextInputDescProps) {
-	return <TextInputDescLayout placeholder="설명 추가" type={type} defaultValue={desc} maxLength={120} />;
+function TextInputDesc({ type, desc, onChange }: TextInputDescProps) {
+	return (
+		<TextInputDescLayout placeholder="설명 추가" type={type} defaultValue={desc} maxLength={120} onChange={onChange} />
+	);
 }
 
 const TextInputDescLayout = styled.textarea<{ type: string }>`
