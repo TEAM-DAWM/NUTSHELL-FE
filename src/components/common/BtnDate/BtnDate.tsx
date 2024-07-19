@@ -166,11 +166,11 @@ const BtnDateLayout = styled.div<{
 	display: flex;
 	gap: 1rem;
 	align-items: center;
+	box-sizing: border-box;
 	width: fit-content;
 	min-width: 1.8rem;
 	height: ${({ size }) => (size === 'long' ? '2.2rem' : '2rem')};
 	padding: ${({ size }) => (size === 'long' ? '0.5rem 1rem' : '0rem 1rem')};
-
 	${({ size }) =>
 		size !== 'short' &&
 		css`
