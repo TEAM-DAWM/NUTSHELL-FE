@@ -163,6 +163,7 @@ const BtnTaskLayout = styled('div', { target: 'BtnTaskLayout' })`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	box-sizing: border-box;
 	width: 100%;
 	min-width: 31rem;
 

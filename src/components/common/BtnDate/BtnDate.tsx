@@ -10,7 +10,6 @@ import BtnDateText, { TextWrapper } from './BtnDateText';
 import Icons from '@/assets/svg/index';
 import MODAL from '@/constants/modalLocation';
 import { SizeType } from '@/types/textInputType';
-import formatDatetoString from '@/utils/formatDatetoString';
 
 interface BtnDateProps {
 	date: string | null;
@@ -18,25 +17,25 @@ interface BtnDateProps {
 	size?: SizeType;
 	isDelayed?: boolean;
 	isDisabled?: boolean;
+	handleDate?: (newDate: Date) => void;
+	handleTime?: (newTime: string) => void;
 }
 // date, time 각각 Date|null, String|null 로 관리
 // 값이 없으면 '마감 기한' 등 텍스트 설정,
 // 스타일 변경은 date, time null 여부로 결정
 
 function BtnDate(props: BtnDateProps) {
-	const { date = null, time = null, size = { type: 'long' }, isDelayed = false, isDisabled = false } = props;
+	const {
+		date = null,
+		time = null,
+		size = { type: 'long' },
+		isDelayed = false,
+		isDisabled = false,
+		handleDate,
+		handleTime,
+	} = props;
 	const [isPressed, setIsPressed] = useState(false);
 	const [isClicked, setIsClicked] = useState(false);
-	// 받아온 date, time 값을 초기값으로 설정, 이후 모달에서 수정시 변경
-	const [currentDate, setCurrentDate] = useState<Date | null>(date ? new Date(date) : null);
-	const [currentTime, setCurrentTime] = useState<string | null>(time);
-
-	const handleCurrentDate = (newDate: Date) => {
-		setCurrentDate(newDate);
-	};
-	const handleCurrentTime = (newTime: string) => {
-		setCurrentTime(newTime);
-	};
 
 	const handleMouseDown = () => {
 		if (size.type !== 'short') setIsPressed(true);
@@ -49,7 +48,6 @@ function BtnDate(props: BtnDateProps) {
 	};
 	const isDefaultDate = date === null;
 	const isDefaultTime = time === null;
-
 	return (
 		<ModalLayout>
 			<BtnDateLayout
@@ -65,14 +63,14 @@ function BtnDate(props: BtnDateProps) {
 			>
 				<BtnDateText
 					icon={<CalanderIcon isDelayed={isDelayed} />}
-					text={formatDatetoString(currentDate) || '마감 기한'}
+					text={date || '마감 기한'}
 					isDefault={isDefaultDate}
 					size={size.type}
 				/>
 				<LineIcon size={size.type} isDelayed={isDelayed} />
 				<BtnDateText
 					icon={<ClockIcon isDelayed={isDelayed} />}
-					text={currentTime || '마감 시간'}
+					text={time || '마감 시간'}
 					isDefault={isDefaultTime}
 					size={size.type}
 				/>
@@ -81,13 +79,17 @@ function BtnDate(props: BtnDateProps) {
 			{isClicked && (
 				<>
 					<DateCorrectionModal
-						top={MODAL.DATE_CORRECTION.TASK_MODAL.top}
-						left={MODAL.DATE_CORRECTION.TASK_MODAL.left}
-						date={formatDatetoString(currentDate) || '마감 기한'}
-						time={currentTime || '마감 시간'}
+						top={
+							handleDate && handleTime ? MODAL.DATE_CORRECTION.SET_DEADLINE.top : MODAL.DATE_CORRECTION.TASK_MODAL.top
+						}
+						left={
+							handleDate && handleTime ? MODAL.DATE_CORRECTION.SET_DEADLINE.left : MODAL.DATE_CORRECTION.TASK_MODAL.left
+						}
+						date={date}
+						time={time}
 						onClick={handleMouseUp}
-						handleCurrentDate={handleCurrentDate}
-						handleCurrentTime={handleCurrentTime}
+						handleCurrentDate={handleDate}
+						handleCurrentTime={handleTime}
 					/>
 					<ModalBackdrop onClick={handleMouseUp} />
 				</>
@@ -164,11 +166,11 @@ const BtnDateLayout = styled.div<{
 	display: flex;
 	gap: 1rem;
 	align-items: center;
+	box-sizing: border-box;
 	width: fit-content;
 	min-width: 1.8rem;
 	height: ${({ size }) => (size === 'long' ? '2.2rem' : '2rem')};
 	padding: ${({ size }) => (size === 'long' ? '0.5rem 1rem' : '0rem 1rem')};
-
 	${({ size }) =>
 		size !== 'short' &&
 		css`

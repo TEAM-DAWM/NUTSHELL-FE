@@ -25,6 +25,7 @@ const BtnStagingDateLayout = styled('div', { target: 'BtnStagingDateLayout' })`
 	gap: 0.8rem;
 	align-items: center;
 	justify-content: center;
+	box-sizing: border-box;
 	width: fit-content;
 	height: 2.2rem;
 	padding: 0.3rem 1.2rem;

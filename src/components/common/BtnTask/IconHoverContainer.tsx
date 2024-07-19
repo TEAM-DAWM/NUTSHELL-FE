@@ -93,7 +93,6 @@ const IconHoverCss = css`
 	justify-content: center;
 	width: 1.4rem;
 	height: 1.4rem;
-	padding: 0.3rem;
 `;
 
 const IconHoverIndicator = styled(Icons.Icn_hover_indicator, { target: 'IconHoverIndicator' })`
