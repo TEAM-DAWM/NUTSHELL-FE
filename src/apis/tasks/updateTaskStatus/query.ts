@@ -9,7 +9,7 @@ const useUpdateTaskStatus = () => {
 	const mutation = useMutation({
 		mutationFn: (updateData: UpdateTaskStatusType) => updateTaskStatus(updateData),
 		onSuccess: (data, updateData) => {
-			console.log(data);
+			console.log('useUpdateTaskStatus data', data);
 			queryClient.invalidateQueries({ queryKey: ['today'] });
 			if (updateData.status === '미완료') {
 				queryClient.invalidateQueries({ queryKey: ['dashboard'] });

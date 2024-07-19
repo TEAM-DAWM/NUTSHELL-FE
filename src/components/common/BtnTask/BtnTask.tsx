@@ -22,7 +22,7 @@ interface BtnTaskProps extends TaskType {
 	btnStatus?: string;
 	preventDoubleClick?: boolean;
 	isDragging?: boolean;
-	targetDate?: string | null;
+	targetDate: string;
 	modalSize?: SizeType;
 }
 
@@ -48,7 +48,7 @@ function BtnTask(props: BtnTaskProps) {
 		btnStatus,
 		preventDoubleClick = false,
 		isDragging = false,
-		targetDate = null,
+		targetDate,
 		modalSize = { type: 'short' },
 	} = props;
 	const [isModalOpen, setModalOpen] = useState(false);
@@ -140,6 +140,7 @@ function BtnTask(props: BtnTaskProps) {
 				onClose={closeModal}
 				taskId={id}
 				targetDate={targetDate}
+				location={location}
 			/>
 		</ModalLayout>
 	);

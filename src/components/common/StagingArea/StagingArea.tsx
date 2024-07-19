@@ -12,11 +12,20 @@ interface StagingAreaProps extends StagingAreaSettingProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
 	tasks: TaskType[];
+	targetDate: string;
 }
 
 function StagingArea(props: StagingAreaProps) {
-	const { handleSelectedTarget, selectedTarget, tasks, activeButton, sortOrder, handleTextBtnClick, handleSortOrder } =
-		props;
+	const {
+		handleSelectedTarget,
+		selectedTarget,
+		tasks,
+		activeButton,
+		sortOrder,
+		handleTextBtnClick,
+		handleSortOrder,
+		targetDate,
+	} = props;
 	return (
 		<StagingAreaLayout>
 			<StagingAreaContainer>
@@ -35,6 +44,7 @@ function StagingArea(props: StagingAreaProps) {
 									handleSelectedTarget={handleSelectedTarget}
 									selectedTarget={selectedTarget}
 									tasks={tasks}
+									targetDate={targetDate}
 								/>
 								{provided.placeholder}
 							</div>

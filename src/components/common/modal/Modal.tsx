@@ -13,6 +13,7 @@ import ModalHeaderBtn from '@/components/common/modal/ModalHeaderBtn';
 import ModalTextInputTime from '@/components/common/modal/ModalTextInputTime';
 import TextInputBox from '@/components/common/modal/TextInputBox';
 import { SizeType } from '@/types/textInputType';
+import { BtnTaskLocationType } from '@/types/today/BtnTaskLocationType';
 import dotFormatTime from '@/utils/dotFormatTime';
 import formatDatetoLocalDate from '@/utils/formatDatetoLocalDate';
 
@@ -23,9 +24,10 @@ interface ModalProps {
 	left: number;
 	onClose: () => void;
 	taskId: number;
-	targetDate?: string | null;
+	targetDate: string;
+	location: BtnTaskLocationType;
 }
-function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null }: ModalProps) {
+function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate, location }: ModalProps) {
 	const [taskName, setTaskName] = useState('');
 	const [desc, setDesc] = useState('');
 	const [deadLineDate, setDeadLineDate] = useState('');
@@ -33,7 +35,7 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null
 
 	const { data, isFetched } = useTaskDescription({
 		taskId,
-		targetDate: formatDatetoLocalDate(targetDate),
+		targetDate: location !== 'staging' ? formatDatetoLocalDate(targetDate) : null,
 		isOpen,
 	});
 
@@ -134,7 +136,7 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null
 						handleDate={handleTaskDateChange}
 						handleTime={handleTaskTimeChange}
 					/>
-					<ModalHeaderBtn type={sizeType.type} onDelete={handleDelete} />
+					<ModalHeaderBtn type={sizeType.type} onDelete={handleDelete} taskId={taskId} targetDate={targetDate} />
 				</ModalHeader>
 				<ModalBody>
 					<TextInputBox
