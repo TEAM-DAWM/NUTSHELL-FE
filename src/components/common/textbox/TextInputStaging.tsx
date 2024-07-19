@@ -67,7 +67,13 @@ function TextInputStaging() {
 			<BtnWrapper>
 				<SetDeadLineContainer>
 					{time || date ? (
-						<BtnDate date={formatDatetoString(date)} time={time} handleDate={handleDate} handleTime={handleTime} />
+						<BtnDate
+							date={formatDatetoString(date)}
+							time={time}
+							handleDate={handleDate}
+							handleTime={handleTime}
+							size={{ type: 'default' }}
+						/>
 					) : (
 						<BtnStagingDate onClick={handleArrangeBtnClick} />
 					)}
