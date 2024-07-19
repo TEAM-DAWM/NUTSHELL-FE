@@ -8,10 +8,11 @@ import TextBtn from '@/components/common/button/textBtn/TextBtn';
 interface StatusInProgressBtnProps {
 	taskId: number;
 	targetDate: string | null;
+	handleIconMouseLeave?: () => void;
 }
-function StatusInProgressBtn({ taskId, targetDate }: StatusInProgressBtnProps) {
+function StatusInProgressBtn({ taskId, targetDate, handleIconMouseLeave }: StatusInProgressBtnProps) {
 	const [isPressed, setIsPressed] = useState(false);
-	const { mutate: updateStateMutate } = useUpdateTaskStatus();
+	const { mutate: updateStateMutate } = useUpdateTaskStatus(handleIconMouseLeave || null);
 
 	const handleSettingCheckClick = () => {
 		setIsPressed((prev) => !prev);

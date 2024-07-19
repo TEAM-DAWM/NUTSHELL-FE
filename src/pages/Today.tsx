@@ -23,7 +23,7 @@ function Today() {
 	// Task 목록 Get
 	const { data: stagingData, isError: isStagingError } = useGetTasks({ isTotal, sortOrder });
 	const { data: targetData, isError: isTargetError } = useGetTasks({ targetDate });
-	const { mutate, queryClient } = useUpdateTaskStatus();
+	const { mutate, queryClient } = useUpdateTaskStatus(null);
 
 	/** isTotal 핸들링 함수 */
 	const handleTextBtnClick = (button: '전체' | '지연') => {

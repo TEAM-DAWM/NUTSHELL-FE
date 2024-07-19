@@ -9,10 +9,11 @@ import TextBtn from '@/components/common/button/textBtn/TextBtn';
 interface StatusDoneBtnProps {
 	taskId: number;
 	targetDate: string | null;
+	handleIconMouseLeave?: () => void;
 }
-function StatusDoneBtn({ taskId, targetDate }: StatusDoneBtnProps) {
+function StatusDoneBtn({ taskId, targetDate, handleIconMouseLeave }: StatusDoneBtnProps) {
 	const [isPressed, setIsPressed] = useState(false);
-	const { mutate: updateStatusMutate } = useUpdateTaskStatus();
+	const { mutate: updateStatusMutate } = useUpdateTaskStatus(handleIconMouseLeave || null);
 	const handleSettingCheckClick = () => {
 		setIsPressed((prev) => !prev);
 	};
