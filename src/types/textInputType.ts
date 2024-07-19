@@ -1,3 +1,3 @@
 export interface SizeType {
-	type: 'long' | 'short';
+	type: 'long' | 'short' | 'default';
 }
