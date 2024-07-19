@@ -7,6 +7,7 @@ import TargetTaskSection from './TargetTaskSection';
 
 import { TaskType } from '@/types/tasks/taskType';
 import { TargetControlSectionProps } from '@/types/today/TargetControlSectionProps';
+import formatDatetoLocalDate from '@/utils/formatDatetoLocalDate';
 
 interface TargetAreaProps extends TargetControlSectionProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
@@ -47,7 +48,7 @@ function TargetArea({
 							handleSelectedTarget={handleSelectedTarget}
 							selectedTarget={selectedTarget}
 							tasks={tasks}
-							targetDate={targetDate}
+							targetDate={formatDatetoLocalDate(targetDate)}
 						/>
 						{provided.placeholder}
 					</div>

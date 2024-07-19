@@ -12,8 +12,10 @@ function ModalHeaderBtn({ type, onDelete }: ModalHeaderBtnProps) {
 	return (
 		<ModalHeaderBtnLayout>
 			<ModalDeleteBtn onDelete={onDelete} />
-			{type === 'long' && <SettingCheckBtn type="progress" size="big" isHover isPressed={false} isActive />}
-			<SettingCheckBtn type="complete" size="big" isHover isPressed={false} isActive />
+			{type === 'long' && (
+				<SettingCheckBtn type="progress" size="big" isHover isPressed={false} isActive targetDate={null} />
+			)}
+			<SettingCheckBtn type="complete" size="big" isHover isPressed={false} isActive targetDate={null} />
 		</ModalHeaderBtnLayout>
 	);
 }

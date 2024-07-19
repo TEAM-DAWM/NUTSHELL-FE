@@ -2,30 +2,32 @@ import { css, Theme } from '@emotion/react';
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
 
-import IconHoverContainer from './IconHoverContainer';
+import Modal from '../modal/Modal';
+
+import BtnTaskIconRender from './BtnTaskIconRender';
 
 import Icons from '@/assets/svg/index';
 import BtnDate from '@/components/common/BtnDate/BtnDate';
-import Modal from '@/components/common/modal/Modal';
 import MODAL from '@/constants/modalLocation';
 import { theme } from '@/styles/theme';
 import { TaskType } from '@/types/tasks/taskType';
+import { BtnTaskLocationType } from '@/types/today/BtnTaskLocationType';
 
 interface BtnTaskProps extends TaskType {
+	location: BtnTaskLocationType;
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
-	iconType: 'stagingOrDelayed' | 'active';
+	dashBoardInprogress?: boolean;
 	btnStatus?: string;
 	preventDoubleClick?: boolean;
 	isDragging?: boolean;
-	targetDate?: string | null;
+	targetDate: string | null;
 }
 
 interface BorderColorProps {
 	isHovered: boolean;
 	isClicked: boolean;
 	theme: Theme;
-	iconType: string;
 	status: string;
 	isDragging?: boolean;
 }
@@ -37,9 +39,10 @@ function BtnTask(props: BtnTaskProps) {
 		deadLine,
 		hasDescription,
 		status,
+		location,
 		handleSelectedTarget,
 		selectedTarget,
-		iconType,
+		dashBoardInprogress,
 		btnStatus,
 		preventDoubleClick = false,
 		isDragging = false,
@@ -99,7 +102,6 @@ function BtnTask(props: BtnTaskProps) {
 			<BtnTaskLayout
 				isClicked={selectedTarget?.id === id}
 				isHovered={isHovered}
-				iconType={iconType}
 				onDoubleClick={handleDoubleClick}
 				onClick={handleClick}
 				theme={theme}
@@ -118,8 +120,9 @@ function BtnTask(props: BtnTaskProps) {
 						isDelayed={status === '지연'}
 					/>
 				</BtnTaskContainer>
-				<IconHoverContainer
-					iconType={iconType}
+				<BtnTaskIconRender
+					location={location}
+					dashBoardInprogress={dashBoardInprogress || false}
 					btnStatus={btnStatus}
 					status={status}
 					taskId={id}

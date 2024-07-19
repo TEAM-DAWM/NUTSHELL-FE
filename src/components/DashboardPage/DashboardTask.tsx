@@ -4,6 +4,7 @@ import { useState } from 'react';
 import useGetTasksToday from '@/apis/dashboard/tasksToday/query';
 import BtnTask from '@/components/common/BtnTask/BtnTask';
 import { TaskType } from '@/types/tasks/taskType';
+import formatDatetoLocalDate from '@/utils/formatDatetoLocalDate';
 
 interface DashboardTaskProps {
 	taskStatus: string;
@@ -49,6 +50,7 @@ function DashboardTask({ text, taskStatus, emptyStatus, emptyImg }: DashboardTas
 							<>
 								{data.data.tasks.map((task: TaskType) => (
 									<BtnTask
+										location="dashboard"
 										key={task.id + task.name}
 										hasDescription={task.hasDescription}
 										id={task.id}
@@ -58,7 +60,8 @@ function DashboardTask({ text, taskStatus, emptyStatus, emptyImg }: DashboardTas
 										selectedTarget={selectedTarget}
 										preventDoubleClick
 										handleSelectedTarget={handleSelectedTarget}
-										iconType="active"
+										dashBoardInprogress={text === 'inprogress'}
+										targetDate={formatDatetoLocalDate(new Date())}
 									/>
 								))}
 							</>

@@ -15,7 +15,12 @@ interface StagingAreaTaskContainerProps {
 	targetDate: string;
 }
 
-function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget, tasks }: StagingAreaTaskContainerProps) {
+function StagingAreaTaskContainer({
+	handleSelectedTarget,
+	selectedTarget,
+	tasks,
+	targetDate,
+}: StagingAreaTaskContainerProps) {
 	return (
 		<StagingAreaTaskContainerLayout>
 			<BtnTaskContainer type="staging">
@@ -33,7 +38,7 @@ function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget, tasks 
 										style={{ userSelect: 'none', ...provided.draggableProps.style }}
 									>
 										<BtnTask
-											iconType="stagingOrDelayed"
+											location="staging"
 											key={task.id}
 											hasDescription={task.hasDescription}
 											name={task.name}
@@ -43,6 +48,7 @@ function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget, tasks 
 											handleSelectedTarget={handleSelectedTarget}
 											selectedTarget={selectedTarget}
 											isDragging={snapshot.isDragging}
+											targetDate={targetDate}
 										/>
 									</div>
 								)}
