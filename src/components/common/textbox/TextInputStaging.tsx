@@ -56,7 +56,7 @@ function TextInputStaging() {
 
 	/** 엔터키로 쏟아내기 전송 */
 	const handleEnterPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-		if (e.key === 'Enter' && e.nativeEvent.isComposing === false) {
+		if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
 			e.preventDefault();
 			onSubmit();
 		}
