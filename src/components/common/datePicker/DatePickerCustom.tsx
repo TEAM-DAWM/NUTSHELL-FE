@@ -1,5 +1,5 @@
 import { ko } from 'date-fns/locale';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
@@ -17,22 +17,22 @@ interface DatePickerCustomProps {
 	onClose: () => void;
 	startDate: Date | null;
 	endDate: Date | null;
-	handleStartDate: (date: Date | null) => void;
-	handleEndDate: (date: Date | null) => void;
+	handleConfirmDates: (startDate: Date | null, endDate: Date | null) => void; // 확정된 날짜를 전달하는 함수
 }
 
 function DatePickerCustom({
 	isOpen,
 	onClose,
-	startDate,
-	endDate,
-	handleStartDate,
-	handleEndDate,
+	startDate: initialStartDate,
+	endDate: initialEndDate,
+	handleConfirmDates,
 }: DatePickerCustomProps) {
+	// 내부 상태로 선택 중인 날짜를 관리
+	const [startDate, setStartDate] = useState<Date | null>(initialStartDate);
+	const [endDate, setEndDate] = useState<Date | null>(initialEndDate);
 	const startDateTextRef = useRef<HTMLInputElement>(null);
 	const endDateTextRef = useRef<HTMLInputElement>(null);
 
-	/** ref 안에 Input DOM 있는지 검사하고 있다면 반환, 없으면 false 반환 */
 	const inputElementOfRef = (ref: React.RefObject<HTMLInputElement>) => {
 		if (ref.current) {
 			const inputElement = ref.current.querySelector('input');
@@ -43,19 +43,18 @@ function DatePickerCustom({
 		return false;
 	};
 
-	/** 캘린더에서 날짜 선택할 경우 변경 */
 	const onChange = (dates: [Date | null, Date | null]) => {
 		const [start, end] = dates;
-		handleStartDate(start);
+		setStartDate(start); // 내부 상태 업데이트
+		setEndDate(end); // 내부 상태 업데이트
 		blurRef(startDateTextRef);
-		// 캘린더에서 선택한 시작시간 인풋에 반영
+
 		const startInputEle = inputElementOfRef(startDateTextRef);
 		if (startInputEle) {
 			startInputEle.value = formatDatetoString(start);
 		}
 
 		const endInputEle = inputElementOfRef(endDateTextRef);
-		// 시작 날짜는 있고 마감 날짜는 없을 경우
 		if (start && end === null) {
 			if (endInputEle) {
 				endInputEle.value = '';
@@ -63,23 +62,24 @@ function DatePickerCustom({
 			}
 		}
 
-		// 캘린더에서 선택한 마감시간 인풋에 반영
 		if (endInputEle) endInputEle.value = formatDatetoString(end);
-		handleEndDate(end);
 		blurRef(endDateTextRef);
 	};
 
-	/** 인풋에서 날짜 타이핑했을 경우 변경 */
 	const onDateChange = (date: Date, mode: 'start' | 'end') => {
 		if (mode === 'start') {
 			blurRef(startDateTextRef);
-			handleStartDate(date);
+			setStartDate(date); // 내부 상태 업데이트
 		} else {
 			blurRef(endDateTextRef);
-			handleEndDate(date);
+			setEndDate(date); // 내부 상태 업데이트
 		}
 	};
 
+	const handleConfirm = () => {
+		handleConfirmDates(startDate, endDate); // 부모 컴포넌트에 확정된 날짜 전달
+		onClose();
+	};
 	return (
 		isOpen && (
 			<>
@@ -103,7 +103,7 @@ function DatePickerCustom({
 						/>
 					)}
 				>
-					<TextBtn text="확인" color="BLACK" size="small" mode="DEFAULT" isHover isPressed onClick={onClose} />
+					<TextBtn text="확인" color="BLACK" size="small" mode="DEFAULT" isHover isPressed onClick={handleConfirm} />
 				</DatePicker>
 				<ModalBackdrop onClick={onClose} />
 			</>
