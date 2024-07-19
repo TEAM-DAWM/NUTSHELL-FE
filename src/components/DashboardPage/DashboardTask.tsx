@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 import useGetTasksToday from '@/apis/dashboard/tasksToday/query';
 import BtnTask from '@/components/common/BtnTask/BtnTask';
-import TODAY from '@/constants/tasksToday';
 import { TaskType } from '@/types/tasks/taskType';
 
 interface DashboardTaskProps {
@@ -24,45 +23,49 @@ function DashboardTask({ text, taskStatus, emptyStatus, emptyImg }: DashboardTas
 		height: auto;
 	`;
 
-	const { data } = useGetTasksToday(text);
+	const { data, isError } = useGetTasksToday(text);
 
 	return (
 		<TaskLayout>
-			<TextBox>
-				<TaskText text={text}>{taskStatus}</TaskText>
-				<NumberTextBox>
-					<Number>{TODAY.data.tasks.length}</Number>
-					<NumberText>개</NumberText>
-				</NumberTextBox>
-			</TextBox>
+			{!isError && (
+				<>
+					<TextBox>
+						<TaskText text={text}>{taskStatus}</TaskText>
+						<NumberTextBox>
+							<Number>{data.data.tasks.length}</Number>
+							<NumberText>개</NumberText>
+						</NumberTextBox>
+					</TextBox>
 
-			<ScrollArea>
-				{data.data.tasks.length === 0 ? (
-					<EmptyWrapper>
-						<EmptyImageWrapper>
-							<ImageComponent src={emptyImg} />
-						</EmptyImageWrapper>
-						<EmptyText text={text}>{emptyStatus}</EmptyText>
-					</EmptyWrapper>
-				) : (
-					<>
-						{data.data.tasks.map((task: TaskType) => (
-							<BtnTask
-								key={task.id + task.name}
-								hasDescription={task.hasDescription}
-								id={task.id}
-								name={task.name}
-								status={task.status}
-								deadLine={task.deadLine}
-								selectedTarget={selectedTarget}
-								preventDoubleClick
-								handleSelectedTarget={handleSelectedTarget}
-								iconType="active"
-							/>
-						))}
-					</>
-				)}
-			</ScrollArea>
+					<ScrollArea>
+						{data.data.tasks.length === 0 ? (
+							<EmptyWrapper>
+								<EmptyImageWrapper>
+									<ImageComponent src={emptyImg} />
+								</EmptyImageWrapper>
+								<EmptyText text={text}>{emptyStatus}</EmptyText>
+							</EmptyWrapper>
+						) : (
+							<>
+								{data.data.tasks.map((task: TaskType) => (
+									<BtnTask
+										key={task.id + task.name}
+										hasDescription={task.hasDescription}
+										id={task.id}
+										name={task.name}
+										status={task.status}
+										deadLine={task.deadLine}
+										selectedTarget={selectedTarget}
+										preventDoubleClick
+										handleSelectedTarget={handleSelectedTarget}
+										iconType="active"
+									/>
+								))}
+							</>
+						)}
+					</ScrollArea>
+				</>
+			)}
 		</TaskLayout>
 	);
 }
