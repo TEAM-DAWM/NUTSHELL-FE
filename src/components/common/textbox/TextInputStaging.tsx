@@ -31,14 +31,7 @@ function TextInputStaging() {
 		setTaskName(e.target.value);
 	};
 
-	const clearTask = () => {
-		setTaskName('');
-		if (nameRef.current) nameRef.current.value = '';
-		setDate(null);
-		setTime(null);
-	};
-
-	const { mutate } = useCreateTask(clearTask);
+	const { mutate } = useCreateTask();
 
 	/** 태스크 쏟아내기 전송 */
 	const onSubmit = () => {
@@ -51,6 +44,10 @@ function TextInputStaging() {
 					time,
 				},
 			});
+			setTaskName('');
+			if (nameRef.current) nameRef.current.value = '';
+			setDate(null);
+			setTime(null);
 		}
 	};
 
