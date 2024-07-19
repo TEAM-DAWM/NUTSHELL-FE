@@ -1,12 +1,16 @@
 import styled from '@emotion/styled';
+import { ChangeEvent } from 'react';
 
 import { SizeType } from '@/types/textInputType';
 
 interface TextInputTitleProps extends SizeType {
 	name: string;
+	onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
-function TextInputTitle({ type, name }: TextInputTitleProps) {
-	return <TextInputTitleLayout placeholder="제목 추가" type={type} defaultValue={name} maxLength={20} />;
+function TextInputTitle({ type, name, onChange }: TextInputTitleProps) {
+	return (
+		<TextInputTitleLayout placeholder="제목 추가" type={type} defaultValue={name} maxLength={20} onChange={onChange} />
+	);
 }
 const TextInputTitleLayout = styled.input<{ type: string }>`
 	${({ theme }) => theme.fontTheme.BODY_02};
