@@ -1,4 +1,4 @@
-export interface DeleteTimeBlokType {
+export interface DeleteTimeBlockType {
 	taskId: number;
 	timeBlockId: number;
 }
