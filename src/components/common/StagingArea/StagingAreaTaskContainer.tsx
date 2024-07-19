@@ -48,7 +48,6 @@ function StagingAreaTaskContainer({
 											handleSelectedTarget={handleSelectedTarget}
 											selectedTarget={selectedTarget}
 											isDragging={snapshot.isDragging}
-											targetDate={targetDate}
 										/>
 									</div>
 								)}
