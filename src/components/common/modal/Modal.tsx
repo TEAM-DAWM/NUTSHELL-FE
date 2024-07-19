@@ -43,6 +43,9 @@ function Modal({ isOpen, sizeType, top, left, onClose, taskId, targetDate = null
 			setDesc(data.data.description);
 			setDeadLineDate(data.data.deadLine.date);
 			setDeadLineTime(data.data.deadLine.time);
+
+			setStartTime('');
+			setEndTime('');
 		}
 	}, [isFetched, data]);
 

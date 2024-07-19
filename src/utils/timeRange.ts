@@ -1,4 +1,3 @@
-// timeRange.js
 const timeRange = (startTime: string, endTime: string) => {
 	const parseTime = (time: string) => {
 		const [hours, minutes] = time.split(':').map(Number);
@@ -6,7 +5,7 @@ const timeRange = (startTime: string, endTime: string) => {
 	};
 
 	if (!startTime || !endTime) {
-		return 'NaN';
+		return '';
 	}
 
 	const startMinutes = parseTime(startTime);
