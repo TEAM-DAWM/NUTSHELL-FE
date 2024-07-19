@@ -23,7 +23,7 @@ interface BtnTaskProps extends TaskType {
 	preventDoubleClick?: boolean;
 	isDragging?: boolean;
 	targetDate?: string | null;
-	modalSize: SizeType;
+	modalSize?: SizeType;
 }
 
 interface BorderColorProps {

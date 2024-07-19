@@ -91,7 +91,7 @@ function BtnDate(props: BtnDateProps) {
 						date={date}
 						time={time}
 						onClick={handleMouseUp}
-						handleCurrentDate={handleDate}
+						handleCurrentDate={(newDate: Date) => handleDate?.(newDate.toISOString())}
 						handleCurrentTime={handleTime}
 					/>
 					<ModalBackdrop onClick={handleMouseUp} />

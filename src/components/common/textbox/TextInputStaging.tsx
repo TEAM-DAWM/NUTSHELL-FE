@@ -18,8 +18,8 @@ function TextInputStaging() {
 	const handleArrangeBtnClick = () => {
 		setDate(new Date());
 	};
-	const handleDate = (newDate: Date) => {
-		setDate(newDate);
+	const handleDate = (newDate: string) => {
+		setDate(new Date(newDate));
 	};
 	const handleTime = (newTime: string) => {
 		setTime(newTime);
