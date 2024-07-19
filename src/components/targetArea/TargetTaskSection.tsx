@@ -35,7 +35,6 @@ function TargetTaskSection(props: TargetTaskSectionProps) {
 								>
 									<BtnTask
 										location="target"
-										iconType="active"
 										key={task.id}
 										hasDescription={task.hasDescription}
 										name={task.name}
@@ -47,6 +46,7 @@ function TargetTaskSection(props: TargetTaskSectionProps) {
 										selectedTarget={selectedTarget}
 										isDragging={snapshot.isDragging}
 										targetDate={targetDate}
+										dashBoardInprogress={false}
 									/>
 								</div>
 							)}

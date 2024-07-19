@@ -59,7 +59,7 @@ function DashboardTask({ text, taskStatus, emptyStatus, emptyImg }: DashboardTas
 										selectedTarget={selectedTarget}
 										preventDoubleClick
 										handleSelectedTarget={handleSelectedTarget}
-										iconType="active"
+										dashBoardInprogress={text === 'inprogress'}
 									/>
 								))}
 							</>

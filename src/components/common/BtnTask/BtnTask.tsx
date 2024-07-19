@@ -17,18 +17,17 @@ interface BtnTaskProps extends TaskType {
 	location: BtnTaskLocationType;
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
-	iconType: 'stagingOrDelayed' | 'active';
+	dashBoardInprogress: boolean;
 	btnStatus?: string;
 	preventDoubleClick?: boolean;
 	isDragging?: boolean;
-	targetDate?: string | null;
+	// targetDate?: string | null;
 }
 
 interface BorderColorProps {
 	isHovered: boolean;
 	isClicked: boolean;
 	theme: Theme;
-	iconType: string;
 	status: string;
 	isDragging?: boolean;
 }
@@ -43,7 +42,7 @@ function BtnTask(props: BtnTaskProps) {
 		location,
 		handleSelectedTarget,
 		selectedTarget,
-		iconType,
+		dashBoardInprogress,
 		btnStatus,
 		preventDoubleClick = false,
 		isDragging = false,
@@ -103,7 +102,6 @@ function BtnTask(props: BtnTaskProps) {
 			<BtnTaskLayout
 				isClicked={selectedTarget?.id === id}
 				isHovered={isHovered}
-				iconType={iconType}
 				onDoubleClick={handleDoubleClick}
 				onClick={handleClick}
 				theme={theme}
@@ -124,11 +122,11 @@ function BtnTask(props: BtnTaskProps) {
 				</BtnTaskContainer>
 				<BtnTaskIconRender
 					location={location}
-					iconType={iconType}
+					dashBoardInprogress={dashBoardInprogress}
 					btnStatus={btnStatus}
 					status={status}
 					taskId={id}
-					targetDate={targetDate}
+					// targetDate={targetDate}
 				/>
 			</BtnTaskLayout>
 			<Modal

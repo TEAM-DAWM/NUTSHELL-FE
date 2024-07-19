@@ -1,45 +1,47 @@
-import IconHoverContainer from './IconHoverContainer';
+import DashboardIconHoverContainer from './DashboardIconHoverContainer';
+import StagingIconHoverContainer from './StagingIconHoverContainer';
+import TargetIconHoverContainer from './TargetIconHoverContainer';
 
 import { BtnTaskLocationType } from '@/types/today/BtnTaskLocationType';
 
 type BtnTaskIconRenderProps = {
 	location: BtnTaskLocationType;
-	iconType: 'stagingOrDelayed' | 'active';
+	dashBoardInprogress: boolean;
 	btnStatus?: string;
 	status?: string;
 	taskId: number;
-	targetDate?: string | null;
+	// targetDate?: string | null;
 };
-function BtnTaskIconRender({ location, iconType, btnStatus, status, taskId, targetDate }: BtnTaskIconRenderProps) {
+/** 태스크 status 변경 */
+// const changeTaskStatus = (updateTaskStatus: string) => {
+//     const updateTargetData: UpdateTaskStatusType = {
+//         taskId,
+//         targetDate,
+//         status: updateTaskStatus,
+//     };
+//     updateTaskStatueMutate(updateTargetData);
+// };
+function BtnTaskIconRender({
+	location,
+	dashBoardInprogress,
+	btnStatus,
+	status,
+	taskId,
+	// targetDate,
+}: BtnTaskIconRenderProps) {
 	switch (location) {
 		case 'staging':
-			return (
-				<IconHoverContainer
-					iconType={iconType}
-					btnStatus={btnStatus}
-					status={status}
-					taskId={taskId}
-					targetDate={targetDate}
-				/>
-			);
+			// targetDate={targetDate}
+			return <StagingIconHoverContainer status={status} taskId={taskId} />;
 		case 'target':
-			return (
-				<IconHoverContainer
-					iconType={iconType}
-					btnStatus={btnStatus}
-					status={status}
-					taskId={taskId}
-					targetDate={targetDate}
-				/>
-			);
+			// taskId={taskId} targetDate={targetDate}
+			return <TargetIconHoverContainer btnStatus={btnStatus} />;
 		case 'dashboard':
 			return (
-				<IconHoverContainer
-					iconType={iconType}
-					btnStatus={btnStatus}
-					status={status}
-					taskId={taskId}
-					targetDate={targetDate}
+				<DashboardIconHoverContainer
+					dashBoardInprogress={dashBoardInprogress}
+					// taskId={taskId}
+					// targetDate={targetDate}
 				/>
 			);
 

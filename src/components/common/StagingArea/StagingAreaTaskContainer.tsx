@@ -34,7 +34,6 @@ function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget, tasks 
 									>
 										<BtnTask
 											location="staging"
-											iconType="stagingOrDelayed"
 											key={task.id}
 											hasDescription={task.hasDescription}
 											name={task.name}
