@@ -7,10 +7,11 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { DateSelectArg, EventResizeDoneArg } from 'fullcalendar/index.js';
 import { useState, useRef, useEffect } from 'react';
 
-import Modal from '../modal/Modal';
+import ModalDeleteDetail from '../modal/ModalDeleteDetail';
 
 import processEvents from './processEvents';
 
+import useDeleteTimeBlock from '@/apis/timeBlocks/deleteTimeBlock/query';
 import useGetTimeBlock from '@/apis/timeBlocks/getTimeBlock/query';
 import usePostTimeBlock from '@/apis/timeBlocks/postTimeBlock/query';
 import useUpdateTimeBlock from '@/apis/timeBlocks/updateTimeBlock/query';
@@ -89,9 +90,10 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 	const handleEventClick = (info: EventClickArg) => {
 		const rect = info.el.getBoundingClientRect();
 		const calculatedTop = rect.top;
-		const adjustedTop = Math.min(calculatedTop, MODAL.SCREEN_HEIGHT - MODAL.TASK_MODAL_HEIGHT);
+		const screenHeight = window.innerHeight;
+		const adjustedTop = Math.min(calculatedTop, screenHeight - MODAL.TASK_DELETE_HEIGHT);
 		setTop(adjustedTop);
-		setLeft(rect.left - MODAL.TASK_MODAL_WIDTH + 40);
+		setLeft(rect.left - MODAL.TASK_DELETE_WIDTH);
 
 		const clickedEvent = info.event.extendedProps;
 
@@ -165,6 +167,20 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 		}
 	};
 
+	const { mutate } = useDeleteTimeBlock();
+
+	const handleDelete = () => {
+		console.log('taskId, timeBlockId', modalTaskId, modalTimeBlockId);
+
+		if (modalTaskId && modalTimeBlockId) {
+			mutate({ taskId: modalTaskId, timeBlockId: modalTimeBlockId });
+		} else {
+			console.error('taskId 또는 timeBlockId가 존재하지 않습니다.');
+		}
+
+		setModalOpen(false);
+	};
+
 	return (
 		<FullCalendarLayout size={size}>
 			<CustomButtonContainer>
@@ -229,15 +245,7 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 				eventResize={updateEvent} // 기존 이벤트 리사이즈 수정 핸들러
 			/>
 			{isModalOpen && modalTaskId !== null && modalTimeBlockId !== null && (
-				<Modal
-					isOpen={isModalOpen}
-					sizeType={{ type: 'short' }}
-					top={top}
-					left={left}
-					onClose={closeModal}
-					taskId={modalTaskId}
-					timeBlockId={modalTimeBlockId}
-				/>
+				<ModalDeleteDetail top={top} left={left} onClose={closeModal} onDelete={handleDelete} />
 			)}
 		</FullCalendarLayout>
 	);
