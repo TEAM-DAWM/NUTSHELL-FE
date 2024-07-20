@@ -10,6 +10,7 @@ import BtnDateText, { TextWrapper } from './BtnDateText';
 import Icons from '@/assets/svg/index';
 import MODAL from '@/constants/modalLocation';
 import { SizeType } from '@/types/textInputType';
+import parseDate from '@/utils/parseDate';
 
 interface BtnDateProps {
 	date: string | null;
@@ -89,7 +90,7 @@ function BtnDate(props: BtnDateProps) {
 						date={date}
 						time={time}
 						onClick={handleMouseUp}
-						handleCurrentDate={(newDate: Date) => handleDate?.(newDate.toISOString())}
+						handleCurrentDate={(newDate: Date) => handleDate?.(parseDate(newDate.toString()))}
 						handleCurrentTime={handleTime}
 					/>
 					<ModalBackdrop onClick={handleMouseUp} />
