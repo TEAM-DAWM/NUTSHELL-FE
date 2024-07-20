@@ -109,9 +109,8 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 		setModalTaskId(null);
 		setModalTimeBlockId(null);
 	};
-
 	const addEventWhenDragged = (selectInfo: DateSelectArg) => {
-		if (calendarRef.current && (selectedTarget?.id === 0 || selectedTarget)) {
+		if (calendarRef.current && selectedTarget && selectedTarget.id !== -1) {
 			const calendarApi = calendarRef.current.getApi();
 
 			const existingEvents = calendarApi.getEvents();
@@ -143,29 +142,33 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 		}
 	};
 
-	const updateEvent = (info: EventDropArg | EventResizeDoneArg) => {
-		const { event } = info;
-		const { taskId, timeBlockId } = event.extendedProps;
-		const removeTimezone = (str: string) => str.replace(/:\d{2}[+-]\d{2}:\d{2}$/, '');
-
-		const startStr = removeTimezone(event.startStr);
-		const endStr = removeTimezone(event.endStr);
-
-		if (taskId && taskId !== -1) {
-			updateMutate({ taskId, timeBlockId, startTime: startStr, endTime: endStr });
-		}
-	};
-
 	const handleSelect = (selectInfo: DateSelectArg) => {
 		if (calendarRef.current) {
 			const calendarApi = calendarRef.current.getApi();
 			calendarApi.unselect();
 		}
 
-		if (selectedTarget) {
+		if (selectedTarget && selectedTarget.id !== -1) {
 			addEventWhenDragged(selectInfo);
 		}
 	};
+
+	const updateEvent = (info: EventDropArg | EventResizeDoneArg) => {
+		const { event } = info;
+		const { taskId, timeBlockId } = event.extendedProps;
+
+		if (taskId && taskId !== -1) {
+			const removeTimezone = (str: string) => str.replace(/:\d{2}[+-]\d{2}:\d{2}$/, '');
+
+			const startStr = removeTimezone(event.startStr);
+			const endStr = removeTimezone(event.endStr);
+
+			updateMutate({ taskId, timeBlockId, startTime: startStr, endTime: endStr });
+		} else {
+			info.revert();
+		}
+	};
+
 	const isSelectable = !!selectedTarget;
 
 	const { mutate } = useDeleteTimeBlock();
