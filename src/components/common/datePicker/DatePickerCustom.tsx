@@ -1,5 +1,5 @@
 import { ko } from 'date-fns/locale';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
@@ -42,6 +42,11 @@ function DatePickerCustom({
 		}
 		return false;
 	};
+
+	useEffect(() => {
+		setStartDate(initialStartDate);
+		setEndDate(initialEndDate);
+	}, [initialStartDate, initialEndDate]);
 
 	const onChange = (dates: [Date | null, Date | null]) => {
 		const [start, end] = dates;
